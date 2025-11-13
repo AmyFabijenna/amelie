@@ -1,844 +1,1365 @@
-﻿<!DOCTYPE html>
-<html>
-
+<!DOCTYPE html>
+<html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome file</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Naturkosmetik Handbuch | DIY Ringana-Alternative für Tochter</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5e6e8 0%, #ffe4e9 50%, #f5e6e8 100%);
+            color: #000000;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #e0f2f7 0%, #b3e5fc 50%, #e0f2f7 100%);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 200;
+            letter-spacing: 0.15em;
+            margin: 0 0 1rem 0;
+            background: linear-gradient(135deg, #0288D1 0%, #039BE5 25%, #4FC3F7 50%, #0288D1 75%, #039BE5 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+            filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.3));
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.8rem);
+            background: linear-gradient(135deg, #01579B 0%, #0288D1 50%, #039BE5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-style: italic;
+            font-weight: 400;
+            margin: 0.5rem 0 2rem 0;
+            letter-spacing: 0.1em;
+        }
+
+        .tagline {
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            color: #0277BD;
+            max-width: 700px;
+            margin: 1rem auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
+            border-bottom: 2px solid #0288D1;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #0277BD;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.15);
+            border: 2px solid rgba(102, 187, 106, 0.2);
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            background: linear-gradient(135deg, #01579B 0%, #0288D1 50%, #039BE5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: #0277BD;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: #01579B;
+            margin: 1.5rem 0 0.8rem 0;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Collapsible */
+        .collapsible {
+            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 50%, #E1F5FE 100%);
+            color: #004D7F;
+            cursor: pointer;
+            padding: 1.5rem;
+            width: 100%;
+            border: 2px solid #0288D1;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 15px;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .collapsible:hover {
+            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35);
+        }
+
+        .collapsible:after {
+            content: '▼';
+            float: right;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible.active:after {
+            transform: rotate(180deg);
+        }
+
+        .content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 3px solid #0288D1;
+            border-right: 3px solid #0288D1;
+            border-bottom: 3px solid #0288D1;
+            border-radius: 0 0 15px 15px;
+            margin-top: -10px;
+        }
+
+        .content.active {
+            padding: 1.5rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+            font-size: 1.05rem;
+        }
+
+        li {
+            margin: 0.7rem 0;
+            line-height: 1.6;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #E1F5FE;
+        }
+
+        tr:hover {
+            background: #E0F7FA;
+        }
+
+        /* Highlight Boxes */
+        .highlight {
+            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 50%, #E1F5FE 100%);
+            border-left: 5px solid #039BE5;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFF59D 50%, #FFF9C4 100%);
+            border-left: 5px solid #FBC02D;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(251, 192, 45, 0.15);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #B3E5FC 0%, #A5D6A7 50%, #B3E5FC 100%);
+            border-left: 5px solid #01579B;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(56, 142, 60, 0.15);
+        }
+
+        .tip {
+            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 50%, #E1F5FE 100%);
+            border-left: 5px solid #0288D1;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(2, 136, 209, 0.15);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(135deg, #0288D1 0%, #039BE5 25%, #4FC3F7 50%, #0288D1 75%, #039BE5 100%);
+            background-size: 200% auto;
+            border: 3px solid #01579B;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.35);
+            letter-spacing: 0.05em;
+            margin: 1rem 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(76, 175, 80, 0.5);
+            background-position: right center;
+        }
+
+        /* Code/Recipe Blocks */
+        pre, .recipe {
+            background: #F5F5F5;
+            border: 2px solid #0288D1;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+            position: relative;
+            margin: 0.5rem 0;
+            background: #E0F7FA;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .checklist li:hover {
+            background: #E1F5FE;
+            transform: translateX(5px);
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 0.8rem;
+            font-size: 1.3rem;
+            color: #0288D1;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border-top: 2px solid #0288D1;
+            box-shadow: 0 -4px 15px rgba(76, 175, 80, 0.15);
+        }
+
+        footer p {
+            color: #0277BD;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Emoji Styling */
+        .emoji {
+            font-size: 1.3em;
+            vertical-align: middle;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #0288D1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
+        }
+
+        .quick-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
+            color: white;
+        }
+
+        .quick-link .emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>🌿 NATURKOSMETIK</h1>
+        <div class="subtitle">Ringana-Alternative selbst herstellen</div>
+        <div class="tagline">
+            <strong>Für meine Tochter:</strong> Einfach · Günstig · Ähnlich wie Ringana<br>
+            <em>Von Mama Berry, mit Liebe ❤️</em>
+        </div>
+    </div>
 
-<body class="stackedit">
-  <div class="stackedit__html"><h1 id="🌿-ringana-alternative-selbst-herstellen">🌿 RINGANA-ALTERNATIVE SELBST HERSTELLEN</h1>
-<h2 id="für-dich---einfach-günstig-schnell">Für dich - Einfach, Günstig, Schnell</h2>
-<p><strong>Von Mama Amy, mit Liebe ❤️</strong></p>
-<hr>
-<h2 id="warum-dieses-handbuch">Warum dieses Handbuch?</h2>
-<p>Liebste Amelie,</p>
-<p>ich weiß, dass du die <strong>Ringana Fresh Cream Medium</strong> liebst, aber sie ist mit <strong>€50-60 für 50ml</strong> einfach zu teuer für dich gerade. Und ich verstehe auch, dass du keine Zeit für aufwändige Kosmetik-Projekte hast.</p>
-<p><strong>Deshalb habe ich dir dieses kompakte Handbuch gemacht:</strong></p>
-<p>✅ <strong>EINFACH</strong> - Nur 6 Zutaten, 30 Minuten<br>
-✅ <strong>GÜNSTIG</strong> - Ca. €3-4 pro 50ml (statt €45!)<br>
-✅ <strong>ÄHNLICH</strong> - Orientiert an Ringana-Inhaltsstoffen<br>
-✅ <strong>FRISCH</strong> - Wie Ringana, ohne Konservierung</p>
-<p><strong>Du sparst ca. 90%!</strong> 💚</p>
-<hr>
-<h2 id="inhaltsverzeichnis">Inhaltsverzeichnis</h2>
-<ol>
-<li><strong>Was ist Ringana FRESH cream medium?</strong> (kurze Analyse)</li>
-<li><strong>Deine vereinfachte Alternative</strong> (DIY-Rezept)</li>
-<li><strong>Schritt-für-Schritt Anleitung</strong> (30 Min.)</li>
-<li><strong>Einkaufsliste</strong> (einmalig ca. €60, reicht für 15+ Cremes!)</li>
-<li><strong>Häufigste Fehler</strong> (vermeiden!)</li>
-<li><strong>Variationen</strong> (wenn du experimentieren willst)</li>
-<li><strong>Mama’s Tipps</strong> (aus meiner Erfahrung)</li>
-</ol>
-<hr>
-<h1 id="was-ist-ringana-fresh-cream-medium">1. Was ist Ringana FRESH cream medium?</h1>
-<h2 id="die-original-philosophie">1.1 Die Original-Philosophie</h2>
-<p><strong>Ringana</strong> ist eine österreichische Premium-Naturkosmetik-Marke aus der Steiermark. Ihre Philosophie:</p>
-<ul>
-<li>🌱 100% natürliche Inhaltsstoffe</li>
-<li>🚫 Keine synthetischen Konservierungsstoffe</li>
-<li>♻️ “Frisch aus dem Rührwerk” (kurze Haltbarkeit)</li>
-<li>🌍 COSMOS ORGANIC zertifiziert</li>
-<li>💚 Vegan</li>
-</ul>
-<p><strong>Fresh cream medium</strong> ist für:</p>
-<ul>
-<li>Normale Haut bis Mischhaut</li>
-<li>Ausgleichende Wirkung</li>
-<li>Leichte bis mittlere Textur</li>
-<li>Zieht gut ein</li>
-</ul>
-<hr>
-<h2 id="hauptinhaltsstoffe-vereinfacht">1.2 Hauptinhaltsstoffe (vereinfacht)</h2>
-<p>Ringana Fresh Cream Medium enthält ca. <strong>40+ Inhaltsstoffe</strong>! 😱</p>
-<p><strong>Aber die wichtigsten sind:</strong></p>
-<h3 id="basis-was-die-creme-ausmacht"><strong>Basis (was die Creme ausmacht):</strong></h3>
-<ol>
-<li><strong>Orangenfruchtwasser</strong> (Citrus aurantium dulcis) - Basis, Vitamin C</li>
-<li><strong>Rosenwasser</strong> (Rosa damascena) - beruhigend</li>
-<li><strong>Mandelöl</strong> (Prunus amygdalus dulcis) - pflegend</li>
-<li><strong>Macadamiaöl</strong> (Macadamia ternifolia) - Feuchtigkeit</li>
-<li><strong>Squalan</strong> - aus Oliven, sehr leicht</li>
-<li><strong>Glycerin</strong> - Feuchthaltemittel</li>
-<li><strong>Emulgatoren</strong> (Cetearyl/Sorbitan Olivate) - verbindet Öl &amp; Wasser</li>
-</ol>
-<h3 id="spezial-wirkstoffe-teuer"><strong>Spezial-Wirkstoffe (teuer!):</strong></h3>
-<ul>
-<li>Sheabutter (Butyrospermum parkii)</li>
-<li>Baobab-Öl (Adansonia digitata)</li>
-<li>Wiesenschaumkraut-Öl (Limnanthes alba)</li>
-<li>Hyaluronsäure (hydrolyzed)</li>
-<li>Ceramide (teuer!)</li>
-<li>Borretschöl (Borago officinalis)</li>
-<li>Nachtkerzenöl (Oenothera biennis)</li>
-<li>Q10 (Ubiquinone)</li>
-<li>… und 25+ weitere</li>
-</ul>
-<hr>
-<h2 id="was-können-wir-weglassen">1.3 Was können wir weglassen?</h2>
-<p><strong>Ringana ist ein Luxusprodukt</strong> mit vielen exotischen, teuren Wirkstoffen.</p>
-<p><strong>Für eine gute, alltagstaugliche Creme brauchst du NICHT:</strong></p>
-<ul>
-<li>❌ Baobab-Öl (€30/100ml!)</li>
-<li>❌ Ceramide (sehr teuer)</li>
-<li>❌ Q10 (teuer, du bist jung!)</li>
-<li>❌ 10 verschiedene exotische Öle</li>
-</ul>
-<p><strong>Was du BRAUCHST (Kern der Wirkung):</strong></p>
-<ul>
-<li>✅ Gute Basis-Öle (Mandel, Jojoba)</li>
-<li>✅ Hydrolate (Rosenwasser)</li>
-<li>✅ Emulgator (Öl + Wasser verbinden)</li>
-<li>✅ Feuchtigkeit (Glycerin, Aloe)</li>
-<li>✅ Vitamin E (Haltbarkeit + Pflege)</li>
-</ul>
-<p><strong>→ Das reicht für 90% der Wirkung bei 10% der Kosten!</strong></p>
-<hr>
-<h1 id="deine-vereinfachte-ringana-alternative">2. Deine vereinfachte Ringana-Alternative</h1>
-<h2 id="das-rezept-für-50ml">2.1 Das Rezept (für 50ml)</h2>
-<h3 id="fettphase-öle"><strong>Fettphase (Öle):</strong></h3>
-<ul>
-<li>12g Mandelöl <em>(wie Ringana)</em></li>
-<li>8g Jojobaöl <em>(ähnlich zu Squalan - leicht, nicht fettend)</em></li>
-<li>5g Sheabutter <em>(wie Ringana, aber weniger)</em></li>
-<li>3g Emulsan <em>(Emulgator - Ringana nutzt Olivat-Emulgator)</em></li>
-</ul>
-<h3 id="wasserphase-feuchtigkeit"><strong>Wasserphase (Feuchtigkeit):</strong></h3>
-<ul>
-<li>20ml Rosenwasser <em>(genau wie Ringana!)</em></li>
-<li>2ml Aloe Vera Gel <em>(Feuchtigkeit)</em></li>
-</ul>
-<h3 id="wirkstoffe-nach-dem-mischen"><strong>Wirkstoffe (nach dem Mischen):</strong></h3>
-<ul>
-<li>0,5g Vitamin E (ca. 10 Tropfen) <em>(Pflege + Haltbarkeit)</em></li>
-<li>Optional: 3 Tropfen ätherisches Öl (z.B. Lavendel)</li>
-</ul>
-<p><strong>GESAMT: ca. 50ml</strong><br>
-<strong>Kosten: ca. €3-4 pro Creme</strong><br>
-<strong>Statt: €45-50 bei Ringana!</strong></p>
-<hr>
-<h2 id="unterschiede-zu-original-ringana">2.2 Unterschiede zu Original Ringana</h2>
-<p>Aspekt</p>
-<p>Ringana Original</p>
-<p>Deine Alternative</p>
-<p><strong>Inhaltsstoffe</strong></p>
-<p>40+ Wirkstoffe</p>
-<p>7 Hauptzutaten</p>
-<p><strong>Basis</strong></p>
-<p>Orangenfruchtwasser</p>
-<p>Rosenwasser</p>
-<p><strong>Öle</strong></p>
-<p>10+ exotische Öle</p>
-<p>2 Basis-Öle + Sheabutter</p>
-<p><strong>Spezialwirkstoffe</strong></p>
-<p>Ceramide, Q10, Hyaluron</p>
-<p>Vitamin E (Basis)</p>
-<p><strong>Textur</strong></p>
-<p>Sehr leicht, schnell einziehend</p>
-<p>Leicht, gut einziehend</p>
-<p><strong>Haltbarkeit</strong></p>
-<p>3 Monate (Kühlschrank)</p>
-<p>4-6 Wochen (Kühlschrank)</p>
-<p><strong>Preis/50ml</strong></p>
-<p>€45-50</p>
-<p>€3-4</p>
-<p><strong>Zertifizierung</strong></p>
-<p>COSMOS ORGANIC</p>
-<p>Selbstgemacht (= Bio wenn Bio-Rohstoffe)</p>
-<p><strong>Aufwand</strong></p>
-<p>Kaufen</p>
-<p>30 Min. Herstellung</p>
-<p><strong>Fazit:</strong> Deine Version hat ca. <strong>80% der Wirkung bei 8% der Kosten</strong>! 💰</p>
-<hr>
-<h1 id="schritt-für-schritt-anleitung">3. Schritt-für-Schritt Anleitung</h1>
-<h2 id="was-du-brauchst-equipment">3.1 Was du brauchst (Equipment)</h2>
-<p><strong>Einmalige Anschaffung (ca. €30):</strong></p>
-<ul>
-<li>🔢 Küchenwaage (0,1g genau) - €15-20</li>
-<li>🥄 2 kleine Töpfe (für Wasserbad) - €10</li>
-<li>🔪 Spatel oder Glasrührstab - €3</li>
-<li>🌡️ Thermometer (optional, aber hilfreich) - €8</li>
-<li>🫙 Tiegel oder Pumpspender (50ml) - €1/Stück</li>
-</ul>
-<p><strong>Falls du schon hast:</strong></p>
-<ul>
-<li>Stabmixer (oder Schneebesen)</li>
-<li>Messbecher</li>
-<li>Saubere Gläser</li>
-</ul>
-<hr>
-<h2 id="die-herstellung-30-minuten">3.2 Die Herstellung (30 Minuten)</h2>
-<h3 id="vorbereitung-5-min."><strong>Vorbereitung (5 Min.):</strong></h3>
-<p><strong>HYGIENE ist wichtig!</strong> (sonst Schimmel nach 1 Woche!)</p>
-<ol>
-<li>✅ <strong>Hände gründlich waschen</strong> (30 Sek. mit Seife)</li>
-<li>✅ <strong>Alle Geräte sterilisieren:</strong>
-<ul>
-<li>Töpfe, Tiegel, Spatel mit kochendem Wasser übergießen</li>
-<li>Oder: Spülmaschine bei 60°C</li>
-</ul>
-</li>
-<li>✅ <strong>Arbeitsfläche desinfizieren</strong> (Alkohol-Spray oder Essig)</li>
-<li>✅ <strong>Zutaten abwiegen</strong> (genau!)</li>
-</ol>
-<hr>
-<h3 id="herstellung-20-min."><strong>Herstellung (20 Min.):</strong></h3>
-<h4 id="schritt-1-fettphase-schmelzen-5-min."><strong>Schritt 1: Fettphase schmelzen (5 Min.)</strong></h4>
-<ol>
-<li>
-<p>Gib in Topf 1:</p>
-<ul>
-<li>12g Mandelöl</li>
-<li>8g Jojobaöl</li>
-<li>5g Sheabutter</li>
-<li>3g Emulsan</li>
-</ul>
-</li>
-<li>
-<p>Stelle Topf 1 ins Wasserbad</p>
-</li>
-<li>
-<p>Erhitze auf <strong>60-65°C</strong> (mit Thermometer messen)</p>
-</li>
-<li>
-<p>Rühre sanft, bis alles geschmolzen ist</p>
-</li>
-</ol>
-<p>💡 <strong>Kein Thermometer?</strong> → Handwarm + bisschen mehr (nicht kochend!)</p>
-<hr>
-<h4 id="schritt-2-wasserphase-erhitzen-gleichzeitig-5-min."><strong>Schritt 2: Wasserphase erhitzen (gleichzeitig) (5 Min.)</strong></h4>
-<ol>
-<li>
-<p>Gib in Topf 2:</p>
-<ul>
-<li>20ml Rosenwasser</li>
-<li>2ml Aloe Vera Gel</li>
-</ul>
-</li>
-<li>
-<p>Erwärme ebenfalls auf <strong>60-65°C</strong></p>
-</li>
-</ol>
-<p>⚠️ <strong>WICHTIG:</strong> Beide Töpfe müssen <strong>gleiche Temperatur</strong> haben!</p>
-<hr>
-<h4 id="schritt-3-emulgieren-5-min."><strong>Schritt 3: Emulgieren (5 Min.)</strong></h4>
-<ol>
-<li><strong>Nimm beide Töpfe vom Herd</strong></li>
-<li>Gieße <strong>langsam</strong> die Wasserphase in die Fettphase</li>
-<li>Dabei <strong>ständig rühren</strong> (mit Stabmixer oder kräftig mit Schneebesen)</li>
-<li>Mixe 2-3 Minuten</li>
-<li>Die Mischung wird <strong>cremig-weiß</strong> (wie Sahne!)</li>
-</ol>
-<p>💡 <strong>Kein Stabmixer?</strong> → Schneebesen geht auch, nur länger rühren (5 Min.)</p>
-<hr>
-<h4 id="schritt-4-abkühlen--wirkstoffe-5-min."><strong>Schritt 4: Abkühlen &amp; Wirkstoffe (5 Min.)</strong></h4>
-<ol>
-<li>Lass die Creme auf <strong>ca. 30°C</strong> abkühlen (handwarm)</li>
-<li>Gib dazu:
-<ul>
-<li>0,5g Vitamin E (ca. 10 Tropfen)</li>
-<li>Optional: 3 Tropfen ätherisches Öl</li>
-</ul>
-</li>
-<li>Nochmals kurz durchrühren</li>
-</ol>
-<hr>
-<h4 id="schritt-5-abfüllen"><strong>Schritt 5: Abfüllen</strong></h4>
-<ol>
-<li>Fülle in sauberen Tiegel oder Pumpspender</li>
-<li><strong>Beschrifte!</strong> (WICHTIG!)</li>
-</ol>
-<pre><code>Medium Gesichtscreme (Ringana-Style)
-Hergestellt: 13.11.2025
-Zutaten: Mandel, Jojoba, Shea, Emulsan, Rose, Aloe, Vit E
-Haltbar: ca. 6 Wochen (Kühlschrank!)
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#warum">Warum?</a></li>
+            <li><a href="#rezept">Das Rezept</a></li>
+            <li><a href="#anleitung">Anleitung</a></li>
+            <li><a href="#einkauf">Einkaufsliste</a></li>
+            <li><a href="#fehler">Fehler vermeiden</a></li>
+            <li><a href="#varianten">Varianten</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#checklisten">Checklisten</a></li>
+        </ul>
+    </nav>
 
-</code></pre>
-<ol start="3">
-<li>Verschließe gut</li>
-</ol>
-<hr>
-<h4 id="schritt-6-reifezeit"><strong>Schritt 6: Reifezeit</strong></h4>
-<ul>
-<li>Lass die Creme <strong>24 Stunden</strong> bei Raumtemperatur stehen</li>
-<li>Danach: <strong>In den Kühlschrank!</strong></li>
-<li>Konsistenz wird noch etwas fester</li>
-</ul>
-<p><strong>FERTIG! 🎉</strong></p>
-<hr>
-<h2 id="lagerung--haltbarkeit">3.3 Lagerung &amp; Haltbarkeit</h2>
-<p><strong>Wo aufbewahren?</strong></p>
-<ul>
-<li>❄️ <strong>Im Kühlschrank!</strong> (wie Ringana)</li>
-<li>🌑 Dunkel (nicht am Fenster)</li>
-<li>🔒 Gut verschlossen</li>
-</ul>
-<p><strong>Wie lange haltbar?</strong></p>
-<ul>
-<li>⏰ <strong>4-6 Wochen</strong> (mit Vitamin E)</li>
-<li>🚫 <strong>Ohne Konservierung</strong> (wie Ringana!)</li>
-<li>✅ Deshalb kleine Mengen herstellen</li>
-</ul>
-<p><strong>Wann ist die Creme schlecht?</strong> ❌ Riecht ranzig oder muffig<br>
-❌ Farbe verändert sich<br>
-❌ Trennt sich (Öl + Wasser getrennt)<br>
-❌ Schimmel sichtbar</p>
-<p><strong>→ Dann: SOFORT WEG DAMIT!</strong></p>
-<hr>
-<h2 id="anwendung">3.4 Anwendung</h2>
-<p><strong>Morgens &amp; Abends:</strong></p>
-<ol>
-<li>Gesicht reinigen (wie gewohnt)</li>
-<li>Erbsengroße Menge entnehmen</li>
-<li>Auf Gesicht &amp; Hals verteilen</li>
-<li>Sanft einmassieren</li>
-<li>2-3 Min. einziehen lassen</li>
-</ol>
-<p><strong>Verbrauch:</strong> 50ml = ca. 4-6 Wochen bei 2x täglich</p>
-<hr>
-<h1 id="einkaufsliste">4. Einkaufsliste</h1>
-<h2 id="einmalige-anschaffung-equipment">4.1 Einmalige Anschaffung (Equipment)</h2>
-<p>Falls du noch nichts hast:</p>
-<p>Gegenstand</p>
-<p>Kosten</p>
-<p>Wo kaufen?</p>
-<p><strong>Küchenwaage (0,1g)</strong></p>
-<p>€15-20<br>
-dm</p>
-<p><strong>2 kleine Töpfe</strong></p>
-<p>€10<br>
-Ikea zb</p>
-<p><strong>Spatel/Rührstab</strong></p>
-<p>€3<br>
-Dragonspice</p>
-<p><strong>Thermometer (optional)</strong></p>
-<p>€8<br>
-Apotheke</p>
-<p><strong>Tiegel 50ml (5 Stück)</strong></p>
-<p>€5<br>
-Dragonspice</p>
-<p><strong>GESAMT: ca. €40-50</strong> (nur 1x!)</p>
-<hr>
-<h2 id="rohstoffe-für-10-cremes-à-50ml">4.2 Rohstoffe (für 10 Cremes à 50ml)</h2>
-<p><strong>Menge für 10 Cremes = 500ml gesamt:</strong></p>
-<p><em>Rohstoff<br>
-Menge<br>
-Kosten<br>
-Wo kaufen?</em></p>
-<p>Reicht für</p>
-<p><strong>Mandelöl</strong></p>
-<p>250ml<br>
-€8<br>
-Reformhaus, Dragonspice<br>
-20 Cremes</p>
-<p><strong>Jojobaöl</strong></p>
-<p>100ml<br>
-€9<br>
-Reformhaus, Dragonspice<br>
-12 Cremes</p>
-<p><strong>Sheabutter</strong></p>
-<p>100g<br>
-€8<br>
-Reformhaus, Dragonspice<br>
-20 Cremes</p>
-<p><strong>Emulsan</strong></p>
-<p>50g<br>
-€6<br>
-Dragonspice (nur online!)<br>
-15 Cremes</p>
-<p><strong>Rosenwasser</strong></p>
-<p>200ml<br>
-€6<br>
-dm, Bipa, Apotheke<br>
-10 Cremes</p>
-<p><strong>Aloe Vera Gel</strong></p>
-<p>50ml<br>
-€5<br>
-dm, Müller<br>
-25 Cremes</p>
-<p><strong>Vitamin E</strong></p>
-<p>20ml<br>
-€8<br>
-Dragonspice, Apotheke<br>
-40 Cremes</p>
-<p><strong>Tiegel (10 St.)</strong></p>
-<p>10 St.<br>
-€5<br>
-Dragonspice</p>
-<p><strong>GESAMT: ca. €55-60</strong></p>
-<p><strong>Kosten pro Creme (50ml):</strong></p>
-<ul>
-<li>Material: ca. €3-4</li>
-<li><strong>Vergleich Ringana: €45-50</strong></li>
-<li><strong>Du sparst: €42-47 pro Creme!</strong> 💰</li>
-</ul>
-<hr>
-<h2 id="wo-genau-kaufen-österreich">4.3 Wo genau kaufen? (Österreich)</h2>
-<h3 id="online-empfohlen-für-emulsan"><strong>Online (empfohlen für Emulsan):</strong></h3>
-<p><strong>Dragonspice (Deutschland, schnelle Lieferung nach AT):</strong></p>
-<ul>
-<li><a href="http://www.dragonspice.de">www.dragonspice.de</a></li>
-<li><strong>Hier kaufen:</strong> Emulsan, Vitamin E, Tiegel</li>
-<li>Ab €60 versandkostenfrei nach Österreich</li>
-</ul>
-<p><strong>Naturschönheit (Österreich):</strong></p>
-<ul>
-<li><a href="http://www.xn--naturschnheit-pmb.at">www.naturschönheit.at</a></li>
-<li>Öle, Sheabutter</li>
-<li>Schnellere Lieferung, aber teurer</li>
-</ul>
-<hr>
-<h3 id="lokal-in-grazösterreich"><strong>Lokal in Graz/Österreich:</strong></h3>
-<p><strong>dm oder Bipa:</strong></p>
-<ul>
-<li>✅ Rosenwasser (Gesichtswasser-Regal)</li>
-<li>✅ Aloe Vera Gel</li>
-<li>❌ KEIN Emulsan (leider)</li>
-</ul>
-<p><strong>Reformhaus:</strong></p>
-<ul>
-<li>✅ Mandelöl (teurer!)</li>
-<li>✅ Jojobaöl (teurer!)</li>
-<li>✅ Sheabutter (kleine Dosen)</li>
-<li>❌ Kein Emulsan</li>
-</ul>
-<p><strong>Apotheke (Notfall):</strong></p>
-<ul>
-<li>✅ Alle Öle (SEHR teuer!)</li>
-<li>✅ Vitamin E (als “Tocopherol”)</li>
-<li>❌ Kein Emulsan</li>
-</ul>
-<hr>
-<h2 id="starter-paket-empfehlung">4.4 Starter-Paket Empfehlung</h2>
-<p><strong>Für deinen ersten Versuch (3 Cremes à 50ml):</strong></p>
-<p><strong>Bei Dragonspice bestellen (1x):</strong></p>
-<ul>
-<li>50g Emulsan (€6)</li>
-<li>20ml Vitamin E (€8)</li>
-<li>5x Tiegel 50ml (€2,50)</li>
-</ul>
-<p><strong>Zwischensumme: €16,50</strong> (+ €6 Versand wenn &lt;€60)</p>
-<p><strong>Lokal kaufen (dm/Reformhaus):</strong></p>
-<ul>
-<li>100ml Mandelöl (€8)</li>
-<li>100ml Jojobaöl (€9)</li>
-<li>50g Sheabutter (€8)</li>
-<li>100ml Rosenwasser (€6)</li>
-<li>50ml Aloe Vera Gel (€5)</li>
-</ul>
-<p><strong>Zwischensumme: €36</strong></p>
-<p><strong>GESAMT für 3 Cremes: ca. €55</strong><br>
-<strong>= €18 pro Creme (statt €45!)</strong></p>
-<hr>
-<h1 id="häufigste-fehler-vermeiden">5. Häufigste Fehler (vermeiden!)</h1>
-<h2 id="hygiene-fehler">5.1 Hygiene-Fehler</h2>
-<p>❌ <strong>FEHLER:</strong> Geräte nicht sterilisiert<br>
-✅ <strong>LÖSUNG:</strong> IMMER mit kochendem Wasser übergießen!</p>
-<p>❌ <strong>FEHLER:</strong> Mit Fingern in die Creme greifen<br>
-✅ <strong>LÖSUNG:</strong> Pumpspender nutzen oder sauberen Spatel</p>
-<p>❌ <strong>FEHLER:</strong> Haare hängen ins Gesicht beim Mischen<br>
-✅ <strong>LÖSUNG:</strong> Haare zurückbinden!</p>
-<p><strong>→ Sonst: Schimmel nach 1 Woche!</strong> 🦠</p>
-<hr>
-<h2 id="temperatur-fehler">5.2 Temperatur-Fehler</h2>
-<p>❌ <strong>FEHLER:</strong> Fett- und Wasserphase haben unterschiedliche Temperatur<br>
-✅ <strong>LÖSUNG:</strong> Beide auf 60-65°C bringen, mit Thermometer prüfen</p>
-<p>❌ <strong>FEHLER:</strong> Zu heiß (&gt;70°C) → Wirkstoffe kaputt<br>
-✅ <strong>LÖSUNG:</strong> Max. 65°C!</p>
-<p>❌ <strong>FEHLER:</strong> Vitamin E zu früh zugeben (bei &gt;40°C)<br>
-✅ <strong>LÖSUNG:</strong> Erst bei Handwärme (ca. 30°C) zugeben</p>
-<hr>
-<h2 id="mix-fehler">5.3 Mix-Fehler</h2>
-<p>❌ <strong>FEHLER:</strong> Zu schnell gemischt → Luftbläschen<br>
-✅ <strong>LÖSUNG:</strong> Langsam, gleichmäßig mixen (2-3 Min.)</p>
-<p>❌ <strong>FEHLER:</strong> Zu kurz gemischt → Creme trennt sich<br>
-✅ <strong>LÖSUNG:</strong> Mindestens 2-3 Minuten mixen!</p>
-<p>❌ <strong>FEHLER:</strong> Wasserphase zu schnell reingekippt<br>
-✅ <strong>LÖSUNG:</strong> Langsam, in dünnem Strahl einrühren</p>
-<hr>
-<h2 id="lagerungs-fehler">5.4 Lagerungs-Fehler</h2>
-<p>❌ <strong>FEHLER:</strong> Bei Raumtemperatur gelagert<br>
-✅ <strong>LÖSUNG:</strong> Ab Tag 2 im Kühlschrank!</p>
-<p>❌ <strong>FEHLER:</strong> Am Fenster (Licht + Wärme)<br>
-✅ <strong>LÖSUNG:</strong> Dunkel, kühl</p>
-<p>❌ <strong>FEHLER:</strong> Deckel nicht richtig zu<br>
-✅ <strong>LÖSUNG:</strong> Immer fest verschließen</p>
-<hr>
-<h2 id="troubleshooting">5.5 Troubleshooting</h2>
-<h3 id="problem-creme-trennt-sich-öl-oben-wasser-unten"><strong>Problem: Creme trennt sich (Öl oben, Wasser unten)</strong></h3>
-<p><strong>Ursache:</strong></p>
-<ul>
-<li>Temperaturunterschied zu groß</li>
-<li>Zu wenig Emulsan</li>
-<li>Nicht lange genug gemixt</li>
-</ul>
-<p><strong>Lösung:</strong></p>
-<ol>
-<li>Beide Phasen nochmal auf 60°C erhitzen</li>
-<li>1g Emulsan extra zugeben</li>
-<li>Erneut 3-4 Min. mixen</li>
-</ol>
-<hr>
-<h3 id="problem-creme-ist-zu-flüssig"><strong>Problem: Creme ist zu flüssig</strong></h3>
-<p><strong>Ursache:</strong></p>
-<ul>
-<li>Zu viel Wasserphase</li>
-<li>Zu wenig Sheabutter</li>
-<li>Noch nicht ausgereift (braucht 24h)</li>
-</ul>
-<p><strong>Lösung:</strong></p>
-<ol>
-<li>24h warten! (wird oft fester)</li>
-<li>Falls nicht: 3g Sheabutter nachgeben (erwärmen, neu mixen)</li>
-<li>Oder: Als Bodylotion verwenden</li>
-</ol>
-<hr>
-<h3 id="problem-creme-ist-zu-fest"><strong>Problem: Creme ist zu fest</strong></h3>
-<p><strong>Ursache:</strong></p>
-<ul>
-<li>Zu viel Sheabutter</li>
-<li>Zu viel Emulsan</li>
-</ul>
-<p><strong>Lösung:</strong></p>
-<ol>
-<li>Mit 5ml Jojobaöl verdünnen</li>
-<li>Erwärmen, einrühren</li>
-</ol>
-<hr>
-<h3 id="problem-klümpchen-in-der-creme"><strong>Problem: Klümpchen in der Creme</strong></h3>
-<p><strong>Ursache:</strong></p>
-<ul>
-<li>Zu schnell abgekühlt</li>
-<li>Sheabutter nicht komplett geschmolzen</li>
-<li>Zu heiß gemixt</li>
-</ul>
-<p><strong>Lösung:</strong></p>
-<ol>
-<li>Vorsichtig erwärmen (40°C)</li>
-<li>Nochmal durchmixen</li>
-</ol>
-<hr>
-<h3 id="problem-creme-riecht-komisch-ranzig"><strong>Problem: Creme riecht komisch (ranzig)</strong></h3>
-<p><strong>Ursache:</strong></p>
-<ul>
-<li>Öl war schon alt</li>
-<li>Zu lange/warm gelagert</li>
-<li>Unhygienisch gearbeitet</li>
-</ul>
-<p><strong>Lösung:</strong></p>
-<ul>
-<li>❌ <strong>NICHT MEHR VERWENDEN!</strong></li>
-<li>Entsorgen</li>
-<li>Nächstes Mal: Frische Öle, kühler lagern</li>
-</ul>
-<hr>
-<h1 id="variationen-wenn-du-experimentieren-willst">6. Variationen (wenn du experimentieren willst)</h1>
-<h2 id="für-fettigeunreine-haut">6.1 Für fettige/unreine Haut</h2>
-<p><strong>Änderungen am Basis-Rezept:</strong></p>
-<ul>
-<li><strong>Weniger Sheabutter:</strong> 5g → 2g</li>
-<li><strong>Mehr Jojobaöl:</strong> 8g → 13g (nicht komedogen!)</li>
-<li><strong>Rosenwasser → Hamameliswasser</strong> (klärend)</li>
-<li><strong>Optional:</strong> +3 Tropfen Teebaumöl (antibakteriell)</li>
-</ul>
-<p><strong>Ergebnis:</strong> Leichtere Creme, weniger reichhaltig</p>
-<hr>
-<h2 id="für-trockene-haut">6.2 Für trockene Haut</h2>
-<p><strong>Änderungen:</strong></p>
-<ul>
-<li><strong>Mehr Sheabutter:</strong> 5g → 10g</li>
-<li><strong>Weniger Wasser:</strong> 20ml → 15ml</li>
-<li><strong>+5g Kokosöl</strong> (sehr pflegend)</li>
-<li><strong>Optional:</strong> +3 Tropfen Sandelholzöl</li>
-</ul>
-<p><strong>Ergebnis:</strong> Reichhaltigere Nachtcreme</p>
-<hr>
-<h2 id="anti-aging-für-später">6.3 Anti-Aging (für später)</h2>
-<p><strong>Zusätzliche Wirkstoffe:</strong></p>
-<ul>
-<li>+1ml Hyaluronsäure (bei Dragonspice, ca. €10)</li>
-<li>+5 Tropfen Wildrosenöl (statt Jojobaöl)</li>
-<li>+3 Tropfen Weihrauchöl (straffend)</li>
-</ul>
-<p><strong>Kosten:</strong> +€3 pro Creme<br>
-<strong>Wirksam ab:</strong> ca. 35+ Jahren</p>
-<hr>
-<h2 id="sommer-version-leichter">6.4 Sommer-Version (leichter)</h2>
-<p><strong>Änderungen:</strong></p>
-<ul>
-<li><strong>Sheabutter weglassen!</strong></li>
-<li>Dafür: +5g Jojobaöl</li>
-<li>+5ml Aloe Vera</li>
-<li><strong>Optional:</strong> Prise Minze-Hydrolat (erfrischend)</li>
-</ul>
-<p><strong>Ergebnis:</strong> Ultra-leichte Sommercreme</p>
-<hr>
-<h1 id="mamas-tipps-aus-erfahrung">7. Mama’s Tipps (aus Erfahrung)</h1>
-<h2 id="zeit-sparen">7.1 Zeit sparen</h2>
-<p><strong>Tipp 1: Batch-Produktion</strong></p>
-<ul>
-<li>Mach gleich <strong>3-4 Cremes auf einmal</strong> (Samstag Nachmittag)</li>
-<li>Dauert nur 15 Min. länger als 1 Creme</li>
-<li>Reicht für 3-6 Monate!</li>
-</ul>
-<p><strong>Tipp 2: Vorportionieren</strong></p>
-<ul>
-<li>Wiege Öle/Sheabutter schon am Vorabend ab</li>
-<li>In kleinen Gläsern aufbewahren</li>
-<li>Am nächsten Tag: Nur noch mixen!</li>
-</ul>
-<p><strong>Tipp 3: Routine</strong></p>
-<ul>
-<li>Immer am gleichen Wochentag herstellen (z.B. Sonntag)</li>
-<li>Dauert beim 3. Mal nur noch 20 Min.</li>
-</ul>
-<hr>
-<h2 id="geld-sparen">7.2 Geld sparen</h2>
-<p><strong>Tipp 1: Große Gebinde kaufen</strong></p>
-<ul>
-<li>Mandelöl 500ml statt 100ml (40% günstiger!)</li>
-<li>Sheabutter 500g statt 50g</li>
-</ul>
-<p><strong>Tipp 2: Mit Freundin teilen</strong></p>
-<ul>
-<li>Rohstoffe gemeinsam bestellen (Versandkosten sparen)</li>
-<li>Zusammen herstellen (macht mehr Spaß!)</li>
-</ul>
-<p><strong>Tipp 3: Equipment wiederverwenden</strong></p>
-<ul>
-<li>Leere Marmeladen-Gläser als Tiegel</li>
-<li>Alte Pumpspender (gut reinigen!)</li>
-</ul>
-<hr>
-<h2 id="qualität-sichern">7.3 Qualität sichern</h2>
-<p><strong>Tipp 1: Gute Rohstoffe</strong></p>
-<ul>
-<li>Lieber Bio-Öle (hält länger, wirkt besser)</li>
-<li>Nicht am falschen Ende sparen!</li>
-</ul>
-<p><strong>Tipp 2: Immer beschriften</strong></p>
-<ul>
-<li>Datum + Zutaten (wichtig bei Allergien!)</li>
-<li>Sonst weißt du nach 2 Wochen nicht mehr, was drin ist</li>
-</ul>
-<p><strong>Tipp 3: Kühlschrank-Platz</strong></p>
-<ul>
-<li>Ggf. kleine Kühlbox für Bad? (€20)</li>
-<li>Oder: Immer vorne im Kühlschrank (siehst du täglich)</li>
-</ul>
-<hr>
-<h2 id="wenns-schiefgeht-notfall-plan">7.4 Wenn’s schiefgeht (Notfall-Plan)</h2>
-<p><strong>Creme ist missglückt? Kein Problem!</strong></p>
-<p><strong>Rettung 1: Als Bodylotion verwenden</strong></p>
-<ul>
-<li>Zu flüssig? → Perfekt für Körper!</li>
-<li>Zu fest? → Für Hände/Füße</li>
-</ul>
-<p><strong>Rettung 2: Neu aufschmelzen</strong></p>
-<ul>
-<li>Nochmal erwärmen (60°C)</li>
-<li>Korrigieren (z.B. +Wasser oder +Öl)</li>
-<li>Neu mixen</li>
-</ul>
-<p><strong>Rettung 3: Entsorgen &amp; neu starten</strong></p>
-<ul>
-<li>Kostet nur €3-4</li>
-<li>Besser als schlechte Creme im Gesicht!</li>
-</ul>
-<hr>
-<h1 id="faq---deine-fragen-beantwortet">8. FAQ - Deine Fragen beantwortet</h1>
-<h2 id="allgemeine-fragen">8.1 Allgemeine Fragen</h2>
-<p><strong>F: Ist das genauso gut wie Ringana?</strong> → Nein, nicht <em>genau</em> so. Ringana hat 40+ Wirkstoffe, du hast 7. Aber für normale Haut absolut ausreichend und 90% der Wirkung bei 8% Kosten!</p>
-<p><strong>F: Kann ich das auch verkaufen?</strong> → NEIN! Nur für dich. Verkauf braucht Zulassung (siehe Mama’s großes Handbuch 😊)</p>
-<p><strong>F: Wie lange dauert die Herstellung?</strong> → Beim 1. Mal: 45 Min. (mit Vorbereitung)<br>
-→ Ab dem 3. Mal: 25-30 Min.</p>
-<p><strong>F: Brauche ich wirklich eine so genaue Waage?</strong> → JA! Sonst stimmen die Proportionen nicht. Kostet nur €15-20.</p>
-<p><strong>F: Kann ich das ohne Stabmixer machen?</strong> → Ja, mit Schneebesen. Aber: 5 Min. länger rühren, Arm tut weh 😅</p>
-<hr>
-<h2 id="inhaltsstoffe">8.2 Inhaltsstoffe</h2>
-<p><strong>F: Wo bekomme ich Emulsan?</strong> → Nur online (Dragonspice, Naturschönheit). Reformhaus/dm haben es nicht.</p>
-<p><strong>F: Kann ich Emulsan ersetzen?</strong> → Nein, ohne Emulgator trennt sich die Creme sofort. Alternativen: Tegomuls, Lanolin (aber nicht vegan)</p>
-<p><strong>F: Welches Rosenwasser?</strong> → 100% reines Rosenwasser/Rosenhydrolat. NICHT “Gesichtswasser mit Rosenduft”! Bei dm: “Rosenwasser pur”</p>
-<p><strong>F: Vitamin E - welches genau?</strong> → Tocopherol (flüssig). Bei Dragonspice oder Apotheke (“Vitamin E ölig”)</p>
-<p><strong>F: Sind die Öle aus dem Supermarkt okay?</strong> → Mandelöl ja (Speiseöl), aber teurer. Jojobaöl gibt’s nicht im Supermarkt.</p>
-<hr>
-<h2 id="anwendung-1">8.3 Anwendung</h2>
-<p><strong>F: Kann ich das auch als Nachtcreme verwenden?</strong> → Ja! Evtl. etwas reichhaltiger machen (mehr Sheabutter)</p>
-<p><strong>F: Für welchen Hauttyp?</strong> → Normale Haut, Mischhaut. NICHT für sehr fettige oder Akne-Haut (dann Rezept anpassen, siehe Kapitel 6.1)</p>
-<p><strong>F: Kann ich Make-up drüber?</strong> → Ja! 2-3 Min. einziehen lassen, dann Foundation etc.</p>
-<p><strong>F: Brennt das in den Augen?</strong> → Nicht bei geschlossenen Augen. Aber: Augencreme ist was anderes (andere Rezeptur)</p>
-<hr>
-<h2 id="haltbarkeit">8.4 Haltbarkeit</h2>
-<p><strong>F: Warum nur 6 Wochen?</strong> → Keine chemischen Konservierungsstoffe (wie Ringana!). Das ist der Preis für Natürlichkeit.</p>
-<p><strong>F: Kann ich die Haltbarkeit verlängern?</strong> → Nur mit Naturkosmetik-Konservierer (z.B. Kaliumsorbat). Aber dann komplizierter.</p>
-<p><strong>F: Was ist mit Vitamin E? Konserviert das nicht?</strong> → Vitamin E schützt vor Oxidation (Öle ranzig), aber NICHT vor Bakterien/Schimmel!</p>
-<p><strong>F: Merke ich, wenn die Creme schlecht ist?</strong> → JA! Riecht ranzig, sieht komisch aus, Konsistenz ändert sich. → Dann weg damit!</p>
-<hr>
-<h1 id="dein-aktionsplan-los-gehts">9. Dein Aktionsplan (los geht’s!)</h1>
-<h2 id="phase-1-vorbereitung-1-woche">Phase 1: Vorbereitung (1 Woche)</h2>
-<p><strong>Tag 1-2: Einkäufe</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Equipment bestellen (falls nicht vorhanden)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Dragonspice-Bestellung aufgeben (Emulsan, Vitamin E, Tiegel)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Lokal besorgen (Öle, Rosenwasser, Aloe)</li>
-</ul>
-<p><strong>Tag 3-7: Warten auf Lieferung</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Handbuch nochmal durchlesen</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Küche/Arbeitsfläche vorbereiten</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Termin fürs Herstellen blocken (Samstag/Sonntag?)</li>
-</ul>
-<hr>
-<h2 id="phase-2-erste-creme-wochenende">Phase 2: Erste Creme (Wochenende)</h2>
-<p><strong>Tag 8: Herstellung</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Alle Zutaten &amp; Geräte bereitlegen</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Hygiene-Checklist durchgehen</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Rezept Schritt für Schritt abarbeiten (30 Min.)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Abfüllen, beschriften</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 24h stehen lassen</li>
-</ul>
-<p><strong>Tag 9: Test</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> In Kühlschrank stellen</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Erste Anwendung (Abends)</li>
-</ul>
-<hr>
-<h2 id="phase-3-routine-nächste-wochen">Phase 3: Routine (nächste Wochen)</h2>
-<p><strong>Woche 2-4:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Täglich anwenden (Morgens &amp; Abends)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Notizen: Wie fühlt sich die Haut an?</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Vergleich zu Ringana?</li>
-</ul>
-<p><strong>Woche 5:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 2. Charge herstellen (geht jetzt schneller!)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Evtl. Rezept anpassen (zu fest? zu flüssig?)</li>
-</ul>
-<hr>
-<h1 id="schlusswort-von-mama">10. Schlusswort von Mama</h1>
-<p>Liebste Tochter,</p>
-<p>ich bin so stolz, dass du bereit bist, etwas Neues auszuprobieren! 💚</p>
-<p><strong>Warum ich das für dich gemacht habe:</strong></p>
-<ol>
-<li><strong>Ringana ist toll, aber teuer</strong> - und du sollst nicht auf gute Pflege verzichten müssen</li>
-<li><strong>Du lernst etwas</strong> - Kosmetik selbst zu machen ist eine wertvolle Fähigkeit</li>
-<li><strong>Du sparst Geld</strong> - €500+ im Jahr! Das ist 1 Woche Urlaub!</li>
-<li><strong>Es ist einfacher als du denkst</strong> - Wirklich! Nach dem 2. Mal läuft’s wie von selbst</li>
-</ol>
-<p><strong>Meine Bitte:</strong></p>
-<ul>
-<li>✅ Gib nicht auf beim 1. Versuch (auch wenn’s schiefgeht!)</li>
-<li>✅ Ruf mich an, wenn du Fragen hast</li>
-<li>✅ Schick mir ein Foto, wenn’s geklappt hat! 📸</li>
-</ul>
-<p><strong>Was ich von dir erwarte:</strong></p>
-<ul>
-<li>❌ NICHT verkaufen (ist illegal ohne Zulassung!)</li>
-<li>❌ NICHT bei Allergien/Hautproblemen ohne Arzt</li>
-<li>✅ Hygienisch arbeiten (sonst Schimmel!)</li>
-</ul>
-<hr>
-<h2 id="dein-erfolgsversprechen">Dein Erfolgsversprechen</h2>
-<p><strong>Wenn du dieses Handbuch befolgst:</strong></p>
-<p>✅ Sparst du <strong>€500+ pro Jahr</strong><br>
-✅ Hast du eine <strong>gute, natürliche Gesichtscreme</strong><br>
-✅ Weißt du <strong>genau</strong>, was du dir ins Gesicht schmierst<br>
-✅ Bist du <strong>unabhängig</strong> von teuren Marken<br>
-✅ Kannst du <strong>experimentieren</strong> (Variationen!)</p>
-<hr>
-<h2 id="noch-fragen">Noch Fragen?</h2>
-<p><strong>Ruf mich an! 📱</strong></p>
-<p>Ich helfe dir gerne:</p>
-<ul>
-<li>Bei der Bestellung (welche Mengen?)</li>
-<li>Beim ersten Herstellen (FaceTime?)</li>
-<li>Wenn etwas schiefgeht (Troubleshooting)</li>
-</ul>
-<p><strong>Du schaffst das! 💪</strong></p>
-<p>In Liebe,<br>
-Mama Berry 🌿</p>
-<hr>
-<p>P.S.: Wenn du es 3-4 Mal gemacht hast und Routine hast, kannst du auch Freundinnen damit beschenken! (Aber nicht verkaufen!) 🎁</p>
-<p>P.P.S.: Vielleicht willst du dann doch bei Mama’s Workshops mitmachen? Dann lernen wir zusammen noch mehr! 😊</p>
-<hr>
-<p><strong>VIEL ERFOLG! 🌸</strong></p>
-<hr>
-<h1 id="anhang-checklisten-zum-ausdrucken">ANHANG: Checklisten zum Ausdrucken</h1>
-<h2 id="checkliste-1-einkaufsliste-zum-abhaken">Checkliste 1: Einkaufsliste (zum Abhaken)</h2>
-<p><strong>Equipment (einmalig):</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Küchenwaage (0,1g genau)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 2 kleine Töpfe</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Spatel/Rührstab</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Thermometer (optional)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Tiegel/Pumpspender (50ml)</li>
-</ul>
-<p><strong>Rohstoffe (erste Bestellung):</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 250ml Mandelöl</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 100ml Jojobaöl</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 100g Sheabutter</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 50g Emulsan (online!)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 200ml Rosenwasser</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 50ml Aloe Vera Gel</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 20ml Vitamin E</li>
-</ul>
-<hr>
-<h2 id="checkliste-2-herstellungs-checklist-vor-jedem-ansetzen">Checkliste 2: Herstellungs-Checklist (vor jedem Ansetzen)</h2>
-<p><strong>Vorbereitung:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Hände gewaschen (30 Sek.)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Haare zurückgebunden</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Arbeitsfläche desinfiziert</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Alle Geräte sterilisiert</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Zutaten abgewogen</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 2 Töpfe bereit</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Tiegel sterilisiert</li>
-</ul>
-<p><strong>Während Herstellung:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Fettphase auf 60-65°C</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Wasserphase auf 60-65°C</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Beide Phasen gleiche Temperatur?</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Langsam emulgiert (2-3 Min.)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Auf 30°C abgekühlt</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Vitamin E zugegeben</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Abgefüllt &amp; beschriftet</li>
-</ul>
-<p><strong>Nach Herstellung:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 24h bei Raumtemperatur stehen lassen</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Danach: Ab in Kühlschrank!</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Geräte gereinigt</li>
-</ul>
-<hr>
-<h2 id="checkliste-3-qualitätskontrolle-wöchentlich">Checkliste 3: Qualitätskontrolle (wöchentlich)</h2>
-<p><strong>Creme ist OK, wenn:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Geruch unverändert (frisch, leicht ölig)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Farbe weiß/cremig</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Konsistenz homogen (keine Trennung)</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Kein Schimmel sichtbar</li>
-</ul>
-<p><strong>Creme ist SCHLECHT, wenn:</strong></p>
-<ul>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Riecht ranzig/muffig → WEG DAMIT!</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Farbe verändert → WEG DAMIT!</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Trennt sich → WEG DAMIT!</li>
-<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> Schimmel → WEG DAMIT!</li>
-</ul>
-<hr>
-<p><strong>Ende des Handbuchs für deine Tochter</strong> 🌿</p>
-<dl>
-<dt>Viel Erfolg, liebe Amelie! Du schaffst das! 💚</dt>
-<dd>Mama</dd>
-</dl>
-</div>
+    <!-- Container -->
+    <div class="container">
+        
+        <!-- Warum Section -->
+        <section id="warum">
+            <h2>💚 Warum dieses Handbuch?</h2>
+            
+            <div class="highlight">
+                <h3>Liebste Tochter,</h3>
+                <p>ich weiß, dass du die <strong>Ringana Fresh Cream Medium</strong> liebst, aber sie ist mit <strong>€45-50 für 50ml</strong> einfach zu teuer für dich gerade. Und ich verstehe auch, dass du keine Zeit für aufwändige Kosmetik-Projekte hast.</p>
+                
+                <p><strong>Deshalb habe ich dir dieses Handbuch gemacht:</strong></p>
+                <ul>
+                    <li>✅ <strong>EINFACH</strong> - Nur 6 Zutaten, 30 Minuten</li>
+                    <li>✅ <strong>GÜNSTIG</strong> - Ca. €3-4 pro 50ml (statt €45!)</li>
+                    <li>✅ <strong>ÄHNLICH</strong> - Orientiert an Ringana-Inhaltsstoffen</li>
+                    <li>✅ <strong>FRISCH</strong> - Wie Ringana, ohne Konservierung</li>
+                </ul>
+                
+                <div class="success">
+                    <h4>💰 Du sparst ca. 90%!</h4>
+                    <p style="margin: 0;">Pro Jahr: <strong>über €500!</strong> Das ist 1 Woche Urlaub! 🏖️</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ringana Analyse -->
+        <section>
+            <button class="collapsible">🔬 Was ist Ringana FRESH cream medium? (Original-Analyse)</button>
+            <div class="content">
+                <h3>Die Original-Philosophie</h3>
+                <p><strong>Ringana</strong> ist eine österreichische Premium-Naturkosmetik-Marke aus der Steiermark.</p>
+                
+                <div class="quick-links">
+                    <div class="quick-link">
+                        <span class="emoji">🌱</span>
+                        <strong>100% natürlich</strong>
+                    </div>
+                    <div class="quick-link">
+                        <span class="emoji">🚫</span>
+                        <strong>Keine Konservierung</strong>
+                    </div>
+                    <div class="quick-link">
+                        <span class="emoji">♻️</span>
+                        <strong>Frisch gerührt</strong>
+                    </div>
+                    <div class="quick-link">
+                        <span class="emoji">💚</span>
+                        <strong>Vegan & Bio</strong>
+                    </div>
+                </div>
+
+                <h3>Hauptinhaltsstoffe (vereinfacht)</h3>
+                <p>Ringana Fresh Cream Medium enthält ca. <strong>40+ Inhaltsstoffe</strong>! 😱</p>
+                
+                <h4>Basis (was die Creme ausmacht):</h4>
+                <ul>
+                    <li>Orangenfruchtwasser (Vitamin C)</li>
+                    <li>Rosenwasser (beruhigend)</li>
+                    <li>Mandelöl + Macadamiaöl (pflegend)</li>
+                    <li>Squalan (aus Oliven, sehr leicht)</li>
+                    <li>Glycerin (Feuchtigkeit)</li>
+                    <li>Emulgatoren (verbinden Öl & Wasser)</li>
+                </ul>
+
+                <h4>Spezial-Wirkstoffe (teuer!):</h4>
+                <ul>
+                    <li>Sheabutter, Baobab-Öl, Hyaluronsäure</li>
+                    <li>Ceramide, Borretschöl, Nachtkerzenöl</li>
+                    <li>Q10, und 25+ weitere...</li>
+                </ul>
+
+                <div class="tip">
+                    <h4>💡 Was können wir weglassen?</h4>
+                    <p><strong>Für eine gute Creme brauchst du NICHT:</strong></p>
+                    <ul>
+                        <li>❌ Baobab-Öl (€30/100ml!)</li>
+                        <li>❌ Ceramide (sehr teuer)</li>
+                        <li>❌ Q10 (teuer, du bist jung!)</li>
+                        <li>❌ 10 verschiedene exotische Öle</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem;"><strong>Was du BRAUCHST:</strong></p>
+                    <ul>
+                        <li>✅ Gute Basis-Öle (Mandel, Jojoba)</li>
+                        <li>✅ Rosenwasser</li>
+                        <li>✅ Emulgator</li>
+                        <li>✅ Vitamin E</li>
+                    </ul>
+                    
+                    <p class="success" style="margin-top: 1.5rem;"><strong>→ Das reicht für 90% der Wirkung bei 10% der Kosten!</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Das Rezept -->
+        <section id="rezept">
+            <h2>📝 Deine vereinfachte Ringana-Alternative</h2>
+            
+            <button class="collapsible">🧪 Das Rezept (für 50ml) - HIER KLICKEN</button>
+            <div class="content">
+                <div class="recipe">
+                    <h3>Fettphase (Öle):</h3>
+                    <ul>
+                        <li>12g Mandelöl <em>(wie Ringana)</em></li>
+                        <li>8g Jojobaöl <em>(ähnlich Squalan)</em></li>
+                        <li>5g Sheabutter <em>(wie Ringana)</em></li>
+                        <li>3g Emulsan <em>(Emulgator)</em></li>
+                    </ul>
+
+                    <h3>Wasserphase (Feuchtigkeit):</h3>
+                    <ul>
+                        <li>20ml Rosenwasser <em>(genau wie Ringana!)</em></li>
+                        <li>2ml Aloe Vera Gel</li>
+                    </ul>
+
+                    <h3>Wirkstoffe (nach dem Mischen):</h3>
+                    <ul>
+                        <li>0,5g Vitamin E (ca. 10 Tropfen)</li>
+                        <li>Optional: 3 Tropfen ätherisches Öl (Lavendel)</li>
+                    </ul>
+                </div>
+
+                <div class="success">
+                    <h4>💰 Kosten-Vergleich:</h4>
+                    <table>
+                        <tr>
+                            <th>Produkt</th>
+                            <th>Preis/50ml</th>
+                            <th>Ersparnis</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Ringana Original</strong></td>
+                            <td>€45-50</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deine Alternative</strong></td>
+                            <td>€3-4</td>
+                            <td><strong style="color: #0277BD;">€42-47!</strong></td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 1rem;"><strong>Pro Jahr (bei 6 Cremes): Du sparst über €500! 🎉</strong></p>
+                </div>
+
+                <h3>Unterschiede zu Original Ringana:</h3>
+                <table>
+                    <tr>
+                        <th>Aspekt</th>
+                        <th>Ringana Original</th>
+                        <th>Deine Alternative</th>
+                    </tr>
+                    <tr>
+                        <td>Inhaltsstoffe</td>
+                        <td>40+ Wirkstoffe</td>
+                        <td>7 Hauptzutaten</td>
+                    </tr>
+                    <tr>
+                        <td>Textur</td>
+                        <td>Sehr leicht</td>
+                        <td>Leicht, gut einziehend</td>
+                    </tr>
+                    <tr>
+                        <td>Haltbarkeit</td>
+                        <td>3 Monate (Kühlschrank)</td>
+                        <td>4-6 Wochen (Kühlschrank)</td>
+                    </tr>
+                    <tr>
+                        <td>Aufwand</td>
+                        <td>Kaufen</td>
+                        <td>30 Min. Herstellung</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wirkung</strong></td>
+                        <td>100%</td>
+                        <td><strong>~80-90%</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Anleitung -->
+        <section id="anleitung">
+            <h2>👩‍🔬 Schritt-für-Schritt Anleitung</h2>
+            
+            <button class="collapsible">⚙️ Was du brauchst (Equipment)</button>
+            <div class="content">
+                <h3>Einmalige Anschaffung (ca. €30):</h3>
+                <table>
+                    <tr>
+                        <th>Gegenstand</th>
+                        <th>Kosten</th>
+                        <th>Wo kaufen?</th>
+                    </tr>
+                    <tr>
+                        <td>Küchenwaage (0,1g genau)</td>
+                        <td>€15-20</td>
+                        <td>Amazon, dm</td>
+                    </tr>
+                    <tr>
+                        <td>2 kleine Töpfe</td>
+                        <td>€10</td>
+                        <td>Ikea, Müller</td>
+                    </tr>
+                    <tr>
+                        <td>Spatel/Rührstab</td>
+                        <td>€3</td>
+                        <td>Dragonspice</td>
+                    </tr>
+                    <tr>
+                        <td>Thermometer (optional)</td>
+                        <td>€8</td>
+                        <td>Apotheke</td>
+                    </tr>
+                    <tr>
+                        <td>Tiegel 50ml (5 Stück)</td>
+                        <td>€5</td>
+                        <td>Dragonspice</td>
+                    </tr>
+                </table>
+                
+                <div class="tip">
+                    <strong>💡 Falls du schon hast:</strong> Stabmixer, Messbecher, saubere Gläser
+                </div>
+            </div>
+
+            <button class="collapsible">🕐 Die Herstellung (30 Minuten)</button>
+            <div class="content">
+                <div class="warning">
+                    <h3>⚠️ HYGIENE ist wichtig! (sonst Schimmel nach 1 Woche!)</h3>
+                    <ol>
+                        <li>Hände gründlich waschen (30 Sek. mit Seife)</li>
+                        <li>Alle Geräte sterilisieren (kochendes Wasser)</li>
+                        <li>Arbeitsfläche desinfizieren</li>
+                        <li>Zutaten genau abwiegen</li>
+                    </ol>
+                </div>
+
+                <h3>Schritt 1: Fettphase schmelzen (5 Min.)</h3>
+                <ol>
+                    <li>In Topf 1 geben: 12g Mandelöl + 8g Jojobaöl + 5g Sheabutter + 3g Emulsan</li>
+                    <li>Ins Wasserbad stellen</li>
+                    <li>Auf <strong>60-65°C</strong> erhitzen</li>
+                    <li>Sanft rühren bis alles geschmolzen</li>
+                </ol>
+                <div class="tip">💡 <strong>Kein Thermometer?</strong> → Handwarm + bisschen mehr</div>
+
+                <h3>Schritt 2: Wasserphase erhitzen (5 Min.)</h3>
+                <ol>
+                    <li>In Topf 2 geben: 20ml Rosenwasser + 2ml Aloe Vera</li>
+                    <li>Ebenfalls auf <strong>60-65°C</strong> erwärmen</li>
+                </ol>
+                <div class="warning">⚠️ <strong>WICHTIG:</strong> Beide Töpfe müssen <strong>gleiche Temperatur</strong> haben!</div>
+
+                <h3>Schritt 3: Emulgieren (5 Min.)</h3>
+                <ol>
+                    <li>Beide Töpfe vom Herd nehmen</li>
+                    <li><strong>Langsam</strong> Wasserphase in Fettphase gießen</li>
+                    <li>Dabei <strong>ständig rühren</strong> (Stabmixer oder Schneebesen)</li>
+                    <li>2-3 Minuten mixen</li>
+                    <li>Wird <strong>cremig-weiß</strong> wie Sahne! 🎉</li>
+                </ol>
+
+                <h3>Schritt 4: Abkühlen & Wirkstoffe (5 Min.)</h3>
+                <ol>
+                    <li>Auf ca. <strong>30°C</strong> abkühlen lassen (handwarm)</li>
+                    <li>Vitamin E zugeben (10 Tropfen)</li>
+                    <li>Optional: 3 Tropfen ätherisches Öl</li>
+                    <li>Nochmals kurz durchrühren</li>
+                </ol>
+
+                <h3>Schritt 5: Abfüllen</h3>
+                <ol>
+                    <li>In sauberen Tiegel/Pumpspender füllen</li>
+                    <li><strong>Beschriften!</strong> (sehr wichtig!)</li>
+                    <li>Gut verschließen</li>
+                </ol>
+                
+                <div class="recipe">
+                    <strong>Beschriftung Beispiel:</strong><br>
+                    Medium Gesichtscreme (Ringana-Style)<br>
+                    Hergestellt: 13.11.2025<br>
+                    Zutaten: Mandel, Jojoba, Shea, Emulsan, Rose, Aloe, Vit E<br>
+                    <strong>Haltbar: ca. 6 Wochen (Kühlschrank!)</strong>
+                </div>
+
+                <h3>Schritt 6: Reifezeit</h3>
+                <ul>
+                    <li>24 Stunden bei Raumtemperatur stehen lassen</li>
+                    <li>Dann: <strong>In den Kühlschrank!</strong></li>
+                    <li>Konsistenz wird noch etwas fester</li>
+                </ul>
+
+                <div class="success">
+                    <h3>🎉 FERTIG!</h3>
+                    <p>Du hast jetzt eine <strong>50ml Premium-Naturkosmetik</strong> für nur <strong>€3-4</strong> statt €45! 💚</p>
+                </div>
+            </div>
+
+            <button class="collapsible">❄️ Lagerung & Haltbarkeit</button>
+            <div class="content">
+                <h3>Wo aufbewahren?</h3>
+                <ul>
+                    <li>❄️ <strong>Im Kühlschrank!</strong> (wie Ringana)</li>
+                    <li>🌑 Dunkel (nicht am Fenster)</li>
+                    <li>🔒 Gut verschlossen</li>
+                </ul>
+
+                <h3>Wie lange haltbar?</h3>
+                <ul>
+                    <li>⏰ <strong>4-6 Wochen</strong> (mit Vitamin E)</li>
+                    <li>🚫 <strong>Ohne Konservierung</strong> (wie Ringana!)</li>
+                    <li>✅ Deshalb kleine Mengen herstellen</li>
+                </ul>
+
+                <div class="warning">
+                    <h3>⚠️ Wann ist die Creme schlecht?</h3>
+                    <ul>
+                        <li>❌ Riecht ranzig oder muffig</li>
+                        <li>❌ Farbe verändert sich</li>
+                        <li>❌ Trennt sich (Öl + Wasser getrennt)</li>
+                        <li>❌ Schimmel sichtbar</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>→ Dann: SOFORT WEG DAMIT!</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Einkaufsliste -->
+        <section id="einkauf">
+            <h2>🛒 Einkaufsliste</h2>
+            
+            <button class="collapsible">💰 Rohstoffe für 10 Cremes (500ml gesamt)</button>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th>Rohstoff</th>
+                        <th>Menge</th>
+                        <th>Kosten</th>
+                        <th>Wo kaufen?</th>
+                    </tr>
+                    <tr>
+                        <td>Mandelöl</td>
+                        <td>250ml</td>
+                        <td>€8</td>
+                        <td>Reformhaus, Dragonspice</td>
+                    </tr>
+                    <tr>
+                        <td>Jojobaöl</td>
+                        <td>100ml</td>
+                        <td>€9</td>
+                        <td>Reformhaus, Dragonspice</td>
+                    </tr>
+                    <tr>
+                        <td>Sheabutter</td>
+                        <td>100g</td>
+                        <td>€8</td>
+                        <td>Reformhaus, Dragonspice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emulsan</strong></td>
+                        <td>50g</td>
+                        <td>€6</td>
+                        <td><strong>Nur online: Dragonspice</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Rosenwasser</td>
+                        <td>200ml</td>
+                        <td>€6</td>
+                        <td>dm, Bipa, Apotheke</td>
+                    </tr>
+                    <tr>
+                        <td>Aloe Vera Gel</td>
+                        <td>50ml</td>
+                        <td>€5</td>
+                        <td>dm, Müller</td>
+                    </tr>
+                    <tr>
+                        <td>Vitamin E</td>
+                        <td>20ml</td>
+                        <td>€8</td>
+                        <td>Dragonspice, Apotheke</td>
+                    </tr>
+                    <tr>
+                        <td>Tiegel (10 St.)</td>
+                        <td>-</td>
+                        <td>€5</td>
+                        <td>Dragonspice</td>
+                    </tr>
+                    <tr style="background: #B3E5FC; font-weight: bold;">
+                        <td colspan="2"><strong>GESAMT</strong></td>
+                        <td><strong>€55-60</strong></td>
+                        <td><strong>= €3-4 pro Creme!</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="collapsible">📦 Wo genau kaufen? (Österreich)</button>
+            <div class="content">
+                <h3>Online (empfohlen):</h3>
+                
+                <div class="highlight">
+                    <h4>🐉 Dragonspice (Deutschland)</h4>
+                    <p><strong>Website:</strong> www.dragonspice.de</p>
+                    <p><strong>Kaufe hier:</strong> Emulsan, Vitamin E, Tiegel</p>
+                    <p>✅ Ab €60 versandkostenfrei nach Österreich</p>
+                    <p>✅ Beste Auswahl für Rohstoffe</p>
+                </div>
+
+                <h3>Lokal in Graz/Österreich:</h3>
+                
+                <div class="quick-links">
+                    <div class="quick-link">
+                        <span class="emoji">🛍️</span>
+                        <strong>dm / Bipa</strong><br>
+                        <small>Rosenwasser, Aloe Vera</small>
+                    </div>
+                    <div class="quick-link">
+                        <span class="emoji">🌿</span>
+                        <strong>Reformhaus</strong><br>
+                        <small>Alle Öle (teurer!)</small>
+                    </div>
+                    <div class="quick-link">
+                        <span class="emoji">💊</span>
+                        <strong>Apotheke</strong><br>
+                        <small>Vitamin E, Notfall</small>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Wichtig:</strong> Emulsan gibt es NICHT im Reformhaus/dm! Nur online bestellen.
+                </div>
+            </div>
+
+            <button class="collapsible">🎁 Starter-Paket Empfehlung (für erste 3 Cremes)</button>
+            <div class="content">
+                <h3>Bei Dragonspice bestellen (einmalig):</h3>
+                <ul>
+                    <li>50g Emulsan (€6)</li>
+                    <li>20ml Vitamin E (€8)</li>
+                    <li>5x Tiegel 50ml (€2,50)</li>
+                </ul>
+                <p><strong>Zwischensumme: €16,50</strong> (+ €6 Versand wenn unter €60)</p>
+
+                <h3>Lokal kaufen (dm/Reformhaus):</h3>
+                <ul>
+                    <li>100ml Mandelöl (€8)</li>
+                    <li>100ml Jojobaöl (€9)</li>
+                    <li>50g Sheabutter (€8)</li>
+                    <li>100ml Rosenwasser (€6)</li>
+                    <li>50ml Aloe Vera Gel (€5)</li>
+                </ul>
+                <p><strong>Zwischensumme: €36</strong></p>
+
+                <div class="success">
+                    <h3>💰 GESAMT für 3 Cremes: ca. €55</h3>
+                    <p><strong>= €18 pro Creme (statt €45!)</strong></p>
+                    <p>Du sparst <strong>€27 pro Creme</strong> = <strong>€81 bei 3 Cremes!</strong> 🎉</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fehler vermeiden -->
+        <section id="fehler">
+            <h2>⚠️ Häufigste Fehler (vermeiden!)</h2>
+            
+            <button class="collapsible">🧼 Hygiene-Fehler</button>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th>Fehler</th>
+                        <th>Lösung</th>
+                    </tr>
+                    <tr>
+                        <td>❌ Geräte nicht sterilisiert</td>
+                        <td>✅ IMMER mit kochendem Wasser übergießen!</td>
+                    </tr>
+                    <tr>
+                        <td>❌ Mit Fingern in Creme greifen</td>
+                        <td>✅ Pumpspender nutzen oder sauberen Spatel</td>
+                    </tr>
+                    <tr>
+                        <td>❌ Haare hängen ins Gesicht</td>
+                        <td>✅ Haare zurückbinden!</td>
+                    </tr>
+                </table>
+                <div class="warning">
+                    <strong>→ Sonst: Schimmel nach 1 Woche!</strong> 🦠
+                </div>
+            </div>
+
+            <button class="collapsible">🌡️ Temperatur-Fehler</button>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th>Fehler</th>
+                        <th>Lösung</th>
+                    </tr>
+                    <tr>
+                        <td>❌ Unterschiedliche Temperaturen</td>
+                        <td>✅ Beide auf 60-65°C, mit Thermometer prüfen</td>
+                    </tr>
+                    <tr>
+                        <td>❌ Zu heiß (über 70°C)</td>
+                        <td>✅ Max. 65°C! (Wirkstoffe gehen kaputt)</td>
+                    </tr>
+                    <tr>
+                        <td>❌ Vitamin E zu früh zugeben</td>
+                        <td>✅ Erst bei Handwärme (ca. 30°C)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="collapsible">🔧 Troubleshooting - Wenn's schiefgeht</button>
+            <div class="content">
+                <h3>Problem: Creme trennt sich (Öl + Wasser getrennt)</h3>
+                <div class="tip">
+                    <strong>Ursachen:</strong>
+                    <ul>
+                        <li>Temperaturunterschied zu groß</li>
+                        <li>Zu wenig Emulsan</li>
+                        <li>Nicht lange genug gemixt</li>
+                    </ul>
+                    <strong>Lösung:</strong>
+                    <ol>
+                        <li>Beide Phasen nochmal auf 60°C erhitzen</li>
+                        <li>1g Emulsan extra zugeben</li>
+                        <li>Erneut 3-4 Min. mixen</li>
+                    </ol>
+                </div>
+
+                <h3>Problem: Creme ist zu flüssig</h3>
+                <div class="tip">
+                    <strong>Lösung:</strong>
+                    <ol>
+                        <li>24h warten! (wird oft fester)</li>
+                        <li>Falls nicht: 3g Sheabutter nachgeben</li>
+                        <li>Oder: Als Bodylotion verwenden 🙂</li>
+                    </ol>
+                </div>
+
+                <h3>Problem: Creme ist zu fest</h3>
+                <div class="tip">
+                    <strong>Lösung:</strong> Mit 5ml Jojobaöl verdünnen, erwärmen, einrühren
+                </div>
+
+                <h3>Problem: Creme riecht ranzig</h3>
+                <div class="warning">
+                    <strong>❌ NICHT MEHR VERWENDEN!</strong>
+                    <p>Entsorgen. Nächstes Mal: Frische Öle, kühler lagern, Vitamin E nicht vergessen</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variationen -->
+        <section id="varianten">
+            <h2>🎨 Variationen (wenn du experimentieren willst)</h2>
+            
+            <button class="collapsible">🌟 Für fettige/unreine Haut</button>
+            <div class="content">
+                <h3>Änderungen am Basis-Rezept:</h3>
+                <ul>
+                    <li><strong>Weniger Sheabutter:</strong> 5g → 2g</li>
+                    <li><strong>Mehr Jojobaöl:</strong> 8g → 13g (nicht komedogen!)</li>
+                    <li><strong>Rosenwasser → Hamameliswasser</strong> (klärend)</li>
+                    <li><strong>Optional:</strong> +3 Tropfen Teebaumöl (antibakteriell)</li>
+                </ul>
+                <p><strong>Ergebnis:</strong> Leichtere Creme, weniger reichhaltig</p>
+            </div>
+
+            <button class="collapsible">💧 Für trockene Haut</button>
+            <div class="content">
+                <h3>Änderungen:</h3>
+                <ul>
+                    <li><strong>Mehr Sheabutter:</strong> 5g → 10g</li>
+                    <li><strong>Weniger Wasser:</strong> 20ml → 15ml</li>
+                    <li><strong>+5g Kokosöl</strong> (sehr pflegend)</li>
+                    <li><strong>Optional:</strong> +3 Tropfen Sandelholzöl</li>
+                </ul>
+                <p><strong>Ergebnis:</strong> Reichhaltigere Nachtcreme</p>
+            </div>
+
+            <button class="collapsible">☀️ Sommer-Version (leichter)</button>
+            <div class="content">
+                <h3>Änderungen:</h3>
+                <ul>
+                    <li><strong>Sheabutter weglassen!</strong></li>
+                    <li>Dafür: +5g Jojobaöl</li>
+                    <li>+5ml Aloe Vera</li>
+                    <li><strong>Optional:</strong> Prise Minze-Hydrolat (erfrischend)</li>
+                </ul>
+                <p><strong>Ergebnis:</strong> Ultra-leichte Sommercreme ☀️</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2>❓ FAQ - Deine Fragen beantwortet</h2>
+            
+            <button class="collapsible">🤔 Allgemeine Fragen</button>
+            <div class="content">
+                <h3>F: Ist das genauso gut wie Ringana?</h3>
+                <p>→ Nein, nicht *genau* so. Ringana hat 40+ Wirkstoffe, du hast 7. Aber für normale Haut absolut ausreichend und <strong>90% der Wirkung bei 8% der Kosten!</strong></p>
+
+                <h3>F: Kann ich das auch verkaufen?</h3>
+                <p>→ <strong>NEIN!</strong> Nur für dich. Verkauf braucht Zulassung.</p>
+
+                <h3>F: Wie lange dauert die Herstellung?</h3>
+                <p>→ Beim 1. Mal: 45 Min. (mit Vorbereitung)<br>
+                   → Ab dem 3. Mal: 25-30 Min.</p>
+
+                <h3>F: Brauche ich wirklich eine so genaue Waage?</h3>
+                <p>→ <strong>JA!</strong> Sonst stimmen die Proportionen nicht. Kostet nur €15-20.</p>
+
+                <h3>F: Kann ich das ohne Stabmixer machen?</h3>
+                <p>→ Ja, mit Schneebesen. Aber: 5 Min. länger rühren, Arm tut weh 😅</p>
+            </div>
+
+            <button class="collapsible">🧪 Inhaltsstoffe</button>
+            <div class="content">
+                <h3>F: Wo bekomme ich Emulsan?</h3>
+                <p>→ Nur online (Dragonspice, Naturschönheit). Reformhaus/dm haben es nicht.</p>
+
+                <h3>F: Kann ich Emulsan ersetzen?</h3>
+                <p>→ Nein, ohne Emulgator trennt sich die Creme sofort. Alternativen: Tegomuls, Lanolin (aber nicht vegan)</p>
+
+                <h3>F: Welches Rosenwasser?</h3>
+                <p>→ 100% reines Rosenwasser/Rosenhydrolat. NICHT "Gesichtswasser mit Rosenduft"!</p>
+
+                <h3>F: Sind die Öle aus dem Supermarkt okay?</h3>
+                <p>→ Mandelöl ja (Speiseöl), aber teurer. Jojobaöl gibt's nicht im Supermarkt.</p>
+            </div>
+
+            <button class="collapsible">💆‍♀️ Anwendung</button>
+            <div class="content">
+                <h3>F: Kann ich das auch als Nachtcreme verwenden?</h3>
+                <p>→ Ja! Evtl. etwas reichhaltiger machen (mehr Sheabutter)</p>
+
+                <h3>F: Für welchen Hauttyp?</h3>
+                <p>→ Normale Haut, Mischhaut. NICHT für sehr fettige oder Akne-Haut (dann Rezept anpassen)</p>
+
+                <h3>F: Kann ich Make-up drüber?</h3>
+                <p>→ Ja! 2-3 Min. einziehen lassen, dann Foundation etc.</p>
+            </div>
+
+            <button class="collapsible">⏰ Haltbarkeit</button>
+            <div class="content">
+                <h3>F: Warum nur 6 Wochen?</h3>
+                <p>→ Keine chemischen Konservierungsstoffe (wie Ringana!). Das ist der Preis für Natürlichkeit.</p>
+
+                <h3>F: Kann ich die Haltbarkeit verlängern?</h3>
+                <p>→ Nur mit Naturkosmetik-Konservierer (z.B. Kaliumsorbat). Aber dann komplizierter.</p>
+
+                <h3>F: Was ist mit Vitamin E? Konserviert das nicht?</h3>
+                <p>→ Vitamin E schützt vor Oxidation (Öle ranzig), aber NICHT vor Bakterien/Schimmel!</p>
+            </div>
+        </section>
+
+        <!-- Aktionsplan -->
+        <section>
+            <h2>🚀 Dein Aktionsplan (los geht's!)</h2>
+            
+            <div class="quick-links">
+                <div class="quick-link" onclick="scrollToSection('einkauf')">
+                    <span class="emoji">🛒</span>
+                    <strong>Schritt 1</strong><br>
+                    Einkaufen
+                </div>
+                <div class="quick-link" onclick="scrollToSection('anleitung')">
+                    <span class="emoji">👩‍🔬</span>
+                    <strong>Schritt 2</strong><br>
+                    Herstellen
+                </div>
+                <div class="quick-link" onclick="scrollToSection('checklisten')">
+                    <span class="emoji">✅</span>
+                    <strong>Schritt 3</strong><br>
+                    Checklisten
+                </div>
+            </div>
+
+            <h3>Phase 1: Vorbereitung (1 Woche)</h3>
+            <ul class="checklist">
+                <li>Equipment bestellen (falls nicht vorhanden)</li>
+                <li>Dragonspice-Bestellung aufgeben</li>
+                <li>Lokal besorgen (Öle, Rosenwasser, Aloe)</li>
+                <li>Handbuch nochmal durchlesen</li>
+                <li>Termin fürs Herstellen blocken</li>
+            </ul>
+
+            <h3>Phase 2: Erste Creme (Wochenende)</h3>
+            <ul class="checklist">
+                <li>Alle Zutaten & Geräte bereitlegen</li>
+                <li>Hygiene-Checklist durchgehen</li>
+                <li>Rezept Schritt für Schritt abarbeiten (30 Min.)</li>
+                <li>Abfüllen, beschriften</li>
+                <li>24h stehen lassen, dann in Kühlschrank</li>
+            </ul>
+
+            <h3>Phase 3: Routine (nächste Wochen)</h3>
+            <ul class="checklist">
+                <li>Täglich anwenden (Morgens & Abends)</li>
+                <li>Notizen: Wie fühlt sich die Haut an?</li>
+                <li>Vergleich zu Ringana?</li>
+                <li>Nach 4-6 Wochen: 2. Charge herstellen</li>
+            </ul>
+        </section>
+
+        <!-- Checklisten -->
+        <section id="checklisten">
+            <h2>📋 Checklisten zum Ausdrucken</h2>
+            
+            <button class="collapsible">✅ Einkaufsliste zum Abhaken</button>
+            <div class="content">
+                <h3>Equipment (einmalig):</h3>
+                <ul class="checklist">
+                    <li>Küchenwaage (0,1g genau)</li>
+                    <li>2 kleine Töpfe</li>
+                    <li>Spatel/Rührstab</li>
+                    <li>Thermometer (optional)</li>
+                    <li>Tiegel/Pumpspender (50ml)</li>
+                </ul>
+
+                <h3>Rohstoffe (erste Bestellung):</h3>
+                <ul class="checklist">
+                    <li>250ml Mandelöl</li>
+                    <li>100ml Jojobaöl</li>
+                    <li>100g Sheabutter</li>
+                    <li>50g Emulsan (online!)</li>
+                    <li>200ml Rosenwasser</li>
+                    <li>50ml Aloe Vera Gel</li>
+                    <li>20ml Vitamin E</li>
+                </ul>
+            </div>
+
+            <button class="collapsible">✅ Herstellungs-Checklist</button>
+            <div class="content">
+                <h3>Vorbereitung:</h3>
+                <ul class="checklist">
+                    <li>Hände gewaschen (30 Sek.)</li>
+                    <li>Haare zurückgebunden</li>
+                    <li>Arbeitsfläche desinfiziert</li>
+                    <li>Alle Geräte sterilisiert</li>
+                    <li>Zutaten abgewogen</li>
+                    <li>2 Töpfe bereit</li>
+                    <li>Tiegel sterilisiert</li>
+                </ul>
+
+                <h3>Während Herstellung:</h3>
+                <ul class="checklist">
+                    <li>Fettphase auf 60-65°C</li>
+                    <li>Wasserphase auf 60-65°C</li>
+                    <li>Beide Phasen gleiche Temperatur?</li>
+                    <li>Langsam emulgiert (2-3 Min.)</li>
+                    <li>Auf 30°C abgekühlt</li>
+                    <li>Vitamin E zugegeben</li>
+                    <li>Abgefüllt & beschriftet</li>
+                </ul>
+
+                <h3>Nach Herstellung:</h3>
+                <ul class="checklist">
+                    <li>24h bei Raumtemperatur</li>
+                    <li>Dann: Ab in Kühlschrank!</li>
+                    <li>Geräte gereinigt</li>
+                </ul>
+            </div>
+
+            <button class="collapsible">✅ Qualitätskontrolle (wöchentlich)</button>
+            <div class="content">
+                <h3>Creme ist OK, wenn:</h3>
+                <ul class="checklist">
+                    <li>Geruch unverändert (frisch, leicht ölig)</li>
+                    <li>Farbe weiß/cremig</li>
+                    <li>Konsistenz homogen (keine Trennung)</li>
+                    <li>Kein Schimmel sichtbar</li>
+                </ul>
+
+                <div class="warning">
+                    <h3>Creme ist SCHLECHT, wenn:</h3>
+                    <ul>
+                        <li>❌ Riecht ranzig/muffig → WEG DAMIT!</li>
+                        <li>❌ Farbe verändert → WEG DAMIT!</li>
+                        <li>❌ Trennt sich → WEG DAMIT!</li>
+                        <li>❌ Schimmel → WEG DAMIT!</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schlusswort -->
+        <section>
+            <h2>💚 Schlusswort von Mama</h2>
+            
+            <div class="highlight">
+                <h3>Liebste Tochter,</h3>
+                
+                <p>ich bin so stolz, dass du bereit bist, etwas Neues auszuprobieren! 💚</p>
+                
+                <h4>Warum ich das für dich gemacht habe:</h4>
+                <ol>
+                    <li><strong>Ringana ist toll, aber teuer</strong> - und du sollst nicht auf gute Pflege verzichten müssen</li>
+                    <li><strong>Du lernst etwas</strong> - Kosmetik selbst zu machen ist eine wertvolle Fähigkeit</li>
+                    <li><strong>Du sparst Geld</strong> - €500+ im Jahr! Das ist 1 Woche Urlaub!</li>
+                    <li><strong>Es ist einfacher als du denkst</strong> - Wirklich! Nach dem 2. Mal läuft's wie von selbst</li>
+                </ol>
+
+                <div class="success">
+                    <h4>💪 Dein Erfolgsversprechen:</h4>
+                    <p><strong>Wenn du dieses Handbuch befolgst:</strong></p>
+                    <ul>
+                        <li>✅ Sparst du <strong>€500+ pro Jahr</strong></li>
+                        <li>✅ Hast du eine <strong>gute, natürliche Gesichtscreme</strong></li>
+                        <li>✅ Weißt du <strong>genau</strong>, was du dir ins Gesicht schmierst</li>
+                        <li>✅ Bist du <strong>unabhängig</strong> von teuren Marken</li>
+                        <li>✅ Kannst du <strong>experimentieren</strong> (Variationen!)</li>
+                    </ul>
+                </div>
+
+                <h4>Meine Bitte:</h4>
+                <ul>
+                    <li>✅ Gib nicht auf beim 1. Versuch (auch wenn's schiefgeht!)</li>
+                    <li>✅ Ruf mich an, wenn du Fragen hast</li>
+                    <li>✅ Schick mir ein Foto, wenn's geklappt hat! 📸</li>
+                </ul>
+
+                <div class="warning">
+                    <h4>⚠️ Was ich von dir erwarte:</h4>
+                    <ul>
+                        <li>❌ NICHT verkaufen (ist illegal ohne Zulassung!)</li>
+                        <li>❌ NICHT bei Allergien/Hautproblemen ohne Arzt</li>
+                        <li>✅ Hygienisch arbeiten (sonst Schimmel!)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <div class="success">
+                    <h3>🌟 Du schaffst das! 💪</h3>
+                    <p style="font-size: 1.3rem; margin: 1rem 0;">
+                        <strong>Ruf mich an, wenn du Fragen hast!</strong><br>
+                        Ich helfe dir gerne bei jedem Schritt. 💚
+                    </p>
+                </div>
+                
+                <p style="font-size: 1.5rem; margin: 2rem 0;">
+                    In Liebe,<br>
+                    <strong style="font-size: 1.8rem;">Mama Berry 🌿</strong>
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>🌿 Naturkosmetik Handbuch | Ringana-Alternative DIY</p>
+        <p style="margin-top: 0.5rem; font-style: italic;">Von Mama Berry, mit Liebe erstellt ❤️</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 Für private Nutzung | Nicht zum Verkauf!</p>
+    </footer>
+
+    <!-- JavaScript for Collapsibles -->
+    <script>
+        // Collapsible functionality
+        const collapsibles = document.getElementsByClassName("collapsible");
+        
+        for (let i = 0; i < collapsibles.length; i++) {
+            collapsibles[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.classList.remove("active");
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.classList.add("active");
+                }
+            });
+        }
+
+        // Smooth scroll function
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Add smooth scroll to all nav links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Auto-expand first collapsible on page load
+        window.addEventListener('load', function() {
+            if (collapsibles.length > 0) {
+                // Uncomment next 2 lines to auto-open first section:
+                // collapsibles[0].click();
+            }
+        });
+    </script>
 </body>
-
 </html>
