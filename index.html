@@ -3,85 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌿 Naturkosmetik Handbuch | DIY Ringana-Alternative für Tochter</title>
-    
+    <title>DIY Naturkosmetik Handbuch | Elie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gold-dark: #8B6914;
+            --gold-primary: #C4A052;
+            --gold-light: #E8D5A3;
+            --gold-glow: #F5EBD3;
+            --blue-dark: #1A2B4A;
+            --blue-primary: #2D4A7C;
+            --blue-medium: #4A6FA5;
+            --blue-light: #7B9BC9;
+            --blue-pale: #C5D4E8;
+            --blue-bg: #EEF3F9;
+            --cream: #FDFCF8;
+            --white: #FFFFFF;
+            --text-dark: #1A2B4A;
+            --text-medium: #4A5568;
+            --shadow-soft: 0 4px 20px rgba(26, 43, 74, 0.08);
+            --shadow-medium: 0 8px 40px rgba(26, 43, 74, 0.12);
+            --shadow-gold: 0 4px 20px rgba(196, 160, 82, 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5e6e8 0%, #ffe4e9 50%, #f5e6e8 100%);
-            color: #000000;
+            font-family: 'Nunito Sans', sans-serif;
+            font-weight: 400;
             line-height: 1.8;
+            color: var(--text-dark);
+            background: linear-gradient(180deg, var(--blue-bg) 0%, var(--cream) 100%);
             min-height: 100vh;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, #e0f2f7 0%, #b3e5fc 50%, #e0f2f7 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 200;
-            letter-spacing: 0.15em;
-            margin: 0 0 1rem 0;
-            background: linear-gradient(135deg, #0288D1 0%, #039BE5 25%, #4FC3F7 50%, #0288D1 75%, #039BE5 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 8s ease infinite;
-            filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.3));
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(196, 160, 82, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(196, 160, 82, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
-        .subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.8rem);
-            background: linear-gradient(135deg, #01579B 0%, #0288D1 50%, #039BE5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-style: italic;
-            font-weight: 400;
-            margin: 0.5rem 0 2rem 0;
-            letter-spacing: 0.1em;
+        header h1 span {
+            color: var(--gold-light);
         }
 
-        .tagline {
-            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
-            color: #0277BD;
-            max-width: 700px;
-            margin: 1rem auto;
-            line-height: 1.6;
-            font-weight: 400;
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--blue-pale);
+            margin-bottom: 1.5rem;
+        }
+
+        .gold-divider {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+            margin: 1.5rem auto;
         }
 
         /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--white);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
-            border-bottom: 2px solid #0288D1;
+            box-shadow: var(--shadow-soft);
+            border-bottom: 2px solid var(--gold-light);
         }
 
         nav ul {
@@ -89,138 +112,195 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 0.5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         nav a {
-            color: #0277BD;
+            color: var(--blue-primary);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             padding: 0.5rem 1rem;
             border-radius: 25px;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
         nav a:hover {
-            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            background: var(--blue-primary);
+            color: var(--white);
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
+        nav a .nav-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 2rem;
         }
 
-        /* Sections */
+        /* Section Styling */
         section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            margin: 2rem 0;
+            background: var(--white);
             border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(76, 175, 80, 0.15);
-            border: 2px solid rgba(102, 187, 106, 0.2);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--blue-pale);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--gold-primary), var(--blue-primary));
         }
 
         h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            background: linear-gradient(135deg, #01579B 0%, #0288D1 50%, #039BE5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            color: var(--blue-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2 .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-gold);
         }
 
         h3 {
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            color: #0277BD;
-            margin: 2rem 0 1rem 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
             font-weight: 600;
+            color: var(--blue-primary);
+            margin: 2rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--gold-primary);
         }
 
         h4 {
             font-size: 1.2rem;
-            color: #01579B;
-            margin: 1.5rem 0 0.8rem 0;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        h5 {
+            font-size: 1.05rem;
             font-weight: 600;
+            color: var(--blue-medium);
+            margin: 1rem 0 0.5rem;
         }
 
         p {
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            color: var(--text-medium);
         }
 
-        /* Collapsible */
-        .collapsible {
-            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 50%, #E1F5FE 100%);
-            color: #004D7F;
-            cursor: pointer;
-            padding: 1.5rem;
-            width: 100%;
-            border: 2px solid #0288D1;
-            text-align: left;
-            outline: none;
-            font-size: 1.2rem;
-            font-weight: 600;
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, var(--blue-bg) 0%, var(--blue-pale) 100%);
             border-radius: 15px;
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--blue-primary);
         }
 
-        .collapsible:hover {
-            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
-            color: white;
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.35);
+        .info-box.warning {
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFEFC4 100%);
+            border-left-color: var(--gold-dark);
         }
 
-        .collapsible:after {
-            content: '▼';
-            float: right;
-            margin-left: 5px;
-            transition: transform 0.3s ease;
+        .info-box.success {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left-color: #4CAF50;
         }
 
-        .collapsible.active:after {
-            transform: rotate(180deg);
+        .info-box.tip {
+            background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold-light) 100%);
+            border-left-color: var(--gold-primary);
         }
 
-        .content {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            background: rgba(255, 255, 255, 0.7);
-            border-left: 3px solid #0288D1;
-            border-right: 3px solid #0288D1;
-            border-bottom: 3px solid #0288D1;
-            border-radius: 0 0 15px 15px;
-            margin-top: -10px;
+        .info-box-title {
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .content.active {
-            padding: 1.5rem;
+        /* Recipe Cards */
+        .recipe-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 2px solid var(--gold-light);
+            position: relative;
         }
 
-        /* Lists */
-        ul, ol {
-            margin: 1rem 0 1rem 2rem;
-            font-size: 1.05rem;
+        .recipe-card::after {
+            content: '✦';
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            font-size: 2rem;
+            color: var(--gold-primary);
+            background: var(--white);
+            padding: 0 10px;
         }
 
-        li {
-            margin: 0.7rem 0;
-            line-height: 1.6;
+        .recipe-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .recipe-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--blue-medium);
+            background: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--blue-pale);
         }
 
         /* Tables */
@@ -228,1130 +308,2568 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1.5rem 0;
-            background: white;
-            border-radius: 10px;
+            background: var(--white);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
+            box-shadow: var(--shadow-soft);
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--blue-dark) 100%);
+            color: var(--white);
         }
 
         th {
-            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
-            color: white;
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             text-align: left;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         td {
-            padding: 1rem;
-            border-bottom: 1px solid #E1F5FE;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--blue-pale);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: var(--blue-bg);
         }
 
         tr:hover {
-            background: #E0F7FA;
+            background: var(--gold-glow);
         }
 
-        /* Highlight Boxes */
-        .highlight {
-            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 50%, #E1F5FE 100%);
-            border-left: 5px solid #039BE5;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--text-medium);
         }
 
-        .warning {
-            background: linear-gradient(135deg, #FFF9C4 0%, #FFF59D 50%, #FFF9C4 100%);
-            border-left: 5px solid #FBC02D;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(251, 192, 45, 0.15);
+        li {
+            margin-bottom: 0.6rem;
+            padding-left: 0.5rem;
         }
 
-        .success {
-            background: linear-gradient(135deg, #B3E5FC 0%, #A5D6A7 50%, #B3E5FC 100%);
-            border-left: 5px solid #01579B;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(56, 142, 60, 0.15);
+        ul li::marker {
+            color: var(--gold-primary);
         }
 
-        .tip {
-            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 50%, #E1F5FE 100%);
-            border-left: 5px solid #0288D1;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(2, 136, 209, 0.15);
-        }
-
-        /* CTA Button */
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            font-size: 1.2rem;
+        ol li::marker {
+            color: var(--blue-primary);
             font-weight: 700;
-            color: white;
-            text-decoration: none;
-            background: linear-gradient(135deg, #0288D1 0%, #039BE5 25%, #4FC3F7 50%, #0288D1 75%, #039BE5 100%);
-            background-size: 200% auto;
-            border: 3px solid #01579B;
-            border-radius: 50px;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.35);
-            letter-spacing: 0.05em;
-            margin: 1rem 0.5rem;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(76, 175, 80, 0.5);
-            background-position: right center;
-        }
-
-        /* Code/Recipe Blocks */
-        pre, .recipe {
-            background: #F5F5F5;
-            border: 2px solid #0288D1;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
-        }
-
-        /* Checklist */
-        .checklist {
+        /* Step-by-Step */
+        .steps {
+            counter-reset: step-counter;
             list-style: none;
+            margin-left: 0;
             padding-left: 0;
         }
 
-        .checklist li {
-            padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+        .steps li {
+            counter-increment: step-counter;
             position: relative;
-            margin: 0.5rem 0;
-            background: #E0F7FA;
-            border-radius: 8px;
+            padding-left: 4rem;
+            margin-bottom: 1.5rem;
+            min-height: 3rem;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Ingredient Groups */
+        .ingredient-group {
+            background: var(--blue-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .ingredient-group h5 {
+            color: var(--blue-dark);
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold-light);
+        }
+
+        /* Supplier List */
+        .supplier-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .supplier {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid var(--blue-pale);
             transition: all 0.3s ease;
         }
 
-        .checklist li:hover {
-            background: #E1F5FE;
-            transform: translateX(5px);
+        .supplier:hover {
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-3px);
         }
 
-        .checklist li:before {
-            content: '☐';
-            position: absolute;
-            left: 0.8rem;
-            font-size: 1.3rem;
-            color: #0288D1;
+        .supplier-name {
+            font-weight: 700;
+            color: var(--blue-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
         }
 
-        /* Footer */
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 3rem;
-            border-top: 2px solid #0288D1;
-            box-shadow: 0 -4px 15px rgba(76, 175, 80, 0.15);
+        .supplier-country {
+            color: var(--gold-dark);
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
         }
 
-        footer p {
-            color: #0277BD;
-            font-size: 1rem;
-            margin: 0.5rem 0;
+        .supplier-url {
+            color: var(--blue-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .supplier-url:hover {
+            color: var(--gold-dark);
+        }
+
+        /* Equipment Grid */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .equipment-item {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--gold-glow) 100%);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--gold-light);
+        }
+
+        .equipment-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .equipment-name {
+            font-weight: 600;
+            color: var(--blue-dark);
+            font-size: 0.95rem;
+        }
+
+        .equipment-note {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFEFC4 100%);
+            border: 2px solid var(--gold-primary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .disclaimer h3 {
+            color: var(--gold-dark);
+            border-left: none;
+            padding-left: 0;
+            margin-top: 0;
+        }
+
+        .disclaimer ul {
+            margin-bottom: 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            nav {
+                display: none;
+            }
+            
+            section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            header {
+                background: var(--blue-dark) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+            header h1 {
+                font-size: 2.2rem;
             }
-
+            
             section {
                 padding: 1.5rem;
             }
-
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            h3 {
+                font-size: 1.4rem;
+            }
+            
             nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.3rem 0.8rem;
             }
-
-            table {
-                font-size: 0.9rem;
+            
+            nav a {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
             }
-
+            
+            .recipe-meta {
+                gap: 0.8rem;
+            }
+            
             th, td {
                 padding: 0.8rem;
+                font-size: 0.9rem;
             }
         }
 
-        /* Emoji Styling */
-        .emoji {
-            font-size: 1.3em;
-            vertical-align: middle;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Quick Links */
-        .quick-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+        section {
+            animation: fadeIn 0.6s ease-out;
         }
 
-        .quick-link {
-            background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
+        /* Table of Contents */
+        .toc {
+            background: linear-gradient(135deg, var(--gold-glow) 0%, var(--cream) 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid var(--gold-light);
+        }
+
+        .toc h2 {
             text-align: center;
-            border: 2px solid #0288D1;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-item {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--blue-pale);
             transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
         }
 
-        .quick-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
-            background: linear-gradient(135deg, #0288D1 0%, #039BE5 100%);
-            color: white;
+        .toc-item:hover {
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
         }
 
-        .quick-link .emoji {
-            font-size: 2.5rem;
-            display: block;
-            margin-bottom: 0.5rem;
+        .toc-item a {
+            text-decoration: none;
+            color: var(--blue-dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .toc-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+            color: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>🌿 NATURKOSMETIK</h1>
-        <div class="subtitle">Ringana-Alternative selbst herstellen</div>
-        <div class="tagline">
-            <strong>Für Amelie:</strong> Einfach · Günstig · Ähnlich wie Ringana<br>
-            <em>Von Mama Amy, mit Liebe ❤️</em>
-        </div>
-    </div>
+    <header>
+        <h1>DIY <span>Naturkosmetik</span> Handbuch</h1>
+        <p class="subtitle">Vegane Hautpflege selbst herstellen – von Elie</p>
+        <div class="gold-divider"></div>
+        <p style="font-size: 0.95rem; color: var(--gold-light);">Ein vollständiges Handbuch für Anfänger</p>
+    </header>
 
-    <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#warum">Warum?</a></li>
-            <li><a href="#rezept">Das Rezept</a></li>
-            <li><a href="#anleitung">Anleitung</a></li>
-            <li><a href="#einkauf">Einkaufsliste</a></li>
-            <li><a href="#fehler">Fehler vermeiden</a></li>
-            <li><a href="#varianten">Varianten</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#checklisten">Checklisten</a></li>
+            <li><a href="#einleitung"><span class="nav-icon">📖</span> Einleitung</a></li>
+            <li><a href="#grundlagen"><span class="nav-icon">🔬</span> Grundlagen</a></li>
+            <li><a href="#zutaten"><span class="nav-icon">🌿</span> Zutaten</a></li>
+            <li><a href="#zubehoer"><span class="nav-icon">🧪</span> Zubehör</a></li>
+            <li><a href="#augencreme"><span class="nav-icon">👁️</span> Augencreme</a></li>
+            <li><a href="#nachtcreme-gesicht"><span class="nav-icon">🌙</span> Nachtcreme Gesicht</a></li>
+            <li><a href="#nachtcreme-koerper"><span class="nav-icon">✨</span> Nachtcreme Körper</a></li>
+            <li><a href="#getoente-tagescreme"><span class="nav-icon">💄</span> Getönte Tagescreme</a></li>
+            <li><a href="#tagescreme"><span class="nav-icon">☀️</span> Tagescreme</a></li>
+            <li><a href="#bezugsquellen"><span class="nav-icon">🛒</span> Bezugsquellen</a></li>
+            <li><a href="#haltbarkeit"><span class="nav-icon">📅</span> Haltbarkeit</a></li>
         </ul>
     </nav>
 
-    <!-- Container -->
-    <div class="container">
-        
-        <!-- Warum Section -->
-        <section id="warum">
-            <h2>💚 Warum dieses Handbuch?</h2>
+    <main>
+        <!-- Inhaltsverzeichnis -->
+        <div class="toc">
+            <h2><span class="section-icon">📋</span> Inhaltsverzeichnis</h2>
+            <div class="toc-grid">
+                <div class="toc-item"><a href="#einleitung"><span class="toc-number">1</span> Einleitung & Philosophie</a></div>
+                <div class="toc-item"><a href="#grundlagen"><span class="toc-number">2</span> Grundlagen der Kosmetikherstellung</a></div>
+                <div class="toc-item"><a href="#zutaten"><span class="toc-number">3</span> Vollständige Zutatenliste</a></div>
+                <div class="toc-item"><a href="#zubehoer"><span class="toc-number">4</span> Benötigtes Zubehör</a></div>
+                <div class="toc-item"><a href="#augencreme"><span class="toc-number">5</span> Straffende Augencreme</a></div>
+                <div class="toc-item"><a href="#nachtcreme-gesicht"><span class="toc-number">6</span> Regenerierende Nachtcreme Gesicht</a></div>
+                <div class="toc-item"><a href="#nachtcreme-koerper"><span class="toc-number">7</span> Straffende Nachtcreme Körper</a></div>
+                <div class="toc-item"><a href="#getoente-tagescreme"><span class="toc-number">8</span> Getönte Tagescreme</a></div>
+                <div class="toc-item"><a href="#tagescreme"><span class="toc-number">9</span> Frische Tagescreme</a></div>
+                <div class="toc-item"><a href="#bezugsquellen"><span class="toc-number">10</span> Bezugsquellen für Rohstoffe</a></div>
+                <div class="toc-item"><a href="#haltbarkeit"><span class="toc-number">11</span> Haltbarkeit & Lagerung</a></div>
+            </div>
+        </div>
+
+        <!-- DISCLAIMER -->
+        <div class="disclaimer">
+            <h3>⚖️ Wichtiger Hinweis & Disclaimer</h3>
+            <p>Dieses Handbuch dient ausschließlich zu Informations- und Bildungszwecken. Bitte beachte:</p>
+            <ul>
+                <li><strong>Keine medizinische Beratung:</strong> Die hier beschriebenen Rezepte ersetzen keine dermatologische oder medizinische Beratung.</li>
+                <li><strong>Eigenverantwortung:</strong> Die Herstellung und Anwendung selbstgemachter Kosmetik erfolgt auf eigene Verantwortung.</li>
+                <li><strong>Allergietest:</strong> Führe vor der ersten Anwendung immer einen Patch-Test an einer unauffälligen Hautstelle durch.</li>
+                <li><strong>Keine Haftung:</strong> Die Autorin übernimmt keine Haftung für Hautreaktionen, allergische Reaktionen oder sonstige Schäden, die durch die Anwendung der beschriebenen Produkte entstehen könnten.</li>
+                <li><strong>Hygiene:</strong> Mangelnde Hygiene bei der Herstellung kann zu Kontaminationen führen. Halte dich strikt an die Hygienevorschriften.</li>
+                <li><strong>Haltbarkeit:</strong> Selbstgemachte Kosmetik ist nicht so lange haltbar wie kommerzielle Produkte. Beachte die angegebenen Haltbarkeitszeiten.</li>
+                <li><strong>Kein Verkauf:</strong> Diese Rezepte sind für den privaten Gebrauch bestimmt. Für den Verkauf selbstgemachter Kosmetik gelten strenge gesetzliche Vorschriften (EU-Kosmetikverordnung).</li>
+            </ul>
+            <p style="margin-bottom: 0;"><strong>Bei Unsicherheiten oder bestehenden Hauterkrankungen konsultiere bitte einen Dermatologen.</strong></p>
+        </div>
+
+        <!-- EINLEITUNG -->
+        <section id="einleitung">
+            <h2><span class="section-icon">📖</span> Einleitung & Philosophie</h2>
             
-            <div class="highlight">
-                <h3>Liebste Amelie,</h3>
-                <p>ich weiß, dass du die <strong>Ringana Fresh Cream Medium</strong> liebst, aber sie ist mit <strong>€45-50 für 50ml</strong> einfach zu teuer für dich gerade. Und ich verstehe auch, dass du keine Zeit für aufwändige Kosmetik-Projekte hast.</p>
-                
-                <p><strong>Deshalb habe ich dir dieses Handbuch gemacht:</strong></p>
-                <ul>
-                    <li>✅ <strong>EINFACH</strong> - Nur 6 Zutaten, 30 Minuten</li>
-                    <li>✅ <strong>GÜNSTIG</strong> - Ca. €3-4 pro 50ml (statt €45!)</li>
-                    <li>✅ <strong>ÄHNLICH</strong> - Orientiert an Ringana-Inhaltsstoffen</li>
-                    <li>✅ <strong>FRISCH</strong> - Wie Ringana, ohne Konservierung</li>
+            <p>Willkommen zu diesem umfassenden Handbuch für selbstgemachte Naturkosmetik! Dieses Handbuch ist speziell für Anfänger geschrieben und führt dich Schritt für Schritt durch die Herstellung von vier hochwertigen Hautpflegeprodukten.</p>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Warum selbstgemachte Kosmetik?</div>
+                <p style="margin-bottom: 0;">Selbstgemachte Naturkosmetik gibt dir die volle Kontrolle über die Inhaltsstoffe. Du weißt genau, was auf deine Haut kommt – 100% vegan, ohne synthetische Konservierungsstoffe und individuell auf deine Bedürfnisse abgestimmt.</p>
+            </div>
+
+            <h3>Die vier Produkte in diesem Handbuch</h3>
+            
+            <ol>
+                <li><strong>Straffende Augencreme</strong> – Ein leichtes, erfrischendes Serum für die empfindliche Augenpartie, das Schwellungen reduziert und die Haut strafft.</li>
+                <li><strong>Regenerierende Nachtcreme fürs Gesicht</strong> – Eine reichhaltige Nachtpflege mit dem ABC-Vitaminkomplex für intensive Regeneration.</li>
+                <li><strong>Straffende Nachtcreme für den Körper</strong> – Eine straffende Körperpflege für die Nacht, die Problemzonen gezielt behandelt.</li>
+                <li><strong>Getönte Tagescreme</strong> – Eine getönte Tagespflege, die Feuchtigkeit spendet und einen natürlichen, ebenmäßigen Teint verleiht.</li>
+            </ol>
+
+            <h3>Wichtige Grundsätze</h3>
+
+            <div class="info-box warning">
+                <div class="info-box-title">⚠️ Bitte beachten</div>
+                <ul style="margin-bottom: 0;">
+                    <li>Alle Rezepte sind <strong>100% vegan</strong> und verwenden ausschließlich pflanzliche Inhaltsstoffe.</li>
+                    <li>DIY-Kosmetik hat eine <strong>kürzere Haltbarkeit</strong> als kommerzielle Produkte (4-8 Wochen).</li>
+                    <li>Führe immer einen <strong>Patch-Test</strong> durch, bevor du ein neues Produkt im Gesicht anwendest.</li>
+                    <li>Arbeite <strong>hygienisch</strong> – desinfiziere alle Utensilien vor der Verwendung.</li>
+                    <li>Diese Rezepte wurden von <strong>Elie</strong> entwickelt und zusammengestellt.</li>
                 </ul>
-                
-                <div class="success">
-                    <h4>💰 Du sparst ca. 90%!</h4>
-                    <p style="margin: 0;">Pro Jahr: <strong>über €500!</strong> Das ist 1 Woche Urlaub! 🏖️</p>
-                </div>
             </div>
         </section>
 
-        <!-- Ringana Analyse -->
-        <section>
-            <button class="collapsible">🔬 Was ist Ringana FRESH cream medium? (Original-Analyse)</button>
-            <div class="content">
-                <h3>Die Original-Philosophie</h3>
-                <p><strong>Ringana</strong> ist eine österreichische Premium-Naturkosmetik-Marke aus der Steiermark.</p>
-                
-                <div class="quick-links">
-                    <div class="quick-link">
-                        <span class="emoji">🌱</span>
-                        <strong>100% natürlich</strong>
-                    </div>
-                    <div class="quick-link">
-                        <span class="emoji">🚫</span>
-                        <strong>Keine Konservierung</strong>
-                    </div>
-                    <div class="quick-link">
-                        <span class="emoji">♻️</span>
-                        <strong>Frisch gerührt</strong>
-                    </div>
-                    <div class="quick-link">
-                        <span class="emoji">💚</span>
-                        <strong>Vegan & Bio</strong>
-                    </div>
-                </div>
+        <!-- GRUNDLAGEN -->
+        <section id="grundlagen">
+            <h2><span class="section-icon">🔬</span> Grundlagen der Kosmetikherstellung</h2>
 
-                <h3>Hauptinhaltsstoffe (vereinfacht)</h3>
-                <p>Ringana Fresh Cream Medium enthält ca. <strong>40+ Inhaltsstoffe</strong>! 😱</p>
-                
-                <h4>Basis (was die Creme ausmacht):</h4>
-                <ul>
-                    <li>Orangenfruchtwasser (Vitamin C)</li>
-                    <li>Rosenwasser (beruhigend)</li>
-                    <li>Mandelöl + Macadamiaöl (pflegend)</li>
-                    <li>Squalan (aus Oliven, sehr leicht)</li>
-                    <li>Glycerin (Feuchtigkeit)</li>
-                    <li>Emulgatoren (verbinden Öl & Wasser)</li>
-                </ul>
+            <h3>Grundbegriffe verstehen</h3>
 
-                <h4>Spezial-Wirkstoffe (teuer!):</h4>
-                <ul>
-                    <li>Sheabutter, Baobab-Öl, Hyaluronsäure</li>
-                    <li>Ceramide, Borretschöl, Nachtkerzenöl</li>
-                    <li>Q10, und 25+ weitere...</li>
-                </ul>
+            <h4>Was ist eine Emulsion?</h4>
+            <p>Eine Emulsion ist eine Mischung aus zwei normalerweise nicht mischbaren Flüssigkeiten – Wasser und Öl. Mit Hilfe eines Emulgators werden diese verbunden. Man unterscheidet:</p>
+            <ul>
+                <li><strong>O/W-Emulsion (Öl-in-Wasser):</strong> Leichte Texturen wie Lotions und leichte Cremes. Der Hauptanteil ist Wasser.</li>
+                <li><strong>W/O-Emulsion (Wasser-in-Öl):</strong> Reichhaltige Texturen wie Nachtcremes. Der Hauptanteil ist Öl.</li>
+            </ul>
 
-                <div class="tip">
-                    <h4>💡 Was können wir weglassen?</h4>
-                    <p><strong>Für eine gute Creme brauchst du NICHT:</strong></p>
-                    <ul>
-                        <li>❌ Baobab-Öl (€30/100ml!)</li>
-                        <li>❌ Ceramide (sehr teuer)</li>
-                        <li>❌ Q10 (teuer, du bist jung!)</li>
-                        <li>❌ 10 verschiedene exotische Öle</li>
-                    </ul>
-                    
-                    <p style="margin-top: 1rem;"><strong>Was du BRAUCHST:</strong></p>
-                    <ul>
-                        <li>✅ Gute Basis-Öle (Mandel, Jojoba)</li>
-                        <li>✅ Rosenwasser</li>
-                        <li>✅ Emulgator</li>
-                        <li>✅ Vitamin E</li>
-                    </ul>
-                    
-                    <p class="success" style="margin-top: 1.5rem;"><strong>→ Das reicht für 90% der Wirkung bei 10% der Kosten!</strong></p>
-                </div>
+            <h4>Die Phasen einer Creme</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Inhalt</th>
+                        <th>Temperatur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fettphase (Phase A)</strong></td>
+                        <td>Öle, Buttern, Emulgatoren, fettlösliche Wirkstoffe</td>
+                        <td>70-75°C</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wasserphase (Phase B)</strong></td>
+                        <td>Wasser, Hydrolate, wasserlösliche Wirkstoffe, Verdicker</td>
+                        <td>70-75°C</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wirkstoffphase (Phase C)</strong></td>
+                        <td>Hitzeempfindliche Wirkstoffe, Konservierung, ätherische Öle</td>
+                        <td>Unter 40°C</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Hygiene – Das A und O</h3>
+
+            <div class="info-box">
+                <div class="info-box-title">🧼 Hygiene-Checkliste vor jedem Rühren</div>
+                <ol>
+                    <li>Arbeitsfläche mit 70% Alkohol desinfizieren</li>
+                    <li>Alle Utensilien (Gläser, Löffel, Spatel, Mixer) mit 70% Alkohol auswischen</li>
+                    <li>Hände gründlich waschen und desinfizieren</li>
+                    <li>Haare zusammenbinden</li>
+                    <li>Tiegel und Flaschen vorher auskochen oder mit Alkohol sterilisieren</li>
+                    <li>Während der Herstellung nicht ins Gesicht fassen</li>
+                </ol>
+            </div>
+
+            <h3>Das Wasserbad-Prinzip</h3>
+            <p>Viele Zutaten werden im Wasserbad erwärmt. So geht's:</p>
+            <ol class="steps">
+                <li>Einen größeren Topf mit 3-5 cm Wasser füllen und auf den Herd stellen.</li>
+                <li>Ein hitzebeständiges Glas- oder Edelstahlgefäß in das Wasser stellen.</li>
+                <li>Die Zutaten in das innere Gefäß geben.</li>
+                <li>Das Wasser erhitzen – es sollte nur leicht simmern, nicht kochen.</li>
+                <li>Die Zutaten langsam schmelzen lassen und mit einem Glasstab umrühren.</li>
+            </ol>
+
+            <h3>Emulgieren für Anfänger</h3>
+            <p>Der wichtigste Schritt bei der Cremeherstellung ist das Emulgieren. Hier werden Fett- und Wasserphase verbunden:</p>
+            <ol class="steps">
+                <li><strong>Beide Phasen auf gleiche Temperatur bringen</strong> (70-75°C).</li>
+                <li><strong>Wasserphase langsam zur Fettphase gießen</strong> – nicht umgekehrt!</li>
+                <li><strong>Sofort mit dem Milchaufschäumer oder Stabmixer</strong> auf niedriger Stufe rühren.</li>
+                <li><strong>2-3 Minuten durchgehend rühren</strong>, bis eine homogene Masse entsteht.</li>
+                <li><strong>Weiterrühren während des Abkühlens</strong> – gelegentlich, nicht durchgehend.</li>
+                <li><strong>Erst unter 40°C die Wirkstoffphase</strong> hinzufügen.</li>
+            </ol>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Tipp für Anfänger</div>
+                <p style="margin-bottom: 0;">Beginne mit kleinen Mengen (30-50g Gesamtmenge). So kannst du experimentieren, ohne viel Material zu verschwenden, falls etwas nicht klappt.</p>
             </div>
         </section>
 
-        <!-- Das Rezept -->
-        <section id="rezept">
-            <h2>📝 Deine vereinfachte Ringana-Alternative</h2>
+        <!-- ZUTATEN -->
+        <section id="zutaten">
+            <h2><span class="section-icon">🌿</span> Vollständige Zutatenliste</h2>
+
+            <p>Hier findest du alle Zutaten, die du für die vier Produkte benötigst. Die Liste ist nach Kategorien geordnet, damit du einen guten Überblick bekommst.</p>
+
+            <h3>Basisöle & Buttern</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Verwendet für</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mandelöl (süß)</strong></td>
+                        <td>Prunus Amygdalus Dulcis Oil</td>
+                        <td>Getönte Tagescreme</td>
+                        <td>50 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kaktusfeigenkernöl</strong></td>
+                        <td>Opuntia Ficus-Indica Seed Oil</td>
+                        <td>Augencreme</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Granatapfelkernöl</strong></td>
+                        <td>Punica Granatum Seed Oil</td>
+                        <td>Nachtcreme Gesicht, Getönte Tagescreme</td>
+                        <td>20 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hanfsamenöl</strong></td>
+                        <td>Cannabis Sativa Seed Oil</td>
+                        <td>Nachtcreme Gesicht</td>
+                        <td>15 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sesamöl</strong></td>
+                        <td>Sesamum Indicum Seed Oil</td>
+                        <td>Nachtcreme Körper</td>
+                        <td>30 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Squalan (pflanzlich)</strong></td>
+                        <td>Squalane</td>
+                        <td>Alle Produkte</td>
+                        <td>50 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wiesenschaumkrautöl</strong></td>
+                        <td>Limnanthes Alba Seed Oil</td>
+                        <td>Nachtcreme Gesicht & Körper</td>
+                        <td>30 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sheabutter</strong></td>
+                        <td>Butyrospermum Parkii Butter</td>
+                        <td>Getönte Tagescreme, Nachtcreme Körper</td>
+                        <td>50 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mangobutter</strong></td>
+                        <td>Mangifera Indica Seed Butter</td>
+                        <td>Nachtcreme Gesicht & Körper</td>
+                        <td>30 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tucumabutter</strong></td>
+                        <td>Astrocaryum Tucuma Seed Butter</td>
+                        <td>Getönte Tagescreme</td>
+                        <td>20 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inka-Nuss-Öl (Sacha Inchi)</strong></td>
+                        <td>Plukenetia Volubilis Seed Oil</td>
+                        <td>Getönte Tagescreme</td>
+                        <td>15 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cranberrysamenöl</strong></td>
+                        <td>Vaccinium Macrocarpon Seed Oil</td>
+                        <td>Getönte Tagescreme</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Traubenkernöl</strong></td>
+                        <td>Vitis Vinifera Seed Oil</td>
+                        <td>Getönte Tagescreme</td>
+                        <td>15 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jojobaöl</strong></td>
+                        <td>Simmondsia Chinensis Seed Oil</td>
+                        <td>Getönte Tagescreme</td>
+                        <td>20 ml</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Hydrolate & Wässrige Basis</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Verwendet für</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Orangenblütenwasser</strong></td>
+                        <td>Citrus Aurantium Dulcis Fruit Water</td>
+                        <td>Augencreme, Getönte Tagescreme</td>
+                        <td>100 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sauerkirschwasser</strong></td>
+                        <td>Prunus Cerasus Fruit Water</td>
+                        <td>Augencreme</td>
+                        <td>50 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aloe Vera Gel (1:1)</strong></td>
+                        <td>Aloe Barbadensis Leaf Juice</td>
+                        <td>Nachtcreme Gesicht</td>
+                        <td>100 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rosenwasser</strong></td>
+                        <td>Rosa Damascena Flower Water</td>
+                        <td>Augencreme</td>
+                        <td>30 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Destilliertes Wasser</strong></td>
+                        <td>Aqua</td>
+                        <td>Alle Produkte</td>
+                        <td>200 ml</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Wirkstoffe</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Wirkung</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Niacinamid (Vitamin B3)</strong></td>
+                        <td>Niacinamide</td>
+                        <td>Kollagenbildung, Porenverfeinerung</td>
+                        <td>10 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retinal (Vitamin A)</strong></td>
+                        <td>Retinal</td>
+                        <td>Anti-Aging, Zellerneuerung</td>
+                        <td>1 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vitamin C (Ascorbinsäure)</strong></td>
+                        <td>Ascorbic Acid</td>
+                        <td>Antioxidativ, Aufhellung</td>
+                        <td>5 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vitamin E (Tocopherol)</strong></td>
+                        <td>Tocopherol</td>
+                        <td>Antioxidativ, Konservierung</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hyaluronsäure (niedermolekular)</strong></td>
+                        <td>Hydrolyzed Hyaluronic Acid</td>
+                        <td>Tiefenwirkende Feuchtigkeit</td>
+                        <td>2 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hyaluronsäure (hochmolekular)</strong></td>
+                        <td>Sodium Hyaluronate</td>
+                        <td>Oberflächliche Feuchtigkeit</td>
+                        <td>2 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coenzym Q10 (Ubiquinon)</strong></td>
+                        <td>Ubiquinone</td>
+                        <td>Zellenergie, Anti-Aging</td>
+                        <td>1 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Koffein</strong></td>
+                        <td>Caffeine</td>
+                        <td>Durchblutung, abschwellend</td>
+                        <td>3 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carnosin</strong></td>
+                        <td>Carnosine</td>
+                        <td>Anti-Glykation, Anti-Aging</td>
+                        <td>2 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Glutathion</strong></td>
+                        <td>Glutathione</td>
+                        <td>Starkes Antioxidans</td>
+                        <td>1 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bisabolol (aus Kamille)</strong></td>
+                        <td>Bisabolol</td>
+                        <td>Beruhigend, entzündungshemmend</td>
+                        <td>5 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rosskastanienextrakt (Aescin)</strong></td>
+                        <td>Escin</td>
+                        <td>Gefäßstärkend, abschwellend</td>
+                        <td>3 g</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Emulgatoren & Konsistenzgeber</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Funktion</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Olivem 1000</strong></td>
+                        <td>Cetearyl Olivate & Sorbitan Olivate</td>
+                        <td>Emulgator (O/W)</td>
+                        <td>30 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Glycerylstearat Citrat</strong></td>
+                        <td>Glyceryl Stearate Citrate</td>
+                        <td>Emulgator, Co-Emulgator</td>
+                        <td>20 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Saccharosestearat</strong></td>
+                        <td>Sucrose Stearate</td>
+                        <td>Sanfter Emulgator</td>
+                        <td>10 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Xanthan</strong></td>
+                        <td>Xanthan Gum</td>
+                        <td>Gelbildner, Verdicker</td>
+                        <td>10 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cetylalkohol (pflanzlich)</strong></td>
+                        <td>Cetyl Alcohol</td>
+                        <td>Konsistenzgeber</td>
+                        <td>15 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kieselsäure (Silica)</strong></td>
+                        <td>Silica</td>
+                        <td>Mattierung, Textur</td>
+                        <td>10 g</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Feuchthaltemittel</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Funktion</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Glycerin (pflanzlich)</strong></td>
+                        <td>Glycerin</td>
+                        <td>Feuchtigkeit binden</td>
+                        <td>50 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pentylene Glycol</strong></td>
+                        <td>Pentylene Glycol</td>
+                        <td>Feuchtigkeit, leicht konservierend</td>
+                        <td>30 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Xylitol (Birkenzucker)</strong></td>
+                        <td>Xylitol</td>
+                        <td>Feuchtigkeit, Hautbarriere</td>
+                        <td>20 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Natriumlactat</strong></td>
+                        <td>Sodium Lactate</td>
+                        <td>Feuchtigkeit, pH-Puffer</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Betain</strong></td>
+                        <td>Betaine</td>
+                        <td>Feuchtigkeit, beruhigend</td>
+                        <td>10 g</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Pflanzenextrakte</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Wirkung</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Olivenblätterextrakt</strong></td>
+                        <td>Olea Europaea Leaf Extract</td>
+                        <td>Antioxidativ</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weidenrindenextrakt</strong></td>
+                        <td>Salix Alba Bark Extract</td>
+                        <td>Natürliche Salicylsäure</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weißer Andorn Extrakt</strong></td>
+                        <td>Marrubium Vulgare Extract</td>
+                        <td>Antioxidativ, schützend</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chiasamenextrakt</strong></td>
+                        <td>Salvia Hispanica Seed Extract</td>
+                        <td>Omega-3, pflegend</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alpenrosenextrakt</strong></td>
+                        <td>Rhododendron Ferrugineum Extract</td>
+                        <td>Stammzellen-aktivierend</td>
+                        <td>5 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Schisandraextrakt</strong></td>
+                        <td>Schizandra Chinensis Fruit Extract</td>
+                        <td>Adaptogen, regenerierend</td>
+                        <td>5 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Magnolienrindenextrakt</strong></td>
+                        <td>Magnolia Officinalis Bark Extract</td>
+                        <td>Beruhigend, antioxidativ</td>
+                        <td>5 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Geißblattextrakt</strong></td>
+                        <td>Lonicera Japonica Flower Extract</td>
+                        <td>Natürliche Konservierung</td>
+                        <td>10 ml</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Mineralpigmente (für Getönte Tagescreme)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>CI-Nummer</th>
+                        <th>Farbe</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Titandioxid</strong></td>
+                        <td>CI 77891</td>
+                        <td>Weiß (Aufhellung)</td>
+                        <td>10 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eisenoxid Gelb</strong></td>
+                        <td>CI 77492</td>
+                        <td>Gelb (Wärme)</td>
+                        <td>5 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eisenoxid Rot</strong></td>
+                        <td>CI 77491</td>
+                        <td>Rot (Rosy Töne)</td>
+                        <td>3 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eisenoxid Schwarz</strong></td>
+                        <td>CI 77499</td>
+                        <td>Schwarz (Tiefe)</td>
+                        <td>2 g</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Konservierung & pH-Einstellung</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Funktion</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rokonsal BSB-N</strong></td>
+                        <td>Benzyl Alcohol & Benzoic Acid & Sorbic Acid</td>
+                        <td>Naturkosmetik-Konservierer</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phenoxyethanol (alternativ)</strong></td>
+                        <td>Phenoxyethanol</td>
+                        <td>Breitband-Konservierer</td>
+                        <td>10 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zitronensäure</strong></td>
+                        <td>Citric Acid</td>
+                        <td>pH-Wert senken</td>
+                        <td>10 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Natriumcitrat</strong></td>
+                        <td>Sodium Citrate</td>
+                        <td>pH-Puffer</td>
+                        <td>10 g</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Arginin</strong></td>
+                        <td>Arginine</td>
+                        <td>pH-Wert erhöhen</td>
+                        <td>5 g</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Ätherische Öle (optional)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zutat</th>
+                        <th>INCI-Name</th>
+                        <th>Duft/Wirkung</th>
+                        <th>Menge (ca.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rosenöl</strong></td>
+                        <td>Rosa Damascena Flower Oil</td>
+                        <td>Blumig, hautpflegend</td>
+                        <td>1 ml</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phenylethylalkohol</strong></td>
+                        <td>Phenethyl Alcohol</td>
+                        <td>Rosenduft, konservierend</td>
+                        <td>5 ml</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ZUBEHÖR -->
+        <section id="zubehoer">
+            <h2><span class="section-icon">🧪</span> Benötigtes Zubehör</h2>
+
+            <h3>Grundausstattung</h3>
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <span class="equipment-icon">⚖️</span>
+                    <div>
+                        <div class="equipment-name">Feinwaage</div>
+                        <div class="equipment-note">0,01g Genauigkeit, bis 500g</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🌡️</span>
+                    <div>
+                        <div class="equipment-name">Digitalthermometer</div>
+                        <div class="equipment-note">Bis 100°C messbar</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🥛</span>
+                    <div>
+                        <div class="equipment-name">Bechergläser</div>
+                        <div class="equipment-note">100ml, 250ml, hitzebeständig</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🥄</span>
+                    <div>
+                        <div class="equipment-name">Glasrührstäbe</div>
+                        <div class="equipment-note">Verschiedene Größen</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🔌</span>
+                    <div>
+                        <div class="equipment-name">Milchaufschäumer</div>
+                        <div class="equipment-note">Batteriebetrieben, zum Emulgieren</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">📏</span>
+                    <div>
+                        <div class="equipment-name">pH-Teststreifen</div>
+                        <div class="equipment-note">Bereich 4-7 ideal</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🧴</span>
+                    <div>
+                        <div class="equipment-name">Sprühflasche 70% Alkohol</div>
+                        <div class="equipment-note">Zur Desinfektion</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🍯</span>
+                    <div>
+                        <div class="equipment-name">Tiegel & Fläschchen</div>
+                        <div class="equipment-note">Glas oder Airless-Spender</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Erweiterte Ausstattung</h3>
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <span class="equipment-icon">🔬</span>
+                    <div>
+                        <div class="equipment-name">Mini-Spatel Set</div>
+                        <div class="equipment-note">Edelstahl, für Pigmente</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">💧</span>
+                    <div>
+                        <div class="equipment-name">Pipetten</div>
+                        <div class="equipment-note">1ml und 3ml, für Wirkstoffe</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🧊</span>
+                    <div>
+                        <div class="equipment-name">Mörser & Pistill</div>
+                        <div class="equipment-note">Zum Anreiben von Pigmenten</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🏷️</span>
+                    <div>
+                        <div class="equipment-name">Etiketten</div>
+                        <div class="equipment-note">Wasserfest, für Beschriftung</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">📓</span>
+                    <div>
+                        <div class="equipment-name">Laborheft</div>
+                        <div class="equipment-note">Für Rezeptnotizen</div>
+                    </div>
+                </div>
+                <div class="equipment-item">
+                    <span class="equipment-icon">🧤</span>
+                    <div>
+                        <div class="equipment-name">Einweghandschuhe</div>
+                        <div class="equipment-note">Nitril, puderfrei</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Empfohlene Behälter</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Behältertyp</th>
+                        <th>Größe</th>
+                        <th>Warum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Augencreme</td>
+                        <td>Braunglas-Flasche mit Pipette</td>
+                        <td>15-30 ml</td>
+                        <td>Lichtschutz, präzise Dosierung</td>
+                    </tr>
+                    <tr>
+                        <td>Nachtcreme Gesicht</td>
+                        <td>Airless-Spender oder Glastiegel</td>
+                        <td>30-50 ml</td>
+                        <td>Enthält Retinal (lichtempfindlich)</td>
+                    </tr>
+                    <tr>
+                        <td>Nachtcreme Körper</td>
+                        <td>Braunglas-Tiegel mit Deckel</td>
+                        <td>100-150 ml</td>
+                        <td>Größere Menge, Lichtschutz</td>
+                    </tr>
+                    <tr>
+                        <td>Getönte Tagescreme</td>
+                        <td>Pumpspender oder Tube</td>
+                        <td>30-50 ml</td>
+                        <td>Hygienische Entnahme</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Spartipp</div>
+                <p style="margin-bottom: 0;">Alte Kosmetiktiegel und -flaschen können wiederverwendet werden! Gründlich mit heißem Wasser und Spülmittel reinigen, dann mit 70% Alkohol desinfizieren. Airless-Spender funktionieren nach dem Leeren nicht mehr und müssen ersetzt werden.</p>
+            </div>
+        </section>
+
+        <!-- AUGENCREME -->
+        <section id="augencreme">
+            <h2><span class="section-icon">👁️</span> Straffende Augencreme</h2>
             
-            <button class="collapsible">🧪 Das Rezept (für 50ml) - HIER KLICKEN</button>
-            <div class="content">
-                <div class="recipe">
-                    <h3>Fettphase (Öle):</h3>
-                    <ul>
-                        <li>12g Mandelöl <em>(wie Ringana)</em></li>
-                        <li>8g Jojobaöl <em>(ähnlich Squalan)</em></li>
-                        <li>5g Sheabutter <em>(wie Ringana)</em></li>
-                        <li>3g Emulsan <em>(Emulgator)</em></li>
-                    </ul>
+            <p>Die Augencreme ist ein leichtes, schnell einziehendes Serum speziell für die empfindliche Augenpartie. Es reduziert Schwellungen, mildert dunkle Augenringe und strafft feine Linien.</p>
 
-                    <h3>Wasserphase (Feuchtigkeit):</h3>
-                    <ul>
-                        <li>20ml Rosenwasser <em>(genau wie Ringana!)</em></li>
-                        <li>2ml Aloe Vera Gel</li>
-                    </ul>
-
-                    <h3>Wirkstoffe (nach dem Mischen):</h3>
-                    <ul>
-                        <li>0,5g Vitamin E (ca. 10 Tropfen)</li>
-                        <li>Optional: 3 Tropfen ätherisches Öl (Lavendel)</li>
-                    </ul>
+            <div class="recipe-card">
+                <div class="recipe-title">✨ Elie Straffende Augencreme ✨</div>
+                <div class="recipe-meta">
+                    <span>⏱️ 30-45 Minuten</span>
+                    <span>📦 Ergibt ca. 30 ml</span>
+                    <span>📅 Haltbar 4-6 Wochen</span>
+                    <span>⭐ Schwierigkeit: Mittel</span>
                 </div>
 
-                <div class="success">
-                    <h4>💰 Kosten-Vergleich:</h4>
+                <h4>Phase A – Wasserphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
                     <table>
-                        <tr>
-                            <th>Produkt</th>
-                            <th>Preis/50ml</th>
-                            <th>Ersparnis</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Ringana Original</strong></td>
-                            <td>€45-50</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Deine Alternative</strong></td>
-                            <td>€3-4</td>
-                            <td><strong style="color: #0277BD;">€42-47!</strong></td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Orangenblütenwasser</td>
+                                <td>12 g</td>
+                                <td>40%</td>
+                            </tr>
+                            <tr>
+                                <td>Sauerkirschwasser (oder Rosenwasser)</td>
+                                <td>6 g</td>
+                                <td>20%</td>
+                            </tr>
+                            <tr>
+                                <td>Destilliertes Wasser</td>
+                                <td>3 g</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Pentylene Glycol</td>
+                                <td>1,5 g</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerin (pflanzlich)</td>
+                                <td>0,9 g</td>
+                                <td>3%</td>
+                            </tr>
+                        </tbody>
                     </table>
-                    <p style="margin-top: 1rem;"><strong>Pro Jahr (bei 6 Cremes): Du sparst über €500! 🎉</strong></p>
                 </div>
 
-                <h3>Unterschiede zu Original Ringana:</h3>
-                <table>
-                    <tr>
-                        <th>Aspekt</th>
-                        <th>Ringana Original</th>
-                        <th>Deine Alternative</th>
-                    </tr>
-                    <tr>
-                        <td>Inhaltsstoffe</td>
-                        <td>40+ Wirkstoffe</td>
-                        <td>7 Hauptzutaten</td>
-                    </tr>
-                    <tr>
-                        <td>Textur</td>
-                        <td>Sehr leicht</td>
-                        <td>Leicht, gut einziehend</td>
-                    </tr>
-                    <tr>
-                        <td>Haltbarkeit</td>
-                        <td>3 Monate (Kühlschrank)</td>
-                        <td>4-6 Wochen (Kühlschrank)</td>
-                    </tr>
-                    <tr>
-                        <td>Aufwand</td>
-                        <td>Kaufen</td>
-                        <td>30 Min. Herstellung</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Wirkung</strong></td>
-                        <td>100%</td>
-                        <td><strong>~80-90%</strong></td>
-                    </tr>
-                </table>
+                <h4>Phase B – Gelphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Xanthan</td>
+                                <td>0,15 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase C – Ölphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kaktusfeigenkernöl</td>
+                                <td>1,2 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Squalan (pflanzlich)</td>
+                                <td>0,9 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Saccharosestearat</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerylstearat Citrat</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase D – Wirkstoffphase (nach Abkühlung)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Koffein (in wenig Wasser gelöst)</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Niedermolekulare Hyaluronsäure</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Hochmolekulare Hyaluronsäure</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Coenzym Q10</td>
+                                <td>0,15 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin E (Tocopherol)</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Rokonsal BSB-N (Konservierer)</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Rosenöl (optional)</td>
+                                <td>1 Tropfen</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Schritt-für-Schritt Anleitung</h3>
+
+            <ol class="steps">
+                <li>
+                    <strong>Vorbereitung:</strong> Alle Utensilien mit 70% Alkohol desinfizieren. Alle Zutaten abwiegen und bereitstellen. Zwei Bechergläser ins Wasserbad stellen.
+                </li>
+                <li>
+                    <strong>Hyaluronsäure vorbereiten:</strong> Die Hyaluronsäure-Pulver mindestens 30 Minuten vorher in 5g destilliertem Wasser einrühren und quellen lassen. Es entsteht ein dickes Gel.
+                </li>
+                <li>
+                    <strong>Phase A ansetzen:</strong> Orangenblütenwasser, Sauerkirschwasser, Wasser, Pentylene Glycol und Glycerin in ein Becherglas geben und auf ca. 70°C erwärmen.
+                </li>
+                <li>
+                    <strong>Phase B einrühren:</strong> Das Xanthan langsam unter ständigem Rühren in die warme Wasserphase einstreuen. Mit dem Milchaufschäumer klumpenfrei verrühren.
+                </li>
+                <li>
+                    <strong>Phase C erwärmen:</strong> Im zweiten Becherglas die Öle und Emulgatoren auf ca. 70°C erwärmen, bis alles geschmolzen ist.
+                </li>
+                <li>
+                    <strong>Emulgieren:</strong> Die Ölphase langsam zur Wasserphase gießen und mit dem Milchaufschäumer 2-3 Minuten emulgieren, bis eine homogene, leicht milchige Masse entsteht.
+                </li>
+                <li>
+                    <strong>Abkühlen lassen:</strong> Die Mischung unter gelegentlichem Rühren auf unter 40°C abkühlen lassen (ca. 10-15 Minuten).
+                </li>
+                <li>
+                    <strong>Koffein lösen:</strong> Das Koffein in 2ml warmem Wasser auflösen (es löst sich besser in warmem Wasser).
+                </li>
+                <li>
+                    <strong>Phase D hinzufügen:</strong> Nacheinander Koffeinlösung, Hyaluronsäure-Gel, Q10, Vitamin E und Konservierer einrühren. Jede Zutat gut einarbeiten.
+                </li>
+                <li>
+                    <strong>pH-Wert prüfen:</strong> Mit pH-Streifen messen. Idealwert: 5,0-5,5. Bei Bedarf mit Zitronensäure (senken) oder Arginin (erhöhen) korrigieren.
+                </li>
+                <li>
+                    <strong>Abfüllen:</strong> Das fertige Serum in eine saubere Braunglasflasche mit Pipette füllen. Beschriften mit Datum und Inhalt.
+                </li>
+            </ol>
+
+            <h3>Anwendung</h3>
+            <p>Morgens und abends nach der Gesichtsreinigung 1-2 Tropfen auf die Augenpartie tupfen. Sanft mit dem Ringfinger einklopfen – nicht reiben! Vor der Tagespflege oder Nachtcreme verwenden.</p>
+
+            <div class="info-box warning">
+                <div class="info-box-title">⚠️ Wichtige Hinweise</div>
+                <ul style="margin-bottom: 0;">
+                    <li>Nicht direkt ins Auge bringen!</li>
+                    <li>Bei Reizungen sofort absetzen und mit Wasser spülen.</li>
+                    <li>Kühl und dunkel lagern – im Kühlschrank für extra kühlenden Effekt.</li>
+                    <li>Nach 4-6 Wochen verbrauchen oder entsorgen.</li>
+                </ul>
             </div>
         </section>
 
-        <!-- Anleitung -->
-        <section id="anleitung">
-            <h2>👩‍🔬 Schritt-für-Schritt Anleitung</h2>
+        <!-- NACHTCREME GESICHT -->
+        <section id="nachtcreme-gesicht">
+            <h2><span class="section-icon">🌙</span> Regenerierende Nachtcreme Gesicht</h2>
             
-            <button class="collapsible">⚙️ Was du brauchst (Equipment)</button>
-            <div class="content">
-                <h3>Einmalige Anschaffung (ca. €30):</h3>
-                <table>
-                    <tr>
-                        <th>Gegenstand</th>
-                        <th>Kosten</th>
-                        <th>Wo kaufen?</th>
-                    </tr>
-                    <tr>
-                        <td>Küchenwaage (0,1g genau)</td>
-                        <td>€15-20</td>
-                        <td>Amazon, dm</td>
-                    </tr>
-                    <tr>
-                        <td>2 kleine Töpfe</td>
-                        <td>€10</td>
-                        <td>Ikea, Müller</td>
-                    </tr>
-                    <tr>
-                        <td>Spatel/Rührstab</td>
-                        <td>€3</td>
-                        <td>Dragonspice</td>
-                    </tr>
-                    <tr>
-                        <td>Thermometer (optional)</td>
-                        <td>€8</td>
-                        <td>Apotheke</td>
-                    </tr>
-                    <tr>
-                        <td>Tiegel 50ml (5 Stück)</td>
-                        <td>€5</td>
-                        <td>Dragonspice</td>
-                    </tr>
-                </table>
-                
-                <div class="tip">
-                    <strong>💡 Falls du schon hast:</strong> Stabmixer, Messbecher, saubere Gläser
+            <p>Die Nachtcreme fürs Gesicht ist eine intensive Nachtpflege mit dem berühmten ABC-Vitaminkomplex: Vitamin A (Retinal), Vitamin B (Niacinamid) und Vitamin C (Ascorbinsäure). Sie regeneriert die Haut während des Schlafs, reduziert Falten und sorgt für einen strahlenden Teint am Morgen.</p>
+
+            <div class="info-box warning">
+                <div class="info-box-title">⚠️ Wichtig: Retinal ist lichtempfindlich!</div>
+                <p style="margin-bottom: 0;">Retinal (Vitamin A) zerfällt bei Lichteinwirkung. Arbeite daher in gedämpftem Licht und verwende Braunglas oder lichtundurchlässige Behälter. Am nächsten Morgen unbedingt Sonnenschutz auftragen!</p>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-title">✨ Elie Regenerierende Nachtcreme Gesicht ✨</div>
+                <div class="recipe-meta">
+                    <span>⏱️ 45-60 Minuten</span>
+                    <span>📦 Ergibt ca. 30 ml</span>
+                    <span>📅 Haltbar 4-6 Wochen</span>
+                    <span>⭐ Schwierigkeit: Fortgeschritten</span>
+                </div>
+
+                <h4>Phase A – Wasserphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Aloe Vera Gel (1:1)</td>
+                                <td>12 g</td>
+                                <td>40%</td>
+                            </tr>
+                            <tr>
+                                <td>Destilliertes Wasser</td>
+                                <td>3 g</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Niacinamid (Vitamin B3)</td>
+                                <td>1,5 g</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td>Pentylene Glycol</td>
+                                <td>1,2 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerin</td>
+                                <td>0,9 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Xylitol (Birkenzucker)</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase B – Fettphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Wiesenschaumkrautöl</td>
+                                <td>2,1 g</td>
+                                <td>7%</td>
+                            </tr>
+                            <tr>
+                                <td>Squalan (pflanzlich)</td>
+                                <td>1,5 g</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td>Mangobutter</td>
+                                <td>0,9 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Granatapfelkernöl</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Hanfsamenöl</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerylstearat Citrat</td>
+                                <td>0,9 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Cetylalkohol</td>
+                                <td>0,45 g</td>
+                                <td>1,5%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase C – Wirkstoffphase (unter 40°C)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Vitamin C (Ascorbinsäure)</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Retinal (Vitamin A)</td>
+                                <td>0,03 g</td>
+                                <td>0,1%</td>
+                            </tr>
+                            <tr>
+                                <td>Coenzym Q10</td>
+                                <td>0,15 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Niedermolekulare Hyaluronsäure</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Carnosin</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Glutathion</td>
+                                <td>0,15 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Alpenrosenextrakt</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Schisandraextrakt</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin E (Tocopherol)</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Geißblattextrakt (Konservierung)</td>
+                                <td>0,6 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Rokonsal BSB-N</td>
+                                <td>0,3 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Rosenöl (optional)</td>
+                                <td>2 Tropfen</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <button class="collapsible">🕐 Die Herstellung (30 Minuten)</button>
-            <div class="content">
-                <div class="warning">
-                    <h3>⚠️ HYGIENE ist wichtig! (sonst Schimmel nach 1 Woche!)</h3>
-                    <ol>
-                        <li>Hände gründlich waschen (30 Sek. mit Seife)</li>
-                        <li>Alle Geräte sterilisieren (kochendes Wasser)</li>
-                        <li>Arbeitsfläche desinfizieren</li>
-                        <li>Zutaten genau abwiegen</li>
-                    </ol>
-                </div>
+            <h3>Schritt-für-Schritt Anleitung</h3>
 
-                <h3>Schritt 1: Fettphase schmelzen (5 Min.)</h3>
-                <ol>
-                    <li>In Topf 1 geben: 12g Mandelöl + 8g Jojobaöl + 5g Sheabutter + 3g Emulsan</li>
-                    <li>Ins Wasserbad stellen</li>
-                    <li>Auf <strong>60-65°C</strong> erhitzen</li>
-                    <li>Sanft rühren bis alles geschmolzen</li>
-                </ol>
-                <div class="tip">💡 <strong>Kein Thermometer?</strong> → Handwarm + bisschen mehr</div>
+            <ol class="steps">
+                <li>
+                    <strong>Vorbereitung:</strong> Alle Utensilien desinfizieren. Raum abdunkeln (wegen Retinal). Alle Zutaten abwiegen. Hyaluronsäure 30 Min. vorher in 3g Wasser quellen lassen.
+                </li>
+                <li>
+                    <strong>Phase A zubereiten:</strong> Aloe Vera Gel, Wasser, Niacinamid, Pentylene Glycol, Glycerin und Xylitol in ein Becherglas geben. Im Wasserbad auf 70°C erwärmen. Niacinamid vollständig auflösen.
+                </li>
+                <li>
+                    <strong>Phase B schmelzen:</strong> Alle Öle, Buttern und Emulgatoren im zweiten Becherglas auf 70°C erwärmen, bis alles geschmolzen und klar ist.
+                </li>
+                <li>
+                    <strong>Emulgieren:</strong> Wasserphase langsam zur Fettphase gießen. Sofort mit dem Milchaufschäumer 3-4 Minuten emulgieren. Die Masse wird weiß-gelblich und cremig.
+                </li>
+                <li>
+                    <strong>Abkühlen:</strong> Unter gelegentlichem Rühren auf unter 40°C abkühlen lassen. Das dauert ca. 15-20 Minuten.
+                </li>
+                <li>
+                    <strong>Vitamin C vorbereiten:</strong> Die Ascorbinsäure in 1-2 ml Wasser auflösen. Die Lösung wird sauer – das ist normal.
+                </li>
+                <li>
+                    <strong>Phase C einarbeiten:</strong> Nacheinander alle Wirkstoffe einrühren: erst Vitamin C-Lösung, dann Retinal, Q10, Hyaluronsäure-Gel, Carnosin, Glutathion, Extrakte, Vitamin E, Konservierer und Rosenöl.
+                </li>
+                <li>
+                    <strong>pH-Wert einstellen:</strong> Messen und auf pH 5,0-5,5 einstellen. Bei Bedarf mit Arginin (erhöhen) korrigieren, da die Vitamin C-Lösung säuert.
+                </li>
+                <li>
+                    <strong>Abfüllen:</strong> In einen lichtundurchlässigen Airless-Spender oder Braunglas-Tiegel füllen. Sofort beschriften.
+                </li>
+            </ol>
 
-                <h3>Schritt 2: Wasserphase erhitzen (5 Min.)</h3>
-                <ol>
-                    <li>In Topf 2 geben: 20ml Rosenwasser + 2ml Aloe Vera</li>
-                    <li>Ebenfalls auf <strong>60-65°C</strong> erwärmen</li>
-                </ol>
-                <div class="warning">⚠️ <strong>WICHTIG:</strong> Beide Töpfe müssen <strong>gleiche Temperatur</strong> haben!</div>
+            <h3>Anwendung</h3>
+            <p>Jeden Abend nach der Gesichtsreinigung eine haselnussgroße Menge auf Gesicht, Hals und Dekolleté auftragen. Sanft einmassieren und einziehen lassen. Am nächsten Morgen Sonnenschutz (mindestens SPF 30) verwenden!</p>
 
-                <h3>Schritt 3: Emulgieren (5 Min.)</h3>
-                <ol>
-                    <li>Beide Töpfe vom Herd nehmen</li>
-                    <li><strong>Langsam</strong> Wasserphase in Fettphase gießen</li>
-                    <li>Dabei <strong>ständig rühren</strong> (Stabmixer oder Schneebesen)</li>
-                    <li>2-3 Minuten mixen</li>
-                    <li>Wird <strong>cremig-weiß</strong> wie Sahne! 🎉</li>
-                </ol>
-
-                <h3>Schritt 4: Abkühlen & Wirkstoffe (5 Min.)</h3>
-                <ol>
-                    <li>Auf ca. <strong>30°C</strong> abkühlen lassen (handwarm)</li>
-                    <li>Vitamin E zugeben (10 Tropfen)</li>
-                    <li>Optional: 3 Tropfen ätherisches Öl</li>
-                    <li>Nochmals kurz durchrühren</li>
-                </ol>
-
-                <h3>Schritt 5: Abfüllen</h3>
-                <ol>
-                    <li>In sauberen Tiegel/Pumpspender füllen</li>
-                    <li><strong>Beschriften!</strong> (sehr wichtig!)</li>
-                    <li>Gut verschließen</li>
-                </ol>
-                
-                <div class="recipe">
-                    <strong>Beschriftung Beispiel:</strong><br>
-                    Medium Gesichtscreme (Ringana-Style)<br>
-                    Hergestellt: 13.11.2025<br>
-                    Zutaten: Mandel, Jojoba, Shea, Emulsan, Rose, Aloe, Vit E<br>
-                    <strong>Haltbar: ca. 6 Wochen (Kühlschrank!)</strong>
-                </div>
-
-                <h3>Schritt 6: Reifezeit</h3>
-                <ul>
-                    <li>24 Stunden bei Raumtemperatur stehen lassen</li>
-                    <li>Dann: <strong>In den Kühlschrank!</strong></li>
-                    <li>Konsistenz wird noch etwas fester</li>
-                </ul>
-
-                <div class="success">
-                    <h3>🎉 FERTIG!</h3>
-                    <p>Du hast jetzt eine <strong>50ml Premium-Naturkosmetik</strong> für nur <strong>€3-4</strong> statt €45! 💚</p>
-                </div>
-            </div>
-
-            <button class="collapsible">❄️ Lagerung & Haltbarkeit</button>
-            <div class="content">
-                <h3>Wo aufbewahren?</h3>
-                <ul>
-                    <li>❄️ <strong>Im Kühlschrank!</strong> (wie Ringana)</li>
-                    <li>🌑 Dunkel (nicht am Fenster)</li>
-                    <li>🔒 Gut verschlossen</li>
-                </ul>
-
-                <h3>Wie lange haltbar?</h3>
-                <ul>
-                    <li>⏰ <strong>4-6 Wochen</strong> (mit Vitamin E)</li>
-                    <li>🚫 <strong>Ohne Konservierung</strong> (wie Ringana!)</li>
-                    <li>✅ Deshalb kleine Mengen herstellen</li>
-                </ul>
-
-                <div class="warning">
-                    <h3>⚠️ Wann ist die Creme schlecht?</h3>
-                    <ul>
-                        <li>❌ Riecht ranzig oder muffig</li>
-                        <li>❌ Farbe verändert sich</li>
-                        <li>❌ Trennt sich (Öl + Wasser getrennt)</li>
-                        <li>❌ Schimmel sichtbar</li>
-                    </ul>
-                    <p style="margin-top: 1rem;"><strong>→ Dann: SOFORT WEG DAMIT!</strong></p>
-                </div>
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Hinweis zur gelben Farbe</div>
+                <p style="margin-bottom: 0;">Die natürliche gelbe Färbung stammt von den Ölen und dem Retinal. Diese kann auf helle Kissenbezüge abfärben! Verwende daher ein dunkles Handtuch auf dem Kopfkissen oder warte 30 Minuten vor dem Schlafengehen.</p>
             </div>
         </section>
 
-        <!-- Einkaufsliste -->
-        <section id="einkauf">
-            <h2>🛒 Einkaufsliste</h2>
+        <!-- NACHTCREME KÖRPER -->
+        <section id="nachtcreme-koerper">
+            <h2><span class="section-icon">✨</span> Straffende Nachtcreme Körper</h2>
             
-            <button class="collapsible">💰 Rohstoffe für 10 Cremes (500ml gesamt)</button>
-            <div class="content">
-                <table>
-                    <tr>
-                        <th>Rohstoff</th>
-                        <th>Menge</th>
-                        <th>Kosten</th>
-                        <th>Wo kaufen?</th>
-                    </tr>
-                    <tr>
-                        <td>Mandelöl</td>
-                        <td>250ml</td>
-                        <td>€8</td>
-                        <td>Reformhaus, Dragonspice</td>
-                    </tr>
-                    <tr>
-                        <td>Jojobaöl</td>
-                        <td>100ml</td>
-                        <td>€9</td>
-                        <td>Reformhaus, Dragonspice</td>
-                    </tr>
-                    <tr>
-                        <td>Sheabutter</td>
-                        <td>100g</td>
-                        <td>€8</td>
-                        <td>Reformhaus, Dragonspice</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Emulsan</strong></td>
-                        <td>50g</td>
-                        <td>€6</td>
-                        <td><strong>Nur online: Dragonspice</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Rosenwasser</td>
-                        <td>200ml</td>
-                        <td>€6</td>
-                        <td>dm, Bipa, Apotheke</td>
-                    </tr>
-                    <tr>
-                        <td>Aloe Vera Gel</td>
-                        <td>50ml</td>
-                        <td>€5</td>
-                        <td>dm, Müller</td>
-                    </tr>
-                    <tr>
-                        <td>Vitamin E</td>
-                        <td>20ml</td>
-                        <td>€8</td>
-                        <td>Dragonspice, Apotheke</td>
-                    </tr>
-                    <tr>
-                        <td>Tiegel (10 St.)</td>
-                        <td>-</td>
-                        <td>€5</td>
-                        <td>Dragonspice</td>
-                    </tr>
-                    <tr style="background: #B3E5FC; font-weight: bold;">
-                        <td colspan="2"><strong>GESAMT</strong></td>
-                        <td><strong>€55-60</strong></td>
-                        <td><strong>= €3-4 pro Creme!</strong></td>
-                    </tr>
-                </table>
+            <p>Die Nachtcreme für den Körper ist eine reichhaltige Körperpflege für die Nacht, die speziell auf Problemzonen wie Oberschenkel, Bauch und Oberarme abzielt. Koffein und Rosskastanienextrakt regen die Durchblutung an und helfen, das Erscheinungsbild von Cellulite zu verbessern.</p>
+
+            <div class="recipe-card">
+                <div class="recipe-title">✨ Elie Straffende Nachtcreme Körper ✨</div>
+                <div class="recipe-meta">
+                    <span>⏱️ 45-60 Minuten</span>
+                    <span>📦 Ergibt ca. 100 ml</span>
+                    <span>📅 Haltbar 6-8 Wochen</span>
+                    <span>⭐ Schwierigkeit: Mittel</span>
+                </div>
+
+                <h4>Phase A – Wasserphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Destilliertes Wasser</td>
+                                <td>45 g</td>
+                                <td>45%</td>
+                            </tr>
+                            <tr>
+                                <td>Niacinamid (Vitamin B3)</td>
+                                <td>4 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Pentylene Glycol</td>
+                                <td>3 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Xylitol</td>
+                                <td>2 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Natriumlactat</td>
+                                <td>2 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerin</td>
+                                <td>2 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Xanthan</td>
+                                <td>0,3 g</td>
+                                <td>0,3%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase B – Fettphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Wiesenschaumkrautöl</td>
+                                <td>8 g</td>
+                                <td>8%</td>
+                            </tr>
+                            <tr>
+                                <td>Sesamöl</td>
+                                <td>5 g</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td>Squalan</td>
+                                <td>4 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Mangobutter</td>
+                                <td>3 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Sheabutter</td>
+                                <td>2 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerylstearat Citrat</td>
+                                <td>4 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Cetylalkohol</td>
+                                <td>2 g</td>
+                                <td>2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase C – Wirkstoffphase (unter 40°C)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Koffein (in Wasser gelöst)</td>
+                                <td>2 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Retinal (Vitamin A)</td>
+                                <td>0,05 g</td>
+                                <td>0,05%</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin C (Ascorbinsäure)</td>
+                                <td>1 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Rosskastanienextrakt (Aescin)</td>
+                                <td>1 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Bisabolol</td>
+                                <td>0,5 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Magnolienrindenextrakt</td>
+                                <td>0,5 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Coenzym Q10</td>
+                                <td>0,3 g</td>
+                                <td>0,3%</td>
+                            </tr>
+                            <tr>
+                                <td>Glutathion</td>
+                                <td>0,2 g</td>
+                                <td>0,2%</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin E</td>
+                                <td>0,5 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Geißblattextrakt</td>
+                                <td>1 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Rokonsal BSB-N</td>
+                                <td>1 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Milchsäure (zur pH-Einstellung)</td>
+                                <td>nach Bedarf</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <button class="collapsible">📦 Wo genau kaufen? (Österreich)</button>
-            <div class="content">
-                <h3>Online (empfohlen):</h3>
-                
-                <div class="highlight">
-                    <h4>🐉 Dragonspice (Deutschland)</h4>
-                    <p><strong>Website:</strong> www.dragonspice.de</p>
-                    <p><strong>Kaufe hier:</strong> Emulsan, Vitamin E, Tiegel</p>
-                    <p>✅ Ab €60 versandkostenfrei nach Österreich</p>
-                    <p>✅ Beste Auswahl für Rohstoffe</p>
-                </div>
+            <h3>Schritt-für-Schritt Anleitung</h3>
 
-                <h3>Lokal in Graz/Österreich:</h3>
-                
-                <div class="quick-links">
-                    <div class="quick-link">
-                        <span class="emoji">🛍️</span>
-                        <strong>dm / Bipa</strong><br>
-                        <small>Rosenwasser, Aloe Vera</small>
-                    </div>
-                    <div class="quick-link">
-                        <span class="emoji">🌿</span>
-                        <strong>Reformhaus</strong><br>
-                        <small>Alle Öle (teurer!)</small>
-                    </div>
-                    <div class="quick-link">
-                        <span class="emoji">💊</span>
-                        <strong>Apotheke</strong><br>
-                        <small>Vitamin E, Notfall</small>
-                    </div>
-                </div>
+            <ol class="steps">
+                <li>
+                    <strong>Vorbereitung:</strong> Alle Utensilien desinfizieren. Größere Bechergläser verwenden (250ml). Alle Zutaten abwiegen.
+                </li>
+                <li>
+                    <strong>Koffein vorlösen:</strong> Das Koffein in 10ml warmem Wasser auflösen. Koffein löst sich langsam – gut umrühren und warten.
+                </li>
+                <li>
+                    <strong>Phase A zubereiten:</strong> Wasser, Niacinamid, Pentylene Glycol, Xylitol, Natriumlactat und Glycerin mischen. Im Wasserbad auf 70°C erwärmen. Xanthan langsam einstreuen und klumpenfrei rühren.
+                </li>
+                <li>
+                    <strong>Phase B schmelzen:</strong> Alle Öle, Buttern, Emulgator und Cetylalkohol im zweiten Becherglas auf 70°C schmelzen.
+                </li>
+                <li>
+                    <strong>Emulgieren:</strong> Wasserphase zur Fettphase gießen. Mit dem Stabmixer auf niedrigster Stufe 3-4 Minuten emulgieren. Die Creme wird weiß und reichhaltig.
+                </li>
+                <li>
+                    <strong>Abkühlen:</strong> Unter gelegentlichem Rühren auf unter 40°C abkühlen lassen. Das dauert bei dieser Menge ca. 20-25 Minuten.
+                </li>
+                <li>
+                    <strong>Vitamin C lösen:</strong> Die Ascorbinsäure in 3ml Wasser auflösen.
+                </li>
+                <li>
+                    <strong>Phase C einarbeiten:</strong> Nacheinander alle Wirkstoffe einrühren: Koffeinlösung, Retinal, Vitamin C-Lösung, Aescin, Bisabolol, Magnolienextrakt, Q10, Glutathion, Vitamin E und Konservierer.
+                </li>
+                <li>
+                    <strong>pH-Wert einstellen:</strong> Auf pH 5,0-5,5 einstellen. Die Ascorbinsäure säuert stark – eventuell mit Arginin neutralisieren.
+                </li>
+                <li>
+                    <strong>Abfüllen:</strong> In einen Braunglas-Tiegel (100-150ml) füllen. Gut verschließen und beschriften.
+                </li>
+            </ol>
 
-                <div class="warning">
-                    <strong>⚠️ Wichtig:</strong> Emulsan gibt es NICHT im Reformhaus/dm! Nur online bestellen.
-                </div>
-            </div>
+            <h3>Anwendung</h3>
+            <p>Jeden Abend großzügig auf die gewünschten Körperstellen (Oberschenkel, Bauch, Oberarme, Po) auftragen und gut einmassieren. 30 Minuten vor dem Schlafengehen anwenden. Lockere, dunkle Kleidung tragen, da die gelbe Farbe abfärben kann.</p>
 
-            <button class="collapsible">🎁 Starter-Paket Empfehlung (für erste 3 Cremes)</button>
-            <div class="content">
-                <h3>Bei Dragonspice bestellen (einmalig):</h3>
-                <ul>
-                    <li>50g Emulsan (€6)</li>
-                    <li>20ml Vitamin E (€8)</li>
-                    <li>5x Tiegel 50ml (€2,50)</li>
-                </ul>
-                <p><strong>Zwischensumme: €16,50</strong> (+ €6 Versand wenn unter €60)</p>
-
-                <h3>Lokal kaufen (dm/Reformhaus):</h3>
-                <ul>
-                    <li>100ml Mandelöl (€8)</li>
-                    <li>100ml Jojobaöl (€9)</li>
-                    <li>50g Sheabutter (€8)</li>
-                    <li>100ml Rosenwasser (€6)</li>
-                    <li>50ml Aloe Vera Gel (€5)</li>
-                </ul>
-                <p><strong>Zwischensumme: €36</strong></p>
-
-                <div class="success">
-                    <h3>💰 GESAMT für 3 Cremes: ca. €55</h3>
-                    <p><strong>= €18 pro Creme (statt €45!)</strong></p>
-                    <p>Du sparst <strong>€27 pro Creme</strong> = <strong>€81 bei 3 Cremes!</strong> 🎉</p>
-                </div>
+            <div class="info-box success">
+                <div class="info-box-title">✅ Beste Ergebnisse</div>
+                <p style="margin-bottom: 0;">Für sichtbare Ergebnisse die Behandlung mindestens 4-6 Wochen täglich anwenden. Kombiniere mit ausreichend Bewegung und Wassertrinken für optimale Wirkung auf das Bindegewebe.</p>
             </div>
         </section>
 
-        <!-- Fehler vermeiden -->
-        <section id="fehler">
-            <h2>⚠️ Häufigste Fehler (vermeiden!)</h2>
+        <!-- GETÖNTE TAGESCREME -->
+        <section id="getoente-tagescreme">
+            <h2><span class="section-icon">💄</span> Getönte Tagescreme</h2>
             
-            <button class="collapsible">🧼 Hygiene-Fehler</button>
-            <div class="content">
-                <table>
-                    <tr>
-                        <th>Fehler</th>
-                        <th>Lösung</th>
-                    </tr>
-                    <tr>
-                        <td>❌ Geräte nicht sterilisiert</td>
-                        <td>✅ IMMER mit kochendem Wasser übergießen!</td>
-                    </tr>
-                    <tr>
-                        <td>❌ Mit Fingern in Creme greifen</td>
-                        <td>✅ Pumpspender nutzen oder sauberen Spatel</td>
-                    </tr>
-                    <tr>
-                        <td>❌ Haare hängen ins Gesicht</td>
-                        <td>✅ Haare zurückbinden!</td>
-                    </tr>
-                </table>
-                <div class="warning">
-                    <strong>→ Sonst: Schimmel nach 1 Woche!</strong> 🦠
+            <p>Die getönte Tagescreme ist eine leichte, getönte Tagespflege, die Feuchtigkeit spendet und gleichzeitig einen natürlichen, ebenmäßigen Teint verleiht. Die Mineralpigmente passen sich dem Hautton an und kaschieren kleine Unreinheiten, ohne zu "maskenhaft" zu wirken.</p>
+
+            <div class="info-box">
+                <div class="info-box-title">🎨 Farbanpassung</div>
+                <p style="margin-bottom: 0;">Die Farbintensität lässt sich durch die Pigmentmenge anpassen. Für einen helleren Ton weniger Pigmente verwenden, für einen dunkleren Ton mehr Eisenoxide hinzufügen. Beginne immer mit weniger Pigment und taste dich langsam an deine Wunschfarbe heran!</p>
+            </div>
+
+            <div class="recipe-card">
+                <div class="recipe-title">✨ Elie Getönte Tagescreme (Medium-Tan) ✨</div>
+                <div class="recipe-meta">
+                    <span>⏱️ 60-75 Minuten</span>
+                    <span>📦 Ergibt ca. 50 ml</span>
+                    <span>📅 Haltbar 6-8 Wochen</span>
+                    <span>⭐ Schwierigkeit: Fortgeschritten</span>
+                </div>
+
+                <h4>Phase A – Wasserphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Orangenblütenwasser</td>
+                                <td>17,5 g</td>
+                                <td>35%</td>
+                            </tr>
+                            <tr>
+                                <td>Destilliertes Wasser</td>
+                                <td>5 g</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerin</td>
+                                <td>2 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Pentylene Glycol</td>
+                                <td>1,5 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Xylitol-Komplex (Xylitylglucoside)</td>
+                                <td>1 g</td>
+                                <td>2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase B – Fettphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mandelöl (süß)</td>
+                                <td>5 g</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Squalan</td>
+                                <td>3 g</td>
+                                <td>6%</td>
+                            </tr>
+                            <tr>
+                                <td>Tucumabutter</td>
+                                <td>2 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Jojobaöl</td>
+                                <td>1,5 g</td>
+                                <td>3%</td>
+                            </tr>
+                            <tr>
+                                <td>Inka-Nuss-Öl (Sacha Inchi)</td>
+                                <td>1 g</td>
+                                <td>2%</td>
+                            </tr>
+                            <tr>
+                                <td>Granatapfelkernöl</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Cranberrysamenöl</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Traubenkernöl</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerylstearat Citrat</td>
+                                <td>2 g</td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>Saccharosestearat</td>
+                                <td>1 g</td>
+                                <td>2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase C – Pigmentphase</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten für "Medium-Tan" Tönung</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>Funktion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Silica (Kieselsäure)</td>
+                                <td>1,5 g</td>
+                                <td>Mattierung, Textur</td>
+                            </tr>
+                            <tr>
+                                <td>Titandioxid (CI 77891)</td>
+                                <td>0,8 g</td>
+                                <td>Aufhellung, Deckkraft</td>
+                            </tr>
+                            <tr>
+                                <td>Eisenoxid Gelb (CI 77492)</td>
+                                <td>0,4 g</td>
+                                <td>Wärme, Gelbton</td>
+                            </tr>
+                            <tr>
+                                <td>Eisenoxid Rot (CI 77491)</td>
+                                <td>0,15 g</td>
+                                <td>Rosy Unterton</td>
+                            </tr>
+                            <tr>
+                                <td>Eisenoxid Schwarz (CI 77499)</td>
+                                <td>0,05 g</td>
+                                <td>Tiefe, Abdunklung</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase D – Wirkstoffphase (unter 40°C)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hochmolekulare Hyaluronsäure</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Olivenblätterextrakt</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Weißer Andorn Extrakt</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Chiasamenextrakt</td>
+                                <td>0,25 g</td>
+                                <td>0,5%</td>
+                            </tr>
+                            <tr>
+                                <td>Vitamin E</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Rokonsal BSB-N</td>
+                                <td>0,5 g</td>
+                                <td>1%</td>
+                            </tr>
+                            <tr>
+                                <td>Xanthan</td>
+                                <td>0,1 g</td>
+                                <td>0,2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <button class="collapsible">🌡️ Temperatur-Fehler</button>
-            <div class="content">
-                <table>
+            <h3>Schritt-für-Schritt Anleitung</h3>
+
+            <ol class="steps">
+                <li>
+                    <strong>Pigmente vorbereiten:</strong> Dies ist der wichtigste Schritt! Die Mineralpigmente neigen zum Klumpen. In einem Mörser alle Pigmente mit etwa 2g Squalan anreiben, bis eine homogene Paste entsteht. 5-10 Minuten gründlich verreiben!
+                </li>
+                <li>
+                    <strong>Hyaluronsäure quellen lassen:</strong> Das HA-Pulver 30 Minuten vorher in 3g Wasser einrühren.
+                </li>
+                <li>
+                    <strong>Phase A zubereiten:</strong> Orangenblütenwasser, Wasser, Glycerin, Pentylene Glycol und Xylitol-Komplex mischen. Im Wasserbad auf 70°C erwärmen.
+                </li>
+                <li>
+                    <strong>Phase B schmelzen:</strong> Alle Öle, Buttern und Emulgatoren im zweiten Becherglas auf 70°C erwärmen, bis alles geschmolzen ist.
+                </li>
+                <li>
+                    <strong>Pigmentpaste einarbeiten:</strong> Die vorbereitete Pigmentpaste zur warmen Fettphase geben und sehr gründlich einrühren. Mit dem Milchaufschäumer 2 Minuten mixen, um Klümpchen zu vermeiden.
+                </li>
+                <li>
+                    <strong>Emulgieren:</strong> Wasserphase langsam zur Fettphase mit Pigmenten gießen. 4-5 Minuten emulgieren. Die Creme nimmt die Farbe der Pigmente an.
+                </li>
+                <li>
+                    <strong>Farbkontrolle:</strong> Einen kleinen Tropfen auf den Handrücken geben und verblenden. Ist die Farbe zu hell? Mehr Eisenoxide hinzufügen. Zu dunkel? Etwas Titandioxid nachgeben.
+                </li>
+                <li>
+                    <strong>Abkühlen:</strong> Unter gelegentlichem Rühren auf unter 40°C abkühlen lassen.
+                </li>
+                <li>
+                    <strong>Phase D einarbeiten:</strong> Xanthan in die abgekühlte Masse einstreuen und glatt rühren. Dann Hyaluronsäure-Gel, Extrakte, Vitamin E und Konservierer nacheinander einarbeiten.
+                </li>
+                <li>
+                    <strong>pH-Wert prüfen:</strong> Sollte bei 5,0-6,0 liegen. Bei Bedarf mit Zitronensäure oder Arginin anpassen.
+                </li>
+                <li>
+                    <strong>Abfüllen:</strong> In einen Pumpspender oder eine Tube füllen. Gut verschließen und beschriften.
+                </li>
+            </ol>
+
+            <h3>Farbanpassung für verschiedene Hauttöne</h3>
+            <table>
+                <thead>
                     <tr>
-                        <th>Fehler</th>
-                        <th>Lösung</th>
+                        <th>Hautton</th>
+                        <th>Titandioxid</th>
+                        <th>Eisenoxid Gelb</th>
+                        <th>Eisenoxid Rot</th>
+                        <th>Eisenoxid Schwarz</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hell (Nuance 1)</strong></td>
+                        <td>1,2 g</td>
+                        <td>0,2 g</td>
+                        <td>0,05 g</td>
+                        <td>—</td>
                     </tr>
                     <tr>
-                        <td>❌ Unterschiedliche Temperaturen</td>
-                        <td>✅ Beide auf 60-65°C, mit Thermometer prüfen</td>
+                        <td><strong>Medium</strong></td>
+                        <td>1,0 g</td>
+                        <td>0,3 g</td>
+                        <td>0,1 g</td>
+                        <td>0,02 g</td>
                     </tr>
                     <tr>
-                        <td>❌ Zu heiß (über 70°C)</td>
-                        <td>✅ Max. 65°C! (Wirkstoffe gehen kaputt)</td>
+                        <td><strong>Medium-Tan</strong></td>
+                        <td>0,8 g</td>
+                        <td>0,4 g</td>
+                        <td>0,15 g</td>
+                        <td>0,05 g</td>
                     </tr>
                     <tr>
-                        <td>❌ Vitamin E zu früh zugeben</td>
-                        <td>✅ Erst bei Handwärme (ca. 30°C)</td>
+                        <td><strong>Tan (Nuance 2)</strong></td>
+                        <td>0,5 g</td>
+                        <td>0,5 g</td>
+                        <td>0,2 g</td>
+                        <td>0,1 g</td>
                     </tr>
-                </table>
-            </div>
+                </tbody>
+            </table>
 
-            <button class="collapsible">🔧 Troubleshooting - Wenn's schiefgeht</button>
-            <div class="content">
-                <h3>Problem: Creme trennt sich (Öl + Wasser getrennt)</h3>
-                <div class="tip">
-                    <strong>Ursachen:</strong>
-                    <ul>
-                        <li>Temperaturunterschied zu groß</li>
-                        <li>Zu wenig Emulsan</li>
-                        <li>Nicht lange genug gemixt</li>
-                    </ul>
-                    <strong>Lösung:</strong>
-                    <ol>
-                        <li>Beide Phasen nochmal auf 60°C erhitzen</li>
-                        <li>1g Emulsan extra zugeben</li>
-                        <li>Erneut 3-4 Min. mixen</li>
-                    </ol>
-                </div>
+            <h3>Anwendung</h3>
+            <p>Morgens nach der Gesichtsreinigung und einem Serum eine kleine Menge auf Gesicht und Hals auftragen. Mit den Fingerspitzen oder einem Foundation-Pinsel gleichmäßig verblenden. Kann auch mit der Tagescreme gemischt werden für einen leichteren Effekt.</p>
 
-                <h3>Problem: Creme ist zu flüssig</h3>
-                <div class="tip">
-                    <strong>Lösung:</strong>
-                    <ol>
-                        <li>24h warten! (wird oft fester)</li>
-                        <li>Falls nicht: 3g Sheabutter nachgeben</li>
-                        <li>Oder: Als Bodylotion verwenden 🙂</li>
-                    </ol>
-                </div>
-
-                <h3>Problem: Creme ist zu fest</h3>
-                <div class="tip">
-                    <strong>Lösung:</strong> Mit 5ml Jojobaöl verdünnen, erwärmen, einrühren
-                </div>
-
-                <h3>Problem: Creme riecht ranzig</h3>
-                <div class="warning">
-                    <strong>❌ NICHT MEHR VERWENDEN!</strong>
-                    <p>Entsorgen. Nächstes Mal: Frische Öle, kühler lagern, Vitamin E nicht vergessen</p>
-                </div>
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Profi-Tipps</div>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Für mehr Glow:</strong> Ein paar Tropfen Squalan vor dem Auftragen untermischen.</li>
+                    <li><strong>Bessere Haltbarkeit:</strong> Mit einem Setting-Spray oder Puder fixieren.</li>
+                    <li><strong>Individuelle Nuance:</strong> Beide Farbtöne (hell + dunkel) herstellen und je nach Jahreszeit mischen.</li>
+                </ul>
             </div>
         </section>
 
-        <!-- Variationen -->
-        <section id="varianten">
-            <h2>🎨 Variationen (wenn du experimentieren willst)</h2>
+        <!-- TAGESCREME -->
+        <section id="tagescreme">
+            <h2><span class="section-icon">☀️</span> Frische Tagescreme</h2>
             
-            <button class="collapsible">🌟 Für fettige/unreine Haut</button>
-            <div class="content">
-                <h3>Änderungen am Basis-Rezept:</h3>
-                <ul>
-                    <li><strong>Weniger Sheabutter:</strong> 5g → 2g</li>
-                    <li><strong>Mehr Jojobaöl:</strong> 8g → 13g (nicht komedogen!)</li>
-                    <li><strong>Rosenwasser → Hamameliswasser</strong> (klärend)</li>
-                    <li><strong>Optional:</strong> +3 Tropfen Teebaumöl (antibakteriell)</li>
-                </ul>
-                <p><strong>Ergebnis:</strong> Leichtere Creme, weniger reichhaltig</p>
+            <p>Die frische Tagescreme ist eine leichte, pflegende Creme für normale bis Mischhaut. Sie spendet Feuchtigkeit, schützt die Hautbarriere und hinterlässt ein angenehm weiches Hautgefühl – perfekt als tägliche Basispflege.</p>
+
+            <div class="recipe-card">
+                <div class="recipe-title">✨ Elie Frische Tagescreme ✨</div>
+                <div class="recipe-meta">
+                    <span>⏱️ 20-30 Minuten</span>
+                    <span>📦 Ergibt ca. 50 ml</span>
+                    <span>📅 Haltbar 4-6 Wochen</span>
+                    <span>⭐ Schwierigkeit: Einfach</span>
+                </div>
+
+                <h4>Phase A – Fettphase (ca. 20 g)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>Funktion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mandelöl (süß)</td>
+                                <td>5 g</td>
+                                <td>Nährend, reizfrei</td>
+                            </tr>
+                            <tr>
+                                <td>Squalan (pflanzlich)</td>
+                                <td>4 g</td>
+                                <td>Leicht, hautähnlich</td>
+                            </tr>
+                            <tr>
+                                <td>Macadamianussöl oder Jojobaöl</td>
+                                <td>3 g</td>
+                                <td>Ausgleichend</td>
+                            </tr>
+                            <tr>
+                                <td>Sheabutter oder Mangobutter</td>
+                                <td>3 g</td>
+                                <td>Schützend, weichmachend</td>
+                            </tr>
+                            <tr>
+                                <td>Olivem 1000 (Emulgator)</td>
+                                <td>3 g</td>
+                                <td>Verbindet Öl & Wasser</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase B – Wasserphase (ca. 28 g)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>Funktion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Orangenblütenwasser oder Rosenwasser</td>
+                                <td>20 g</td>
+                                <td>Beruhigend, duftet fein</td>
+                            </tr>
+                            <tr>
+                                <td>Aloe Vera Gel (10:1 in Wasser gelöst)</td>
+                                <td>5 g</td>
+                                <td>Beruhigend, feuchtigkeitsspendend</td>
+                            </tr>
+                            <tr>
+                                <td>Glycerin (pflanzlich)</td>
+                                <td>3 g</td>
+                                <td>Bindet Feuchtigkeit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Phase C – Wirkstoffphase (nach dem Emulgieren)</h4>
+                <div class="ingredient-group">
+                    <h5>Zutaten</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zutat</th>
+                                <th>Menge</th>
+                                <th>Funktion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Vitamin E (Tocopherol)</td>
+                                <td>0,5 g</td>
+                                <td>Antioxidans, verlängert Haltbarkeit</td>
+                            </tr>
+                            <tr>
+                                <td>Coenzym Q10 (optional)</td>
+                                <td>0,5 g</td>
+                                <td>Anti-Aging</td>
+                            </tr>
+                            <tr>
+                                <td>Ceramide NP oder Phytosterole</td>
+                                <td>0,5 g</td>
+                                <td>Stärkung der Hautbarriere</td>
+                            </tr>
+                            <tr>
+                                <td>Ätherisches Öl (optional)</td>
+                                <td>1 Tropfen</td>
+                                <td>z.B. Lavendel oder Palmarosa</td>
+                            </tr>
+                            <tr>
+                                <td>Rokonsal BSB-N oder Cosgard</td>
+                                <td>10 Tropfen</td>
+                                <td>Konservierung</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <button class="collapsible">💧 Für trockene Haut</button>
-            <div class="content">
-                <h3>Änderungen:</h3>
-                <ul>
-                    <li><strong>Mehr Sheabutter:</strong> 5g → 10g</li>
-                    <li><strong>Weniger Wasser:</strong> 20ml → 15ml</li>
-                    <li><strong>+5g Kokosöl</strong> (sehr pflegend)</li>
-                    <li><strong>Optional:</strong> +3 Tropfen Sandelholzöl</li>
-                </ul>
-                <p><strong>Ergebnis:</strong> Reichhaltigere Nachtcreme</p>
-            </div>
+            <h3>Schritt-für-Schritt Anleitung</h3>
 
-            <button class="collapsible">☀️ Sommer-Version (leichter)</button>
-            <div class="content">
-                <h3>Änderungen:</h3>
-                <ul>
-                    <li><strong>Sheabutter weglassen!</strong></li>
-                    <li>Dafür: +5g Jojobaöl</li>
-                    <li>+5ml Aloe Vera</li>
-                    <li><strong>Optional:</strong> Prise Minze-Hydrolat (erfrischend)</li>
+            <ol class="steps">
+                <li>
+                    <strong>Fettphase schmelzen:</strong> Alle Zutaten der Fettphase (Mandelöl, Squalan, Macadamianussöl/Jojobaöl, Sheabutter/Mangobutter und Olivem 1000) in ein hitzebeständiges Becherglas geben und im Wasserbad auf ca. 70°C erwärmen, bis alles geschmolzen ist.
+                </li>
+                <li>
+                    <strong>Wasserphase erwärmen:</strong> In einem zweiten Becherglas Orangenblütenwasser/Rosenwasser, Aloe Vera Gel und Glycerin mischen und ebenfalls auf ca. 70°C erwärmen (gleiche Temperatur wie Fettphase).
+                </li>
+                <li>
+                    <strong>Emulgieren:</strong> Beide Phasen in einem hitzebeständigen Becher zusammengeben und sofort mit dem Milchaufschäumer oder Mini-Mixer ca. 1-2 Minuten emulgieren, bis eine homogene, cremige Masse entsteht.
+                </li>
+                <li>
+                    <strong>Abkühlen lassen:</strong> Unter gelegentlichem Rühren abkühlen lassen, bis die Creme handwarm ist (unter 40°C).
+                </li>
+                <li>
+                    <strong>Wirkstoffe hinzufügen:</strong> Vitamin E, Coenzym Q10, Ceramide/Phytosterole, ätherisches Öl (falls gewünscht) und Konservierer zugeben und gut unterrühren.
+                </li>
+                <li>
+                    <strong>Abfüllen:</strong> Die fertige Creme in einen desinfizierten Tiegel oder Pumpspender füllen. Beschriften mit Datum und Inhalt.
+                </li>
+            </ol>
+
+            <h3>Anwendung</h3>
+            <p>Morgens nach der Gesichtsreinigung eine haselnussgroße Menge auf Gesicht und Hals auftragen. Sanft einmassieren und einziehen lassen. Als Basis unter Make-up oder Sonnenschutz geeignet.</p>
+
+            <h3>Variationen für verschiedene Hauttypen</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hauttyp</th>
+                        <th>Öl-Anpassung</th>
+                        <th>Zusätzlicher Tipp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fettige Haut</strong></td>
+                        <td>Traubenkernöl statt Mandelöl</td>
+                        <td>Sheabutter reduzieren</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trockene Haut</strong></td>
+                        <td>Avocadoöl statt Jojobaöl</td>
+                        <td>Mehr Sheabutter verwenden</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Empfindliche Haut</strong></td>
+                        <td>Wie im Rezept</td>
+                        <td>Panthenol (Provitamin B5) statt Ceramide</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reife Haut</strong></td>
+                        <td>Arganöl oder Wildrosenöl ergänzen</td>
+                        <td>Q10 nicht weglassen</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box tip">
+                <div class="info-box-title">💡 Tipps</div>
+                <ul style="margin-bottom: 0;">
+                    <li>Du kannst die Öle je nach Hauttyp anpassen – siehe Tabelle oben.</li>
+                    <li>Statt Ceramiden kannst du auch <strong>Panthenol (Provitamin B5)</strong> verwenden – besonders gut bei empfindlicher Haut.</li>
+                    <li>Im Kühlschrank gelagert hält die Creme bis zu 3 Monate.</li>
+                    <li>Diese Creme ist ein idealer Einstieg für Anfänger – einfach und schnell gemacht!</li>
                 </ul>
-                <p><strong>Ergebnis:</strong> Ultra-leichte Sommercreme ☀️</p>
             </div>
         </section>
 
-        <!-- FAQ -->
-        <section id="faq">
-            <h2>❓ FAQ - Deine Fragen beantwortet</h2>
+        <!-- BEZUGSQUELLEN -->
+        <section id="bezugsquellen">
+            <h2><span class="section-icon">🛒</span> Bezugsquellen für Rohstoffe</h2>
             
-            <button class="collapsible">🤔 Allgemeine Fragen</button>
-            <div class="content">
-                <h3>F: Ist das genauso gut wie Ringana?</h3>
-                <p>→ Nein, nicht *genau* so. Ringana hat 40+ Wirkstoffe, du hast 7. Aber für normale Haut absolut ausreichend und <strong>90% der Wirkung bei 8% der Kosten!</strong></p>
+            <p>Hier findest du zuverlässige Online-Shops in Österreich und Deutschland, die vegane Kosmetik-Rohstoffe in hoher Qualität anbieten. Alle genannten Shops liefern auch Kleinmengen für den Hausgebrauch.</p>
 
-                <h3>F: Kann ich das auch verkaufen?</h3>
-                <p>→ <strong>NEIN!</strong> Nur für dich. Verkauf braucht Zulassung.</p>
-
-                <h3>F: Wie lange dauert die Herstellung?</h3>
-                <p>→ Beim 1. Mal: 45 Min. (mit Vorbereitung)<br>
-                   → Ab dem 3. Mal: 25-30 Min.</p>
-
-                <h3>F: Brauche ich wirklich eine so genaue Waage?</h3>
-                <p>→ <strong>JA!</strong> Sonst stimmen die Proportionen nicht. Kostet nur €15-20.</p>
-
-                <h3>F: Kann ich das ohne Stabmixer machen?</h3>
-                <p>→ Ja, mit Schneebesen. Aber: 5 Min. länger rühren, Arm tut weh 😅</p>
+            <h3>Österreichische Shops</h3>
+            <div class="supplier-card">
+                <div class="supplier">
+                    <div class="supplier-name">Naturkosmetik-Werkstatt</div>
+                    <div class="supplier-country">🇦🇹 Österreich</div>
+                    <p>Umfangreiches Sortiment an Ölen, Buttern, Wirkstoffen und Verpackungen. Gute Qualität, faire Preise.</p>
+                    <a href="https://naturkosmetik-werkstatt.at" class="supplier-url" target="_blank">naturkosmetik-werkstatt.at →</a>
+                </div>
+                <div class="supplier">
+                    <div class="supplier-name">Die Brise</div>
+                    <div class="supplier-country">🇦🇹 Österreich</div>
+                    <p>Spezialisiert auf Naturkosmetik-Rohstoffe. Viele bio-zertifizierte Produkte, gute Auswahl an Emulgatoren.</p>
+                    <a href="https://www.diebrise.at" class="supplier-url" target="_blank">diebrise.at →</a>
+                </div>
+                <div class="supplier">
+                    <div class="supplier-name">Kräuter & Geist</div>
+                    <div class="supplier-country">🇦🇹 Österreich</div>
+                    <p>Regionale Kräuter und DIY-Kosmetik-Rohstoffe. Besonders gut für Extrakte und Hydrolate.</p>
+                    <a href="https://www.kraeuterundgeist.at" class="supplier-url" target="_blank">kraeuterundgeist.at →</a>
+                </div>
             </div>
 
-            <button class="collapsible">🧪 Inhaltsstoffe</button>
-            <div class="content">
-                <h3>F: Wo bekomme ich Emulsan?</h3>
-                <p>→ Nur online (Dragonspice, Naturschönheit). Reformhaus/dm haben es nicht.</p>
-
-                <h3>F: Kann ich Emulsan ersetzen?</h3>
-                <p>→ Nein, ohne Emulgator trennt sich die Creme sofort. Alternativen: Tegomuls, Lanolin (aber nicht vegan)</p>
-
-                <h3>F: Welches Rosenwasser?</h3>
-                <p>→ 100% reines Rosenwasser/Rosenhydrolat. NICHT "Gesichtswasser mit Rosenduft"!</p>
-
-                <h3>F: Sind die Öle aus dem Supermarkt okay?</h3>
-                <p>→ Mandelöl ja (Speiseöl), aber teurer. Jojobaöl gibt's nicht im Supermarkt.</p>
+            <h3>Deutsche Shops</h3>
+            <div class="supplier-card">
+                <div class="supplier">
+                    <div class="supplier-name">Spinnrad</div>
+                    <div class="supplier-country">🇩🇪 Deutschland</div>
+                    <p>Der Klassiker für DIY-Kosmetik. Riesige Auswahl, auch spezielle Wirkstoffe. Viele vegane Rohstoffe gekennzeichnet.</p>
+                    <a href="https://spinnrad.de" class="supplier-url" target="_blank">spinnrad.de →</a>
+                </div>
+                <div class="supplier">
+                    <div class="supplier-name">Camassia Naturkosmetik</div>
+                    <div class="supplier-country">🇩🇪 Deutschland</div>
+                    <p>Fokus auf Bio-Qualität und vegane Rohstoffe. Gute Anleitungen und Rezepte auf der Website.</p>
+                    <a href="https://www.camassia-naturkosmetik.de" class="supplier-url" target="_blank">camassia-naturkosmetik.de →</a>
+                </div>
+                <div class="supplier">
+                    <div class="supplier-name">Alexmo Cosmetics</div>
+                    <div class="supplier-country">🇩🇪 Deutschland</div>
+                    <p>Spezialist für Mineralpigmente und dekorative Kosmetik-Rohstoffe. Perfekt für die getönte Tagescreme.</p>
+                    <a href="https://www.alexmo-cosmetics.de" class="supplier-url" target="_blank">alexmo-cosmetics.de →</a>
+                </div>
+                <div class="supplier">
+                    <div class="supplier-name">Dragonspice</div>
+                    <div class="supplier-country">🇩🇪 Deutschland</div>
+                    <p>Große Auswahl an ätherischen Ölen, Basisölen und Wirkstoffen. Oft günstigere Preise bei größeren Mengen.</p>
+                    <a href="https://www.dragonspice.de" class="supplier-url" target="_blank">dragonspice.de →</a>
+                </div>
             </div>
 
-            <button class="collapsible">💆‍♀️ Anwendung</button>
-            <div class="content">
-                <h3>F: Kann ich das auch als Nachtcreme verwenden?</h3>
-                <p>→ Ja! Evtl. etwas reichhaltiger machen (mehr Sheabutter)</p>
-
-                <h3>F: Für welchen Hauttyp?</h3>
-                <p>→ Normale Haut, Mischhaut. NICHT für sehr fettige oder Akne-Haut (dann Rezept anpassen)</p>
-
-                <h3>F: Kann ich Make-up drüber?</h3>
-                <p>→ Ja! 2-3 Min. einziehen lassen, dann Foundation etc.</p>
+            <h3>Internationale Shops (mit EU-Versand)</h3>
+            <div class="supplier-card">
+                <div class="supplier">
+                    <div class="supplier-name">Ecco Verde</div>
+                    <div class="supplier-country">🇪🇺 International</div>
+                    <p>Großer Online-Shop für Naturkosmetik, auch einige Rohstoffe. Gute Filter für vegane Produkte.</p>
+                    <a href="https://www.ecco-verde.de" class="supplier-url" target="_blank">ecco-verde.de →</a>
+                </div>
+                <div class="supplier">
+                    <div class="supplier-name">Manske Shop</div>
+                    <div class="supplier-country">🇩🇪 Deutschland</div>
+                    <p>Spezialisiert auf hochwertige Wirkstoffe wie Retinal, Peptide und spezielle Extrakte.</p>
+                    <a href="https://www.manske-shop.com" class="supplier-url" target="_blank">manske-shop.com →</a>
+                </div>
             </div>
 
-            <button class="collapsible">⏰ Haltbarkeit</button>
-            <div class="content">
-                <h3>F: Warum nur 6 Wochen?</h3>
-                <p>→ Keine chemischen Konservierungsstoffe (wie Ringana!). Das ist der Preis für Natürlichkeit.</p>
+            <h3>Einkaufsliste für den Start</h3>
+            <p>Für alle vier Produkte benötigst du ungefähr folgende Grundausstattung. Die Gesamtkosten für die Erstausstattung liegen bei ca. 150-250€, je nach Qualität und Menge:</p>
 
-                <h3>F: Kann ich die Haltbarkeit verlängern?</h3>
-                <p>→ Nur mit Naturkosmetik-Konservierer (z.B. Kaliumsorbat). Aber dann komplizierter.</p>
-
-                <h3>F: Was ist mit Vitamin E? Konserviert das nicht?</h3>
-                <p>→ Vitamin E schützt vor Oxidation (Öle ranzig), aber NICHT vor Bakterien/Schimmel!</p>
+            <div class="info-box">
+                <div class="info-box-title">🛒 Mindestbestellung für den Start</div>
+                <ul>
+                    <li><strong>Basisöle:</strong> Mandelöl (100ml), Squalan (50ml), Jojobaöl (50ml)</li>
+                    <li><strong>Spezialöle:</strong> Kaktusfeigenkernöl (10ml), Granatapfelkernöl (30ml)</li>
+                    <li><strong>Buttern:</strong> Sheabutter (50g), Mangobutter (30g), Tucumabutter (20g)</li>
+                    <li><strong>Hydrolate:</strong> Orangenblütenwasser (100ml), Rosenwasser (50ml)</li>
+                    <li><strong>Wirkstoffe:</strong> Niacinamid (10g), Hyaluronsäure (5g), Vitamin E (30ml), Q10 (1g)</li>
+                    <li><strong>Emulgatoren:</strong> Olivem 1000 (30g), Glycerylstearat Citrat (30g)</li>
+                    <li><strong>Sonstiges:</strong> Xanthan (10g), Glycerin (100ml), Konservierer (10ml)</li>
+                    <li><strong>Pigmente:</strong> Starter-Set Eisenoxide + Titandioxid</li>
+                </ul>
             </div>
         </section>
 
-        <!-- Aktionsplan -->
+        <!-- HALTBARKEIT -->
+        <section id="haltbarkeit">
+            <h2><span class="section-icon">📅</span> Haltbarkeit & Lagerung</h2>
+
+            <h3>Allgemeine Haltbarkeitsregeln</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Haltbarkeit</th>
+                        <th>Lagerung</th>
+                        <th>Besonderheiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Augencreme</td>
+                        <td>4-6 Wochen</td>
+                        <td>Kühlschrank</td>
+                        <td>Kühlend = abschwellend!</td>
+                    </tr>
+                    <tr>
+                        <td>Nachtcreme Gesicht</td>
+                        <td>4-6 Wochen</td>
+                        <td>Dunkel, unter 25°C</td>
+                        <td>Retinal ist lichtempfindlich</td>
+                    </tr>
+                    <tr>
+                        <td>Nachtcreme Körper</td>
+                        <td>6-8 Wochen</td>
+                        <td>Dunkel, unter 25°C</td>
+                        <td>Größere Menge, gut verschließen</td>
+                    </tr>
+                    <tr>
+                        <td>Getönte Tagescreme</td>
+                        <td>6-8 Wochen</td>
+                        <td>Raumtemperatur, dunkel</td>
+                        <td>Vor Hitze schützen</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Anzeichen für verdorbene Produkte</h3>
+            <div class="info-box warning">
+                <div class="info-box-title">⚠️ Sofort entsorgen bei:</div>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Geruchsveränderung:</strong> Ranziger, muffiger oder ungewöhnlicher Geruch</li>
+                    <li><strong>Farbveränderung:</strong> Deutliche Verfärbungen, besonders Grau- oder Grüntöne</li>
+                    <li><strong>Texturveränderung:</strong> Trennung der Phasen, Klumpenbildung, wässrige Absonderungen</li>
+                    <li><strong>Schimmel:</strong> Jegliche sichtbare Schimmelbildung (auch kleine Punkte)</li>
+                    <li><strong>Hautreaktion:</strong> Jucken, Brennen oder Rötung nach der Anwendung</li>
+                </ul>
+            </div>
+
+            <h3>Tipps für längere Haltbarkeit</h3>
+            <ol>
+                <li><strong>Immer mit sauberen Händen oder Spatel entnehmen</strong> – keine Finger in den Tiegel!</li>
+                <li><strong>Behälter nach Gebrauch sofort verschließen</strong> – Luftkontakt minimieren</li>
+                <li><strong>Nicht in Badezimmer lagern</strong> – zu feucht und warm</li>
+                <li><strong>Kleine Mengen herstellen</strong> – lieber öfter frisch rühren</li>
+                <li><strong>Datum auf Etikett notieren</strong> – so behältst du den Überblick</li>
+                <li><strong>Airless-Spender verwenden</strong> – verhindert Kontamination</li>
+            </ol>
+
+            <h3>Beschriftung deiner Produkte</h3>
+            <p>Jedes selbstgemachte Produkt sollte folgende Informationen auf dem Etikett haben:</p>
+            <div class="info-box">
+                <div class="info-box-title">📝 Etiketten-Vorlage</div>
+                <pre style="background: var(--white); padding: 1rem; border-radius: 8px; font-family: monospace; margin: 0;">
+┌─────────────────────────────────┐
+│  Elie Augencreme                │
+│  ─────────────────────          │
+│  Herstelldatum: TT.MM.JJJJ      │
+│  Haltbar bis: TT.MM.JJJJ        │
+│  Charge: #01                    │
+│  Lagerung: Kühlschrank          │
+└─────────────────────────────────┘
+                </pre>
+            </div>
+        </section>
+
+        <!-- ABSCHLUSS -->
         <section>
-            <h2>🚀 Dein Aktionsplan (los geht's!)</h2>
+            <h2><span class="section-icon">🌟</span> Viel Erfolg beim Rühren!</h2>
             
-            <div class="quick-links">
-                <div class="quick-link" onclick="scrollToSection('einkauf')">
-                    <span class="emoji">🛒</span>
-                    <strong>Schritt 1</strong><br>
-                    Einkaufen
-                </div>
-                <div class="quick-link" onclick="scrollToSection('anleitung')">
-                    <span class="emoji">👩‍🔬</span>
-                    <strong>Schritt 2</strong><br>
-                    Herstellen
-                </div>
-                <div class="quick-link" onclick="scrollToSection('checklisten')">
-                    <span class="emoji">✅</span>
-                    <strong>Schritt 3</strong><br>
-                    Checklisten
-                </div>
-            </div>
+            <p>Du hast es bis hierher geschafft – herzlichen Glückwunsch! Mit diesem Handbuch bist du bestens ausgerüstet, um deine eigene vegane Naturkosmetik herzustellen. Denke daran:</p>
 
-            <h3>Phase 1: Vorbereitung (1 Woche)</h3>
-            <ul class="checklist">
-                <li>Equipment bestellen (falls nicht vorhanden)</li>
-                <li>Dragonspice-Bestellung aufgeben</li>
-                <li>Lokal besorgen (Öle, Rosenwasser, Aloe)</li>
-                <li>Handbuch nochmal durchlesen</li>
-                <li>Termin fürs Herstellen blocken</li>
+            <ul>
+                <li><strong>Übung macht den Meister</strong> – Die ersten Versuche werden vielleicht nicht perfekt, aber mit jeder Charge wirst du besser.</li>
+                <li><strong>Notizen machen</strong> – Schreibe dir auf, was funktioniert hat und was nicht. So kannst du deine Rezepte optimieren.</li>
+                <li><strong>Geduld haben</strong> – Gute Kosmetik braucht Zeit. Rühre in Ruhe und genieße den Prozess.</li>
+                <li><strong>Kreativ sein</strong> – Sobald du die Grundlagen beherrschst, kannst du die Rezepte anpassen und experimentieren.</li>
             </ul>
 
-            <h3>Phase 2: Erste Creme (Wochenende)</h3>
-            <ul class="checklist">
-                <li>Alle Zutaten & Geräte bereitlegen</li>
-                <li>Hygiene-Checklist durchgehen</li>
-                <li>Rezept Schritt für Schritt abarbeiten (30 Min.)</li>
-                <li>Abfüllen, beschriften</li>
-                <li>24h stehen lassen, dann in Kühlschrank</li>
-            </ul>
+            <div class="info-box success">
+                <div class="info-box-title">✨ Du sparst dabei auch Geld!</div>
+                <p style="margin-bottom: 0;">Die Rohstoffe für alle vier Produkte kosten etwa 150-250€ und reichen für viele Chargen. Im Vergleich zu hochwertiger Naturkosmetik aus dem Handel kannst du langfristig erheblich sparen – und weißt genau, was in deinen Produkten ist!</p>
+            </div>
 
-            <h3>Phase 3: Routine (nächste Wochen)</h3>
-            <ul class="checklist">
-                <li>Täglich anwenden (Morgens & Abends)</li>
-                <li>Notizen: Wie fühlt sich die Haut an?</li>
-                <li>Vergleich zu Ringana?</li>
-                <li>Nach 4-6 Wochen: 2. Charge herstellen</li>
-            </ul>
+            <p style="text-align: center; margin-top: 2rem; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-dark);">
+                🌿 Frohes Rühren und strahlend schöne Haut! 🌿
+            </p>
         </section>
+    </main>
 
-        <!-- Checklisten -->
-        <section id="checklisten">
-            <h2>📋 Checklisten zum Ausdrucken</h2>
-            
-            <button class="collapsible">✅ Einkaufsliste zum Abhaken</button>
-            <div class="content">
-                <h3>Equipment (einmalig):</h3>
-                <ul class="checklist">
-                    <li>Küchenwaage (0,1g genau)</li>
-                    <li>2 kleine Töpfe</li>
-                    <li>Spatel/Rührstab</li>
-                    <li>Thermometer (optional)</li>
-                    <li>Tiegel/Pumpspender (50ml)</li>
-                </ul>
-
-                <h3>Rohstoffe (erste Bestellung):</h3>
-                <ul class="checklist">
-                    <li>250ml Mandelöl</li>
-                    <li>100ml Jojobaöl</li>
-                    <li>100g Sheabutter</li>
-                    <li>50g Emulsan (online!)</li>
-                    <li>200ml Rosenwasser</li>
-                    <li>50ml Aloe Vera Gel</li>
-                    <li>20ml Vitamin E</li>
-                </ul>
-            </div>
-
-            <button class="collapsible">✅ Herstellungs-Checklist</button>
-            <div class="content">
-                <h3>Vorbereitung:</h3>
-                <ul class="checklist">
-                    <li>Hände gewaschen (30 Sek.)</li>
-                    <li>Haare zurückgebunden</li>
-                    <li>Arbeitsfläche desinfiziert</li>
-                    <li>Alle Geräte sterilisiert</li>
-                    <li>Zutaten abgewogen</li>
-                    <li>2 Töpfe bereit</li>
-                    <li>Tiegel sterilisiert</li>
-                </ul>
-
-                <h3>Während Herstellung:</h3>
-                <ul class="checklist">
-                    <li>Fettphase auf 60-65°C</li>
-                    <li>Wasserphase auf 60-65°C</li>
-                    <li>Beide Phasen gleiche Temperatur?</li>
-                    <li>Langsam emulgiert (2-3 Min.)</li>
-                    <li>Auf 30°C abgekühlt</li>
-                    <li>Vitamin E zugegeben</li>
-                    <li>Abgefüllt & beschriftet</li>
-                </ul>
-
-                <h3>Nach Herstellung:</h3>
-                <ul class="checklist">
-                    <li>24h bei Raumtemperatur</li>
-                    <li>Dann: Ab in Kühlschrank!</li>
-                    <li>Geräte gereinigt</li>
-                </ul>
-            </div>
-
-            <button class="collapsible">✅ Qualitätskontrolle (wöchentlich)</button>
-            <div class="content">
-                <h3>Creme ist OK, wenn:</h3>
-                <ul class="checklist">
-                    <li>Geruch unverändert (frisch, leicht ölig)</li>
-                    <li>Farbe weiß/cremig</li>
-                    <li>Konsistenz homogen (keine Trennung)</li>
-                    <li>Kein Schimmel sichtbar</li>
-                </ul>
-
-                <div class="warning">
-                    <h3>Creme ist SCHLECHT, wenn:</h3>
-                    <ul>
-                        <li>❌ Riecht ranzig/muffig → WEG DAMIT!</li>
-                        <li>❌ Farbe verändert → WEG DAMIT!</li>
-                        <li>❌ Trennt sich → WEG DAMIT!</li>
-                        <li>❌ Schimmel → WEG DAMIT!</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Schlusswort -->
-        <section>
-            <h2>💚 Schlusswort von Mama</h2>
-            
-            <div class="highlight">
-                <h3>Liebste Amelie,</h3>
-                
-                <p>ich bin so stolz, dass du bereit bist, etwas Neues auszuprobieren! 💚</p>
-                
-                <h4>Warum ich das für dich gemacht habe:</h4>
-                <ol>
-                    <li><strong>Ringana ist toll, aber teuer</strong> - und du sollst nicht auf gute Pflege verzichten müssen</li>
-                    <li><strong>Du lernst etwas</strong> - Kosmetik selbst zu machen ist eine wertvolle Fähigkeit</li>
-                    <li><strong>Du sparst Geld</strong> - €500+ im Jahr! Das ist 1 Woche Urlaub!</li>
-                    <li><strong>Es ist einfacher als du denkst</strong> - Wirklich! Nach dem 2. Mal läuft's wie von selbst</li>
-                </ol>
-
-                <div class="success">
-                    <h4>💪 Dein Erfolgsversprechen:</h4>
-                    <p><strong>Wenn du dieses Handbuch befolgst:</strong></p>
-                    <ul>
-                        <li>✅ Sparst du <strong>€500+ pro Jahr</strong></li>
-                        <li>✅ Hast du eine <strong>gute, natürliche Gesichtscreme</strong></li>
-                        <li>✅ Weißt du <strong>genau</strong>, was du dir ins Gesicht schmierst</li>
-                        <li>✅ Bist du <strong>unabhängig</strong> von teuren Marken</li>
-                        <li>✅ Kannst du <strong>experimentieren</strong> (Variationen!)</li>
-                    </ul>
-                </div>
-
-                <div class="warning">
-                    <h4>⚠️ Wichtige Sicherheitshinweise:</h4>
-                    <ul>
-                        <li>❌ NICHT verkaufen (ist illegal ohne Zulassung!)</li>
-                        <li>❌ NICHT bei Allergien/Hautproblemen ohne Arzt</li>
-                        <li>✅ Hygienisch arbeiten (sonst Schimmel!)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin: 3rem 0;">
-                <div class="success">
-                    <h3>🌟 Du schaffst das! 💪</h3>
-                    <p style="font-size: 1.3rem; margin: 1rem 0;">
-                        <strong>Bei Fragen bin ich für dich da!</strong> 💚
-                    </p>
-                </div>
-                
-                <p style="font-size: 1.5rem; margin: 2rem 0;">
-                    In Liebe,<br>
-                    <strong style="font-size: 1.8rem;">Mama Amy 🌿</strong>
-                </p>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>🌿 Naturkosmetik Handbuch | Ringana-Alternative DIY</p>
-        <p style="margin-top: 0.5rem; font-style: italic;">Von Mama Amy, mit Liebe erstellt ❤️</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 Für private Nutzung | Nicht zum Verkauf!</p>
+    <footer style="background: var(--blue-dark); color: var(--white); padding: 2rem; text-align: center;">
+        <p style="margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;">Elie DIY Naturkosmetik Handbuch</p>
+        <p style="color: var(--blue-pale); font-size: 0.9rem; margin-bottom: 0;">100% Vegan | Handgemacht mit Liebe</p>
+        <div class="gold-divider" style="margin: 1.5rem auto;"></div>
+        <p style="color: var(--gold-light); font-size: 0.85rem; margin-bottom: 0;">
+            © Elie | Dieses Handbuch dient nur zu Informationszwecken. Die Herstellung und Anwendung erfolgt auf eigene Verantwortung.
+        </p>
     </footer>
-
-    <!-- JavaScript for Collapsibles -->
-    <script>
-        // Collapsible functionality
-        const collapsibles = document.getElementsByClassName("collapsible");
-        
-        for (let i = 0; i < collapsibles.length; i++) {
-            collapsibles[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                const content = this.nextElementSibling;
-                
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                    content.classList.remove("active");
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    content.classList.add("active");
-                }
-            });
-        }
-
-        // Smooth scroll function
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        // Add smooth scroll to all nav links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                scrollToSection(targetId);
-            });
-        });
-
-        // Auto-expand first collapsible on page load
-        window.addEventListener('load', function() {
-            if (collapsibles.length > 0) {
-                // Uncomment next 2 lines to auto-open first section:
-                // collapsibles[0].click();
-            }
-        });
-    </script>
 </body>
 </html>
