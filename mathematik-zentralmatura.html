@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematik Zentralmatura – Dein Weg zur Eins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ec; --card:#ffffff; --ink:#1b1b1f; --muted:#56535d; --line:#e3ddd3;
+  --blue:#3a5a8c; --blue-soft:#e7edf6;
+  --petrol:#1d6b74; --petrol-soft:#e3eff1;
+  --lilac:#5d4a7e; --lilac-soft:#eee9f5;
+  --terra:#9c4f3d; --terra-soft:#f6e9e4;
+  --gold:#a7843b; --gold-soft:#f6efdf;
+  --radius:20px; --shadow:0 6px 24px rgba(40,30,20,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lexend',system-ui,sans-serif;font-size:18px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+h1,h2,h3,h4{line-height:1.3;font-weight:600;margin:0 0 .6em}
+h2{font-size:1.7rem} h3{font-size:1.22rem}
+p{margin:0 0 1em}
+.m{font-variant-numeric:tabular-nums;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.92em;line-height:1.15;margin:0 2px}
+.frac>span:last-child{border-top:1.5px solid currentColor;padding-top:1px}
+.int{white-space:nowrap}
+.lim{display:inline-flex;flex-direction:column;font-size:.62em;line-height:1;vertical-align:middle;margin-right:2px}
+.lim sup,.lim sub{vertical-align:baseline;position:static;font-size:1em}
+
+.hero{background:linear-gradient(135deg,#2f4a75 0%,#1d5d68 50%,#4a3e6b 100%);color:#fff;padding:64px 0 54px;border-radius:0 0 36px 36px}
+.hero h1{font-size:2.5rem;font-weight:700;margin-bottom:.3em}
+.hero p{font-size:1.12rem;max-width:740px;opacity:.95}
+.hero .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.hero .chips span{background:rgba(255,255,255,.14);border-radius:999px;padding:6px 14px;font-size:.92rem}
+
+nav.top{position:sticky;top:0;z-index:50;background:rgba(245,242,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+nav.top a{white-space:nowrap;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);padding:7px 15px;border-radius:999px;font-size:.92rem}
+nav.top a:hover{background:var(--blue-soft);border-color:var(--blue)}
+nav.top a.sim{background:var(--terra);color:#fff;border-color:var(--terra)}
+
+section{padding:52px 0 8px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.badge{min-width:52px;height:46px;padding:0 10px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1rem;flex-shrink:0}
+.b-blue{background:var(--blue)}.b-petrol{background:var(--petrol)}.b-lilac{background:var(--lilac)}.b-terra{background:var(--terra)}.b-gold{background:var(--gold)}
+.lead{color:var(--muted);font-size:1.05rem;max-width:840px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;margin-bottom:20px;border:1px solid #efe9df}
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.stat{border-radius:18px;padding:20px 22px}
+.stat .num{font-size:2rem;font-weight:700;line-height:1.1}
+.stat .lbl{font-size:.95rem;color:var(--muted)}
+.s-blue{background:var(--blue-soft)}.s-blue .num{color:var(--blue)}
+.s-petrol{background:var(--petrol-soft)}.s-petrol .num{color:var(--petrol)}
+.s-lilac{background:var(--lilac-soft)}.s-lilac .num{color:var(--lilac)}
+.s-terra{background:var(--terra-soft)}.s-terra .num{color:var(--terra)}
+.s-gold{background:var(--gold-soft)}.s-gold .num{color:var(--gold)}
+.note{border-left:5px solid var(--gold);background:var(--gold-soft);padding:14px 18px;border-radius:12px;margin:14px 0}
+.note.blue{border-color:var(--blue);background:var(--blue-soft)}
+.note.lilac{border-color:var(--lilac);background:var(--lilac-soft)}
+.note.terra{border-color:var(--terra);background:var(--terra-soft)}
+.note.petrol{border-color:var(--petrol);background:var(--petrol-soft)}
+table.plain{width:100%;border-collapse:separate;border-spacing:0;font-size:.97rem}
+table.plain th{background:var(--blue-soft);text-align:left;padding:10px 14px;font-weight:600}
+table.plain td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+table.plain tr:last-child td{border-bottom:none}
+table.plain th:first-child{border-radius:12px 0 0 0}table.plain th:last-child{border-radius:0 12px 0 0}
+.formula{background:var(--bg);border-radius:14px;padding:12px 16px;margin:10px 0;font-size:1.05rem}
+.tag{display:inline-block;font-size:.78rem;padding:3px 10px;border-radius:999px;font-weight:500;background:var(--blue-soft);color:var(--blue)}
+.tag.p{background:var(--petrol-soft);color:var(--petrol)}.tag.l{background:var(--lilac-soft);color:var(--lilac)}.tag.t{background:var(--terra-soft);color:var(--terra)}.tag.g{background:var(--gold-soft);color:var(--gold)}
+.area-ag{border-top:5px solid var(--blue)}.area-fa{border-top:5px solid var(--petrol)}.area-an{border-top:5px solid var(--lilac)}.area-ws{border-top:5px solid var(--terra)}
+
+/* Schritt-für-Schritt */
+.walk{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:22px 26px;margin-bottom:18px;border:1px solid #efe9df}
+.walk .task-text{background:var(--bg);border-radius:14px;padding:14px 18px;margin:8px 0 14px}
+.wstep{display:none;gap:14px;padding:12px 0;border-top:1px dashed var(--line);animation:fade .4s}
+.wstep.show{display:flex}
+.wstep .n{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:.9rem;font-weight:600}
+.wstep.final .n{background:var(--petrol)}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+
+button{font-family:inherit;font-size:1rem;border:none;border-radius:14px;padding:11px 20px;cursor:pointer;background:var(--blue);color:#fff;transition:.2s}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+button.terra{background:var(--terra)} button.petrol{background:var(--petrol)} button.lilac{background:var(--lilac)}
+button:disabled{opacity:.45;cursor:default}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+/* Labor */
+.lab canvas{width:100%;display:block;border-radius:14px;border:1px solid var(--line);background:#fffdf9}
+.sliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 22px;margin:16px 0}
+.sl label{display:flex;justify-content:space-between;font-size:.95rem;margin-bottom:2px}
+.sl label b{color:var(--blue);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--blue)}
+.readout{background:var(--blue-soft);border-radius:14px;padding:14px 18px;font-size:.98rem}
+.typebtns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.typebtns button{background:#fff;color:var(--ink);border:2px solid var(--line);padding:8px 16px}
+.typebtns button.on{border-color:var(--petrol);background:var(--petrol-soft);color:var(--petrol)}
+
+/* Quiz */
+.q{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:20px 24px;margin-bottom:16px;border:1px solid #efe9df}
+.q .qhead{font-size:.85rem;color:var(--muted);margin-bottom:4px}
+.q .prompt{font-weight:500;margin-bottom:12px}
+.opts{display:grid;gap:9px}
+.opt{text-align:left;background:var(--bg);color:var(--ink);border:2px solid transparent;border-radius:13px;padding:11px 16px;font-size:.98rem;display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.opt:hover{border-color:var(--blue);filter:none}
+.opt input{margin-top:6px;transform:scale(1.2);accent-color:var(--blue)}
+.opt.right{background:var(--petrol-soft);border-color:var(--petrol)}
+.opt.wrong{background:var(--terra-soft);border-color:var(--terra)}
+.expl{display:none;margin-top:12px;padding:14px 18px;border-radius:12px;background:var(--blue-soft);font-size:.96rem}
+.expl.show{display:block}
+b.ok{color:var(--petrol)} b.no{color:var(--terra)}
+.scorebar{position:sticky;top:62px;z-index:20;background:var(--lilac);color:#fff;border-radius:14px;padding:10px 18px;margin-bottom:16px;display:flex;justify-content:space-between;font-weight:500}
+
+/* Simulation */
+.sim-hero{background:linear-gradient(135deg,#9c4f3d,#4a3e6b);color:#fff;border-radius:26px;padding:30px 32px;margin-bottom:22px}
+.timer{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:rgba(255,255,255,.12);border-radius:16px;padding:14px 18px;margin-top:14px}
+.timer .clock{font-size:2.1rem;font-weight:700;font-variant-numeric:tabular-nums}
+.timer button{background:#fff;color:var(--lilac)}
+.part-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:30px 0 14px}
+.task{background:#fff;border-radius:18px;padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow);border-left:6px solid var(--blue)}
+.task.fa{border-left-color:var(--petrol)}.task.an{border-left-color:var(--lilac)}.task.ws{border-left-color:var(--terra)}
+.task h4{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.task h4 .pts{font-size:.82rem;font-weight:500;background:var(--bg);padding:3px 12px;border-radius:999px;white-space:nowrap;color:var(--muted)}
+.fmt{font-size:.82rem;color:var(--muted);margin-bottom:8px}
+.fieldrow{display:flex;align-items:center;gap:12px;margin:8px 0;flex-wrap:wrap}
+.fieldrow label{min-width:200px}
+input[type=text],select,textarea{font-family:inherit;font-size:1rem;border:2px solid var(--line);border-radius:11px;padding:8px 12px;background:#fff;max-width:100%}
+input[type=text]{width:170px}
+textarea{width:100%;min-height:90px;line-height:1.6}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue)}
+.mark-ok{border-color:var(--petrol)!important;background:var(--petrol-soft)!important}
+.mark-no{border-color:var(--terra)!important;background:var(--terra-soft)!important}
+.gapbox{background:var(--bg);border-radius:14px;padding:14px 18px;line-height:2.4}
+.match-list{display:grid;gap:6px;margin:10px 0;font-size:.96rem}
+.match-list div{background:var(--bg);border-radius:10px;padding:6px 12px}
+.sol{display:none;margin-top:14px;background:var(--gold-soft);border-radius:12px;padding:14px 18px;font-size:.96rem}
+.sol.show{display:block}
+.sol ol{margin:6px 0 0;padding-left:22px}
+.verdict{font-weight:600;margin-bottom:6px}
+.sub{border-top:1px dashed var(--line);padding-top:14px;margin-top:14px}
+.ctx{background:var(--bg);border-radius:14px;padding:14px 18px;margin-bottom:6px}
+.result{background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:28px;border:2px solid var(--lilac);margin-top:26px}
+.bar{height:16px;background:#efe9df;border-radius:999px;overflow:hidden;margin:6px 0 16px}
+.bar>div{height:100%;border-radius:999px;transition:width .8s;width:0}
+.grade{font-size:2.2rem;font-weight:700;color:var(--lilac)}
+.mini{font-size:.9rem;color:var(--muted)}
+.hidden{display:none}
+footer{padding:50px 0 60px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (max-width:640px){
+  body{font-size:17px}.hero h1{font-size:1.9rem}
+  .card,.task,.q,.walk{padding:20px 18px}
+  .fieldrow label{min-width:0;width:100%}
+  .scorebar{top:58px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="wrap">
+  <h1>Mathematik Zentralmatura</h1>
+  <p>Alles, was du für eine ausgezeichnete schriftliche Reifeprüfung in Mathematik brauchst – die vier Inhaltsbereiche mit Erklärungen Schritt für Schritt, interaktive Labore zum Ausprobieren, die typischen Fehlerfallen und eine vollständige Maturasimulation im echten Format mit offiziellem Beurteilungsschlüssel.</p>
+  <div class="chips"><span>Algebra &amp; Geometrie</span><span>Funktionale Abhängigkeiten</span><span>Analysis</span><span>Wahrscheinlichkeit &amp; Statistik</span></div>
+</div></header>
+
+<nav class="top"><div class="wrap">
+  <a href="#ueberblick">Überblick</a>
+  <a href="#strategie">Strategie zur Eins</a>
+  <a href="#ag">AG</a>
+  <a href="#fa">FA</a>
+  <a href="#an">AN</a>
+  <a href="#ws">WS</a>
+  <a href="#labor">Labore</a>
+  <a href="#fallen">Fehlerfallen</a>
+  <a href="#training">Training</a>
+  <a href="#simulation" class="sim">★ Maturasimulation</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ================= ÜBERBLICK ================= -->
+<section id="ueberblick">
+  <div class="sec-head"><div class="badge b-blue">1</div><h2>Die Klausur im Überblick</h2></div>
+  <p class="lead">Die schriftliche Mathematikmatura an der AHS besteht aus zwei Teilen. Teil 1 prüft die Grundkompetenzen in kurzen, klar umrissenen Aufgaben. Teil 2 verlangt, dieses Wissen in größeren Anwendungssituationen zu vernetzen.</p>
+  <div class="grid g3" style="margin:20px 0">
+    <div class="stat s-blue"><div class="num">270</div><div class="lbl">Minuten Arbeitszeit für beide Teile</div></div>
+    <div class="stat s-petrol"><div class="num">24</div><div class="lbl">Teil-1-Aufgaben (Aufgaben 1–24)</div></div>
+    <div class="stat s-lilac"><div class="num">4</div><div class="lbl">Teil-2-Aufgaben (25–28) mit mehreren Teilaufgaben</div></div>
+    <div class="stat s-terra"><div class="num">36</div><div class="lbl">Punkte sind maximal erreichbar</div></div>
+    <div class="stat s-gold"><div class="num">Best-of</div><div class="lbl">Von den Aufgaben 26, 27, 28 zählt die schwächste nicht</div></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Beurteilungsschlüssel</h3>
+      <table class="plain">
+        <tr><th>Punkte</th><th>Note</th></tr>
+        <tr><td>32 – 36</td><td><b>Sehr gut</b></td></tr>
+        <tr><td>27 – 31,5</td><td><b>Gut</b></td></tr>
+        <tr><td>22 – 26,5</td><td><b>Befriedigend</b></td></tr>
+        <tr><td>17 – 21,5</td><td><b>Genügend</b></td></tr>
+        <tr><td>0 – 16,5</td><td><b>Nicht genügend</b></td></tr>
+      </table>
+      <p class="mini" style="margin-top:10px">Schlüssel der letzten Prüfungstermine – maßgeblich ist immer das Aufgabenheft deines Termins.</p>
+    </div>
+    <div class="card">
+      <h3>Erlaubte Hilfsmittel</h3>
+      <p>Die approbierte Formelsammlung für die Mathematikmatura und elektronische Hilfsmittel wie grafikfähige Taschenrechner oder GeoGebra – sofern sie keine Kommunikationsmöglichkeit (Internet, Bluetooth, Mobilfunk) und keinen Zugriff auf eigene Dateien haben.</p>
+      <div class="note petrol"><b>Tipp:</b> Übe mit genau dem Gerät, das du bei der Matura verwendest. Wer seine Befehle für Nullstellen, Integrale und Binomialverteilung blind beherrscht, gewinnt locker 20 Minuten.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Die Antwortformate in Teil 1</h3>
+    <table class="plain">
+      <tr><th>Format</th><th>Was du tust</th><th>Worauf es ankommt</th></tr>
+      <tr><td><b>2 aus 5</b></td><td>Genau zwei von fünf Aussagen ankreuzen</td><td>Nur bei genau den zwei richtigen gibt es den Punkt – ein drittes Kreuz kostet ihn.</td></tr>
+      <tr><td><b>1 aus 6</b></td><td>Genau eine Antwort ankreuzen</td><td>Alle sechs Möglichkeiten prüfen, nicht bei der ersten plausiblen stoppen.</td></tr>
+      <tr><td><b>Lückentext</b></td><td>Für zwei Lücken je eine von drei Möglichkeiten wählen</td><td>Meist zählt der Punkt nur, wenn beide Lücken stimmen.</td></tr>
+      <tr><td><b>Zuordnung</b></td><td>Vier Elemente sechs Möglichkeiten (A–F) zuordnen</td><td>Zwei Möglichkeiten bleiben übrig – das ist Absicht.</td></tr>
+      <tr><td><b>Eintragen</b></td><td>Zahl, Term oder Formel eintragen</td><td>Rundungsvorgaben und Einheiten beachten.</td></tr>
+      <tr><td><b>Zeichnen</b></td><td>Graph, Punkt, Vektor oder Fläche einzeichnen</td><td>Sauber und eindeutig – mehrdeutige Zeichnungen bringen keinen Punkt.</td></tr>
+      <tr><td><b>Offen</b></td><td>Berechnen, begründen, interpretieren</td><td>Der Lösungsweg muss nachvollziehbar sein; Variablen erklären, nicht zu früh runden.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= STRATEGIE ================= -->
+<section id="strategie">
+  <div class="sec-head"><div class="badge b-gold">2</div><h2>Die Strategie zur Eins</h2></div>
+  <p class="lead">Für ein „Sehr gut“ brauchst du 32 von 36 Punkten. Das klingt nach Perfektion, ist aber vor allem eine Frage von Verlässlichkeit: Du darfst insgesamt vier Punkte liegen lassen – und dank der Best-of-Regel ist eine schwächere Teil-2-Aufgabe schon eingeplant.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Wo die Eins entsteht</h3>
+      <p><b>Teil 1 ist das Fundament.</b> 24 Punkte, jede Aufgabe in wenigen Minuten lösbar. Wer hier 22 oder mehr holt, braucht in Teil 2 nur noch 10 von 12 gezählten Punkten.</p>
+      <p><b>Teil 2 ist die Kür.</b> Aufgabe 25 zählt immer. Von 26, 27 und 28 zählen die zwei besten – du kannst also bei einer Aufgabe, die dir nicht liegt, ruhiger bleiben.</p>
+      <p><b>Fehler, nicht Wissenslücken,</b> kosten die meisten Punkte: falsch abgelesene Einheiten, frühes Runden, ein drittes Kreuz bei „2 aus 5“. Genau dafür gibt es das Kapitel <a href="#fallen">Fehlerfallen</a>.</p>
+    </div>
+    <div class="card">
+      <h3>Zeitplan</h3>
+      <table class="plain">
+        <tr><th>Zeit</th><th>Tätigkeit</th></tr>
+        <tr><td>0–110 Min.</td><td>Teil 1 in einem Durchgang. Unsichere Aufgaben markieren, nicht festbeißen (ca. 4–5 Min. pro Aufgabe).</td></tr>
+        <tr><td>110–230 Min.</td><td>Teil 2: zuerst Aufgabe 25, dann die beiden Aufgaben aus 26–28, die dir am besten liegen, zuletzt die dritte.</td></tr>
+        <tr><td>230–270 Min.</td><td>Markierte Teil-1-Aufgaben, Kontrolle aller Kreuze, Einheiten und Rundungen.</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Die Operatoren – was eine Aufgabe von dir will</h3>
+    <table class="plain">
+      <tr><th>Operator</th><th>Bedeutung</th><th>Beispiel für eine vollständige Antwort</th></tr>
+      <tr><td><b>Gib an</b></td><td>Ergebnis ohne Rechenweg</td><td>„x = 3“</td></tr>
+      <tr><td><b>Berechne / Ermittle</b></td><td>Ergebnis mit nachvollziehbarem Weg (Technologie erlaubt)</td><td>Ansatz notieren, dann Ergebnis: „T′(t) = 0 ⇒ t = 8“</td></tr>
+      <tr><td><b>Bestimme</b></td><td>wie berechnen, oft mit Wahl der passenden Methode</td><td>„Mit dem Differenzenquotienten …“</td></tr>
+      <tr><td><b>Begründe / Zeige</b></td><td>Argumentation mit mathematischem Bezug</td><td>„Da f″(2) &lt; 0 gilt, liegt ein Maximum vor.“</td></tr>
+      <tr><td><b>Interpretiere</b></td><td>Ergebnis im Sachzusammenhang deuten – mit Einheit</td><td>„Zwischen 6 und 14 Uhr steigt die Temperatur im Mittel um 1,6 °C pro Stunde.“</td></tr>
+      <tr><td><b>Skizziere / Zeichne</b></td><td>qualitative bzw. genaue grafische Darstellung</td><td>Wesentliche Merkmale (Nullstellen, Extrema) erkennbar</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= AG ================= -->
+<section id="ag">
+  <div class="sec-head"><div class="badge b-blue">AG</div><h2>Algebra und Geometrie</h2></div>
+  <p class="lead">Zahlen, Terme, Gleichungen, Vektoren und Trigonometrie – das Werkzeug, mit dem du in allen anderen Bereichen rechnest.</p>
+
+  <div class="grid g2">
+    <div class="card area-ag">
+      <h3>Zahlenmengen</h3>
+      <p>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ. Rational (ℚ) sind alle Zahlen, die sich als Bruch ganzer Zahlen schreiben lassen – also auch alle periodischen Dezimalzahlen wie 0,3̅ = <span class="frac"><span>1</span><span>3</span></span>. Irrational sind etwa √2, π, e.</p>
+      <p class="mini">Merksatz: Endet oder wiederholt sich die Dezimalentwicklung, ist die Zahl rational.</p>
+    </div>
+    <div class="card area-ag">
+      <h3>Gleichungen und Ungleichungen</h3>
+      <p>Auf beiden Seiten dasselbe tun. Bei <b>Ungleichungen</b> dreht sich das Zeichen, wenn du mit einer negativen Zahl multiplizierst oder durch sie dividierst:</p>
+      <div class="formula">−2x &gt; 6 &nbsp;|: (−2) &nbsp;⇒&nbsp; x &lt; −3</div>
+    </div>
+    <div class="card area-ag">
+      <h3>Lineare Gleichungssysteme</h3>
+      <p>Zwei Gleichungen mit zwei Variablen sind zwei Geraden. Ihre Lage entscheidet über die Lösung:</p>
+      <table class="plain"><tr><td>schneiden sich</td><td>genau eine Lösung</td></tr><tr><td>parallel</td><td>keine Lösung</td></tr><tr><td>identisch</td><td>unendlich viele Lösungen</td></tr></table>
+    </div>
+    <div class="card area-ag">
+      <h3>Vektoren</h3>
+      <div class="formula">Betrag: |a⃗| = √(a₁² + a₂²)<br>Skalarprodukt: a⃗ · b⃗ = a₁b₁ + a₂b₂<br>Orthogonal ⇔ a⃗ · b⃗ = 0<br>Winkel: cos φ = <span class="frac"><span>a⃗ · b⃗</span><span>|a⃗| · |b⃗|</span></span></div>
+      <p class="mini">Normalvektor in 2D: zu (a₁ | a₂) ist (−a₂ | a₁) bzw. (a₂ | −a₁) normal – Koordinaten tauschen, ein Vorzeichen ändern.</p>
+    </div>
+    <div class="card area-ag">
+      <h3>Trigonometrie</h3>
+      <div class="formula">sin α = <span class="frac"><span>Gegenkathete</span><span>Hypotenuse</span></span> &nbsp; cos α = <span class="frac"><span>Ankathete</span><span>Hypotenuse</span></span> &nbsp; tan α = <span class="frac"><span>GK</span><span>AK</span></span></div>
+      <p>Am Einheitskreis: Ein Punkt hat die Koordinaten (cos α | sin α). Daher gilt sin²α + cos²α = 1.</p>
+      <p class="mini">Achtung: Taschenrechner auf Grad (DEG) stellen, wenn Winkel in Grad gegeben sind!</p>
+    </div>
+    <div class="card area-ag">
+      <h3>Formeln umformen</h3>
+      <p>Behandle die gesuchte Variable wie eine Unbekannte in einer Gleichung: Schicht für Schicht freilegen – Umkehrung in umgekehrter Reihenfolge der Rechenschritte.</p>
+      <div class="formula">V = r² · π · h &nbsp;⇒&nbsp; r² = <span class="frac"><span>V</span><span>π · h</span></span> &nbsp;⇒&nbsp; r = √<span class="frac"><span>V</span><span>π · h</span></span></div>
+    </div>
+  </div>
+
+  <div class="walk">
+    <span class="tag">Beispiel AG 1</span><h3 style="margin-top:8px">Ein Gleichungssystem lösen</h3>
+    <div class="task-text">Löse: &nbsp; 2x + y = 7 &nbsp; und &nbsp; x − y = 2.</div>
+    <div class="wstep"><div class="n">1</div><div>Suche eine Variable, die sich leicht eliminieren lässt: <b>y</b> steht einmal mit +1 und einmal mit −1 da. Das schreit nach dem Additionsverfahren.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Addiere beide Gleichungen: (2x + y) + (x − y) = 7 + 2 ⇒ <b>3x = 9</b>.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Löse nach x: <b>x = 3</b>.</div></div>
+    <div class="wstep"><div class="n">4</div><div>Setze in eine Gleichung ein: 3 − y = 2 ⇒ <b>y = 1</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div><b>Probe</b> in der anderen Gleichung: 2 · 3 + 1 = 7 ✓ &nbsp; Lösung: (3 | 1). Die Probe kostet 10 Sekunden und rettet Punkte.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag">Beispiel AG 2</span><h3 style="margin-top:8px">Gerade in Parameter- und Normalvektorform</h3>
+    <div class="task-text">Gib die Gerade g durch A = (1 | 2) und B = (4 | 6) in Parameterform und in Normalvektorform an.</div>
+    <div class="wstep"><div class="n">1</div><div>Richtungsvektor: AB⃗ = B − A = (4 − 1 | 6 − 2) = <b>(3 | 4)</b>.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Parameterform: <b>g: X = (1 | 2) + t · (3 | 4)</b>, t ∈ ℝ.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Normalvektor: Koordinaten tauschen, ein Vorzeichen ändern: n⃗ = <b>(4 | −3)</b>. Probe: 3 · 4 + 4 · (−3) = 0 ✓</div></div>
+    <div class="wstep"><div class="n">4</div><div>Normalvektorform: n⃗ · X = n⃗ · A ⇒ 4x − 3y = 4 · 1 − 3 · 2 = <b>−2</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div><b>g: 4x − 3y = −2.</b> Kontrolle mit B: 4 · 4 − 3 · 6 = 16 − 18 = −2 ✓</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag">Beispiel AG 3</span><h3 style="margin-top:8px">Winkel zwischen zwei Vektoren</h3>
+    <div class="task-text">Berechne den Winkel zwischen a⃗ = (1 | 0) und b⃗ = (1 | 1).</div>
+    <div class="wstep"><div class="n">1</div><div>Skalarprodukt: a⃗ · b⃗ = 1 · 1 + 0 · 1 = <b>1</b>.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Beträge: |a⃗| = 1, |b⃗| = √(1 + 1) = <b>√2</b>.</div></div>
+    <div class="wstep"><div class="n">3</div><div>cos φ = <span class="frac"><span>1</span><span>1 · √2</span></span> ≈ 0,7071.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>φ = arccos(0,7071) = <b>45°</b>. Anschaulich: b⃗ zeigt genau diagonal.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+</section>
+
+<!-- ================= FA ================= -->
+<section id="fa">
+  <div class="sec-head"><div class="badge b-petrol">FA</div><h2>Funktionale Abhängigkeiten</h2></div>
+  <p class="lead">Wie hängt eine Größe von einer anderen ab? Die Funktionstypen der Matura haben jeweils einen eigenen „Charakter“. Wer ihn erkennt, löst viele Aufgaben ohne Rechnung.</p>
+
+  <div class="card">
+    <table class="plain">
+      <tr><th>Typ</th><th>Gleichung</th><th>Charakter</th><th>Parameter</th></tr>
+      <tr><td><b>Linear</b></td><td>f(x) = k · x + d</td><td>gleiche Zunahme pro Schritt (absolut)</td><td>k Steigung, d y-Achsenabschnitt</td></tr>
+      <tr><td><b>Quadratisch</b></td><td>f(x) = a · (x − u)² + v</td><td>Parabel, symmetrisch</td><td>a Öffnung/Stauchung, (u | v) Scheitel</td></tr>
+      <tr><td><b>Potenz</b></td><td>f(x) = a · xᶻ</td><td>z = −1: indirekt proportional</td><td>z bestimmt die Grundform</td></tr>
+      <tr><td><b>Polynom</b></td><td>f(x) = aₙxⁿ + … + a₀</td><td>Grad n: höchstens n Nullstellen, n − 1 Extremstellen</td><td>Leitkoeffizient bestimmt das Verhalten im Unendlichen</td></tr>
+      <tr><td><b>Exponentiell</b></td><td>f(x) = a · bˣ = a · e^(λx)</td><td>gleiche <i>prozentuelle</i> Änderung pro Schritt</td><td>b &gt; 1 Wachstum, 0 &lt; b &lt; 1 Abnahme; b = e^λ</td></tr>
+      <tr><td><b>Sinus</b></td><td>f(x) = a · sin(b · x) + d</td><td>periodisch, schwingend</td><td>Amplitude |a|, Periode 2π/b, Mittellage d</td></tr>
+    </table>
+  </div>
+
+  <div class="grid g2">
+    <div class="card area-fa">
+      <h3>Linear oder exponentiell?</h3>
+      <p>Schau auf die Veränderung pro Zeitschritt. Kommt immer <b>derselbe Betrag</b> dazu (z. B. +50 €), ist das Modell linear. Wird immer mit <b>demselben Faktor</b> multipliziert (z. B. +3 % = · 1,03), ist es exponentiell.</p>
+      <div class="formula">Zunahme um p % &nbsp;⇒&nbsp; b = 1 + <span class="frac"><span>p</span><span>100</span></span> &nbsp;&nbsp; Abnahme um p % &nbsp;⇒&nbsp; b = 1 − <span class="frac"><span>p</span><span>100</span></span></div>
+    </div>
+    <div class="card area-fa">
+      <h3>Verdopplungs- und Halbwertszeit</h3>
+      <div class="formula">T₂ = <span class="frac"><span>ln 2</span><span>ln b</span></span> &nbsp;&nbsp; T½ = <span class="frac"><span>ln 0,5</span><span>ln b</span></span> = <span class="frac"><span>ln 2</span><span>λ</span></span> (bei e^(−λt))</div>
+      <p>Nach n Halbwertszeiten ist noch (½)ⁿ vorhanden: nach 3 Halbwertszeiten also <span class="frac"><span>1</span><span>8</span></span> = 12,5 %.</p>
+    </div>
+    <div class="card area-fa">
+      <h3>Eigenschaften lesen</h3>
+      <p><b>Monotonie:</b> steigend/fallend. <b>Krümmung:</b> linksgekrümmt (wie ein Lächeln ∪), rechtsgekrümmt (∩). <b>Nullstellen</b>, <b>Extrema</b>, <b>Wendepunkte</b>, <b>Symmetrie</b>. Viele 2-aus-5-Aufgaben prüfen genau diese Begriffe.</p>
+    </div>
+    <div class="card area-fa">
+      <h3>Direkte und indirekte Proportionalität</h3>
+      <p>Direkt: f(x) = k · x – doppeltes x, doppeltes f(x); Graph ist eine Ursprungsgerade.</p>
+      <p>Indirekt: f(x) = <span class="frac"><span>k</span><span>x</span></span> – doppeltes x, halbes f(x); Graph ist eine Hyperbel. Typisch: Arbeitszeit und Anzahl der Arbeiter.</p>
+    </div>
+  </div>
+
+  <div class="walk">
+    <span class="tag p">Beispiel FA 1</span><h3 style="margin-top:8px">Lineare Funktion aus zwei Punkten</h3>
+    <div class="task-text">Der Graph einer linearen Funktion f verläuft durch P = (1 | 3) und Q = (4 | 9). Ermittle f(x).</div>
+    <div class="wstep"><div class="n">1</div><div>Steigung als Differenzenquotient: k = <span class="frac"><span>9 − 3</span><span>4 − 1</span></span> = <span class="frac"><span>6</span><span>3</span></span> = <b>2</b>.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Einen Punkt einsetzen: 3 = 2 · 1 + d ⇒ <b>d = 1</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div><b>f(x) = 2x + 1.</b> Probe mit Q: 2 · 4 + 1 = 9 ✓</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag p">Beispiel FA 2</span><h3 style="margin-top:8px">Exponentialmodell aus zwei Messwerten</h3>
+    <div class="task-text">Eine Population hat zu Beginn 200 Individuen, nach 3 Wochen sind es 270. Modelliere exponentiell und gib die wöchentliche Zunahme in Prozent an.</div>
+    <div class="wstep"><div class="n">1</div><div>Ansatz: N(t) = 200 · bᵗ (t in Wochen). Der Startwert 200 ist schon a.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Zweiten Wert einsetzen: 270 = 200 · b³ ⇒ b³ = 1,35.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Dritte Wurzel: b = 1,35^(1/3) ≈ <b>1,1052</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div><b>N(t) = 200 · 1,1052ᵗ</b> – die Population wächst um rund <b>10,52 % pro Woche</b>. Nicht mit 35 % : 3 = 11,7 % rechnen – das wäre ein lineares Denken!</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag p">Beispiel FA 3</span><h3 style="margin-top:8px">Parameter einer Sinusfunktion deuten</h3>
+    <div class="task-text">f(x) = 2 · sin(<span class="frac"><span>π</span><span>6</span></span> · x) + 5 beschreibt die Tageslänge in einem Modell (x in Monaten). Gib Amplitude, Periodenlänge und Mittellage an.</div>
+    <div class="wstep"><div class="n">1</div><div>Amplitude = Faktor vor dem Sinus: <b>2</b> – die Werte schwanken um 2 nach oben und unten.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Periodenlänge p = <span class="frac"><span>2π</span><span>b</span></span> = <span class="frac"><span>2π</span><span>π/6</span></span> = <b>12</b> – ein Jahr, das passt zum Sachzusammenhang.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Mittellage: der addierte Wert <b>5</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>Die Werte liegen also zwischen 5 − 2 = <b>3</b> und 5 + 2 = <b>7</b>. Probiere es im <a href="#labor">Funktionen-Labor</a> aus!</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+</section>
+
+<!-- ================= AN ================= -->
+<section id="an">
+  <div class="sec-head"><div class="badge b-lilac">AN</div><h2>Analysis</h2></div>
+  <p class="lead">Änderungen beschreiben, Extremwerte finden, Bestände aus Änderungsraten rekonstruieren – das Herz der Teil-2-Aufgaben.</p>
+
+  <div class="card">
+    <h3>Vier Änderungsmaße – der Klassiker in Teil 1</h3>
+    <table class="plain">
+      <tr><th>Maß</th><th>Formel im Intervall [a; b]</th><th>Bedeutung</th></tr>
+      <tr><td><b>Absolute Änderung</b></td><td>f(b) − f(a)</td><td>Um wie viel hat sich der Wert geändert? (Einheit von f)</td></tr>
+      <tr><td><b>Relative Änderung</b></td><td><span class="frac"><span>f(b) − f(a)</span><span>f(a)</span></span></td><td>Um wie viel Prozent? (ohne Einheit)</td></tr>
+      <tr><td><b>Differenzenquotient</b></td><td><span class="frac"><span>f(b) − f(a)</span><span>b − a</span></span></td><td>Mittlere Änderungsrate, Steigung der Sekante (Einheit von f pro Einheit von x)</td></tr>
+      <tr><td><b>Differentialquotient</b></td><td>f′(x) = lim<sub>h→0</sub> <span class="frac"><span>f(x+h) − f(x)</span><span>h</span></span></td><td>Momentane Änderungsrate, Steigung der Tangente</td></tr>
+    </table>
+  </div>
+
+  <div class="grid g2">
+    <div class="card area-an">
+      <h3>Ableitungsregeln</h3>
+      <div class="formula">(xⁿ)′ = n · xⁿ⁻¹ &nbsp;&nbsp; (c)′ = 0<br>(eˣ)′ = eˣ &nbsp;&nbsp; (e^(kx))′ = k · e^(kx)<br>(ln x)′ = <span class="frac"><span>1</span><span>x</span></span> &nbsp;&nbsp; (aˣ)′ = aˣ · ln a<br>(sin x)′ = cos x &nbsp;&nbsp; (cos x)′ = −sin x<br>Kettenregel: (f(g(x)))′ = f′(g(x)) · g′(x)</div>
+    </div>
+    <div class="card area-an">
+      <h3>Was f′ und f″ verraten</h3>
+      <table class="plain">
+        <tr><td>f′ &gt; 0</td><td>f streng monoton steigend</td></tr>
+        <tr><td>f′ &lt; 0</td><td>f streng monoton fallend</td></tr>
+        <tr><td>f′ = 0, f″ &lt; 0</td><td>lokales Maximum</td></tr>
+        <tr><td>f′ = 0, f″ &gt; 0</td><td>lokales Minimum</td></tr>
+        <tr><td>f″ &gt; 0 / f″ &lt; 0</td><td>links- / rechtsgekrümmt</td></tr>
+        <tr><td>f″ = 0 mit VZW</td><td>Wendestelle (stärkste Zu- oder Abnahme)</td></tr>
+      </table>
+    </div>
+    <div class="card area-an">
+      <h3>Stammfunktion und Integral</h3>
+      <div class="formula">∫ xⁿ dx = <span class="frac"><span>xⁿ⁺¹</span><span>n + 1</span></span> + C &nbsp; (n ≠ −1)<br><span class="int">∫<span class="lim"><sup>b</sup><sub>a</sub></span></span> f(x) dx = F(b) − F(a)</div>
+      <p>F ist Stammfunktion von f, wenn F′ = f. Jede Stammfunktion unterscheidet sich nur um eine Konstante C.</p>
+    </div>
+    <div class="card area-an">
+      <h3>Integral ≠ Fläche!</h3>
+      <p>Das bestimmte Integral zählt Flächen unter der x-Achse <b>negativ</b>. Für den Flächeninhalt teilst du an den Nullstellen und addierst die Beträge.</p>
+      <p><b>Im Sachzusammenhang:</b> Das Integral einer Änderungsrate ergibt die <b>Änderung des Bestands</b>. Beispiel: ∫ v(t) dt = zurückgelegter Weg.</p>
+    </div>
+    <div class="card area-an">
+      <h3>Bewegung: s, v, a</h3>
+      <div class="formula">s′(t) = v(t) &nbsp;&nbsp; v′(t) = a(t)<br>s(t₂) − s(t₁) = <span class="int">∫<span class="lim"><sup>t₂</sup><sub>t₁</sub></span></span> v(t) dt</div>
+    </div>
+    <div class="card area-an">
+      <h3>Tangentengleichung</h3>
+      <div class="formula">t(x) = f′(x₀) · (x − x₀) + f(x₀)</div>
+      <p>Du brauchst nur zwei Zahlen: den Funktionswert und die Steigung an der Stelle x₀.</p>
+    </div>
+  </div>
+
+  <div class="walk">
+    <span class="tag l">Beispiel AN 1</span><h3 style="margin-top:8px">Vollständige Kurvendiskussion</h3>
+    <div class="task-text">Untersuche f(x) = x³ − 3x auf Extrem- und Wendepunkte.</div>
+    <div class="wstep"><div class="n">1</div><div>Ableitungen: f′(x) = 3x² − 3, &nbsp; f″(x) = 6x.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Notwendige Bedingung für Extremstellen: f′(x) = 0 ⇒ 3x² = 3 ⇒ <b>x = 1</b> oder <b>x = −1</b>.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Hinreichende Bedingung: f″(1) = 6 &gt; 0 ⇒ Minimum; f″(−1) = −6 &lt; 0 ⇒ Maximum.</div></div>
+    <div class="wstep"><div class="n">4</div><div>y-Werte: f(1) = 1 − 3 = −2, f(−1) = −1 + 3 = 2. ⇒ <b>Tiefpunkt (1 | −2), Hochpunkt (−1 | 2)</b>.</div></div>
+    <div class="wstep"><div class="n">5</div><div>Wendestelle: f″(x) = 0 ⇒ x = 0; f″ wechselt dort das Vorzeichen. f(0) = 0 ⇒ <b>Wendepunkt (0 | 0)</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>Kontrolle mit Technologie oder im <a href="#labor">Ableitungs-Labor</a>: Der Wendepunkt liegt genau zwischen den Extrema – bei Polynomen 3. Grades ist das immer so.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag l">Beispiel AN 2</span><h3 style="margin-top:8px">Integral oder Fläche? Die berühmte Falle</h3>
+    <div class="task-text">Berechne für f(x) = x² − 4 das Integral von 0 bis 3 und den Inhalt der Fläche, die der Graph zwischen 0 und 3 mit der x-Achse einschließt.</div>
+    <div class="wstep"><div class="n">1</div><div>Stammfunktion: F(x) = <span class="frac"><span>x³</span><span>3</span></span> − 4x.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Integral: F(3) − F(0) = (9 − 12) − 0 = <b>−3</b>. Negativ – ein erster Hinweis, dass Teile unter der Achse liegen.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Nullstelle im Intervall: x² − 4 = 0 ⇒ <b>x = 2</b>. Dort wechselt f das Vorzeichen.</div></div>
+    <div class="wstep"><div class="n">4</div><div>Getrennt integrieren: von 0 bis 2: <span class="frac"><span>8</span><span>3</span></span> − 8 = −<span class="frac"><span>16</span><span>3</span></span>; von 2 bis 3: −3 + <span class="frac"><span>16</span><span>3</span></span> = <span class="frac"><span>7</span><span>3</span></span>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>Fläche = <span class="frac"><span>16</span><span>3</span></span> + <span class="frac"><span>7</span><span>3</span></span> = <span class="frac"><span>23</span><span>3</span></span> ≈ <b>7,67 FE</b> – ganz anders als das Integral −3!</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag l">Beispiel AN 3</span><h3 style="margin-top:8px">Bestand aus Änderungsrate</h3>
+    <div class="task-text">In einen Behälter mit 10 Litern fließt Wasser mit der Zuflussrate r(t) = 0,5t + 2 (t in Minuten, r in Litern pro Minute). Wie viel Wasser ist nach 6 Minuten im Behälter?</div>
+    <div class="wstep"><div class="n">1</div><div>Die Zuflussrate ist eine Änderungsrate. Die zugeflossene Menge ist ihr Integral: <span class="int">∫<span class="lim"><sup>6</sup><sub>0</sub></span></span> (0,5t + 2) dt.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Stammfunktion: R(t) = 0,25t² + 2t. &nbsp; R(6) − R(0) = 9 + 12 = <b>21 Liter</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>Anfangsbestand dazu: 10 + 21 = <b>31 Liter</b>. Häufiger Fehler: den Anfangsbestand vergessen.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+</section>
+
+<!-- ================= WS ================= -->
+<section id="ws">
+  <div class="sec-head"><div class="badge b-terra">WS</div><h2>Wahrscheinlichkeit und Statistik</h2></div>
+  <p class="lead">Daten beschreiben, Zufall berechnen, von Stichproben auf Grundgesamtheiten schließen.</p>
+
+  <div class="grid g2">
+    <div class="card area-ws">
+      <h3>Lagemaße und Streumaße</h3>
+      <p><b>Arithmetisches Mittel:</b> Summe durch Anzahl – empfindlich gegenüber Ausreißern. <b>Median:</b> der mittlere Wert der geordneten Liste – robust. <b>Modus:</b> häufigster Wert.</p>
+      <p><b>Spannweite:</b> Maximum − Minimum. <b>Quartilsabstand:</b> q₃ − q₁ (Breite der Box im Boxplot, enthält die mittleren 50 %). <b>Standardabweichung:</b> mittlere Abweichung vom Mittelwert, immer ≥ 0.</p>
+    </div>
+    <div class="card area-ws">
+      <h3>Rechenregeln</h3>
+      <div class="formula">Laplace: P(E) = <span class="frac"><span>günstige</span><span>mögliche</span></span><br>Gegenereignis: P(¬E) = 1 − P(E)<br>Unvereinbar: P(A ∪ B) = P(A) + P(B)<br>Allgemein: P(A ∪ B) = P(A) + P(B) − P(A ∩ B)<br>Unabhängig: P(A ∩ B) = P(A) · P(B)</div>
+    </div>
+    <div class="card area-ws">
+      <h3>Baumdiagramm</h3>
+      <p><b>Pfadregel:</b> entlang eines Pfades multiplizieren. <b>Summenregel:</b> Pfade, die zum gleichen Ereignis führen, addieren. „Ohne Zurücklegen“ verändert die Wahrscheinlichkeiten auf der zweiten Stufe.</p>
+      <div class="formula">Bedingt: P(A | B) = <span class="frac"><span>P(A ∩ B)</span><span>P(B)</span></span></div>
+    </div>
+    <div class="card area-ws">
+      <h3>Binomialverteilung</h3>
+      <p>Voraussetzungen: n unabhängige Wiederholungen, nur zwei Ausgänge, gleichbleibende Erfolgswahrscheinlichkeit p.</p>
+      <div class="formula">P(X = k) = (n über k) · pᵏ · (1 − p)ⁿ⁻ᵏ<br>E(X) = μ = n · p &nbsp;&nbsp; σ = √(n · p · (1 − p))</div>
+    </div>
+    <div class="card area-ws">
+      <h3>Normalverteilung</h3>
+      <p>Glockenkurve, symmetrisch um μ. Etwa 68 % der Werte liegen in [μ − σ; μ + σ], etwa 95 % in [μ − 2σ; μ + 2σ]. Für genaue Werte: Technologie (normalCdf) verwenden.</p>
+    </div>
+    <div class="card area-ws">
+      <h3>Konfidenzintervall</h3>
+      <div class="formula">h ± z · √<span class="frac"><span>h · (1 − h)</span><span>n</span></span> &nbsp;&nbsp; 95 %: z ≈ 1,96</div>
+      <p>Größeres n ⇒ schmaleres Intervall. Höhere Sicherheit (z. B. 99 %) ⇒ breiteres Intervall.</p>
+    </div>
+  </div>
+
+  <div class="walk">
+    <span class="tag t">Beispiel WS 1</span><h3 style="margin-top:8px">„Mindestens einmal“ – immer über das Gegenereignis</h3>
+    <div class="task-text">Ein fairer Würfel wird viermal geworfen. Wie groß ist die Wahrscheinlichkeit, mindestens einmal einen Sechser zu werfen?</div>
+    <div class="wstep"><div class="n">1</div><div>„Mindestens einmal“ hat viele Fälle (1, 2, 3 oder 4 Sechser). Das Gegenteil hat nur einen: <b>keinmal</b>.</div></div>
+    <div class="wstep"><div class="n">2</div><div>P(kein Sechser) = (<span class="frac"><span>5</span><span>6</span></span>)⁴ = <span class="frac"><span>625</span><span>1296</span></span> ≈ 0,4823.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>P(mindestens ein Sechser) = 1 − 0,4823 ≈ <b>0,5177 = 51,77 %</b>.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag t">Beispiel WS 2</span><h3 style="margin-top:8px">Bedingte Wahrscheinlichkeit im Baumdiagramm</h3>
+    <div class="task-text">Maschine A fertigt 60 % aller Teile, davon sind 3 % fehlerhaft. Maschine B fertigt 40 %, davon sind 5 % fehlerhaft. Ein zufällig gewähltes Teil ist fehlerhaft. Mit welcher Wahrscheinlichkeit stammt es von Maschine A?</div>
+    <div class="wstep"><div class="n">1</div><div>Pfad A und fehlerhaft: 0,6 · 0,03 = <b>0,018</b>. Pfad B und fehlerhaft: 0,4 · 0,05 = <b>0,020</b>.</div></div>
+    <div class="wstep"><div class="n">2</div><div>P(fehlerhaft) = 0,018 + 0,020 = <b>0,038</b> (Summenregel).</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>P(A | fehlerhaft) = <span class="frac"><span>0,018</span><span>0,038</span></span> ≈ <b>0,4737 = 47,37 %</b>. Obwohl A mehr produziert, stammt weniger als die Hälfte der fehlerhaften Teile von A.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+
+  <div class="walk">
+    <span class="tag t">Beispiel WS 3</span><h3 style="margin-top:8px">Ein 95-%-Konfidenzintervall</h3>
+    <div class="task-text">Bei einer Umfrage unter 400 Personen geben 120 an, regelmäßig mit dem Rad zu fahren. Ermittle ein 95-%-Konfidenzintervall für den Anteil in der Grundgesamtheit.</div>
+    <div class="wstep"><div class="n">1</div><div>Relativer Anteil: h = <span class="frac"><span>120</span><span>400</span></span> = <b>0,3</b>.</div></div>
+    <div class="wstep"><div class="n">2</div><div>Standardfehler: √<span class="frac"><span>0,3 · 0,7</span><span>400</span></span> ≈ 0,02291.</div></div>
+    <div class="wstep"><div class="n">3</div><div>Halbe Intervallbreite: 1,96 · 0,02291 ≈ <b>0,0449</b>.</div></div>
+    <div class="wstep final"><div class="n">✓</div><div>Intervall: [0,3 − 0,0449; 0,3 + 0,0449] ≈ <b>[0,255; 0,345]</b> – also etwa 25,5 % bis 34,5 %.</div></div>
+    <div class="btnrow"><button class="next">Nächster Schritt</button><button class="ghost reset">Von vorne</button></div>
+  </div>
+</section>
+
+<!-- ================= LABORE ================= -->
+<section id="labor">
+  <div class="sec-head"><div class="badge b-petrol">Lab</div><h2>Interaktive Labore</h2></div>
+  <p class="lead">Verstehen entsteht, wenn du selbst etwas veränderst und beobachtest, was passiert. Bewege die Regler und lies mit, was die Zahlen bedeuten.</p>
+
+  <div class="card lab">
+    <h3>1 · Funktionen-Labor</h3>
+    <div class="typebtns" id="ftypes"></div>
+    <canvas id="cvF"></canvas>
+    <div class="sliders" id="fSliders"></div>
+    <div class="readout" id="fRead"></div>
+  </div>
+
+  <div class="card lab">
+    <h3>2 · Von der Sekante zur Tangente</h3>
+    <p class="mini">f(x) = 0,25x³ − 1,5x + 1 · Ziehe h gegen null und beobachte, wie aus dem Differenzenquotienten der Differentialquotient wird.</p>
+    <canvas id="cvD"></canvas>
+    <div class="sliders">
+      <div class="sl"><label>Stelle x₀ <b id="vx0"></b></label><input type="range" id="sx0" min="-3" max="3" step="0.1" value="1"></div>
+      <div class="sl"><label>Abstand h <b id="vh"></b></label><input type="range" id="sh" min="0.05" max="3" step="0.05" value="2"></div>
+    </div>
+    <div class="readout" id="dRead"></div>
+  </div>
+
+  <div class="card lab">
+    <h3>3 · Das Integral als Fläche</h3>
+    <p class="mini">f(x) = 0,3x² + 1 · Je mehr Rechtecke, desto genauer nähert die Summe den exakten Flächeninhalt an.</p>
+    <canvas id="cvI"></canvas>
+    <div class="sliders">
+      <div class="sl"><label>untere Grenze a <b id="va"></b></label><input type="range" id="sa" min="0" max="4.5" step="0.5" value="0"></div>
+      <div class="sl"><label>obere Grenze b <b id="vb"></b></label><input type="range" id="sb" min="0.5" max="5" step="0.5" value="4"></div>
+      <div class="sl"><label>Rechtecke n <b id="vn"></b></label><input type="range" id="sn" min="1" max="50" step="1" value="4"></div>
+    </div>
+    <div class="readout" id="iRead"></div>
+  </div>
+
+  <div class="card lab">
+    <h3>4 · Binomialverteilung</h3>
+    <canvas id="cvB"></canvas>
+    <div class="sliders">
+      <div class="sl"><label>Anzahl n <b id="vbn"></b></label><input type="range" id="sbn" min="1" max="60" step="1" value="20"></div>
+      <div class="sl"><label>Erfolgswahrscheinlichkeit p <b id="vbp"></b></label><input type="range" id="sbp" min="0.01" max="0.99" step="0.01" value="0.3"></div>
+      <div class="sl"><label>von k = <b id="vk1"></b></label><input type="range" id="sk1" min="0" max="60" step="1" value="4"></div>
+      <div class="sl"><label>bis k = <b id="vk2"></b></label><input type="range" id="sk2" min="0" max="60" step="1" value="8"></div>
+    </div>
+    <div class="readout" id="bRead"></div>
+  </div>
+</section>
+
+<!-- ================= FEHLERFALLEN ================= -->
+<section id="fallen">
+  <div class="sec-head"><div class="badge b-terra">!</div><h2>Die zwölf teuersten Fehlerfallen</h2></div>
+  <p class="lead">Bei Kandidatinnen und Kandidaten, die fachlich alles können, entscheiden diese Kleinigkeiten zwischen „Gut“ und „Sehr gut“.</p>
+  <div class="grid g2">
+    <div class="card"><h3>1 · Ein Kreuz zu viel</h3><p>Bei „2 aus 5“ gibt es den Punkt nur für genau zwei Kreuze. Bist du unsicher, entscheide dich trotzdem für zwei – drei Kreuze sind sicher falsch.</p></div>
+    <div class="card"><h3>2 · Grad oder Bogenmaß</h3><p>Steht der Winkel in Grad, muss der Rechner auf DEG stehen. Bei Sinusfunktionen im Sachzusammenhang (f(x) = sin(bx)) rechnest du in RAD.</p></div>
+    <div class="card"><h3>3 · Zu frühes Runden</h3><p>Zwischenergebnisse im Rechner weiterverwenden, erst das Endergebnis runden. Sonst kann das Ergebnis außerhalb der Toleranz landen.</p></div>
+    <div class="card"><h3>4 · Prozent und Prozentpunkte</h3><p>Von 20 % auf 25 % sind es 5 Prozentpunkte, aber eine Zunahme um 25 %.</p></div>
+    <div class="card"><h3>5 · Integral als Fläche</h3><p>Bei Vorzeichenwechsel im Intervall an den Nullstellen teilen und Beträge addieren (siehe Beispiel AN 2).</p></div>
+    <div class="card"><h3>6 · Anfangsbestand vergessen</h3><p>Das Integral der Änderungsrate liefert nur die Änderung. Der Bestand = Anfangsbestand + Änderung.</p></div>
+    <div class="card"><h3>7 · „Mindestens“ direkt rechnen</h3><p>Fast immer schneller und sicherer über das Gegenereignis: 1 − P(keinmal).</p></div>
+    <div class="card"><h3>8 · Lineares Denken bei Wachstum</h3><p>Prozentuelle Zuwächse addieren sich nicht: 3 Jahre mit +10 % sind +33,1 %, nicht +30 %.</p></div>
+    <div class="card"><h3>9 · Ungleichung umdrehen</h3><p>Multiplikation oder Division mit einer negativen Zahl dreht das Ungleichheitszeichen.</p></div>
+    <div class="card"><h3>10 · Einheiten bei der Interpretation</h3><p>„1,6“ ist keine Interpretation. „Die Temperatur steigt im Mittel um 1,6 °C pro Stunde“ schon.</p></div>
+    <div class="card"><h3>11 · Absolute statt relative Änderung</h3><p>Lies genau, welches Änderungsmaß gefragt ist. Die relative Änderung hat keine Einheit.</p></div>
+    <div class="card"><h3>12 · Lösung nicht im Kontext geprüft</h3><p>Eine negative Zeit, eine Wahrscheinlichkeit über 1, ein Zeitpunkt außerhalb des Definitionsbereichs – immer kurz auf Plausibilität prüfen.</p></div>
+  </div>
+</section>
+
+<!-- ================= TRAINING ================= -->
+<section id="training">
+  <div class="sec-head"><div class="badge b-lilac">✎</div><h2>Training nach Bereichen</h2></div>
+  <p class="lead">Sechzehn Aufgaben zum Aufwärmen, vier je Inhaltsbereich. Jede Lösung wird erklärt – auch wenn du richtig liegst, lohnt der Blick darauf, woran du die Antwort sicher erkennst.</p>
+  <div class="scorebar"><span>Training</span><span id="trainScore"></span></div>
+  <div id="quiz"></div>
+  <div class="btnrow"><button class="ghost" id="quizReset">Training neu starten</button></div>
+</section>
+
+<!-- ================= SIMULATION ================= -->
+<section id="simulation">
+  <div class="sim-hero">
+    <h2 style="color:#fff">★ Maturasimulation – teste dein Können</h2>
+    <p>Diese Simulation folgt dem echten Format: 24 Teil-1-Aufgaben und vier Teil-2-Aufgaben, 270 Minuten, Best-of-Regel bei den Aufgaben 26 bis 28 und offizieller Beurteilungsschlüssel. Nimm deinen Taschenrechner oder GeoGebra und die Formelsammlung – und arbeite so, als wäre heute der Prüfungstag.</p>
+    <div class="timer">
+      <div class="clock" id="clock">270:00</div>
+      <button id="tStart">Start</button><button id="tPause">Pause</button><button id="tReset">Zurücksetzen</button>
+      <span id="tMsg" class="mini" style="color:#fff;opacity:.9"></span>
+    </div>
+  </div>
+
+  <div class="note blue"><b>Eingabehinweise:</b> Dezimalzahlen mit Komma oder Punkt, Brüche als 1/6, Einheiten weglassen. Gerundete Ergebnisse werden innerhalb der angegebenen Toleranz als richtig gewertet.</div>
+
+  <div class="part-head"><h3 style="margin:0">Teil 1 · Aufgaben 1–24</h3><span class="tag">je 1 Punkt</span></div>
+  <div id="t1"></div>
+  <div class="btnrow"><button class="petrol" id="check1">Teil 1 abgeben und auswerten</button></div>
+  <div class="card hidden" id="t1res" style="margin-top:16px;border:2px solid var(--petrol)"></div>
+
+  <div class="part-head"><h3 style="margin:0">Teil 2 · Aufgaben 25–28</h3><span class="tag l">Best-of bei 26–28</span></div>
+  <div id="t2"></div>
+  <div class="btnrow"><button class="lilac" id="check2">Teil 2 abgeben und auswerten</button></div>
+
+  <div class="result" id="result">
+    <h3>Gesamtauswertung</h3>
+    <p class="mini">Gib zuerst Teil 1 und Teil 2 ab. Bei offenen Teilaufgaben trägst du nach dem Lesen der Musterlösung deine Punkte selbst ein.</p>
+    <div class="btnrow" style="margin-bottom:16px"><button class="lilac" id="finalBtn">Auswerten</button></div>
+    <div id="finalOut" class="hidden">
+      <p><b>Teil 1:</b> <span id="f1"></span> / 24</p><div class="bar"><div id="f1bar" style="background:var(--petrol)"></div></div>
+      <p><b>Teil 2 (gezählt):</b> <span id="f2"></span> / 12 <span class="mini" id="fdrop"></span></p><div class="bar"><div id="f2bar" style="background:var(--lilac)"></div></div>
+      <p><b>Gesamt:</b> <span id="ftot"></span> / 36</p>
+      <div class="grade" id="fgrade"></div>
+      <p id="ftext" style="margin-top:12px"></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>Mathematik Zentralmatura · Lern- und Übungsseite · alle Aufgaben eigens erstellt</footer>
+
+<script>
+/* ===== Hilfen ===== */
+function sget(k){try{return localStorage.getItem('mathmat_'+k)}catch(e){return null}}
+function sset(k,v){try{localStorage.setItem('mathmat_'+k,v)}catch(e){}}
+const fmt=(v,d=4)=>Number(v).toLocaleString('de-DE',{maximumFractionDigits:d});
+function parseNum(s){
+  if(s==null)return NaN; s=String(s).trim().replace(/\s/g,'').replace(/[a-zA-Z°€²³]+$/,'');
+  let pct=false; if(s.endsWith('%')){pct=true;s=s.slice(0,-1)}
+  s=s.replace(',','.');
+  let v; if(s.includes('/')){const [a,b]=s.split('/');v=parseFloat(a)/parseFloat(b)} else v=parseFloat(s);
+  if(!/^[-+]?[\d.]+(\/[-+]?[\d.]+)?$/.test(s))return NaN;
+  return pct?v/100:v;
+}
+
+/* ===== Schritt-für-Schritt ===== */
+document.querySelectorAll('.walk').forEach(w=>{
+  const st=[...w.querySelectorAll('.wstep')];let i=0;const nb=w.querySelector('.next');
+  function show(){st.forEach((s,j)=>s.classList.toggle('show',j<i));nb.disabled=i>=st.length;nb.textContent=i===0?'Lösung Schritt für Schritt':'Nächster Schritt'}
+  nb.onclick=()=>{i++;show()};w.querySelector('.reset').onclick=()=>{i=0;show()};show();
+});
+
+/* ===== Plot-Grundgerüst ===== */
+function niceStep(r){const raw=r/10;const p=Math.pow(10,Math.floor(Math.log10(raw)));const m=raw/p;return (m<1.5?1:m<3.5?2:m<7.5?5:10)*p}
+function frame(cv,xr,yr){
+  const dpr=window.devicePixelRatio||1,w=cv.parentElement.clientWidth-2,h=Math.round(Math.min(420,Math.max(260,w*0.6)));
+  cv.style.height=h+'px';cv.width=w*dpr;cv.height=h*dpr;const ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+  const X=x=>(x-xr[0])/(xr[1]-xr[0])*w, Y=y=>h-(y-yr[0])/(yr[1]-yr[0])*h;
+  ctx.fillStyle='#fffdf9';ctx.fillRect(0,0,w,h);
+  const sx=niceStep(xr[1]-xr[0]),sy=niceStep(yr[1]-yr[0]);
+  ctx.strokeStyle='#ece6db';ctx.lineWidth=1;ctx.font='12px Lexend';ctx.fillStyle='#8a8590';
+  for(let x=Math.ceil(xr[0]/sx)*sx;x<=xr[1];x+=sx){ctx.beginPath();ctx.moveTo(X(x),0);ctx.lineTo(X(x),h);ctx.stroke();if(Math.abs(x)>1e-9)ctx.fillText(+x.toFixed(2),X(x)+3,Math.min(h-4,Math.max(14,Y(0)+14)))}
+  for(let y=Math.ceil(yr[0]/sy)*sy;y<=yr[1];y+=sy){ctx.beginPath();ctx.moveTo(0,Y(y));ctx.lineTo(w,Y(y));ctx.stroke();if(Math.abs(y)>1e-9)ctx.fillText(+y.toFixed(2),Math.min(w-30,Math.max(4,X(0)+5)),Y(y)-3)}
+  ctx.strokeStyle='#56535d';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(0,Y(0));ctx.lineTo(w,Y(0));ctx.moveTo(X(0),0);ctx.lineTo(X(0),h);ctx.stroke();
+  return {ctx,w,h,X,Y,xr,yr};
+}
+function curve(F,f,color,lw=3,dash){
+  const {ctx,w,X,Y,xr,yr}=F;ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.setLineDash(dash||[]);ctx.beginPath();let pen=false;
+  for(let px=0;px<=w;px++){const x=xr[0]+px/w*(xr[1]-xr[0]);const y=f(x);
+    if(!isFinite(y)||y>yr[1]+50*(yr[1]-yr[0])||y<yr[0]-50*(yr[1]-yr[0])){pen=false;continue}
+    if(!pen){ctx.moveTo(px,Y(y));pen=true}else ctx.lineTo(px,Y(y))}
+  ctx.stroke();ctx.setLineDash([]);
+}
+function dot(F,x,y,color){const {ctx,X,Y}=F;ctx.fillStyle=color;ctx.beginPath();ctx.arc(X(x),Y(y),6,0,7);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke()}
+
+/* ===== Labor 1: Funktionen ===== */
+const FT={
+ lin:{name:'Linear',p:[['k',-3,3,.1,1],['d',-5,5,.5,1]],f:(a)=>x=>a[0]*x+a[1],
+   txt:a=>`<b>f(x) = ${fmt(a[0],2)} · x ${a[1]<0?'−':'+'} ${fmt(Math.abs(a[1]),2)}</b><br>Steigung k = ${fmt(a[0],2)}: Geht man eine Einheit nach rechts, ${a[0]>0?'steigt':a[0]<0?'fällt':'ändert sich'} der Funktionswert ${a[0]===0?'nicht':'um '+fmt(Math.abs(a[0]),2)}. Der Graph schneidet die y-Achse bei d = ${fmt(a[1],2)}.${a[0]!==0?' Nullstelle: x = '+fmt(-a[1]/a[0],3)+'.':''}`},
+ quad:{name:'Quadratisch',p:[['a',-2,2,.1,1],['u',-4,4,.5,0],['v',-5,5,.5,-2]],f:a=>x=>a[0]*(x-a[1])**2+a[2],
+   txt:a=>{let n='';if(a[0]!==0){const r=-a[2]/a[0];n=r>0?`Zwei Nullstellen: x = ${fmt(a[1]-Math.sqrt(r),3)} und x = ${fmt(a[1]+Math.sqrt(r),3)}.`:r===0?`Eine (doppelte) Nullstelle bei x = ${fmt(a[1],2)}.`:'Keine reellen Nullstellen.'}
+   return `<b>f(x) = ${fmt(a[0],2)} · (x ${a[1]<0?'+':'−'} ${fmt(Math.abs(a[1]),2)})² ${a[2]<0?'−':'+'} ${fmt(Math.abs(a[2]),2)}</b><br>Scheitelpunkt (${fmt(a[1],2)} | ${fmt(a[2],2)}). Die Parabel ist nach ${a[0]>0?'oben':a[0]<0?'unten':'– (a = 0: keine Parabel, sondern eine Gerade)'} geöffnet${a[0]!==0?(Math.abs(a[0])>1?' und gestreckt':Math.abs(a[0])<1?' und gestaucht':''):''}. ${n}`}},
+ exp:{name:'Exponentiell',p:[['a',.5,5,.5,1],['b',.2,2.5,.05,1.5]],f:a=>x=>a[0]*Math.pow(a[1],x),
+   txt:a=>{const pc=(a[1]-1)*100;let t=a[1]>1?`Wachstum um ${fmt(pc,1)} % pro Einheit. Verdopplungszeit: ${fmt(Math.log(2)/Math.log(a[1]),3)}.`:a[1]<1?`Abnahme um ${fmt(-pc,1)} % pro Einheit. Halbwertszeit: ${fmt(Math.log(.5)/Math.log(a[1]),3)}.`:'b = 1: konstante Funktion.';
+   return `<b>f(x) = ${fmt(a[0],2)} · ${fmt(a[1],2)}ˣ</b><br>Startwert f(0) = ${fmt(a[0],2)}. ${t} Der Graph nähert sich der x-Achse, erreicht sie aber nie.`}},
+ sin:{name:'Sinus',p:[['a',.5,4,.5,2],['b',.5,3,.25,1],['d',-3,3,.5,0]],f:a=>x=>a[0]*Math.sin(a[1]*x)+a[2],
+   txt:a=>`<b>f(x) = ${fmt(a[0],2)} · sin(${fmt(a[1],2)} · x) ${a[2]<0?'−':'+'} ${fmt(Math.abs(a[2]),2)}</b><br>Amplitude ${fmt(a[0],2)}, Periodenlänge 2π/b ≈ ${fmt(2*Math.PI/a[1],3)}, Mittellage y = ${fmt(a[2],2)}. Die Werte liegen zwischen ${fmt(a[2]-a[0],2)} und ${fmt(a[2]+a[0],2)}.`}
+};
+let curT='lin',curP=[];
+function buildF(){
+  document.getElementById('ftypes').innerHTML=Object.keys(FT).map(k=>`<button data-t="${k}" class="${k===curT?'on':''}">${FT[k].name}</button>`).join('');
+  const T=FT[curT];curP=T.p.map(p=>p[4]);
+  document.getElementById('fSliders').innerHTML=T.p.map((p,i)=>`<div class="sl"><label>${p[0]} <b id="fv${i}">${fmt(p[4],2)}</b></label><input type="range" data-i="${i}" min="${p[1]}" max="${p[2]}" step="${p[3]}" value="${p[4]}"></div>`).join('');
+  document.querySelectorAll('#fSliders input').forEach(s=>s.oninput=()=>{curP[+s.dataset.i]=+s.value;document.getElementById('fv'+s.dataset.i).textContent=fmt(+s.value,2);drawF()});
+  drawF();
+}
+document.getElementById('ftypes').onclick=e=>{if(e.target.dataset.t){curT=e.target.dataset.t;buildF()}};
+function drawF(){const F=frame(document.getElementById('cvF'),[-6,6],[-8,8]);curve(F,FT[curT].f(curP),'#1d6b74');document.getElementById('fRead').innerHTML=FT[curT].txt(curP)}
+
+/* ===== Labor 2: Sekante/Tangente ===== */
+const fd=x=>0.25*x**3-1.5*x+1, fdp=x=>0.75*x*x-1.5;
+function drawD(){
+  const x0=+sx0.value,h=+sh.value;vx0.textContent=fmt(x0,2);vh.textContent=fmt(h,2);
+  const F=frame(document.getElementById('cvD'),[-4,4],[-4,5]);
+  const m=(fd(x0+h)-fd(x0))/h,k=fdp(x0);
+  curve(F,x=>fd(x0)+m*(x-x0),'#a7843b',2,[6,5]);
+  curve(F,x=>fd(x0)+k*(x-x0),'#9c4f3d',2);
+  curve(F,fd,'#3a5a8c',3);
+  dot(F,x0,fd(x0),'#9c4f3d');dot(F,x0+h,fd(x0+h),'#a7843b');
+  dRead.innerHTML=`<span style="color:#a7843b">■</span> <b>Sekante</b> – Differenzenquotient: <span class="frac"><span>f(${fmt(x0+h,2)}) − f(${fmt(x0,2)})</span><span>${fmt(h,2)}</span></span> = <b>${fmt(m,4)}</b><br><span style="color:#9c4f3d">■</span> <b>Tangente</b> – Differentialquotient f′(${fmt(x0,2)}) = 0,75 · ${fmt(x0,2)}² − 1,5 = <b>${fmt(k,4)}</b><br>Differenz: ${fmt(Math.abs(m-k),4)} – ${h<=0.1?'fast verschwunden! Genau das meint der Grenzwert h → 0.':'verkleinere h und beobachte, wie die Sekante zur Tangente wird.'}${Math.abs(k)<0.05?' <b>Hier ist die Tangente waagrecht – ein Extremum!</b>':''}`;
+}
+const sx0=document.getElementById('sx0'),sh=document.getElementById('sh'),vx0=document.getElementById('vx0'),vh=document.getElementById('vh'),dRead=document.getElementById('dRead');
+sx0.oninput=drawD;sh.oninput=drawD;
+
+/* ===== Labor 3: Integral ===== */
+const fi=x=>0.3*x*x+1, Fi=x=>0.1*x**3+x;
+function drawI(){
+  let a=+sa.value,b=+sb.value,n=+sn.value;if(b<=a){b=a+.5;sb.value=b}
+  va.textContent=fmt(a,1);vb.textContent=fmt(b,1);vn.textContent=n;
+  const F=frame(document.getElementById('cvI'),[-.5,5.5],[-.5,9]);const {ctx,X,Y}=F;
+  const dx=(b-a)/n;let sum=0;
+  for(let i=0;i<n;i++){const x=a+i*dx,y=fi(x);sum+=y*dx;ctx.fillStyle='rgba(93,74,126,.22)';ctx.strokeStyle='rgba(93,74,126,.7)';ctx.lineWidth=1;ctx.fillRect(X(x),Y(y),X(x+dx)-X(x),Y(0)-Y(y));ctx.strokeRect(X(x),Y(y),X(x+dx)-X(x),Y(0)-Y(y))}
+  curve(F,fi,'#5d4a7e',3);
+  const ex=Fi(b)-Fi(a);
+  iRead.innerHTML=`Untersumme mit ${n} Rechteck${n>1?'en':''}: <b>${fmt(sum,4)}</b><br>Exaktes Integral: F(x) = 0,1x³ + x ⇒ F(${fmt(b,1)}) − F(${fmt(a,1)}) = <b>${fmt(ex,4)}</b><br>Fehler: ${fmt(ex-sum,4)} (${fmt((ex-sum)/ex*100,2)} %) – ${n<20?'erhöhe n!':'mit vielen Rechtecken wird die Summe zum Integral.'}`;
+}
+const sa=document.getElementById('sa'),sb=document.getElementById('sb'),sn=document.getElementById('sn'),va=document.getElementById('va'),vb=document.getElementById('vb'),vn=document.getElementById('vn'),iRead=document.getElementById('iRead');
+[sa,sb,sn].forEach(s=>s.oninput=drawI);
+
+/* ===== Labor 4: Binomial ===== */
+function binom(n,p){const r=[];let c=1;for(let k=0;k<=n;k++){if(k>0)c=c*(n-k+1)/k;r.push(c*Math.pow(p,k)*Math.pow(1-p,n-k))}return r}
+function drawB(){
+  const n=+sbn.value,p=+sbp.value;sk1.max=n;sk2.max=n;let k1=Math.min(+sk1.value,n),k2=Math.min(+sk2.value,n);if(k2<k1)k2=k1;
+  vbn.textContent=n;vbp.textContent=fmt(p,2);vk1.textContent=k1;vk2.textContent=k2;
+  const pm=binom(n,p),mx=Math.max(...pm);
+  const F=frame(document.getElementById('cvB'),[-1,n+1],[-mx*.06,mx*1.15]);const {ctx,X,Y}=F;
+  let P=0;pm.forEach((v,k)=>{const inR=k>=k1&&k<=k2;if(inR)P+=v;ctx.fillStyle=inR?'#9c4f3d':'#c9c2d6';ctx.fillRect(X(k-.4),Y(v),X(k+.4)-X(k-.4),Y(0)-Y(v))});
+  const mu=n*p,sg=Math.sqrt(n*p*(1-p));
+  ctx.strokeStyle='#3a5a8c';ctx.lineWidth=2;ctx.setLineDash([6,4]);ctx.beginPath();ctx.moveTo(X(mu),0);ctx.lineTo(X(mu),F.h);ctx.stroke();ctx.setLineDash([]);
+  bRead.innerHTML=`<b>P(${k1} ≤ X ≤ ${k2}) = ${fmt(P,4)}</b> &nbsp;(= ${fmt(P*100,2)} %)<br>Erwartungswert μ = n · p = <b>${fmt(mu,3)}</b> (blaue Linie) &nbsp;·&nbsp; Standardabweichung σ = <b>${fmt(sg,4)}</b><br>P(X = ${k1}) = ${fmt(pm[k1],5)} &nbsp;·&nbsp; P(X ≥ 1) = 1 − P(X = 0) = ${fmt(1-pm[0],5)}`;
+}
+const sbn=document.getElementById('sbn'),sbp=document.getElementById('sbp'),sk1=document.getElementById('sk1'),sk2=document.getElementById('sk2'),vbn=document.getElementById('vbn'),vbp=document.getElementById('vbp'),vk1=document.getElementById('vk1'),vk2=document.getElementById('vk2'),bRead=document.getElementById('bRead');
+[sbn,sbp,sk1,sk2].forEach(s=>s.oninput=drawB);
+
+function drawAll(){drawF();drawD();drawI();drawB()}
+buildF();drawD();drawI();drawB();
+let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawAll,150)});
+
+/* ===== Training ===== */
+const quiz=[
+ {t:'AG',p:'Welcher Term ist gleichwertig zu (a + b)²?',o:['a² + b²','a² + 2ab + b²','2a + 2b','a² + ab + b²'],a:1,e:'Binomische Formel: (a + b)² = (a + b)(a + b) = a² + ab + ba + b² = a² + 2ab + b². Der Klassiker-Fehler a² + b² vergisst die gemischten Glieder.'},
+ {t:'AG',p:'Löse die Gleichung 3x − 7 = 2x + 5.',o:['x = −2','x = 2','x = 12','x = −12'],a:2,e:'−2x auf beiden Seiten: x − 7 = 5, dann +7: x = 12. Probe: 3 · 12 − 7 = 29 und 2 · 12 + 5 = 29 ✓'},
+ {t:'AG',p:'Welche Lösungsmenge hat die Ungleichung −2x > 6?',o:['x > −3','x < −3','x > 3','x < 3'],a:1,e:'Division durch −2 dreht das Zeichen: x < −3. Probe mit x = −4: −2 · (−4) = 8 > 6 ✓'},
+ {t:'AG',p:'Berechne das Skalarprodukt (2 | 1) · (3 | −4).',o:['2','10','−2','(6 | −4)'],a:0,e:'2 · 3 + 1 · (−4) = 6 − 4 = 2. Das Skalarprodukt ist eine Zahl, kein Vektor – (6 | −4) ist also sicher falsch.'},
+ {t:'FA',p:'Ein Wert nimmt pro Jahr um 5 % ab. Mit welchem Faktor wird jährlich multipliziert?',o:['0,05','0,5','0,95','1,05'],a:2,e:'Abnahme um 5 %: Es bleiben 95 % übrig, also Faktor 1 − 0,05 = 0,95.'},
+ {t:'FA',p:'Welche Funktion beschreibt eine indirekte Proportionalität?',o:['f(x) = 4x','f(x) = 4/x','f(x) = x + 4','f(x) = 4x²'],a:1,e:'Indirekt proportional heißt: doppeltes x, halber Funktionswert – das leistet f(x) = k/x. f(x) = 4x ist direkt proportional.'},
+ {t:'FA',p:'f(x) = a · bˣ mit a > 0 und 0 < b < 1. Welche Aussage ist richtig?',o:['f ist streng monoton steigend.','f ist streng monoton fallend.','f hat genau eine Nullstelle.','f ist periodisch.'],a:1,e:'Bei 0 < b < 1 wird pro Schritt mit einer Zahl kleiner als 1 multipliziert – die Werte werden immer kleiner, bleiben aber positiv. Es gibt keine Nullstelle.'},
+ {t:'FA',p:'Welche Periodenlänge hat f(x) = sin(x)?',o:['π','2π','1','π/2'],a:1,e:'Nach einer vollen Umdrehung am Einheitskreis (2π im Bogenmaß bzw. 360°) wiederholt sich der Sinus.'},
+ {t:'AN',p:'Was ist die Ableitung von f(x) = e^(2x)?',o:['e^(2x)','2 · e^(2x)','2x · e^(2x−1)','e^(2x)/2'],a:1,e:'Kettenregel: äußere Ableitung e^(2x), innere Ableitung 2 – also 2 · e^(2x). Die Potenzregel gilt hier nicht, weil x im Exponenten steht.'},
+ {t:'AN',p:'Für alle x im Intervall [1; 4] gilt f′(x) < 0. Was folgt daraus?',o:['f ist in [1; 4] negativ.','f ist in [1; 4] streng monoton fallend.','f ist in [1; 4] rechtsgekrümmt.','f hat in [1; 4] ein Maximum.'],a:1,e:'Das Vorzeichen von f′ verrät die Monotonie – nicht das Vorzeichen von f selbst. Über die Krümmung entscheidet f″.'},
+ {t:'AN',p:'Woran erkennt man eine Wendestelle?',o:['f′(x) = 0','f″(x) = 0 mit Vorzeichenwechsel von f″','f(x) = 0','f′(x) = f(x)'],a:1,e:'An einer Wendestelle wechselt die Krümmung, also wechselt f″ das Vorzeichen. f″(x) = 0 allein reicht nicht – erst der Vorzeichenwechsel macht es sicher.'},
+ {t:'AN',p:'r(t) ist die Zuflussrate in Litern pro Minute. Was gibt ∫ von 0 bis 10 r(t) dt an?',o:['die Wassermenge im Behälter nach 10 Minuten','die in den ersten 10 Minuten zugeflossene Wassermenge','die mittlere Zuflussrate','die Zuflussrate nach 10 Minuten'],a:1,e:'Das Integral einer Änderungsrate liefert die Änderung des Bestands – hier die zugeflossene Menge. Für die Menge im Behälter müsste man den Anfangsbestand addieren.'},
+ {t:'WS',p:'A und B sind unvereinbare Ereignisse. Wie berechnet man P(A ∪ B)?',o:['P(A) · P(B)','P(A) + P(B)','P(A) + P(B) − P(A) · P(B)','1 − P(A) · P(B)'],a:1,e:'Unvereinbar heißt: A und B können nicht gleichzeitig eintreten, P(A ∩ B) = 0. Daher P(A ∪ B) = P(A) + P(B).'},
+ {t:'WS',p:'Wie berechnet man am geschicktesten P(mindestens ein Treffer) bei n Versuchen?',o:['n · p','1 − P(kein Treffer)','P(genau ein Treffer)','pⁿ'],a:1,e:'„Mindestens ein“ umfasst viele Fälle, das Gegenereignis „kein Treffer“ nur einen. Daher 1 − (1 − p)ⁿ.'},
+ {t:'WS',p:'Welche Voraussetzung gehört zur Binomialverteilung?',o:['Die Erfolgswahrscheinlichkeit ändert sich von Versuch zu Versuch.','Es gibt genau zwei mögliche Ausgänge pro Versuch.','Die Versuche hängen voneinander ab.','Es muss mindestens 100 Versuche geben.'],a:1,e:'Binomialverteilt ist eine Zufallsvariable bei n unabhängigen Versuchen mit genau zwei Ausgängen und gleichbleibender Erfolgswahrscheinlichkeit p.'},
+ {t:'WS',p:'Wie verändert sich ein 95-%-Konfidenzintervall, wenn der Stichprobenumfang n größer wird (bei gleichem h)?',o:['Es wird breiter.','Es wird schmaler.','Es bleibt gleich.','Es verschiebt sich nach rechts.'],a:1,e:'n steht im Nenner unter der Wurzel: Je größer n, desto kleiner der Standardfehler – das Intervall wird schmaler, die Schätzung genauer.'}
+];
+let qDone=0,qRight=0;
+function renderQuiz(){qDone=0;qRight=0;updQ();
+  document.getElementById('quiz').innerHTML=quiz.map((q,i)=>`<div class="q"><div class="qhead"><span class="tag ${{AG:'',FA:'p',AN:'l',WS:'t'}[q.t]}">${q.t}</span> &nbsp;Aufgabe ${i+1} von ${quiz.length}</div><div class="prompt">${q.p}</div><div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${i}" data-o="${j}">${o}</button>`).join('')}</div><div class="expl" id="qe${i}"></div></div>`).join('')}
+function updQ(){document.getElementById('trainScore').textContent=`${qRight} / ${qDone} richtig · ${quiz.length-qDone} offen`}
+document.getElementById('quiz').onclick=e=>{const b=e.target.closest('.opt');if(!b)return;const box=b.parentElement;if(box.dataset.done)return;box.dataset.done=1;qDone++;
+  const qi=+b.dataset.q,oi=+b.dataset.o,q=quiz[qi],ok=oi===q.a;if(ok)qRight++;
+  box.querySelectorAll('.opt').forEach((x,j)=>{if(j===q.a)x.classList.add('right');else if(j===oi)x.classList.add('wrong')});
+  const ex=document.getElementById('qe'+qi);ex.innerHTML=(ok?'<b class="ok">Richtig! </b>':'<b class="no">Noch nicht ganz. </b>')+q.e;ex.classList.add('show');updQ()};
+document.getElementById('quizReset').onclick=renderQuiz;renderQuiz();
+
+/* ===== Timer ===== */
+let total=270*60,left=total,tid=null;const sv=sget('timer');if(sv!==null&&!isNaN(+sv))left=+sv;
+function showClock(){const m=Math.floor(left/60),s=left%60;document.getElementById('clock').textContent=`${m}:${String(s).padStart(2,'0')}`;
+  const el=document.getElementById('tMsg');const used=total-left;
+  el.textContent=left===0?'Die Zeit ist um – Stifte weg!':left<=40*60?'Kontrollphase: Kreuze, Einheiten, Rundungen prüfen.':used>=110*60?'Spätestens jetzt: Wechsel zu Teil 2.':''}
+document.getElementById('tStart').onclick=()=>{if(tid)return;tid=setInterval(()=>{if(left>0){left--;sset('timer',left);showClock()}else{clearInterval(tid);tid=null}},1000)};
+document.getElementById('tPause').onclick=()=>{clearInterval(tid);tid=null};
+document.getElementById('tReset').onclick=()=>{clearInterval(tid);tid=null;left=total;sset('timer',left);showClock()};
+showClock();
+
+/* ===== Teil 1 ===== */
+const T1=[
+ {area:'ag',type:'two',title:'Zahlenmengen',p:'Kreuze die beiden zutreffenden Aussagen an.',o:['√2 ∈ ℚ','−3 ∈ ℤ','0,3̅ ∈ ℚ','π ∈ ℚ','√(−4) ∈ ℝ'],a:[1,2],e:'−3 ist eine ganze Zahl. 0,3̅ ist periodisch und lässt sich als Bruch 1/3 schreiben, ist also rational. √2 und π sind irrational, und √(−4) ist keine reelle Zahl (sondern die komplexe Zahl 2i).'},
+ {area:'ag',type:'one',title:'Formel umformen',p:'Das Volumen eines Drehzylinders ist V = r² · π · h. Kreuze die Formel an, die r in Abhängigkeit von V und h richtig angibt.',o:['r = V / (π · h)','r = √(V · π · h)','r = √(V / (π · h))','r = √V / (π · h)','r = (V − π · h)²','r = √(V / π) · h'],a:2,e:'Zuerst durch π · h dividieren: r² = V / (π · h). Dann die Wurzel ziehen: r = √(V / (π · h)). Die Wurzel muss den ganzen Bruch umfassen.'},
+ {area:'ag',type:'gap',title:'Lösungsfälle eines Gleichungssystems',p:'Gegeben ist das System I: 2x + 3y = 6 und II: 4x + a · y = b mit a, b ∈ ℝ. Ergänze die Textlücken so, dass eine korrekte Aussage entsteht.',text:'Für a = 6 und b = 12 hat das Gleichungssystem {0}, für a = 6 und b = 10 hat es {1}.',g:[['genau eine Lösung','keine Lösung','unendlich viele Lösungen'],['genau eine Lösung','keine Lösung','unendlich viele Lösungen']],a:[2,1],e:'Für a = 6 ist Gleichung II auf der linken Seite das Doppelte von I (4x + 6y). Bei b = 12 ist II genau das Doppelte von I – beide beschreiben dieselbe Gerade: unendlich viele Lösungen. Bei b = 10 widersprechen sich die Gleichungen (4x + 6y kann nicht gleichzeitig 12 und 10 sein): parallele Geraden, keine Lösung.'},
+ {area:'ag',type:'num',title:'Länge einer Strecke',p:'Gegeben sind die Punkte A = (1 | 2) und B = (4 | 6). Berechne die Länge der Strecke AB.',ans:5,tol:0.001,e:'AB⃗ = (3 | 4), |AB⃗| = √(3² + 4²) = √25 = 5.'},
+ {area:'ag',type:'num',title:'Orthogonale Vektoren',p:'Gegeben sind a⃗ = (3 | −2) und b⃗ = (4 | k). Bestimme k so, dass a⃗ und b⃗ normal aufeinander stehen.',ans:6,tol:0.001,e:'Orthogonal ⇔ Skalarprodukt 0: 3 · 4 + (−2) · k = 0 ⇒ 12 − 2k = 0 ⇒ k = 6.'},
+ {area:'ag',type:'num',title:'Leiter an der Wand',p:'Eine 5 m lange Leiter lehnt an einer senkrechten Wand und schließt mit dem waagrechten Boden einen Winkel von 70° ein. Berechne, in welcher Höhe (in m) die Leiter die Wand berührt. (Toleranz ± 0,02)',ans:4.6985,tol:0.02,e:'Die Leiter ist die Hypotenuse, die gesuchte Höhe die Gegenkathete zum 70°-Winkel: h = 5 · sin 70° ≈ 4,70 m. Rechner auf Grad (DEG) stellen!'},
+ {area:'fa',type:'two',title:'Lineare Funktion',p:'Gegeben ist f(x) = −2x + 3. Kreuze die beiden zutreffenden Aussagen an.',o:['Der Graph schneidet die y-Achse im Punkt (0 | 3).','f ist streng monoton steigend.','Die Nullstelle von f ist x = 1,5.','Es gilt f(1) = −1.','Die Steigung von f ist 3.'],a:[0,2],e:'f(0) = 3 ✓. Nullstelle: −2x + 3 = 0 ⇒ x = 1,5 ✓. Die Steigung ist −2, also ist f fallend. f(1) = −2 + 3 = 1, nicht −1.'},
+ {area:'fa',type:'num',title:'Verdopplung eines Kapitals',p:'Ein Kapital wächst jährlich um 3 %. Berechne, nach wie vielen Jahren es sich verdoppelt hat. (Toleranz ± 0,05)',ans:23.4498,tol:0.05,e:'1,03ⁿ = 2 ⇒ n = ln 2 / ln 1,03 ≈ 23,45 Jahre. Die Faustregel „72 : Zinssatz“ ergibt 24 – gut zur Kontrolle, aber nicht genau genug.'},
+ {area:'fa',type:'one',title:'Halbwertszeit',p:'Ein Stoff zerfällt exponentiell. Kreuze an, wie viel Prozent der Anfangsmenge nach drei Halbwertszeiten noch vorhanden sind.',o:['25 %','33,3 %','12,5 %','6,25 %','87,5 %','3 %'],a:2,e:'Jede Halbwertszeit halbiert die Menge: 100 % → 50 % → 25 % → 12,5 %. Allgemein: (½)³ = 1/8 = 12,5 %.'},
+ {area:'fa',type:'gap',title:'Sinusfunktion',p:'Gegeben ist f(x) = 3 · sin(2x). Ergänze die Textlücken.',text:'Die Funktion f hat die Amplitude {0} und die Periodenlänge {1}.',g:[['2','3','6'],['π','2π','4π']],a:[1,0],e:'Die Amplitude ist der Faktor vor dem Sinus: 3. Die Periodenlänge ist 2π / b = 2π / 2 = π – der Faktor 2 im Argument staucht die Periode.'},
+ {area:'fa',type:'match',title:'Funktionen und Eigenschaften',p:'Ordne den vier Funktionen jeweils die zutreffende Eigenschaft aus A bis F zu.',items:['f₁(x) = 2x + 1','f₂(x) = x² − 4','f₃(x) = 2 · 0,5ˣ','f₄(x) = 1/x'],opts:['A: Der Graph ist eine Gerade.','B: Die Funktion hat genau zwei Nullstellen.','C: Die Funktion ist auf ganz ℝ definiert und dort streng monoton fallend.','D: Die Funktion ist an der Stelle x = 0 nicht definiert.','E: Alle Funktionswerte sind negativ.','F: Die Funktion ist periodisch.'],a:[0,1,2,3],e:'f₁ ist linear (A). f₂ hat die Nullstellen −2 und 2 (B). f₃ ist eine Exponentialfunktion mit 0 < b < 1, auf ganz ℝ definiert und fallend (C). f₄ ist an x = 0 nicht definiert (D). E und F treffen auf keine der Funktionen zu. Wertung: 1 Punkt bei vier richtigen Zuordnungen, ½ Punkt bei zwei oder drei.'},
+ {area:'fa',type:'two',title:'Parameter einer quadratischen Funktion',p:'Gegeben ist f(x) = a · x² + c mit a, c ∈ ℝ. Kreuze die beiden zutreffenden Aussagen an.',o:['Für a < 0 ist der Graph nach unten offen.','Der Parameter c verschiebt den Graphen in x-Richtung.','Für a > 0 und c > 0 hat f keine reelle Nullstelle.','Für a = 0 ist der Graph eine Parabel.','Der Scheitelpunkt liegt immer bei (0 | a).'],a:[0,2],e:'a < 0: nach unten offen ✓. Bei a > 0 und c > 0 liegt der tiefste Punkt (0 | c) über der x-Achse – keine Nullstelle ✓. c verschiebt in y-Richtung; a = 0 ergibt die konstante Funktion f(x) = c; der Scheitel liegt bei (0 | c).'},
+ {area:'an',type:'num',title:'Mittlere Änderungsrate',p:'Gegeben ist f(x) = x². Berechne die mittlere Änderungsrate von f im Intervall [1; 3].',ans:4,tol:0.001,e:'Differenzenquotient: (f(3) − f(1)) / (3 − 1) = (9 − 1) / 2 = 4.'},
+ {area:'an',type:'num',title:'Ableitung an einer Stelle',p:'Gegeben ist f(x) = 3x⁴ − 2x + 5. Berechne f′(2).',ans:94,tol:0.001,e:'f′(x) = 12x³ − 2 ⇒ f′(2) = 12 · 8 − 2 = 94. Die Konstante 5 fällt beim Ableiten weg.'},
+ {area:'an',type:'two',title:'Eigenschaften aus Ableitungen',p:'Für eine Polynomfunktion f gilt f′(2) = 0 und f″(2) < 0. Kreuze die beiden zutreffenden Aussagen an.',o:['f hat an der Stelle 2 ein lokales Maximum.','f hat an der Stelle 2 eine Wendestelle.','Die Tangente an den Graphen von f im Punkt (2 | f(2)) ist waagrecht.','Es gilt f(2) = 0.','f ist an der Stelle 2 linksgekrümmt.'],a:[0,2],e:'f′(2) = 0 bedeutet waagrechte Tangente ✓; zusammen mit f″(2) < 0 (rechtsgekrümmt) folgt ein lokales Maximum ✓. Über den Funktionswert f(2) ist nichts bekannt.'},
+ {area:'an',type:'one',title:'Stammfunktion',p:'Kreuze diejenige Funktion an, die eine Stammfunktion von f(x) = 6x² + 4 ist.',o:['F(x) = 12x','F(x) = 2x³ + 4x + 7','F(x) = 6x³ + 4x','F(x) = 2x³ + 4','F(x) = 3x³ + 4x','F(x) = 12x + 4'],a:1,e:'∫ 6x² dx = 6 · x³/3 = 2x³ und ∫ 4 dx = 4x. Eine Stammfunktion ist also 2x³ + 4x + C – mit C = 7 passt die zweite Antwort. Probe: F′(x) = 6x² + 4 ✓'},
+ {area:'an',type:'num',title:'Bestimmtes Integral',p:'Berechne ∫ von 0 bis 2 von 3x² dx.',ans:8,tol:0.001,e:'Stammfunktion x³: 2³ − 0³ = 8.'},
+ {area:'an',type:'num',title:'Zurückgelegter Weg',p:'Die Geschwindigkeit eines Körpers ist v(t) = 2t + 1 (t in s, v in m/s). Berechne den in den ersten 4 Sekunden zurückgelegten Weg in Metern.',ans:20,tol:0.001,e:'s = ∫ von 0 bis 4 (2t + 1) dt = [t² + t] von 0 bis 4 = 16 + 4 = 20 m.'},
+ {area:'ws',type:'gap',title:'Lagemaße',p:'Gegeben ist die Datenreihe 2, 4, 4, 5, 7, 8, 12. Ergänze die Textlücken.',text:'Der Median der Datenreihe ist {0} und das arithmetische Mittel ist {1}.',g:[['4','5','6'],['5','6','7']],a:[1,1],e:'Median: Die Werte sind schon geordnet, der mittlere (4.) Wert ist 5. Mittelwert: (2 + 4 + 4 + 5 + 7 + 8 + 12) / 7 = 42 / 7 = 6. Der Ausreißer 12 zieht den Mittelwert über den Median.'},
+ {area:'ws',type:'two',title:'Statistische Kennzahlen',p:'Kreuze die beiden zutreffenden Aussagen an.',o:['Der Median ist unempfindlich gegenüber einzelnen Ausreißern.','Die Spannweite ist die Differenz von drittem und erstem Quartil.','Die Standardabweichung kann negativ sein.','Die Box eines Boxplots umfasst die mittleren 50 % der Daten.','Das arithmetische Mittel stimmt immer mit dem Median überein.'],a:[0,3],e:'Der Median hängt nur von der Position ab, Ausreißer verschieben ihn kaum ✓. Die Box reicht von q₁ bis q₃, also über die mittleren 50 % ✓. Die Spannweite ist Max − Min (q₃ − q₁ ist der Quartilsabstand); die Standardabweichung ist eine Wurzel und daher ≥ 0.'},
+ {area:'ws',type:'num',title:'Augensumme',p:'Zwei faire Würfel werden gleichzeitig geworfen. Berechne die Wahrscheinlichkeit, dass die Augensumme 7 ist. (Bruch oder Dezimalzahl, Toleranz ± 0,001)',ans:1/6,tol:0.001,e:'Es gibt 36 gleich wahrscheinliche Paare. Augensumme 7: (1|6), (2|5), (3|4), (4|3), (5|2), (6|1) – also 6 günstige. P = 6/36 = 1/6 ≈ 0,1667.'},
+ {area:'ws',type:'num',title:'Ziehen ohne Zurücklegen',p:'In einer Urne liegen 3 rote und 2 blaue Kugeln. Es werden zwei Kugeln ohne Zurücklegen gezogen. Berechne die Wahrscheinlichkeit, dass beide rot sind.',ans:0.3,tol:0.001,e:'Pfadregel: 3/5 · 2/4 = 6/20 = 0,3. Beim zweiten Zug ist eine rote Kugel weniger und eine Kugel insgesamt weniger in der Urne.'},
+ {area:'ws',type:'gap',title:'Kennzahlen der Binomialverteilung',p:'X ist binomialverteilt mit n = 10 und p = 0,2. Ergänze die Textlücken.',text:'Der Erwartungswert von X ist {0} und die Standardabweichung beträgt {1}.',g:[['0,2','2','8'],['≈ 1,26','1,6','2,56']],a:[1,0],e:'E(X) = n · p = 10 · 0,2 = 2. σ = √(n · p · (1 − p)) = √(10 · 0,2 · 0,8) = √1,6 ≈ 1,26. Die 1,6 ist die Varianz, nicht die Standardabweichung – eine beliebte Falle.'},
+ {area:'ws',type:'num',title:'Raten beim Test',p:'Ein Test besteht aus 5 Fragen mit je 4 Antwortmöglichkeiten, von denen genau eine richtig ist. Jemand rät bei allen Fragen. Berechne die Wahrscheinlichkeit, genau 2 Fragen richtig zu beantworten. (Toleranz ± 0,001)',ans:0.263671875,tol:0.001,e:'X ~ B(5; 0,25): P(X = 2) = (5 über 2) · 0,25² · 0,75³ = 10 · 0,0625 · 0,421875 ≈ 0,2637.'}
+];
+const FMT={two:'2 aus 5 · genau zwei Kreuze',one:'1 aus 6 · genau ein Kreuz',gap:'Lückentext · 1 Punkt, wenn beide Lücken richtig sind',match:'Zuordnung · 1 Punkt bei 4 richtigen, ½ Punkt bei 2 oder 3 richtigen',num:'Eintragen'};
+const AN={ag:'AG',fa:'FA',an:'AN',ws:'WS'};
+function renderT1(){
+  document.getElementById('t1').innerHTML=T1.map((t,i)=>{let body='';
+    if(t.type==='two')body=`<div class="opts">${t.o.map((o,j)=>`<label class="opt"><input type="checkbox" id="q${i}_${j}"> ${o}</label>`).join('')}</div>`;
+    if(t.type==='one')body=`<div class="opts">${t.o.map((o,j)=>`<label class="opt"><input type="radio" name="q${i}" id="q${i}_${j}"> ${o}</label>`).join('')}</div>`;
+    if(t.type==='gap'){let tx=t.text;t.g.forEach((g,k)=>{tx=tx.replace('{'+k+'}',`<select id="q${i}_g${k}"><option value="">– (${k+1}) –</option>${g.map((o,j)=>`<option value="${j}">${o}</option>`).join('')}</select>`)});body=`<div class="gapbox">${tx}</div>`}
+    if(t.type==='match')body=`<div class="match-list">${t.opts.map(o=>`<div>${o}</div>`).join('')}</div>${t.items.map((it,k)=>`<div class="fieldrow"><label>${it}</label><select id="q${i}_m${k}"><option value="">–</option>${t.opts.map((o,j)=>`<option value="${j}">${'ABCDEF'[j]}</option>`).join('')}</select></div>`).join('')}`;
+    if(t.type==='num')body=`<div class="fieldrow"><label>Ergebnis:</label><input type="text" id="q${i}_n" autocomplete="off" inputmode="decimal"></div>`;
+    return `<div class="task ${t.area}"><h4><span>Aufgabe ${i+1} · ${t.title}</span><span class="pts">${AN[t.area]} · 1 Punkt</span></h4><div class="fmt">${FMT[t.type]}</div><p>${t.p}</p>${body}<div class="sol" id="s${i}"></div></div>`}).join('');
+}
+renderT1();
+let p1=null;
+document.getElementById('check1').onclick=()=>{
+  let sum=0;const per={ag:[0,0],fa:[0,0],an:[0,0],ws:[0,0]};
+  T1.forEach((t,i)=>{let pts=0;
+    if(t.type==='two'||t.type==='one'){const sel=t.o.map((_,j)=>document.getElementById(`q${i}_${j}`).checked);const corr=t.type==='two'?t.a:[t.a];
+      pts=sel.every((s,j)=>s===corr.includes(j))?1:0;
+      t.o.forEach((_,j)=>{const l=document.getElementById(`q${i}_${j}`).parentElement;l.classList.remove('right','wrong');if(corr.includes(j))l.classList.add('right');else if(sel[j])l.classList.add('wrong')})}
+    if(t.type==='gap'){let ok=0;t.g.forEach((g,k)=>{const s=document.getElementById(`q${i}_g${k}`),c=s.value===String(t.a[k]);s.classList.remove('mark-ok','mark-no');s.classList.add(c?'mark-ok':'mark-no');if(c)ok++});pts=ok===t.g.length?1:0}
+    if(t.type==='match'){let ok=0;t.items.forEach((_,k)=>{const s=document.getElementById(`q${i}_m${k}`),c=s.value===String(t.a[k]);s.classList.remove('mark-ok','mark-no');s.classList.add(c?'mark-ok':'mark-no');if(c)ok++});pts=ok===4?1:ok>=2?.5:0}
+    if(t.type==='num'){const inp=document.getElementById(`q${i}_n`),v=parseNum(inp.value),c=!isNaN(v)&&Math.abs(v-t.ans)<=t.tol;inp.classList.remove('mark-ok','mark-no');inp.classList.add(c?'mark-ok':'mark-no');pts=c?1:0}
+    sum+=pts;per[t.area][0]+=pts;per[t.area][1]+=1;
+    const s=document.getElementById('s'+i);s.innerHTML=`<div class="verdict">${pts===1?'<b class="ok">✓ 1 Punkt</b>':pts===.5?'<b class="ok">½ Punkt</b>':'<b class="no">0 Punkte</b>'}${t.type==='num'?` · Lösung: ${fmt(t.ans,4)}`:''}</div>${t.e}`;s.classList.add('show')});
+  p1=sum;
+  const r=document.getElementById('t1res');r.classList.remove('hidden');
+  r.innerHTML=`<h3>Teil 1: ${fmt(sum,1)} von 24 Punkten</h3><table class="plain"><tr><th>Bereich</th><th>Punkte</th><th>Einschätzung</th></tr>${Object.keys(per).map(k=>{const [a,b]=per[k];const q=a/b;return `<tr><td><b>${AN[k]}</b></td><td>${fmt(a,1)} / ${b}</td><td>${q===1?'Perfekt – sitzt.':q>=.8?'Stark, kleine Lücken.':q>=.5?'Hier lohnt sich gezielte Wiederholung.':'Diesen Bereich vorrangig wiederholen.'}</td></tr>`}).join('')}</table><p class="mini" style="margin-top:10px">Lies die Lösungen bei jeder Aufgabe – auch bei den richtigen. Dort steht, woran du die Antwort sicher erkennst.</p>`;
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+};
+
+/* ===== Teil 2 ===== */
+const T2=[
+ {nr:25,title:'Temperaturverlauf',area:'an',ctx:'Die Temperatur an einem Sommertag wird für 0 ≤ t ≤ 12 durch die Funktion T(t) = −0,05t³ + 0,6t² + 10 modelliert. Dabei ist t die Zeit in Stunden ab 6 Uhr früh und T(t) die Temperatur in °C.',
+  subs:[
+   {q:'a1) Berechne die Temperatur um 10 Uhr (in °C).',ans:16.4,tol:.05,sol:['10 Uhr entspricht t = 4 (vier Stunden nach 6 Uhr).','T(4) = −0,05 · 64 + 0,6 · 16 + 10 = −3,2 + 9,6 + 10','<b>T(4) = 16,4 °C</b>']},
+   {q:'a2) Ermittle den Zeitpunkt t, zu dem die Temperatur am höchsten ist.',ans:8,tol:.02,sol:['Notwendige Bedingung: T′(t) = −0,15t² + 1,2t = 0','t · (−0,15t + 1,2) = 0 ⇒ t = 0 oder t = 8','T″(t) = −0,3t + 1,2 ⇒ T″(8) = −1,2 < 0 ⇒ Maximum (bei t = 0 liegt wegen T″(0) = 1,2 > 0 ein Minimum)','<b>t = 8</b>, also um 14 Uhr; die Höchsttemperatur beträgt T(8) = 22,8 °C.']},
+   {q:'b1) Bestimme den Zeitpunkt t, zu dem die Temperatur am stärksten zunimmt.',ans:4,tol:.02,sol:['Die stärkste Zunahme liegt dort, wo T′ maximal ist – an der Wendestelle von T.','T″(t) = −0,3t + 1,2 = 0 ⇒ t = 4','T‴(t) = −0,3 < 0 ⇒ T′ hat dort ein Maximum; T′(4) = 2,4 > 0, also wirklich eine Zunahme.','<b>t = 4</b> (um 10 Uhr steigt die Temperatur mit 2,4 °C pro Stunde am schnellsten).']},
+   {q:'b2) Berechne die mittlere Änderungsrate der Temperatur im Intervall [0; 8] (in °C pro Stunde).',ans:1.6,tol:.01,sol:['Differenzenquotient: (T(8) − T(0)) / (8 − 0)','= (22,8 − 10) / 8 = 12,8 / 8','<b>1,6 °C pro Stunde</b> – zwischen 6 und 14 Uhr steigt die Temperatur im Mittel um 1,6 °C pro Stunde.']}
+  ]},
+ {nr:26,title:'Bakterienkultur',area:'fa',ctx:'Die Anzahl der Bakterien in einer Kultur wird durch N(t) = 500 · 1,2ᵗ beschrieben (t in Stunden ab Beobachtungsbeginn).',
+  subs:[
+   {q:'a) Berechne die Anzahl der Bakterien nach 5 Stunden (auf ganze Bakterien gerundet).',ans:1244.16,tol:1,sol:['N(5) = 500 · 1,2⁵ = 500 · 2,48832','<b>N(5) ≈ 1 244 Bakterien</b>']},
+   {q:'b) Berechne die Verdopplungszeit in Stunden. (Toleranz ± 0,01)',ans:3.8018,tol:.01,sol:['1,2ᵗ = 2','t = ln 2 / ln 1,2','<b>t ≈ 3,80 Stunden</b> – unabhängig vom Startwert 500.']},
+   {q:'c) Berechne, nach wie vielen Stunden die Kultur 10 000 Bakterien umfasst. (Toleranz ± 0,01)',ans:16.431,tol:.01,sol:['500 · 1,2ᵗ = 10 000 ⇒ 1,2ᵗ = 20','t = ln 20 / ln 1,2','<b>t ≈ 16,43 Stunden</b>']},
+   {self:true,q:'d) Begründe, warum dieses Modell für lange Zeiträume nicht realistisch ist.',model:'Das exponentielle Modell wächst unbeschränkt – nach einigen Tagen ergäben sich astronomisch große Zahlen (nach 24 Stunden bereits fast das 80-Fache). In der Realität begrenzen Nährstoffe und Platz das Wachstum, sodass sich die Anzahl einer Kapazitätsgrenze nähert. Ein beschränktes oder logistisches Modell wäre langfristig passender. <b>1 Punkt</b> für die Begründung mit begrenzten Ressourcen bzw. unbeschränktem Wachstum des Modells.'}
+  ]},
+ {nr:27,title:'Qualitätskontrolle',area:'ws',ctx:'In einer Produktion sind erfahrungsgemäß 4 % der Werkstücke fehlerhaft. Es werden 50 Werkstücke zufällig entnommen. Die Zufallsvariable X gibt die Anzahl der fehlerhaften Werkstücke an und wird als binomialverteilt angenommen.',
+  subs:[
+   {q:'a) Berechne den Erwartungswert von X.',ans:2,tol:.001,sol:['E(X) = n · p = 50 · 0,04','<b>E(X) = 2</b> – im Mittel sind 2 von 50 Werkstücken fehlerhaft.']},
+   {q:'b) Berechne die Wahrscheinlichkeit, dass kein Werkstück fehlerhaft ist. (Toleranz ± 0,001)',ans:.129886,tol:.001,sol:['P(X = 0) = 0,96⁵⁰','<b>≈ 0,1299</b> (rund 13 %)']},
+   {q:'c) Berechne die Wahrscheinlichkeit, dass mindestens 3 Werkstücke fehlerhaft sind. (Toleranz ± 0,001)',ans:.323286,tol:.001,sol:['Gegenereignis: P(X ≥ 3) = 1 − P(X ≤ 2)','P(X ≤ 2) = P(X = 0) + P(X = 1) + P(X = 2) ≈ 0,1299 + 0,2706 + 0,2762 ≈ 0,6767','<b>P(X ≥ 3) ≈ 0,3233</b> (mit Technologie: 1 − binomCdf(50; 0,04; 2))']},
+   {q:'d) Ermittle, wie viele Werkstücke mindestens geprüft werden müssen, damit mit einer Wahrscheinlichkeit von mindestens 99 % wenigstens ein fehlerhaftes darunter ist.',ans:113,tol:0,sol:['Ansatz: 1 − 0,96ⁿ ≥ 0,99 ⇒ 0,96ⁿ ≤ 0,01','n ≥ ln 0,01 / ln 0,96 ≈ 112,81 (Ungleichheitszeichen dreht sich, weil ln 0,96 < 0)','Da n eine ganze Zahl sein muss: aufrunden!','<b>n = 113</b> (Kontrolle: 1 − 0,96¹¹² ≈ 0,9897 < 0,99; 1 − 0,96¹¹³ ≈ 0,9901 ✓)']}
+  ]},
+ {nr:28,title:'Brückenbogen',area:'an',ctx:'Der Bogen einer Brücke wird durch f(x) = −0,02x² + 8 modelliert (x und f(x) in Metern). Die x-Achse entspricht der Wasseroberfläche; der Bogen beginnt und endet an der Wasseroberfläche.',
+  subs:[
+   {q:'a) Berechne die Spannweite des Bogens auf Höhe der Wasseroberfläche (in m).',ans:40,tol:.01,sol:['Nullstellen: −0,02x² + 8 = 0 ⇒ x² = 400 ⇒ x = ±20','Spannweite = 20 − (−20)','<b>40 m</b>']},
+   {q:'b) Berechne den Inhalt der Fläche zwischen Bogen und Wasseroberfläche (in m²). (Toleranz ± 0,1)',ans:213.333,tol:.1,sol:['A = ∫ von −20 bis 20 (−0,02x² + 8) dx','Stammfunktion: F(x) = −0,02x³/3 + 8x','F(20) − F(−20) = (−53,33 + 160) − (53,33 − 160) = 106,67 + 106,67','<b>A ≈ 213,33 m²</b>']},
+   {q:'c) Berechne den Winkel (in Grad), unter dem der Bogen am linken Ende (x = −20) aus dem Wasser aufsteigt. (Toleranz ± 0,1)',ans:38.6598,tol:.1,sol:['Steigung: f′(x) = −0,04x ⇒ f′(−20) = 0,8','Steigungswinkel: tan α = 0,8 ⇒ α = arctan 0,8','<b>α ≈ 38,66°</b>']},
+   {q:'d) Berechne die Höhe des Bogens 5 m vom Rand entfernt (in m).',ans:3.5,tol:.01,sol:['5 m vom rechten Rand entspricht x = 15 (am linken Rand x = −15 – wegen der Symmetrie gleich).','f(15) = −0,02 · 225 + 8 = −4,5 + 8','<b>3,5 m</b>']}
+  ]}
+];
+function renderT2(){
+  document.getElementById('t2').innerHTML=T2.map((t,i)=>`<div class="task ${t.area}"><h4><span>Aufgabe ${t.nr} · ${t.title}</span><span class="pts">${t.nr===25?'zählt immer':'Best-of 26–28'} · 4 Punkte</span></h4><div class="ctx">${t.ctx}</div>${t.subs.map((s,j)=>`<div class="sub"><p>${s.q}</p>${s.self?`<textarea id="a${i}_${j}"></textarea><div class="btnrow"><button class="ghost" data-show="m${i}_${j}">Musterlösung zeigen</button></div><div class="sol" id="m${i}_${j}">${s.model}<div class="fieldrow" style="margin-top:10px"><label>Meine Punkte:</label><select id="self${i}_${j}"><option value="">–</option><option value="0">0</option><option value="1">1</option></select></div></div>`:`<div class="fieldrow"><label>Ergebnis:</label><input type="text" id="a${i}_${j}" autocomplete="off" inputmode="decimal"></div><div class="sol" id="r${i}_${j}"></div>`}</div>`).join('')}</div>`).join('');
+  document.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.show).classList.toggle('show'));
+}
+renderT2();
+let t2auto=null;
+document.getElementById('check2').onclick=()=>{
+  t2auto=T2.map((t,i)=>{let s=0;t.subs.forEach((sub,j)=>{if(sub.self){document.getElementById('m'+i+'_'+j).classList.add('show');return}
+    const inp=document.getElementById(`a${i}_${j}`),v=parseNum(inp.value),c=!isNaN(v)&&Math.abs(v-sub.ans)<=sub.tol+1e-9;
+    inp.classList.remove('mark-ok','mark-no');inp.classList.add(c?'mark-ok':'mark-no');if(c)s++;
+    const r=document.getElementById(`r${i}_${j}`);r.innerHTML=`<div class="verdict">${c?'<b class="ok">✓ 1 Punkt</b>':'<b class="no">0 Punkte</b>'}</div>Lösungsweg:<ol>${sub.sol.map(x=>`<li>${x}</li>`).join('')}</ol>`;r.classList.add('show')});return s});
+  document.getElementById('check2').textContent='Teil 2 ausgewertet – trage bei offenen Aufgaben deine Punkte ein';
+};
+
+/* ===== Gesamtauswertung ===== */
+document.getElementById('finalBtn').onclick=()=>{
+  if(p1===null||t2auto===null){alert('Bitte zuerst Teil 1 und Teil 2 abgeben.');return}
+  const pts=T2.map((t,i)=>{let s=t2auto[i];t.subs.forEach((sub,j)=>{if(sub.self){const v=document.getElementById(`self${i}_${j}`).value;if(v!=='')s+=+v}});return s});
+  const rest=[{nr:26,p:pts[1]},{nr:27,p:pts[2]},{nr:28,p:pts[3]}].sort((a,b)=>a.p-b.p);
+  const drop=rest[0];const p2=pts[0]+rest[1].p+rest[2].p;const tot=p1+p2;
+  document.getElementById('finalOut').classList.remove('hidden');
+  document.getElementById('f1').textContent=fmt(p1,1);document.getElementById('f2').textContent=fmt(p2,1);document.getElementById('ftot').textContent=fmt(tot,1);
+  document.getElementById('fdrop').textContent=`(Aufgabe 25: ${pts[0]} · gestrichen nach Best-of: Aufgabe ${drop.nr} mit ${drop.p} Punkt${drop.p===1?'':'en'})`;
+  document.getElementById('f1bar').style.width=(p1/24*100)+'%';document.getElementById('f2bar').style.width=(p2/12*100)+'%';
+  let g,txt;
+  if(tot>=32){g='Sehr gut';txt='Großartig! Das ist Eins-Niveau. Halte es stabil, indem du in den letzten Wochen regelmäßig echte Maturen unter Zeitdruck rechnest.'}
+  else if(tot>=27){g='Gut';txt=`Starke Leistung! Bis zur Eins fehlen dir noch ${fmt(32-tot,1)} Punkte. Schau in die Bereichsauswertung von Teil 1 und in die Fehlerfallen – dort liegen sie meistens.`}
+  else if(tot>=22){g='Befriedigend';txt=`Eine solide Basis! Bis zum „Gut“ fehlen ${fmt(27-tot,1)} Punkte. Wiederhole die Beispiele Schritt für Schritt in dem Bereich, in dem du am meisten verloren hast.`}
+  else if(tot>=17){g='Genügend';txt=`Positiv – darauf lässt sich aufbauen. Konzentriere dich zuerst auf Teil 1: Dort ist jeder Punkt in wenigen Minuten zu holen.`}
+  else {g='Nicht genügend';txt=`Noch nicht positiv – aber jetzt weißt du genau, wo du ansetzen kannst. Für ein Genügend fehlen ${fmt(17-tot,1)} Punkte. Arbeite die vier Inhaltsbereiche mit den Schritt-für-Schritt-Beispielen durch und versuche es dann erneut.`}
+  document.getElementById('fgrade').textContent=g;document.getElementById('ftext').textContent=txt;
+  document.getElementById('finalOut').scrollIntoView({behavior:'smooth',block:'center'});
+};
+</script>
+</body>
+</html>
