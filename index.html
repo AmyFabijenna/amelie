@@ -18,13 +18,13 @@ body{
   background:var(--bg);color:var(--ink);
   font-family:'Lexend',system-ui,sans-serif;
   display:flex;align-items:center;justify-content:center;
-  padding:clamp(18px,3.2vh,40px) clamp(16px,4vw,48px);
+  padding:clamp(16px,3vh,38px) clamp(16px,4vw,48px);
 }
 .wrap{width:100%;max-width:1020px}
 
-header{text-align:center;margin-bottom:clamp(20px,4vh,44px)}
+header{text-align:center;margin-bottom:clamp(18px,3.4vh,38px)}
 h1{
-  font-size:clamp(1.7rem,3.6vh,2.6rem);font-weight:600;letter-spacing:-.015em;
+  font-size:clamp(1.6rem,3.4vh,2.5rem);font-weight:600;letter-spacing:-.015em;
   line-height:1.15;margin-bottom:.35em;
 }
 h1 span{
@@ -32,54 +32,62 @@ h1 span{
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 header p{
-  color:var(--muted);font-size:clamp(.92rem,1.7vh,1.06rem);font-weight:300;
-  max-width:560px;margin:0 auto;line-height:1.6;
+  color:var(--muted);font-size:clamp(.9rem,1.65vh,1.04rem);font-weight:300;
+  max-width:580px;margin:0 auto;line-height:1.55;
 }
 
 h2{
-  font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:clamp(8px,1.4vh,14px);padding-left:4px;
+  font-size:.71rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:clamp(7px,1.2vh,13px);padding-left:4px;
 }
-section+section{margin-top:clamp(18px,3.4vh,36px)}
-.grid{display:grid;gap:clamp(10px,1.7vh,18px)}
+h2 em{font-style:normal;font-weight:400;text-transform:none;letter-spacing:.01em;opacity:.85}
+section+section{margin-top:clamp(15px,2.8vh,30px)}
+.grid{display:grid;gap:clamp(9px,1.5vh,16px)}
 .g2{grid-template-columns:1fr 1fr}
 .g3{grid-template-columns:repeat(3,1fr)}
 
-a.card{
-  display:block;text-decoration:none;color:inherit;background:var(--card);
-  border:1px solid #efe9df;border-left:5px solid var(--c);
-  border-radius:18px;padding:clamp(13px,2.1vh,22px) clamp(16px,2vw,24px);
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+.card{
+  background:var(--card);border:1px solid #efe9df;border-left:5px solid var(--c);
+  border-radius:18px;padding:clamp(12px,1.9vh,20px) clamp(15px,1.9vw,22px);
 }
-a.card:hover,a.card:focus-visible{
-  transform:translateY(-3px);box-shadow:var(--shadow);outline:none;border-color:#e4dcd0;border-left-color:var(--c);
-}
-a.card .top{display:flex;align-items:baseline;gap:9px;margin-bottom:.28em}
-a.card b{font-size:clamp(1.02rem,2.1vh,1.26rem);font-weight:500;letter-spacing:-.01em}
-a.card .arrow{margin-left:auto;color:var(--c);font-size:1.05rem;transition:transform .18s ease}
+a.card{display:block;text-decoration:none;color:inherit;transition:transform .18s ease,box-shadow .18s ease}
+a.card:hover,a.card:focus-visible{transform:translateY(-3px);box-shadow:var(--shadow);outline:none}
+.card .top{display:flex;align-items:baseline;gap:9px;margin-bottom:.26em}
+.card b{font-size:clamp(1rem,2vh,1.22rem);font-weight:500;letter-spacing:-.01em}
+.card .arrow{margin-left:auto;color:var(--c);font-size:1.02rem;transition:transform .18s ease}
 a.card:hover .arrow{transform:translateX(3px)}
-a.card p{color:var(--muted);font-size:clamp(.84rem,1.55vh,.96rem);font-weight:300;line-height:1.5}
-a.card small{
-  display:block;margin-top:.5em;color:var(--c);font-size:clamp(.72rem,1.35vh,.82rem);
-  font-weight:500;letter-spacing:.01em;
+.card p{color:var(--muted);font-size:clamp(.82rem,1.5vh,.94rem);font-weight:300;line-height:1.45}
+.card small{display:block;margin-top:.45em;color:var(--c);font-size:clamp(.71rem,1.3vh,.81rem);font-weight:500}
+
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:clamp(8px,1.3vh,13px)}
+.pills a{
+  text-decoration:none;color:var(--c);background:var(--cs);
+  border:1px solid transparent;border-radius:999px;
+  padding:5px clamp(10px,1vw,15px);font-size:clamp(.74rem,1.4vh,.86rem);font-weight:500;
+  transition:background .16s ease,transform .16s ease;white-space:nowrap;
 }
-.m{--c:var(--blue)} .l{--c:var(--terra)} .e{--c:var(--petrol)}
-.mk{--c:var(--lilac)} .lk{--c:var(--gold)}
+.pills a:hover,.pills a:focus-visible{background:#fff;border-color:var(--c);transform:translateY(-1px);outline:none}
+.pills span{
+  border-radius:999px;padding:5px clamp(10px,1vw,15px);
+  font-size:clamp(.74rem,1.4vh,.86rem);font-weight:400;color:var(--muted);
+  background:#f3efe8;white-space:nowrap;
+}
+.m{--c:var(--blue);--cs:#e7edf6} .l{--c:var(--terra);--cs:#f6e9e4} .e{--c:var(--petrol);--cs:#e3eff1}
+.mk{--c:var(--lilac);--cs:#eee9f5} .lk{--c:var(--gold);--cs:#f6efdf}
 
 footer{
-  margin-top:clamp(16px,3vh,32px);text-align:center;
-  color:var(--muted);font-size:clamp(.72rem,1.3vh,.81rem);font-weight:300;
+  margin-top:clamp(14px,2.6vh,28px);text-align:center;
+  color:var(--muted);font-size:clamp(.71rem,1.25vh,.8rem);font-weight:300;
 }
 
-@media(min-height:620px) and (min-width:760px){
-  body{overflow:hidden}
-}
+@media(min-height:640px) and (min-width:760px){ body{overflow:hidden} }
 @media(max-width:760px){
-  body{align-items:flex-start;padding:26px 18px 34px}
+  body{align-items:flex-start;padding:24px 16px 32px}
   .g2,.g3{grid-template-columns:1fr}
-  a.card p{display:none}
-  a.card small{margin-top:.15em}
-  section+section{margin-top:24px}
+  .card p{display:none}
+  .card small{margin-top:.1em}
+  section+section{margin-top:22px}
+  .pills{margin-top:9px}
 }
 </style>
 </head>
@@ -88,7 +96,7 @@ footer{
 
   <header>
     <h1><span>Oberstufe und Zentralmatura</span></h1>
-    <p>Fünf Seiten zum Lernen, Üben und Prüfen – vom ersten Grundbegriff bis zur vollständigen Maturasimulation.</p>
+    <p>Lernen, üben und prüfen – vom ersten Grundbegriff über die schriftliche Klausur bis zur mündlichen Prüfung.</p>
   </header>
 
   <section>
@@ -108,23 +116,32 @@ footer{
   </section>
 
   <section>
-    <h2>Üben wie in der Prüfung</h2>
+    <h2>Matura <em>· je eine Seite für die schriftliche Klausur und für die mündliche Prüfung</em></h2>
     <div class="grid g3">
-      <a class="card m" href="mathematik-zentralmatura.html">
-        <div class="top"><b>Mathematik</b><span class="arrow">→</span></div>
-        <p>Grundkompetenzen, Strategie zur Eins und vier interaktive Labore.</p>
-        <small>Zentralmatura · Simulation</small>
-      </a>
-      <a class="card l" href="latein-zentralmatura.html">
-        <div class="top"><b>Latein</b><span class="arrow">→</span></div>
-        <p>Übersetzen in acht Schritten, Konstruktionen und Stilmittel.</p>
-        <small>Zentralmatura · Simulation</small>
-      </a>
-      <a class="card e" href="englisch-zentralmatura.html">
-        <div class="top"><b>Englisch</b><span class="arrow">→</span></div>
-        <p>Alle vier Kompetenzen mit Strategien für jedes Aufgabenformat.</p>
-        <small>Zentralmatura · Simulation</small>
-      </a>
+      <div class="card m">
+        <div class="top"><b>Mathematik</b></div>
+        <p>Grundkompetenzen, Strategie und vollständige Prüfungssimulation.</p>
+        <div class="pills">
+          <a href="mathematik-zentralmatura.html">Klausur →</a>
+          <span>mündlich folgt</span>
+        </div>
+      </div>
+      <div class="card l">
+        <div class="top"><b>Latein</b></div>
+        <p>Übersetzen, Interpretieren und das Prüfungsgespräch.</p>
+        <div class="pills">
+          <a href="latein-zentralmatura.html">Klausur →</a>
+          <a href="latein-muendlich.html">Mündlich →</a>
+        </div>
+      </div>
+      <div class="card e">
+        <div class="top"><b>Englisch</b></div>
+        <p>Reading, Listening, Language in Use und Writing.</p>
+        <div class="pills">
+          <a href="englisch-zentralmatura.html">Klausur →</a>
+          <span>mündlich folgt</span>
+        </div>
+      </div>
     </div>
   </section>
 
