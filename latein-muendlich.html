@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Latein – die mündliche Reifeprüfung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ec; --card:#fff; --ink:#1b1b1f; --muted:#56535d; --line:#e3ddd3;
+  --blue:#3a5a8c; --petrol:#1d6b74; --lilac:#5d4a7e; --terra:#9c4f3d; --gold:#a7843b;
+  --soft-b:#e7edf6; --soft-p:#e3eff1; --soft-l:#eee9f5; --soft-t:#f6e9e4; --soft-g:#f6efdf;
+  --radius:20px; --shadow:0 6px 24px rgba(40,30,20,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lexend',system-ui,sans-serif;font-size:18px;line-height:1.75}
+h1,h2,h3,h4{line-height:1.25;font-weight:600;margin:0 0 .6em}
+h2{font-size:1.75rem;margin-top:0}
+h3{font-size:1.22rem;margin-top:1.6em}
+h4{font-size:1.03rem;margin-top:1.3em}
+p{margin:0 0 1em}
+ul,ol{margin:0 0 1em;padding-left:1.3em}
+li{margin-bottom:.35em}
+a{color:var(--terra)}
+.la{font-style:italic;font-weight:500;color:#2c3f63}
+b.e{color:var(--terra);font-weight:600}
+
+.topbar{position:sticky;top:0;z-index:60;background:rgba(245,242,236,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:9px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .brand{font-weight:600;white-space:nowrap}
+.topbar .brand small{font-weight:400;color:var(--muted)}
+.topbar nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.topbar nav a{text-decoration:none;color:var(--muted);font-size:.86rem;padding:5px 11px;border-radius:999px}
+.topbar nav a:hover,.topbar nav a.on{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+
+main{max-width:900px;margin:0 auto;padding:26px 22px 90px}
+.hero{background:linear-gradient(135deg,#7a3a2c 0%,#8c4a3a 45%,#4a3e6b 100%);color:#fff;padding:40px 34px;border-radius:28px;margin-bottom:24px}
+.hero h1{font-size:2.15rem;font-weight:700;margin-bottom:.3em}
+.hero p{font-size:1.06rem;opacity:.96;margin:0;max-width:640px}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.chips span{background:rgba(255,255,255,.16);border-radius:999px;padding:5px 13px;font-size:.88rem}
+
+section{margin-bottom:34px;scroll-margin-top:62px}
+.card{background:var(--card);border:1px solid #efe9df;border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 26px;margin-bottom:16px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.fact{background:#fff;border:1px solid #efe9df;border-left:5px solid var(--c,var(--terra));border-radius:16px;padding:14px 18px}
+.fact b{display:block;font-size:1.3rem;font-weight:600;color:var(--c,var(--terra));line-height:1.2}
+.fact small{color:var(--muted);font-size:.86rem;line-height:1.4;display:block;margin-top:2px}
+
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:.97rem;background:#fff;border-radius:14px;overflow:hidden}
+th{background:var(--soft-t);text-align:left;padding:10px 14px;font-weight:600}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+
+.note{border-left:5px solid var(--gold);background:var(--soft-g);padding:14px 18px;border-radius:12px;margin:14px 0}
+.note.f{border-color:var(--terra);background:var(--soft-t)}
+.note.t{border-color:var(--petrol);background:var(--soft-p)}
+.note b.lab{display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+
+.ab{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.ab1{background:var(--soft-b);color:var(--blue)}
+.ab2{background:var(--soft-p);color:var(--petrol)}
+.ab3{background:var(--soft-l);color:var(--lilac)}
+
+button{font-family:inherit;font-size:1rem;border:none;border-radius:14px;padding:10px 20px;cursor:pointer;background:var(--terra);color:#fff;transition:.18s}
+button:hover{filter:brightness(1.08)}
+button.ghost{background:#fff;color:var(--terra);border:2px solid var(--terra);padding:8px 18px}
+button.petrol{background:var(--petrol)} button.lilac{background:var(--lilac)} button.blue{background:var(--blue)}
+button:disabled{opacity:.45;cursor:default;filter:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+
+.ltext{background:var(--bg);border-radius:14px;padding:16px 20px;margin:12px 0;font-size:1.07rem;line-height:1.95}
+.ltext .src{display:block;font-size:.8rem;color:var(--muted);font-style:normal;font-weight:400;margin-top:10px;line-height:1.5}
+.vm{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:16px 20px;margin:12px 0;font-size:.97rem}
+.vm h4{margin-top:0}
+
+ol.tasks{list-style:none;padding:0;counter-reset:t}
+ol.tasks li{counter-increment:t;background:#fff;border:1px solid #efe9df;border-radius:14px;padding:13px 17px 13px 50px;position:relative;margin-bottom:9px}
+ol.tasks li:before{content:counter(t);position:absolute;left:15px;top:13px;width:24px;height:24px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:.82rem;font-weight:600;color:var(--muted)}
+ol.tasks li .ab{margin-left:8px;vertical-align:1px}
+ol.tasks li .sol{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:.95rem;color:#3a3740}
+ol.tasks li.show .sol{display:block}
+
+.acc{background:#fff;border:1px solid #efe9df;border-radius:14px;margin-bottom:8px;overflow:hidden}
+.acc>button.h{width:100%;text-align:left;background:#fff;color:var(--ink);border-radius:0;padding:13px 18px;font-size:1rem;font-weight:500;display:flex;gap:10px;align-items:center}
+.acc>button.h:hover{background:var(--bg);filter:none}
+.acc>button.h .plus{margin-left:auto;color:var(--terra);font-weight:600}
+.acc .body{display:none;padding:2px 18px 16px;font-size:.96rem}
+.acc.open .body{display:block}
+.acc.open>button.h{background:var(--soft-t)}
+
+.timer{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:#fff;border:1px solid #efe9df;border-radius:16px;padding:14px 18px;margin:14px 0}
+.clock{font-size:2.1rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--blue);line-height:1}
+.clock.warn{color:var(--terra)}
+.bar{flex:1;min-width:120px;height:9px;background:#ece6da;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--petrol);border-radius:99px;transition:width 1s linear}
+textarea{width:100%;font-family:inherit;font-size:.97rem;line-height:1.6;padding:13px 16px;border-radius:14px;border:2px solid var(--line);background:#fff;resize:vertical;min-height:150px}
+textarea:focus{outline:none;border-color:var(--terra)}
+
+.ex{background:#fff;border:1px solid #efe9df;border-radius:16px;box-shadow:var(--shadow);padding:18px 22px;margin-bottom:14px}
+.ex.ok{border-left:5px solid var(--petrol)}
+.ex.no{border-left:5px solid var(--terra)}
+.ex .nr{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.opts{display:grid;gap:7px;margin:10px 0 0}
+.opt{display:block;text-align:left;background:var(--bg);color:var(--ink);border:2px solid transparent;border-radius:13px;padding:9px 15px;cursor:pointer;font:inherit;font-size:.97rem;line-height:1.5}
+.opt:hover{border-color:var(--terra);filter:none}
+.opt.right{background:var(--soft-p);border-color:var(--petrol)}
+.opt.wrong{background:var(--soft-t);border-color:var(--terra)}
+.fb{margin-top:11px;border-radius:13px;padding:11px 15px;display:none;font-size:.95rem}
+.fb.show{display:block}
+.fb.good{background:var(--soft-p)} .fb.bad{background:var(--soft-t)} .fb.hint{background:var(--soft-g)}
+.fb b.h{display:block;margin-bottom:2px}
+
+.check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #efe9df;border-radius:13px;padding:11px 15px;margin-bottom:7px;cursor:pointer;font-size:.95rem;line-height:1.5}
+.check input{margin-top:5px;width:18px;height:18px;accent-color:var(--petrol);flex-shrink:0}
+.score{font-weight:600;color:var(--petrol)}
+footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:48px}
+
+@media(max-width:700px){
+  body{font-size:17px}
+  main{padding:18px 14px 70px}
+  .hero{padding:28px 22px}.hero h1{font-size:1.65rem}
+  .card{padding:18px 16px}
+  .topbar nav{display:none}
+  .ltext{padding:13px 15px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Latein mündlich <small>· Reifeprüfung</small></div>
+  <nav>
+    <a href="#ablauf">Ablauf</a>
+    <a href="#aufgabe">Aufgabenstellung</a>
+    <a href="#operatoren">Operatoren</a>
+    <a href="#vorbereitung">Die 20 Minuten</a>
+    <a href="#sprechen">Sprechen</a>
+    <a href="#themen">Themenbereiche</a>
+    <a href="#training">Training</a>
+    <a href="#sim">Simulation</a>
+  </nav>
+</div>
+
+<main>
+
+<div class="hero">
+  <h1>Die mündliche Reifeprüfung in Latein</h1>
+  <p>Ein Text, den du kennst, ein Vergleichsmedium, das du nicht kennst, sechs bis sieben Arbeitsaufträge und zwanzig Minuten Vorbereitung. Diese Seite zeigt dir, wie die Prüfung aufgebaut ist, wie du die Vorbereitungszeit nutzt und wie du im Prüfungsgespräch sprichst.</p>
+  <div class="chips"><span>Format und Ablauf</span><span>Operatoren und Formulierungshilfen</span><span>6 vollständige Aufgabenstellungen</span><span>Simulation mit Ziehung und Uhr</span></div>
+</div>
+
+<div class="note t"><b class="lab">Zuerst das Wichtigste</b>Die mündliche Prüfung ist <b>keine zweite Klausur</b>. Deine Übersetzungskompetenz wird hier nicht beurteilt. Geprüft wird, ob du einen bekannten Text erschließen, ihn mit neuem Material verbinden und darüber begründet sprechen kannst. Wer das weiß, bereitet sich völlig anders vor.</div>
+
+<section id="ablauf">
+  <h2>So läuft die Prüfung ab</h2>
+
+  <div class="grid g3" style="margin-bottom:18px">
+    <div class="fact" style="--c:var(--terra)"><b>14 bzw. 18</b><small>Themenbereiche im Pool: 14 im vierjährigen Latein, 18 im sechsjährigen</small></div>
+    <div class="fact" style="--c:var(--blue)"><b>2 → 1</b><small>Du ziehst zwei Themenbereiche und entscheidest dich für einen</small></div>
+    <div class="fact" style="--c:var(--petrol)"><b>20 Min.</b><small>Vorbereitungszeit, mindestens. Wörterbuch erlaubt</small></div>
+    <div class="fact" style="--c:var(--lilac)"><b>10–20 Min.</b><small>Dauer des Prüfungsgesprächs</small></div>
+    <div class="fact" style="--c:var(--gold)"><b>60–90</b><small>Wörter hat der lateinische Ausgangstext</small></div>
+    <div class="fact" style="--c:var(--terra)"><b>max. 300</b><small>Wörter umfasst das Vergleichsmedium insgesamt</small></div>
+  </div>
+
+  <h3>Der Weg durch die Prüfung</h3>
+  <table style="margin-top:12px"><tbody>
+    <tr><td style="width:150px"><b>Vorher</b></td><td>Die Fachlehrkräfte legen die Themenbereiche fest und machen sie dir bekannt. Zu jedem Themenbereich bereiten sie mindestens zwei Aufgabenstellungen vor.</td></tr>
+    <tr><td><b>Ziehung</b></td><td>Du ziehst aus dem vollständigen Pool zwei Themenbereiche, die du vorher nicht erkennen kannst, und wählst einen davon aus.</td></tr>
+    <tr><td><b>Zuteilung</b></td><td>Die Prüferin oder der Prüfer weist dir daraus <b>eine</b> Aufgabenstellung zu. Du kannst sie dir nicht aussuchen.</td></tr>
+    <tr><td><b>Vorbereitung</b></td><td>Mindestens 20 Minuten in einem eigenen Raum. Du darfst ein Wörterbuch benützen, ein Wörterbuch der deutschen Sprache muss bereitliegen. Du machst Notizen, die du mit in die Prüfung nimmst.</td></tr>
+    <tr><td><b>Prüfung</b></td><td>10 bis 20 Minuten Gespräch vor der Kommission. Neben der prüfenden Lehrkraft sitzt eine beisitzende. Die Prüfung ist nicht öffentlich.</td></tr>
+    <tr><td><b>Beurteilung</b></td><td>Die Kommission entscheidet auf gemeinsamen, begründeten Antrag von Prüferin und Beisitzer. Die Gesamtnote entsteht aus der mündlichen Note und der Jahresnote der letzten Schulstufe zu gleichen Teilen; ergibt sich daraus keine eindeutige Note, zählt die mündliche Leistung mehr. Die Klausur bleibt dabei außer Betracht.</td></tr>
+  </tbody></table>
+
+  <div class="note f"><b class="lab">Die einzige echte Falle</b>Wer schweigt oder nur Dinge sagt, die mit dem Thema nichts zu tun haben, wird negativ beurteilt, und daran ändert auch eine gute Jahresnote nichts. Sprich also auch dann, wenn du dir unsicher bist: Ein begründeter Versuch ist immer besser als Stille.</div>
+</section>
+
+<section id="aufgabe">
+  <h2>Wie eine Aufgabenstellung gebaut ist</h2>
+  <p>Jede Aufgabenstellung besteht aus drei Teilen, und jeder Teil hat eine eigene Aufgabe für dich.</p>
+
+  <div class="grid g2">
+    <div class="card" style="margin:0">
+      <h4 style="margin-top:0;color:var(--blue)">1. Der Ausgangstext</h4>
+      <p style="margin:0">Ein lateinisches Original von 60 bis 90 Wörtern aus der Textgrundlage, die ihr im Unterricht gelesen habt. Du kennst ihn also. Er wird ohne Anmerkungen vorgelegt.</p>
+    </div>
+    <div class="card" style="margin:0">
+      <h4 style="margin-top:0;color:var(--petrol)">2. Das Vergleichsmedium</h4>
+      <p style="margin:0">Ein Text, ein Bild, eine Karikatur, ein Hör- oder Filmausschnitt oder ein Gegenstand, zusammen höchstens 300 Wörter. Es steht in einem Zusammenhang, der im Unterricht <b>nicht</b> behandelt wurde, und es darf deutschsprachig sein.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h4 style="margin-top:0;color:var(--lilac)">3. Die Arbeitsaufträge</h4>
+    <p>Mehrere voneinander unabhängige Aufträge, in den Musteraufgaben sechs oder sieben. Sie verteilen sich auf drei Anforderungsbereiche, und genau diese Verteilung ist dein Fahrplan durch die Prüfung.</p>
+    <table><thead><tr><th style="width:190px">Anforderungsbereich</th><th>Was von dir verlangt wird</th></tr></thead><tbody>
+      <tr><td><span class="ab ab1">Reproduktion</span></td><td>Wiedergeben, was im Unterricht erarbeitet wurde: Inhalt des Textes, Autor und Gattung, sprachliche und stilistische Auffälligkeiten, Fachbegriffe.</td></tr>
+      <tr><td><span class="ab ab2">Transfer</span></td><td>Den Text mit dem Vergleichsmedium verbinden: Gemeinsamkeiten und Unterschiede herausarbeiten, Zusammenhänge erklären, Wirkungen aufzeigen.</td></tr>
+      <tr><td><span class="ab ab3">Reflexion</span></td><td>Selbst Stellung nehmen: beurteilen, abwägen, einen eigenen Standpunkt mit Begründung vertreten.</td></tr>
+    </tbody></table>
+    <div class="note t"><b class="lab">Daraus folgt deine Zeiteinteilung</b>Etwa ein Drittel der Prüfungszeit auf die Reproduktion, ein Drittel auf den Transfer, ein Drittel auf die Reflexion. Wer die ersten zwei Aufträge zu breit beantwortet, verliert genau dort Punkte, wo die höchsten Leistungen zu zeigen wären.</div>
+  </div>
+
+  <div class="note"><b class="lab">Was das Übersetzen betrifft</b>Du musst den Ausgangstext nicht Wort für Wort übersetzen, und eine Übersetzung wird auch nicht beurteilt. Trotzdem gilt: Wenn du eine Aussage belegst, zitierst du die lateinische Stelle und sagst kurz, was sie heißt. Das zeigt, dass dein Urteil am Text hängt und nicht in der Luft.</div>
+</section>
+
+<section id="operatoren">
+  <h2>Operatoren und was sie verlangen</h2>
+  <p>Das erste Wort eines Arbeitsauftrags sagt dir, welche Leistung erwartet wird und wie ausführlich du antworten musst. Wer <span class="la">nenne</span> mit einem Aufsatz beantwortet, verliert Zeit; wer <span class="la">beurteile</span> mit einer Aufzählung beantwortet, verliert Punkte.</p>
+  <div class="tw"><table><thead><tr><th style="width:150px">Operator</th><th style="width:120px">Bereich</th><th>Das wird erwartet · So fängst du an</th></tr></thead><tbody>
+    <tr><td><b>nenne, gib an</b></td><td><span class="ab ab1">Repro</span></td><td>Knapp aufzählen, ohne Erklärung. „Im Text finden sich drei …“</td></tr>
+    <tr><td><b>fasse zusammen</b></td><td><span class="ab ab1">Repro</span></td><td>Den Inhalt in eigenen Worten, geordnet, ohne Details. „Der Text handelt von … Zunächst … Dann … Am Ende …“</td></tr>
+    <tr><td><b>arbeite heraus</b></td><td><span class="ab ab1">Repro</span></td><td>Gezielt Stellen suchen und mit Zitat belegen. „Das zeigt sich an …, wörtlich …“</td></tr>
+    <tr><td><b>belege am Text</b></td><td><span class="ab ab1">Repro</span></td><td>Lateinisches Zitat plus kurze Erklärung, warum es passt.</td></tr>
+    <tr><td><b>ordne ein</b></td><td><span class="ab ab2">Transfer</span></td><td>In Gattung, Zeit oder Zusammenhang stellen. „Der Text gehört zur Gattung …, erkennbar an …“</td></tr>
+    <tr><td><b>erkläre</b></td><td><span class="ab ab2">Transfer</span></td><td>Ursachen und Zusammenhänge sichtbar machen. „Das hängt damit zusammen, dass …“</td></tr>
+    <tr><td><b>vergleiche</b></td><td><span class="ab ab2">Transfer</span></td><td>Vergleichspunkt nennen, dann Gemeinsamkeiten, dann Unterschiede. „Beide … Während aber der lateinische Text …, zeigt das Vergleichsmedium …“</td></tr>
+    <tr><td><b>deute, interpretiere</b></td><td><span class="ab ab2">Transfer</span></td><td>Vom Beobachteten auf die Aussageabsicht schließen. „Damit will der Autor erreichen, dass …“</td></tr>
+    <tr><td><b>beurteile</b></td><td><span class="ab ab3">Reflexion</span></td><td>Ein Urteil mit Kriterien, am Ende eine klare Aussage. „Nach beiden Seiten betrachtet … Überzeugender finde ich …, weil …“</td></tr>
+    <tr><td><b>nimm Stellung</b></td><td><span class="ab ab3">Reflexion</span></td><td>Eigener Standpunkt, begründet, Gegenargument erwähnt. „Ich halte … für …, denn … Man könnte einwenden, dass …“</td></tr>
+    <tr><td><b>diskutiere, erörtere</b></td><td><span class="ab ab3">Reflexion</span></td><td>Beide Seiten gleichgewichtig, dann abwägendes Ergebnis.</td></tr>
+    <tr><td><b>entwirf, gestalte</b></td><td><span class="ab ab3">Reflexion</span></td><td>Etwas Eigenes herstellen, etwa eine Antwort, einen Titel, eine Fortsetzung, und die Wahl begründen.</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="vorbereitung">
+  <h2>Die zwanzig Minuten Vorbereitung</h2>
+  <p>Zwanzig Minuten sind genug, wenn du sie nicht mit Übersetzen verbringst. Dieser Ablauf hat sich bewährt. Die Zeitangaben sind Richtwerte.</p>
+
+  <div class="acc"><button class="h">Minute 1–2 · Aufträge zuerst lesen <span class="plus">+</span></button><div class="body">
+    Lies <b>zuerst</b> die Arbeitsaufträge, erst danach den Text. Nummeriere sie und schreibe neben jeden ein Kürzel für den Anforderungsbereich: R, T oder F. So weißt du von Anfang an, worauf du im Text achten musst, und liest nicht zweimal.
+  </div></div>
+  <div class="acc"><button class="h">Minute 3–6 · Ausgangstext durchgehen <span class="plus">+</span></button><div class="body">
+    Du kennst den Text aus dem Unterricht. Markiere, was die Aufträge brauchen: Prädikate und Subjekte für den Inhalt, auffällige Wortstellungen und Wiederholungen für die Stilfrage, Schlüsselwörter für die Deutung. Übersetze nur die Stellen, die du zitieren willst. Beim Wörterbuch gilt: höchstens zwei, drei Wörter, sonst frisst es deine Zeit.
+  </div></div>
+  <div class="acc"><button class="h">Minute 7–10 · Vergleichsmedium erschließen <span class="plus">+</span></button><div class="body">
+    Das Vergleichsmedium kennst du nicht, deshalb liest du es langsamer. Halte in zwei Stichworten fest: Worum geht es, und welche Haltung nimmt es ein? Bei einem Bild oder einer Karikatur beschreibe zuerst, was zu sehen ist, und erst dann, was es bedeutet. Suche sofort nach <b>einer</b> klaren Gemeinsamkeit und <b>einem</b> klaren Unterschied zum lateinischen Text. Mehr brauchst du für den Transfer nicht.
+  </div></div>
+  <div class="acc"><button class="h">Minute 11–17 · Notizen schreiben, nicht Sätze <span class="plus">+</span></button><div class="body">
+    Schreibe zu jedem Auftrag drei bis fünf Stichworte, keine ausformulierten Sätze. Ausformulierte Sätze liest man in der Prüfung ab, und Ablesen klingt immer schlechter als freies Sprechen. Notiere dir aber wörtlich: die lateinischen Zitate mit Zeilenangabe, Fachbegriffe, Namen und Jahreszahlen, und den ersten Satz deiner Reflexion. Dieser eine Satz rettet dich, wenn du nervös wirst.
+  </div></div>
+  <div class="acc"><button class="h">Minute 18–20 · Reihenfolge festlegen und einmal durchgehen <span class="plus">+</span></button><div class="body">
+    Lege fest, in welcher Reihenfolge du sprichst, und nummeriere deine Notizen entsprechend. Gehe sie einmal stumm durch und prüfe: Habe ich zu jedem Auftrag etwas? Lieber zu jedem Auftrag zwei Sätze als zu zweien fünf und zu den anderen nichts. Wenn Zeit bleibt, überlege dir eine Antwort auf die wahrscheinlichste Rückfrage.
+  </div></div>
+
+  <h3>Das Notizenblatt</h3>
+  <p>So kann ein Blatt aussehen, das in der Prüfung wirklich trägt. Links der Auftrag, rechts die Stichworte, und alles, was zitiert wird, wörtlich.</p>
+  <div class="vm">
+    <p style="margin:0 0 .6em"><b>1 R · Inhalt</b> → Z. 1–3 Zeit = einziger Besitz · Z. 4–6 drei Arten des Verlusts (entrissen, entzogen, verrinnt) · Schluss: Appell <span class="la">vindica te tibi</span></p>
+    <p style="margin:0 0 .6em"><b>2 R · Stil</b> → Trikolon <span class="la">eripitur – subducitur – effluit</span> (Z. 4–5) · Antithese Geld/Zeit Z. 6 · rhet. Frage Z. 8</p>
+    <p style="margin:0 0 .6em"><b>3 T · Vergleich</b> → gemeinsam: Zeit wird unbemerkt genommen · anders: bei Seneca eigene Schuld, im Text fremde Absicht (Geschäftsmodell)</p>
+    <p style="margin:0 0 .6em"><b>4 T · Erklärung</b> → Zeit als Eigentum gedacht → Verlust = Diebstahl → beide verwenden Besitzvokabular</p>
+    <p style="margin:0"><b>5 F · Beurteilung</b> → <i>Erster Satz:</i> „Senecas Rat trifft die Ursache nur halb, weil …“ · Pro: Selbstverantwortung · Contra: Strukturen</p>
+  </div>
+</section>
+
+<section id="sprechen">
+  <h2>Sprechen in der Prüfung</h2>
+
+  <h3>Bausteine für jeden Anforderungsbereich</h3>
+  <div class="grid g3">
+    <div class="card" style="margin:0"><h4 style="margin-top:0"><span class="ab ab1">Reproduktion</span></h4>
+      <p style="margin:0;font-size:.95rem">„Der Text stammt aus … und gehört zur Gattung …“<br>„Inhaltlich lässt er sich in drei Abschnitte gliedern: …“<br>„Sprachlich fällt zunächst … auf, etwa in Zeile …“<br>„Wörtlich heißt es <span class="la">…</span>, also …“</p></div>
+    <div class="card" style="margin:0"><h4 style="margin-top:0"><span class="ab ab2">Transfer</span></h4>
+      <p style="margin:0;font-size:.95rem">„Ich vergleiche beide Texte im Hinblick auf …“<br>„Gemeinsam ist beiden, dass …“<br>„Ein deutlicher Unterschied liegt darin, dass …, während …“<br>„Das lässt sich daraus erklären, dass …“</p></div>
+    <div class="card" style="margin:0"><h4 style="margin-top:0"><span class="ab ab3">Reflexion</span></h4>
+      <p style="margin:0;font-size:.95rem">„Dafür spricht …, dagegen spricht …“<br>„Ich halte … für überzeugender, und zwar aus zwei Gründen: …“<br>„Man könnte einwenden, dass … Darauf würde ich antworten …“<br>„Zusammenfassend: …“</p></div>
+  </div>
+
+  <h3>Wenn du nicht weiterweißt</h3>
+  <table><tbody>
+    <tr><td style="width:230px"><b>Du erkennst eine Form nicht.</b></td><td>Sage, was du siehst, und ziehe die Folgerung: „Die Endung <span class="la">-tur</span> zeigt Passiv, Subjekt ist also …“ Teilwissen zählt, Schweigen nicht.</td></tr>
+    <tr><td><b>Du kennst den Begriff nicht.</b></td><td>Beschreibe die Sache: „Hier stehen drei gleichgebaute Glieder hintereinander, die sich steigern.“ Das ist fachlich richtig, auch ohne das Wort Klimax.</td></tr>
+    <tr><td><b>Du hast den Faden verloren.</b></td><td>Benenne, wo du bist: „Ich komme zum dritten Auftrag, dem Vergleich.“ Diese halbe Sekunde ordnet dich und wirkt souverän.</td></tr>
+    <tr><td><b>Eine Rückfrage kommt.</b></td><td>Rückfragen sind normal und oft eine Hilfe. Höre sie zu Ende an, wiederhole sie kurz mit eigenen Worten und antworte dann.</td></tr>
+    <tr><td><b>Du hast dich geirrt.</b></td><td>Korrigiere offen: „Da war ich vorhin ungenau, richtig ist …“ Das wird als Stärke gewertet, nicht als Schwäche.</td></tr>
+  </tbody></table>
+
+  <div class="note f"><b class="lab">Die vier häufigsten Fehler</b>Den Text vollständig übersetzen, obwohl das nicht gefragt ist. Die Notizen ablesen. Beim Vergleich nur den einen und dann den anderen Text nacherzählen, statt sie wirklich aufeinander zu beziehen. Und bei der Reflexion keine eigene Position beziehen, sondern nur „man könnte sagen“ aneinanderreihen.</div>
+</section>
+
+<section id="themen">
+  <h2>Themenbereiche vorbereiten</h2>
+  <p>Die Themenbereiche deiner Schule bekommst du im Winter der letzten Klasse bekanntgegeben. Für jeden davon brauchst du dasselbe Gerüst. Wenn du zu einem Bereich diese fünf Punkte auf einer Seite stehen hast, bist du vorbereitet.</p>
+  <ol>
+    <li><b>Die Texte:</b> Welche Stellen haben wir gelesen, von wem, aus welchem Werk, worum geht es?</li>
+    <li><b>Die Sprache:</b> Welche Konstruktionen und Stilmittel sind in diesen Texten auffällig?</li>
+    <li><b>Das Sachwissen:</b> Welche Begriffe, Personen und Hintergründe gehören dazu?</li>
+    <li><b>Die Leitfrage:</b> Welche Frage stellt der Themenbereich eigentlich?</li>
+    <li><b>Die Brücke:</b> Womit aus der Gegenwart lässt sich das verbinden? Ein, zwei eigene Beispiele reichen und machen den Transfer leicht.</li>
+  </ol>
+  <p>Hier dieselben fünf Punkte für sechs verbreitete Themenbereiche, als Muster und zum Abgleich mit deiner eigenen Liste.</p>
+  <div id="tbhost"></div>
+</section>
+
+<section id="training">
+  <h2>Training</h2>
+  <p>Kurze Aufgaben zu Format, Operatoren und Antwortqualität. Bei einer falschen Antwort bekommst du zuerst einen Hinweis.</p>
+  <div id="exhost"></div>
+</section>
+
+<section id="sim">
+  <h2>Prüfungssimulation</h2>
+  <p>Hier läuft es wie in der echten Prüfung: Du ziehst zwei Themenbereiche, wählst einen, bekommst eine Aufgabenstellung zugeteilt und hast zwanzig Minuten Zeit. Schreibe deine Notizen ins Feld, sprich sie danach laut durch und vergleiche dann mit der Musterlösung.</p>
+  <div id="simhost"></div>
+</section>
+
+<footer>Alle lateinischen Texte, Vergleichsmedien und Aufgabenstellungen auf dieser Seite sind eigens verfasst. Deine Notizen bleiben in deinem Browser.</footer>
+
+</main>
+
+<script>
+const AUFGABEN=[
+{
+ tb:'Suche nach Sinn und Glück',
+ autor:'Übungstext im Stil der philosophischen Briefe Senecas',
+ text:'Omnia, Lucili, aliena sunt, tempus tantum nostrum est. Hoc unum bonum natura nobis dedit, quod tamen cotidie amittimus. Pars vitae nobis eripitur, pars subducitur, maxima vero pars effluit, dum alia agimus. Nemo pecuniam suam temere dividit; vitam autem omnes dividunt, et quidem imprudenter. Quaeris, quid stultissimum sit? Homines de parvis rebus diligenter cogitant, de tempore numquam. Itaque, mi Lucili, fac quod scribis: vindica te tibi et tempus serva.',
+ vmTitel:'Vergleichsmedium: „Die Währung heißt Aufmerksamkeit“ (Sachtext, eigens verfasst)',
+ vm:'Wer eine App gratis benützt, bezahlt trotzdem. Er bezahlt mit seiner Zeit. Die Gestalterinnen und Gestalter solcher Anwendungen arbeiten mit Mitteln, die genau darauf zielen: Inhalte, die endlos weiterlaufen, Benachrichtigungen, die im richtigen Moment kommen, kleine Belohnungen, die unregelmäßig eintreffen und deshalb besonders stark binden. Gemessen und bezahlt wird am Ende die Verweildauer.<br><br>Das Unangenehme daran ist nicht, dass Menschen schwach wären. Das Unangenehme ist, dass auf der anderen Seite sehr viel Arbeit darauf verwendet wird, sie schwach werden zu lassen. Ein Vorsatz allein hilft deshalb selten. Wirksam sind Eingriffe in die Umgebung: das Gerät außer Reichweite legen, Benachrichtigungen abschalten, feste Zeiten festlegen. Wer seine Zeit zurückhaben will, muss sie nicht nur wollen, sondern sich die Bedingungen schaffen, unter denen das Wollen eine Chance hat.',
+ tasks:[
+  {ab:1,q:'Fasse den Gedankengang des lateinischen Textes in eigenen Worten zusammen.',s:'Alles außer der Zeit ist fremder Besitz, nur die Zeit gehört uns wirklich; dennoch verlieren wir sie täglich. Der Verlust geschieht auf drei Arten: Ein Teil wird uns entrissen, ein Teil heimlich entzogen, der größte Teil verrinnt, während wir mit anderem beschäftigt sind. Es folgt der Vergleich mit dem Geld: Niemand verteilt sein Geld leichtfertig, seine Lebenszeit aber verteilen alle, und zwar unbedacht. Nach einer rhetorischen Frage benennt der Text die größte Torheit: Über Kleinigkeiten denken die Menschen sorgfältig nach, über die Zeit nie. Am Schluss steht der Appell, sich selbst für sich zu beanspruchen und die Zeit zu bewahren.'},
+  {ab:1,q:'Arbeite drei sprachliche Gestaltungsmittel heraus und belege sie am Text.',s:'Erstens das Trikolon mit Steigerung <span class="la">eripitur – subducitur – effluit</span>: drei Passivformen, die vom gewaltsamen Entreißen über das heimliche Entziehen zum unbemerkten Verrinnen führen; der Verlust wird dabei immer unauffälliger und zugleich größer. Zweitens die Antithese zwischen <span class="la">pecuniam</span> und <span class="la">vitam</span>, verstärkt durch die Wiederholung von <span class="la">dividit/dividunt</span>: Dasselbe Verb trifft auf zwei Gegenstände, die wir völlig verschieden behandeln. Drittens die rhetorische Frage <span class="la">Quaeris, quid stultissimum sit?</span>, die den Leser direkt einbezieht und die Pointe vorbereitet. Dazu kommen die Anrede <span class="la">mi Lucili</span> und die Imperative am Schluss, die aus der Beobachtung eine Aufforderung machen.'},
+  {ab:2,q:'Vergleiche, wie der lateinische Text und das Vergleichsmedium den Verlust von Zeit erklären.',s:'Beide beschreiben denselben Befund: Zeit geht verloren, ohne dass man es bemerkt, und gerade die Unauffälligkeit macht den Verlust gefährlich. Beide sprechen von Zeit in der Sprache des Besitzes. Der Unterschied liegt in der Ursache. Im lateinischen Text liegt sie beim Menschen selbst: Er ist unbedacht, er denkt über Kleinigkeiten nach, aber nicht über das Wesentliche. Im Vergleichstext liegt sie außerhalb: Es gibt eine Gegenseite, die planvoll und mit großem Aufwand an dieser Zeit arbeitet, weil sie damit verdient. Entsprechend verschieden ist die Lösung: hier ein Appell an die Einsicht, dort ein Eingriff in die Umgebung.'},
+  {ab:2,q:'Erkläre, welche Vorstellung von Zeit beiden Texten zugrunde liegt, und welche Folgen diese Vorstellung für die Argumentation hat.',s:'Beide denken Zeit als Eigentum. Im lateinischen Text ist sie der einzige wirkliche Besitz, alles andere ist <span class="la">alienum</span>; entsprechend ist ihr Verlust ein Diebstahl, und der Schluss <span class="la">vindica te tibi</span> stammt aus der Rechtssprache: Man fordert zurück, was einem gehört. Der Vergleichstext spricht von Bezahlen und von einer Währung und macht damit dieselbe Gleichsetzung. Diese Vorstellung hat Folgen: Wer Zeit als Eigentum versteht, kann von Verschwendung, Diebstahl und Rückforderung sprechen und muss dadurch eine Entscheidung treffen. Umgekehrt rückt dabei aus dem Blick, dass gemeinsam verbrachte Zeit nicht nur ein Verbrauch ist.'},
+  {ab:3,q:'Beurteile, ob der Rat des lateinischen Textes unter heutigen Bedingungen ausreicht.',s:'Ein mögliches Urteil: Er trifft die Diagnose, aber nur die halbe Ursache. Richtig bleibt, dass niemand die eigene Zeit für mich schützen kann und dass Aufmerksamkeit für das, was man gerade tut, die Voraussetzung jeder Änderung ist. Zu kurz greift er dort, wo dem Einzelnen eine Industrie gegenübersteht, die mit erheblichen Mitteln daran arbeitet, seine Aufmerksamkeit zu binden; ein bloßer Vorsatz ist dagegen schwach. Überzeugend wäre eine Verbindung: die Haltung des lateinischen Textes und die praktischen Eingriffe des Vergleichstextes. Wichtig ist, dass du dich festlegst und zwei Gründe nennst.'},
+  {ab:3,q:'Nimm Stellung: Ist die Rede von „verlorener Zeit“ überhaupt sinnvoll, oder führt sie in die Irre?',s:'Hier zählt die Begründung, nicht die Richtung. Für den Begriff spricht, dass Lebenszeit tatsächlich begrenzt und unwiederbringlich ist und dass die Bezeichnung als Verlust zum Handeln bewegt. Gegen ihn spricht, dass die Rede vom Verlust jede Tätigkeit nach ihrem Ertrag bewertet und damit Muße, Langeweile und Umwege abwertet, obwohl gerade sie oft nötig sind. Eine abwägende Antwort könnte unterscheiden: Zeit, die andere mit Absicht nehmen, ist verloren; Zeit, die ich bewusst mit etwas Unproduktivem verbringe, ist es nicht.'}
+ ]
+},
+{
+ tb:'Der Mythos und seine Wirkung',
+ autor:'Übungstext im Stil der mythographischen Prosa Hygins',
+ text:'Daedalus, vir ingeniosissimus, cum filio Icaro in insula Creta tenebatur. Quia navibus effugere non poterat, fugam per caelum paravit. Pennas enim cera iunxit et alas sibi filioque fecit. Deinde puerum monuit, ne nimis humilis neve nimis altus volaret: si humilius volaret, undam pennas gravaturam esse; si altius, ignem solis ceram soluturum. Icarus autem, dum caelum petit, monita patris neglexit. Cera soluta est, puer in mare cecidit. Pater, dum filium quaerit, nomen eius mari dedit.',
+ vmTitel:'Vergleichsmedium: „Der Ikarus im Jahresbericht“ (Sachtext, eigens verfasst)',
+ vm:'In der Sprache der Wirtschaft taucht Ikarus regelmäßig auf. Von einem Unternehmen heißt es, es sei der Sonne zu nahe gekommen; von einer Gründerin, sie habe den Ikarusflug hinter sich. Gemeint ist immer dasselbe: rascher Aufstieg, Selbstüberschätzung, Absturz.<br><br>Auffällig ist, was dabei weggelassen wird. Der Vater, der die Flügel gebaut hat, kommt in diesen Sätzen nicht vor, und auch nicht die Gefangenschaft, aus der die beiden fliehen mussten. Übrig bleibt ein junger Mensch, der zu hoch hinauswollte, und daraus wird eine Warnung an alle, bescheiden zu bleiben.<br><br>Man kann die Geschichte aber auch anders lesen. Dann ist Ikarus derjenige, der als Erster erfahren hat, wie weit die Erfindung trägt, und ohne diesen Versuch wüsste niemand, wo die Grenze liegt. In dieser Lesart ist nicht der Flug der Fehler, sondern das Fehlen jeder Erfahrung mit einem völlig neuen Gerät.',
+ tasks:[
+  {ab:1,q:'Gib den Inhalt des lateinischen Textes wieder und nenne die handelnden Figuren mit ihrer Rolle.',s:'Daedalus, als überaus erfinderischer Mann eingeführt, wird mit seinem Sohn Icarus auf Kreta festgehalten. Weil er mit Schiffen nicht entkommen kann, bereitet er die Flucht durch die Luft vor. Er verbindet Federn mit Wachs und fertigt für sich und den Sohn Flügel. Dann warnt er den Jungen, weder zu tief noch zu hoch zu fliegen, und begründet beides: Zu tief werde das Wasser die Federn beschweren, zu hoch werde die Sonnenhitze das Wachs lösen. Icarus missachtet die Mahnungen, während er zum Himmel strebt; das Wachs löst sich, er stürzt ins Meer. Der Vater sucht ihn und gibt dem Meer den Namen des Sohnes.'},
+  {ab:1,q:'Arbeite heraus, mit welchen sprachlichen Mitteln der Text die Warnung des Vaters gestaltet.',s:'Die Warnung steht in indirekter Rede und ist streng symmetrisch gebaut: <span class="la">ne nimis humilis neve nimis altus</span>, danach zwei parallele Bedingungssätze <span class="la">si humilius … si altius …</span> mit zwei AcI als Folge. Die beiden Komparative markieren die Ränder, dazwischen liegt unausgesprochen die Mitte, die der Text damit als den richtigen Weg zeigt. Die Begründungen sind zugleich die beiden Naturkräfte Wasser und Feuer, zwischen denen sich der Mensch bewegt. Der Schluss ist knapp und parataktisch: drei kurze Hauptsätze, die den Absturz ohne jede Ausschmückung berichten, und ein letzter Satz, der aus dem Unglück einen Namen macht.'},
+  {ab:2,q:'Vergleiche, welche Teile der Geschichte der lateinische Text betont und welche das Vergleichsmedium weglässt.',s:'Der lateinische Text erzählt eine Fluchtgeschichte: Am Anfang stehen Gefangenschaft und die Erfindung des Vaters, der Junge ist Mitfliehender, nicht Hauptfigur. Die Mahnung nimmt den größten Raum ein, der Absturz nur zwei Sätze, und am Ende steht der trauernde Vater. Das Vergleichsmedium behält von alldem nur den Jungen und die Sonne. Gefangenschaft, Erfinder und Trauer fallen weg, und damit verschwindet auch die Frage, warum überhaupt geflogen wurde. Aus einer Geschichte über Zwang, Erfindung und Verlust wird eine Formel für Selbstüberschätzung. Das Vergleichsmedium weist auf genau diese Verkürzung selbst hin und stellt ihr eine zweite Lesart gegenüber.'},
+  {ab:2,q:'Erkläre, warum sich gerade dieser Mythos als Bild für Technik und Fortschritt eignet.',s:'Weil er alle Elemente enthält, die man dafür braucht: eine neue Technik, die wirklich funktioniert, einen Erfinder, der ihre Grenzen kennt, einen Nutzer, der sie nicht kennt, und eine Grenze, die nicht willkürlich gesetzt, sondern in der Sache selbst begründet ist. Das Wachs schmilzt tatsächlich. Dadurch lässt sich der Mythos sowohl als Warnung vor Überheblichkeit als auch als Geschichte über den Preis von Erfahrung lesen, und beide Lesarten finden im Text Anhaltspunkte. Dazu kommt die Bildkraft der Szene, die sich in einem einzigen Satz aufrufen lässt.'},
+  {ab:3,q:'Beurteile, welche der beiden im Vergleichsmedium genannten Lesarten dem lateinischen Text näher kommt.',s:'Näher liegt die Warnung, denn der Text stellt die Mahnung des Vaters breit dar und sagt ausdrücklich, Icarus habe sie missachtet: <span class="la">monita patris neglexit</span>. Damit ist die Schuldfrage im Text beantwortet. Für die zweite Lesart lässt sich dennoch argumentieren, denn der Text betont die Erfindung und nennt Daedalus <span class="la">ingeniosissimus</span>; ohne den Flug gäbe es die Erfahrung nicht, und die Gefangenschaft macht den Versuch notwendig. Eine gute Antwort nennt beide Belege und entscheidet sich begründet, statt beides nebeneinanderzustellen.'},
+  {ab:3,q:'Nimm Stellung dazu, ob es zulässig ist, einen antiken Mythos so verkürzt als Schlagwort zu verwenden.',s:'Dafür spricht, dass Mythen immer schon umerzählt wurden und ihre Kraft gerade daraus beziehen, dass sie sich auf neue Lagen anwenden lassen; ein Schlagwort, das alle verstehen, ist ein brauchbares Werkzeug der Verständigung. Dagegen spricht, dass die Verkürzung hier nicht harmlos ist: Sie verschiebt die Verantwortung auf den Einzelnen und blendet die Umstände aus, und wer so spricht, trifft damit auch ein Urteil über Menschen, die gescheitert sind. Ein abwägender Schluss könnte lauten, dass die Abkürzung erlaubt ist, solange man weiß und sagen kann, was sie weglässt.'}
+ ]
+},
+{
+ tb:'Politik und Gesellschaft',
+ autor:'Übungstext im Stil der republikanischen Prosa',
+ text:'Nemo in hac civitate honores petit, nisi qui multos amicos habet. Maiores nostri virtute, non pecunia, ad summos honores pervenerunt. Nunc autem candidati forum donis implent, populum spectaculis delectant, promissis onerant. Quid igitur restat? Qui plurimum dare potest, plurimum valet. Ita res publica non consiliis sapientium, sed largitione paucorum regitur. Nisi mores mutaverimus, libertatem amittemus. Nam ubi suffragia emuntur, ibi iustitia abest.',
+ vmTitel:'Vergleichsmedium: „Was ein Wahlkampf kostet“ (Sachtext, eigens verfasst)',
+ vm:'Wahlkämpfe sind teuer geworden. Plakate, Inserate, Veranstaltungen und vor allem bezahlte Beiträge in sozialen Netzwerken verschlingen Summen, die eine einzelne Person niemals aufbringt. Wer kandidieren will, braucht deshalb eine Organisation im Rücken, die das Geld aufstellt, und Menschen, die es geben.<br><br>Daraus entsteht ein Problem, das sich nicht mit dem Vorwurf der Bestechlichkeit beschreiben lässt. In aller Regel wird niemand gekauft. Aber wer monatelang mit denselben Geldgebern spricht, kennt deren Sorgen genauer als die Sorgen jener, die nie anrufen. Die Verschiebung geschieht leise und ohne böse Absicht.<br><br>Die üblichen Gegenmittel setzen deshalb nicht bei der Gesinnung an, sondern bei den Regeln: Obergrenzen für Wahlkampfkosten, Offenlegung von Spenden ab einer bestimmten Höhe, unabhängige Kontrolle und Fristen, innerhalb derer veröffentlicht werden muss. Ob das genügt, ist umstritten. Unstrittig ist, dass Appelle an die Moral allein noch keinen Wahlkampf verbilligt haben.',
+ tasks:[
+  {ab:1,q:'Fasse zusammen, welchen Zustand des Gemeinwesens der lateinische Text beschreibt.',s:'Er beschreibt einen Verfall. Ämter bekommt nur noch, wer viele Freunde, also ein Netzwerk hat. Dem stellt der Text die Vorfahren gegenüber, die durch Leistung und nicht durch Geld zu den höchsten Ämtern kamen. In der Gegenwart füllen die Bewerber das Forum mit Geschenken, unterhalten das Volk mit Spielen und überhäufen es mit Versprechungen. Daraus zieht der Text die Folgerung, dass der am meisten gilt, der am meisten geben kann, und dass der Staat nicht mehr durch den Rat der Einsichtigen, sondern durch die Freigebigkeit weniger gelenkt wird. Am Ende steht die Warnung, ohne eine Änderung der Sitten gehe die Freiheit verloren.'},
+  {ab:1,q:'Benenne zwei Argumentationsmittel des Textes und belege sie.',s:'Erstens die Gegenüberstellung von Einst und Jetzt, markiert durch <span class="la">Maiores nostri …</span> und <span class="la">Nunc autem …</span>, verbunden mit der Antithese <span class="la">virtute, non pecunia</span>. Sie macht aus einer Behauptung einen Verfallsbefund. Zweitens das Trikolon <span class="la">forum donis implent, populum spectaculis delectant, promissis onerant</span>: drei Glieder ohne Bindewort, die das Vorgehen der Kandidaten als lückenloses System erscheinen lassen. Dazu kommen die rhetorische Frage <span class="la">Quid igitur restat?</span>, die das Ergebnis als zwingend einführt, das Polyptoton <span class="la">plurimum … plurimum</span> und der Bedingungssatz am Schluss, der aus der Analyse eine Drohung macht.'},
+  {ab:2,q:'Vergleiche, wie beide Texte den Zusammenhang von Geld und politischem Einfluss beschreiben.',s:'Beide sehen denselben Zusammenhang: Wer über Mittel verfügt, hat größeres Gewicht im politischen Verfahren, und beide halten das für gefährlich. Der Unterschied liegt im Mechanismus und im Ton. Der lateinische Text denkt in Kategorien der Moral: Es geht um <span class="la">mores</span>, um Kauf und Verkauf, um Schuld; er arbeitet mit scharfen Gegensätzen und endet in einer Warnung. Der Vergleichstext bestreitet die Bestechlichkeit ausdrücklich und beschreibt stattdessen eine unauffällige Verschiebung der Aufmerksamkeit, die auch ohne böse Absicht entsteht. Entsprechend verschieden sind die Vorschläge: Besserung der Sitten gegenüber Regeln, Offenlegung und Kontrolle.'},
+  {ab:2,q:'Erkläre, welche Wirkung der Verfallsgedanke des lateinischen Textes auf seine Leser haben soll.',s:'Der Verweis auf die Vorfahren gibt dem Urteil einen Maßstab, der nicht erst begründet werden muss: Was die <span class="la">maiores</span> taten, gilt als richtig. Damit wird aus einer politischen Forderung eine Rückkehr, und Widerspruch wird schwerer, weil er sich gegen die eigene Überlieferung richten müsste. Zugleich erzeugt der Gedanke Dringlichkeit, denn ein Verfall schreitet fort, wenn man nichts tut. Die Form des Bedingungssatzes bezieht die Hörer ein: <span class="la">nisi mores mutaverimus</span> spricht in der ersten Person Plural und macht sie zu Mitverantwortlichen. Kritisch lässt sich anmerken, dass das idealisierte Früher selten überprüft wird.'},
+  {ab:3,q:'Beurteile, welcher der beiden Lösungswege erfolgversprechender ist.',s:'Für die Regeln spricht, dass sie unabhängig von der Einsicht der Beteiligten wirken und überprüfbar sind; wer auf bessere Sitten wartet, wartet oft vergeblich. Für den moralischen Weg spricht, dass Regeln umgangen werden, wenn niemand sie für richtig hält, und dass jede Regel eine Haltung voraussetzt, die sie durchsetzt. Eine überzeugende Antwort verbindet beides und sagt, welcher Teil die größere Last trägt, etwa: Regeln sind das wirksamere Werkzeug, die Haltung entscheidet darüber, ob sie ernst genommen werden. Wichtig ist eine klare Festlegung am Schluss.'},
+  {ab:3,q:'Nimm Stellung: Ist der Befund des lateinischen Textes auf die Gegenwart übertragbar, oder verbietet der historische Abstand das?',s:'Dagegen spricht, dass die politischen Verhältnisse kaum vergleichbar sind: eine Oberschicht ohne allgemeines Wahlrecht, ohne Parteien, ohne Medien, in der persönliche Bindungen die Ämtervergabe regelten. Wer solche Texte unmittelbar auf heute bezieht, überspringt diese Unterschiede. Dafür spricht, dass die Frage dieselbe ist: Wie verhindert man, dass sich ungleiche Mittel in ungleichen politischen Einfluss übersetzen? Eine abwägende Antwort könnte den Text nicht als Beschreibung der Gegenwart, aber als Prüfstein benützen: Er zeigt, wie früh dieses Problem gesehen wurde und mit welchen Mitteln man darauf geantwortet hat.'}
+ ]
+},
+{
+ tb:'Begegnung und Umgang mit dem Fremden',
+ autor:'Übungstext im Stil der ethnographischen Abschnitte römischer Geschichtsschreibung',
+ text:'Germani multum a nostris moribus differunt. Agros non diligenter colunt; maior pars victus eorum in lacte et carne consistit. Nemo agri modum certum aut fines proprios habet, sed magistratus singulis annis gentibus agros attribuunt. Vestitus eorum pelles sunt. Bella amant, otium oderunt. Qui diutissime a mulieribus abstinuerunt, maximam laudem apud suos ferunt. Haec de Germanis accepimus; quae vera sint, ipsi iudicate.',
+ vmTitel:'Vergleichsmedium: „Der Spiegel im Reisebericht“ (Sachtext, eigens verfasst)',
+ vm:'Berichte über fremde Völker sagen fast immer mehr über ihre Verfasser aus als über die Beschriebenen. Das liegt nicht an Böswilligkeit, sondern am Verfahren. Beschrieben wird, was auffällt, und auffällig ist, was von den eigenen Gewohnheiten abweicht. Was gleich ist, wird nicht erwähnt. So entsteht ein Bild, das aus lauter Unterschieden besteht.<br><br>Dazu kommt die Absicht. Wer ein fremdes Volk als wild und unbezwingbar schildert, erklärt damit zugleich, warum man es nicht erobert hat. Wer es als sittenstreng und unverdorben schildert, hält den eigenen Landsleuten einen Spiegel vor. Beide Bilder können im selben Jahrhundert entstehen, über dasselbe Volk, und beide sind in erster Linie Aussagen über Rom.<br><br>Für heutige Leserinnen und Leser folgt daraus eine einfache Frage an jeden solchen Text: Wer spricht hier, zu wem, und was hat er davon, dass die Fremden so sind, wie er sie beschreibt?',
+ tasks:[
+  {ab:1,q:'Nenne die Bereiche, in denen der lateinische Text die Germanen beschreibt, und gib jeweils den Befund an.',s:'Landwirtschaft: Die Felder werden nicht sorgfältig bebaut. Ernährung: Sie besteht überwiegend aus Milch und Fleisch. Eigentum und Verwaltung: Niemand hat festes Maß oder eigene Grenzen, die Beamten weisen den Sippen jährlich neu Land zu. Kleidung: Felle. Werte und Lebensform: Krieg wird geliebt, Ruhe gehasst. Sexualmoral: Wer sich am längsten enthält, genießt das höchste Ansehen. Am Schluss steht eine Bemerkung über die Quelle: All das habe man gehört, über den Wahrheitsgehalt mögen die Leser selbst urteilen.'},
+  {ab:1,q:'Arbeite heraus, mit welchen sprachlichen Mitteln der Text den Gegensatz zum eigenen Volk herstellt.',s:'Schon der erste Satz setzt den Maßstab: <span class="la">a nostris moribus</span> macht die eigenen Sitten zum Bezugspunkt, von dem aus beschrieben wird. Danach häufen sich Verneinungen: <span class="la">non diligenter</span>, <span class="la">nemo … certum aut fines proprios</span>. Die Germanen werden also vor allem dadurch bestimmt, was sie nicht haben. Dazu kommt das kurze Satzpaar <span class="la">Bella amant, otium oderunt</span>: ein Asyndeton mit zwei gegensätzlichen Verben, das ihre Lebensform auf eine Formel bringt und zugleich den römischen Wert <span class="la">otium</span> in sein Gegenteil verkehrt. Der Schlusssatz mit <span class="la">accepimus</span> und dem Imperativ <span class="la">iudicate</span> gibt die Verantwortung an die Leser weiter.'},
+  {ab:2,q:'Prüfe den lateinischen Text mit den Fragen, die das Vergleichsmedium vorschlägt.',s:'Wer spricht: ein römischer Autor, der aus zweiter Hand berichtet, wie <span class="la">accepimus</span> zeigt. Zu wem: zu einem römischen Publikum, das durch <span class="la">nostris</span> ausdrücklich angesprochen wird. Was wird beschrieben: ausschließlich Abweichungen von römischen Gewohnheiten, nämlich Ackerbau, Ernährung, Eigentum, Kleidung, Werte. Was wird nicht beschrieben: alles, was gleich sein könnte. Welchen Nutzen hat dieses Bild: Ein kriegsliebendes Volk ohne festen Besitz erscheint schwer zu unterwerfen und wenig lohnend, zugleich aber in seiner Strenge als Mahnbild für die eigene Gesellschaft brauchbar. Der Text bestätigt also den Befund des Vergleichsmediums an allen Punkten.'},
+  {ab:2,q:'Erkläre, welche Rolle der letzte Satz des lateinischen Textes für seine Glaubwürdigkeit spielt.',s:'Er benennt die Quelle und schränkt damit den Anspruch ein: Berichtet wird Gehörtes, nicht Gesehenes. Das wirkt zunächst redlich und erhöht die Glaubwürdigkeit, weil der Autor seine Grenzen offenlegt. Zugleich entlastet es ihn, denn für die Richtigkeit des Berichteten übernimmt er keine Verantwortung mehr, und die Aufforderung <span class="la">ipsi iudicate</span> schiebt die Prüfung an Leser weiter, die dafür gar keine Mittel haben. Der Satz schützt also vor allem den Autor, während das Bild selbst wirksam bleibt. Man kann ihn deshalb sowohl als Zeichen von Sorgfalt als auch als rhetorischen Zug lesen.'},
+  {ab:3,q:'Beurteile, ob ein solcher Bericht trotz seiner Einseitigkeit als historische Quelle brauchbar ist.',s:'Brauchbar ist er in zweifacher Hinsicht. Als Quelle über die Beschriebenen ist er mit Vorsicht zu verwenden, aber nicht wertlos: Einzelne Angaben lassen sich mit archäologischen Befunden abgleichen, und was sich bestätigt, gewinnt an Gewicht. Als Quelle über die Verfasser ist er erstklassig, denn er zeigt, welche Maßstäbe galten und welche Ängste und Ideale im Spiel waren. Unbrauchbar ist er dort, wo man ihn ungeprüft als Beschreibung der Wirklichkeit nimmt. Eine gute Antwort unterscheidet diese Ebenen, statt pauschal zu urteilen.'},
+  {ab:3,q:'Nimm Stellung dazu, ob sich das im Vergleichsmedium beschriebene Verfahren beim Blick auf Fremdes überhaupt vermeiden lässt.',s:'Dagegen spricht, dass jede Wahrnehmung von der eigenen Erfahrung ausgeht: Auffällig ist immer das Abweichende, und wer beschreibt, wählt zwangsläufig aus. In diesem Sinn ist das Verfahren unvermeidlich. Dafür spricht, dass sich die Folgen mildern lassen, nämlich durch mehrere Perspektiven, durch das Zuwort der Beschriebenen selbst und dadurch, dass man den eigenen Standpunkt benennt, statt ihn für neutral zu halten. Ein abwägender Schluss könnte lauten: Vermeiden lässt sich die Verzerrung nicht, kenntlich machen sehr wohl, und genau das unterscheidet einen redlichen Bericht von einem Zerrbild.'}
+ ]
+},
+{
+ tb:'Rhetorik, Propaganda, Manipulation',
+ autor:'Übungstext im Stil einer römischen Gerichtsrede',
+ text:'Quid tandem, iudices, vobis persuadere conatur adversarius meus? Negat se pecuniam accepisse; sed unde tanta villa, unde tot servi? Negat se leges violasse; sed quis testes corrupit? Vos, iudices, non verba, sed facta spectare debetis. Nolite dubitare: qui semel fidem fefellit, numquam fidem servabit. Si hunc absolveritis, omnes scelerati sperabunt; si damnaveritis, res publica respirabit. In manibus vestris est salus civitatis.',
+ vmTitel:'Vergleichsmedium: „Die drei Griffe“ (Sachtext, eigens verfasst)',
+ vm:'Wer öffentlich überzeugen will, greift seit jeher zu denselben Mitteln. Drei davon lassen sich in fast jeder Rede und in fast jedem Werbespot nachweisen.<br><br>Der erste Griff ist die Frage, die keine ist. Sie sieht aus wie eine Einladung zum Nachdenken, enthält die Antwort aber bereits und bindet das Publikum ein, indem sie es scheinbar urteilen lässt.<br><br>Der zweite Griff ist die erzwungene Wahl. Zwei Möglichkeiten werden nebeneinandergestellt, eine davon so unangenehm geschildert, dass nur die andere bleibt. Dass es noch weitere Wege gäbe, wird nicht bestritten, sondern gar nicht erwähnt.<br><br>Der dritte Griff ist die Erhöhung des Einsatzes. Aus einer begrenzten Entscheidung wird eine über das Ganze: über die Sicherheit aller, über die Zukunft, über das Land. Wer so spricht, macht Widerspruch teuer, denn wer widerspricht, stellt sich gegen das Ganze.<br><br>Keiner dieser Griffe ist für sich unlauter. Unlauter werden sie dort, wo sie an die Stelle von Gründen treten.',
+ tasks:[
+  {ab:1,q:'Gib wieder, was der Sprecher des lateinischen Textes erreichen will und wie er seine Rede aufbaut.',s:'Er will die Verurteilung des Gegners erreichen. Der Aufbau ist klar gestuft: Zuerst wendet er sich mit einer Frage an die Richter und stellt die Absicht des Gegners als Täuschungsversuch hin. Dann folgen zwei parallele Widerlegungen nach demselben Muster: Behauptung des Gegners, dann ein Gegenbeweis in Frageform, einmal zum Vermögen, einmal zur Zeugenbestechung. Darauf gibt er den Richtern eine Handlungsanweisung, auf Taten statt auf Worte zu achten, und stützt sie mit einem allgemeinen Satz über die Unzuverlässigkeit des Gegners. Zuletzt stellt er zwei Folgen gegenüber, Freispruch und Verurteilung, und legt die Rettung des Gemeinwesens in die Hände der Richter.'},
+  {ab:1,q:'Belege am Text vier rhetorische Mittel.',s:'Anrede und Einbeziehung der Richter: <span class="la">Quid tandem, iudices …</span>, dreimal <span class="la">iudices</span> beziehungsweise <span class="la">vos/vestris</span>. Rhetorische Fragen: <span class="la">unde tanta villa, unde tot servi?</span> mit Anapher von <span class="la">unde</span>. Anapher und Parallelismus im Aufbau: zweimal <span class="la">Negat se …; sed …</span>. Antithese: <span class="la">non verba, sed facta</span>. Polyptoton und Sentenz: <span class="la">qui semel fidem fefellit, numquam fidem servabit</span>. Zweigliedrige Gegenüberstellung mit Futur II: <span class="la">Si … absolveritis … si … damnaveritis …</span>. Metapher am Schluss: <span class="la">In manibus vestris est salus civitatis</span>.'},
+  {ab:2,q:'Weise die drei im Vergleichsmedium genannten Griffe im lateinischen Text nach.',s:'Erster Griff, die Frage, die keine ist: <span class="la">unde tanta villa, unde tot servi?</span> Die Antwort, nämlich aus dem angenommenen Geld, ist in der Frage bereits enthalten; die Richter sollen sie selbst aussprechen und sind damit gebunden. Zweiter Griff, die erzwungene Wahl: <span class="la">Si hunc absolveritis … si damnaveritis …</span> Es gibt nur zwei Möglichkeiten mit klar bewerteten Folgen; dass ein Urteil von der Beweislage abhängen könnte, kommt nicht vor. Dritter Griff, die Erhöhung des Einsatzes: Aus einem Prozess gegen einen Einzelnen wird <span class="la">salus civitatis</span>, und vorher hoffen bereits <span class="la">omnes scelerati</span> mit. Wer freispricht, entscheidet damit nicht über einen Fall, sondern gegen den Staat.'},
+  {ab:2,q:'Erkläre, warum die Sentenz über die Treulosigkeit für die Beweisführung besonders wirksam, aber logisch angreifbar ist.',s:'Wirksam ist sie, weil sie wie eine allgemein anerkannte Lebensregel klingt und durch das Polyptoton <span class="la">fidem … fidem</span> und den Gegensatz <span class="la">semel … numquam</span> einprägsam gebaut ist. Solche Sätze werden nicht geprüft, sondern geglaubt, und sie übertragen ihre Geltung auf den Einzelfall. Angreifbar ist sie, weil sie genau das voraussetzt, was erst zu beweisen wäre: dass der Angeklagte überhaupt einmal die Treue gebrochen hat. Zudem ist die Behauptung in dieser Allgemeinheit nicht haltbar. Die Sentenz ersetzt also einen Beweis durch eine Verallgemeinerung.'},
+  {ab:3,q:'Beurteile, ob die im Text verwendeten Mittel unlauter sind.',s:'Das Vergleichsmedium gibt das Kriterium vor: Die Mittel sind nicht an sich unlauter, sondern dort, wo sie an die Stelle von Gründen treten. Nach diesem Maßstab ist der Text gemischt zu beurteilen. Die Fragen nach Villa und Sklaven verweisen auf tatsächliche Indizien und sind daher vertretbar zugespitzt. Die Sentenz und die Gleichsetzung des Urteils mit der Rettung des Staates ersetzen dagegen Gründe durch Druck, und die erzwungene Wahl blendet die Beweisfrage aus. Eine gute Antwort unterscheidet so und endet mit einem klaren Gesamturteil.'},
+  {ab:3,q:'Nimm Stellung dazu, ob man rhetorische Mittel in Schule und Öffentlichkeit stärker offenlegen sollte.',s:'Dafür spricht, dass diese Mittel wirken, gerade weil sie unbemerkt bleiben, und dass Menschen, die sie erkennen, nicht weniger überzeugt werden, aber bewusster entscheiden. Dagegen lässt sich einwenden, dass Kenntnis allein nicht schützt, weil die Wirkung auch dann eintritt, wenn man den Griff durchschaut, und dass ständiger Verdacht das Gespräch selbst beschädigt. Ein abwägender Schluss könnte sein, dass Offenlegung nötig ist, aber mit dem Ziel, besser zuzuhören, und nicht mit dem Ziel, jedem Redner Täuschung zu unterstellen.'}
+ ]
+},
+{
+ tb:'Latein lebt weiter · Austria Latina',
+ autor:'Übungstext im Stil der neulateinischen Prosa',
+ text:'Vindobona, urbs ad Danubium sita, eo loco condita est, ubi olim castra Romanorum fuerunt. Hodie autem magna civitas est, in qua homines ex omnibus terris conveniunt. Cives huius urbis linguam Latinam in scholis discunt, quia sine ea neque medicinam neque iura plane intellegunt. Nam verba Latina in omnibus artibus vivunt: in libris medicorum, in tabulis iudicum, in nominibus plantarum atque animalium. Lingua igitur Latina non mortua est, sed in multis linguis adhuc spirat.',
+ vmTitel:'Vergleichsmedium: Grabstein aus Noricum und ein Blick in die Fachsprachen (eigens verfasst)',
+ vm:'<b>Inschrift</b> (Umschrift einer Grabplatte, Zeilen wie im Original getrennt):<br><span class="la">D · M<br>C · IVLIVS · C · F · SEVERVS<br>VIX · ANN · XXX<br>H · S · E<br>IVLIA · MATER · F · C</span><br><br><b>Auflösung der Abkürzungen:</b> <span class="la">Dis Manibus</span> – den Totengöttern; <span class="la">Gaius Iulius Gai filius Severus</span>; <span class="la">vixit annos triginta</span> – er lebte dreißig Jahre; <span class="la">hic situs est</span> – hier liegt er begraben; <span class="la">Iulia mater faciendum curavit</span> – seine Mutter Iulia ließ den Stein errichten.<br><br><b>Fachsprachen heute:</b> In der Medizin bezeichnen <span class="la">cor</span>, <span class="la">pulmo</span> und <span class="la">musculus</span> Herz, Lunge und Muskel. Im Recht gelten Sätze wie <span class="la">in dubio pro reo</span> und <span class="la">pacta sunt servanda</span>. In der Biologie trägt jede Art seit dem 18. Jahrhundert einen zweiteiligen lateinischen Namen, etwa <span class="la">Homo sapiens</span>. In wissenschaftlichen Texten stehen <span class="la">et al.</span> und <span class="la">ibidem</span> bis heute in den Fußnoten.',
+ tasks:[
+  {ab:1,q:'Fasse zusammen, welche Behauptung der lateinische Text aufstellt und wie er sie begründet.',s:'Die Behauptung lautet, die lateinische Sprache sei nicht tot, sondern lebe in vielen Sprachen weiter. Begründet wird sie in zwei Schritten. Zuerst wird die Stadt als Beispiel eingeführt: Wien, an der Donau gelegen, wurde dort gegründet, wo einst ein römisches Lager stand, und ist heute eine große Stadt, in der Menschen aus allen Ländern zusammenkommen. Dann folgt das Argument: Die Bürger lernen Latein in den Schulen, weil sie ohne diese Sprache weder Medizin noch Recht vollständig verstehen. Als Beleg werden vier Bereiche genannt, in denen lateinische Wörter weiterleben: Bücher der Ärzte, Urkunden der Richter sowie die Namen der Pflanzen und Tiere.'},
+  {ab:1,q:'Benenne am lateinischen Text zwei sprachliche Auffälligkeiten und erkläre ihre Wirkung.',s:'Erstens die Aufzählung mit vierfachem <span class="la">in</span>: <span class="la">in libris … in tabulis … in nominibus …</span>, eine Anapher, die den Eindruck erzeugt, die Beispiele ließen sich beliebig fortsetzen. Zweitens die Gegenüberstellung im Schlusssatz, <span class="la">non mortua est, sed … spirat</span>: Die Sprache wird als Lebewesen dargestellt, das atmet; die Metapher widerspricht dem geläufigen Ausdruck von der toten Sprache und bringt die These auf ein Bild. Dazu kommen die doppelte Verneinung <span class="la">neque … neque</span>, die den Nutzen zweifach absichert, und der Gegensatz <span class="la">olim … hodie autem</span>, der die ganze Zeitspanne in einem Satz aufruft.'},
+  {ab:2,q:'Ordne die Inschrift und die Fachsprachenbeispiele den Bereichen zu, die der lateinische Text nennt, und zeige, wo sie darüber hinausgehen.',s:'Die medizinischen Wörter entsprechen <span class="la">in libris medicorum</span>, die Rechtssätze <span class="la">in tabulis iudicum</span>, die Artnamen <span class="la">in nominibus plantarum atque animalium</span>. Insofern bestätigt das Vergleichsmedium den Text in allen drei genannten Punkten. Darüber hinaus geht es in zwei Richtungen: Die Grabinschrift zeigt eine ältere Schicht, nämlich Latein als gesprochene Alltagssprache im Gebiet des heutigen Österreich, von der steinerne Zeugnisse geblieben sind. Und die Abkürzungen in wissenschaftlichen Fußnoten zeigen eine Verwendung, die der Text nicht nennt: Latein als Verständigungsmittel der Wissenschaft über Sprachgrenzen hinweg.'},
+  {ab:2,q:'Erkläre an der Inschrift, warum solche Texte so stark abgekürzt sind, und was man aus ihr über die Familie erfährt.',s:'Inschriften werden in Stein gehauen, und jeder Buchstabe kostet Arbeit und Platz; feste Formeln wie <span class="la">D M</span>, <span class="la">H S E</span> oder <span class="la">V S L M</span> waren allgemein bekannt und mussten daher nicht ausgeschrieben werden. Das Verfahren funktioniert nur, weil es sich um wiederkehrende Standardwendungen handelt. Über die Familie erfährt man: Der Verstorbene trägt die drei Namen eines römischen Bürgers und wird über den Vater identifiziert, der denselben Vornamen trug. Er wurde dreißig Jahre alt. Errichtet hat den Stein die Mutter, die denselben Familiennamen in weiblicher Form trägt; sie hat ihren Sohn also überlebt.'},
+  {ab:3,q:'Beurteile die Schlussthese des lateinischen Textes, Latein sei nicht tot.',s:'Für die These spricht, dass lateinische Wörter und Wendungen in Medizin, Recht, Biologie und Wissenschaftssprache tatsächlich täglich verwendet werden und dass die romanischen Sprachen aus dem gesprochenen Latein hervorgegangen sind. Dagegen spricht, dass eine Sprache üblicherweise dann als lebendig gilt, wenn sie Muttersprache einer Gemeinschaft ist und sich verändert; beides trifft nicht zu. Eine überzeugende Antwort trennt die Bedeutungen: Als Verkehrssprache ist Latein nicht mehr lebendig, als Bausteinlieferant und Fachsprache sehr wohl, und der Text spielt mit dieser Doppeldeutigkeit, was man benennen kann.'},
+  {ab:3,q:'Nimm Stellung dazu, ob der Lateinunterricht mit dem Nutzen für Medizin und Recht begründet werden sollte.',s:'Dafür spricht, dass dieses Argument überprüfbar und für viele Lernende unmittelbar einleuchtend ist und dass der Zugang zu Fachsprachen eine reale Erleichterung bedeutet. Dagegen spricht, dass sich die nötigen Fachwörter auch direkt lernen lassen und dass ein rein nützlicher Zweck gerade das übergeht, was den Unterricht ausmacht: das genaue Lesen, die Arbeit an Texten über zweitausend Jahre hinweg und die Begegnung mit einer Welt, die unsere eigene geprägt hat. Eine abwägende Antwort kann den Nutzen als Einstiegsargument gelten lassen und zugleich sagen, warum er nicht die Hauptbegründung sein sollte.'}
+ ]
+}
+];
+
+const TB=[
+ {t:'Suche nach Sinn und Glück',texte:'Briefe und Dialoge der Philosophen, dazu Gedanken über Zeit, Tod, Freundschaft und Gelassenheit.',sprache:'Imperative und Konjunktive der Aufforderung, Sentenzen, Antithesen, Parallelismus, rhetorische Fragen, direkte Anrede.',sach:'Stoa und Epikur im Vergleich, <span class="la">virtus</span>, <span class="la">voluptas</span>, <span class="la">vita beata</span>, <span class="la">otium</span> und <span class="la">negotium</span>, Seneca als Erzieher Neros.',frage:'Was ist ein gelingendes Leben, und wie viel davon hat man selbst in der Hand?',bruecke:'Zeitmanagement und Bildschirmzeit, Achtsamkeit, Diskussion über Leistungsdruck, moderne Ratgeberliteratur.'},
+ {t:'Der Mythos und seine Wirkung',texte:'Verwandlungssagen und Göttergeschichten in Prosa und Dichtung, Gründungssagen Roms.',sprache:'Erzähltempora und historisches Präsens, Partizipialkonstruktionen, Vergleiche, wörtliche Rede.',sach:'Die wichtigsten Götter mit römischem und griechischem Namen, Aeneas, Romulus und Remus, <span class="la">pietas</span>, das Verhältnis von Mythos und Religion.',frage:'Was erzählt ein Mythos über menschliche Grunderfahrungen, und warum wird er immer wieder neu erzählt?',bruecke:'Mythen in Werbung, Film und Alltagssprache, Redewendungen wie Ikarusflug oder Achillesferse, Bilder in Museen.'},
+ {t:'Politik und Gesellschaft',texte:'Reden, Geschichtsschreibung und staatstheoretische Schriften über Ämter, Macht und Verfall.',sprache:'Lange Perioden, Trikolon, Antithese, rhetorische Fragen, Konjunktive in Gliedsätzen, indirekte Rede.',sach:'Ämterlaufbahn, Senat und Volksversammlung, Optimaten und Popularen, <span class="la">libertas</span>, <span class="la">auctoritas</span>, <span class="la">mos maiorum</span>, Klientelwesen.',frage:'Wer darf herrschen, und was hält ein Gemeinwesen zusammen?',bruecke:'Wahlkampf und Parteienfinanzierung, Macht der Medien, Diskussionen über Demokratie und Populismus.'},
+ {t:'Begegnung und Umgang mit dem Fremden',texte:'Ethnographische Abschnitte der Geschichtsschreibung, Reiseberichte, Texte über fremde Völker und Sitten.',sprache:'Beschreibende Präsensformen, Vergleiche, Verneinungen als Beschreibungsmittel, <span class="la">accepimus</span> und andere Quellenhinweise.',sach:'Römisches Selbstbild, Provinzen und Grenze, Fremdbilder als Spiegel, Begriffe wie <span class="la">barbarus</span> und <span class="la">humanitas</span>.',frage:'Was sagt die Beschreibung des Fremden über die Beschreibenden?',bruecke:'Berichterstattung über andere Länder, Stereotype, Diskussionen über Migration und kulturelle Identität.'},
+ {t:'Rhetorik, Propaganda, Manipulation',texte:'Gerichts- und Staatsreden, Tatenberichte, Texte zur Theorie der Rede.',sprache:'Anapher, Antithese, Trikolon, rhetorische Frage, Klimax, Sentenz, Metapher, Imperative.',sach:'Aufbau der Rede von <span class="la">exordium</span> bis <span class="la">peroratio</span>, die drei Redegattungen, die Ziele <span class="la">docere</span>, <span class="la">delectare</span>, <span class="la">movere</span>.',frage:'Mit welchen Mitteln werden Menschen überzeugt, und wo endet das Überzeugen und beginnt das Täuschen?',bruecke:'Werbung, politische Reden, soziale Netzwerke, Diskussionen über Falschinformationen.'},
+ {t:'Latein lebt weiter · Austria Latina',texte:'Inschriften, mittelalterliche und neulateinische Texte, Texte mit Bezug zum österreichischen Raum.',sprache:'Abweichungen des Mittellateins (<span class="la">e</span> für <span class="la">ae</span>, <span class="la">quod</span> statt AcI), Formelsprache der Inschriften, Abkürzungen.',sach:'Noricum, Pannonia und Raetia, römische Ortsnamen, Fortleben in den romanischen Sprachen, Fachsprachen, Humanismus.',frage:'Was ist vom Lateinischen geblieben, und wo begegnet es uns heute?',bruecke:'Fremdwörter im eigenen Wortschatz, Inschriften an Gebäuden der eigenen Stadt, Fachsprachen in Medizin und Recht.'}
+];
+
+const EXS=[
+ {q:'Du ziehst zwei Themenbereiche. Was passiert dann?',o:['Du wählst einen davon aus, und die Prüferin teilt dir daraus eine Aufgabenstellung zu.','Du wählst einen davon aus und darfst dir dazu auch die Aufgabenstellung aussuchen.','Die Prüferin entscheidet, welcher der beiden Themenbereiche geprüft wird.','Du bearbeitest beide Themenbereiche nacheinander.'],h:'Zwei Entscheidungen, zwei verschiedene Personen.',s:'Die Wahl zwischen den beiden gezogenen Themenbereichen liegt bei dir. Welche der vorbereiteten Aufgabenstellungen du daraus bekommst, entscheidet die Prüferin oder der Prüfer.'},
+ {q:'Wie lang ist der lateinische Ausgangstext, und woher stammt er?',o:['60 bis 90 Wörter aus der im Unterricht gelesenen Textgrundlage.','Etwa 130 Wörter, ein im Unterricht nicht behandelter Text.','So lang wie bei der Klausur, also rund 110 Wörter.','Beliebig lang, dafür mit Vokabelangaben.'],h:'Der Text soll bekannt sein, das Vergleichsmedium nicht.',s:'Der Ausgangstext umfasst 60 bis 90 Wörter und stammt aus der Textgrundlage, die die Klasse gelesen hat. Er wird ohne Anmerkungen vorgelegt. Neu ist das Vergleichsmedium.'},
+ {q:'Welche Aussage über das Übersetzen in der mündlichen Prüfung trifft zu?',o:['Die Übersetzungskompetenz wird nicht beurteilt.','Der ganze Ausgangstext muss zu Beginn übersetzt werden.','Es wird nur übersetzt, wenn die Prüferin es ausdrücklich verlangt, und dann benotet.','Eine schriftliche Übersetzung ist in der Vorbereitungszeit anzufertigen.'],h:'Denke daran, wofür die Klausur da ist.',s:'Die mündliche Prüfung prüft Textverständnis, Transfer und Reflexion, nicht das Übersetzen. Einzelne Stellen zitierst du trotzdem, weil deine Aussagen am Text hängen müssen.'},
+ {q:'Welcher Arbeitsauftrag gehört zum Anforderungsbereich Reflexion?',o:['„Nimm Stellung dazu, ob dieser Rat heute noch trägt.“','„Fasse den Inhalt des Textes zusammen.“','„Vergleiche den Text mit der Karikatur.“','„Arbeite drei Stilmittel heraus und belege sie.“'],h:'Wo musst du selbst einen Standpunkt vertreten?',s:'Stellungnahme und Beurteilung gehören zur Reflexion. Zusammenfassen und Stilmittel belegen sind Reproduktion, Vergleichen ist Transfer.'},
+ {q:'Was bedeutet der Operator „arbeite heraus“?',o:['Gezielt Stellen im Text suchen und sie mit Zitat belegen.','Den gesamten Text in eigenen Worten nacherzählen.','Eine eigene Meinung mit Gegenargument entwickeln.','Den Text in seine historische Zeit einordnen.'],h:'Das Ergebnis muss am Text nachweisbar sein.',s:'„Arbeite heraus“ verlangt gezieltes Suchen und Belegen. Das Nacherzählen gehört zu „fasse zusammen“, das Einordnen zu „ordne ein“.'},
+ {q:'Wie lange dauert das Prüfungsgespräch?',o:['10 bis 20 Minuten.','Genau 15 Minuten.','Mindestens 25 Minuten.','So lange, bis alle Aufträge erschöpfend beantwortet sind.'],h:'Es gibt eine Unter- und eine Obergrenze.',s:'Das Gespräch dauert 10 bis 20 Minuten. Es soll weder kürzer noch länger sein, als für eine sichere Beurteilung nötig ist. Die Vorbereitungszeit davor beträgt mindestens 20 Minuten.'},
+ {q:'Welche Antwort erfüllt den Auftrag „Vergleiche den Ausgangstext mit dem Vergleichsmedium“ am besten?',o:['„Beide behandeln den Verlust von Zeit. Gemeinsam ist ihnen, dass der Verlust unbemerkt geschieht; anders als der lateinische Text sieht der Sachtext die Ursache aber nicht beim Einzelnen, sondern bei einer Industrie.“','„Im lateinischen Text geht es um Seneca und die Zeit. Im Sachtext geht es um Apps und darum, dass man zu viel am Handy ist.“','„Der Sachtext ist moderner und leichter zu lesen als der lateinische Text, der viele Stilmittel hat.“','„Beide Texte sind interessant und behandeln ein wichtiges Thema unserer Zeit.“'],h:'Ein Vergleich braucht einen Vergleichspunkt sowie Gemeinsamkeit und Unterschied.',s:'Die erste Antwort nennt den Vergleichspunkt, dann eine Gemeinsamkeit, dann einen Unterschied, und sie bezieht beide Texte wirklich aufeinander. Die zweite erzählt nur nacheinander nach, die dritte vergleicht die Form statt der Aussage, die vierte sagt inhaltlich nichts.'},
+ {q:'Du kennst den Fachbegriff für eine Erscheinung im Text nicht mehr. Was tust du?',o:['Du beschreibst die Erscheinung fachlich richtig, auch ohne den Begriff.','Du gehst zum nächsten Auftrag weiter und sagst dazu nichts.','Du nennst irgendeinen Begriff, vielleicht stimmt er.','Du sagst, dass du den Begriff vergessen hast, und wartest auf Hilfe.'],h:'Teilwissen zählt, Schweigen nicht.',s:'„Hier stehen drei gleichgebaute Glieder, die sich steigern“ ist fachlich richtig, auch ohne das Wort Klimax. Ein falscher Begriff schadet mehr als eine genaue Beschreibung, und Schweigen bringt gar nichts.'},
+ {q:'Wie viele Themenbereiche umfasst der Pool im vierjährigen Latein?',o:['14','18','24','So viele, wie die Schule festlegt, ohne Obergrenze.'],h:'Im sechsjährigen Latein sind es mehr.',s:'Im vierjährigen Latein und in Griechisch sind 14 Themenbereiche festzulegen, im sechsjährigen Latein 18.'},
+ {q:'Was darfst du in der Vorbereitungszeit verwenden?',o:['Ein Wörterbuch; außerdem muss ein Wörterbuch der deutschen Sprache bereitliegen.','Nichts außer Papier und Stift.','Deine Mitschrift aus dem Unterricht.','Dein Handy, solange du nicht telefonierst.'],h:'Es ist dasselbe Hilfsmittel wie bei der Klausur.',s:'In der Vorbereitungszeit ist ein Wörterbuch erlaubt, und ein Wörterbuch der deutschen Sprache muss im Vorbereitungsraum verfügbar sein. Eigene Aufzeichnungen und elektronische Geräte sind nicht zugelassen.'},
+ {q:'Welche Notiz ist für die Prüfung brauchbarer?',o:['„3 T Vergleich → gemeinsam: Verlust unbemerkt · anders: Schuld beim Einzelnen vs. Geschäftsmodell“','„Beim dritten Auftrag soll ich die beiden Texte vergleichen. Beide Texte behandeln den Verlust von Zeit, wobei in beiden Fällen auffällt, dass …“','„Vergleich machen!“','Eine vollständige Übersetzung des lateinischen Textes.'],h:'Was liest man beim Sprechen am wenigsten ab?',s:'Stichworte mit der Nummer des Auftrags und dem Anforderungsbereich lassen sich im Sprechen aufnehmen. Ausformulierte Sätze verführen zum Ablesen, ein bloßes Schlagwort hilft nicht weiter, und eine Übersetzung kostet die ganze Zeit.'},
+ {q:'Was geschieht, wenn jemand in der Prüfung schweigt oder nur Themenfremdes sagt?',o:['Die mündliche Prüfung wird negativ beurteilt, unabhängig von der Jahresnote.','Es zählt dann allein die Jahresnote der letzten Schulstufe.','Die Prüfung wird abgebrochen und zu einem späteren Termin wiederholt.','Die Klausurnote wird ersatzweise herangezogen.'],h:'Die Mitwirkung ist Voraussetzung der Beurteilung.',s:'Wer nicht mitwirkt, wird negativ beurteilt, und die Jahresnote ändert daran nichts. Deshalb gilt: lieber ein begründeter Versuch als Stille.'}
+];
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const ABN=['','Reproduktion','Transfer','Reflexion'];
+
+/* Akkordeons */
+function wireAcc(root){
+  (root||document).querySelectorAll('.acc').forEach(a=>{
+    const b=a.querySelector('button.h');
+    if(b.dataset.w)return; b.dataset.w=1;
+    b.onclick=()=>{a.classList.toggle('open');b.querySelector('.plus').textContent=a.classList.contains('open')?'−':'+'};
+  });
+}
+wireAcc();
+
+/* Themenbereiche */
+$('#tbhost').innerHTML=TB.map(t=>'<div class="acc"><button class="h">'+t.t+'<span class="plus">+</span></button><div class="body">'+
+ '<p style="margin:.5em 0"><b>Die Texte:</b> '+t.texte+'</p>'+
+ '<p style="margin:.5em 0"><b>Die Sprache:</b> '+t.sprache+'</p>'+
+ '<p style="margin:.5em 0"><b>Das Sachwissen:</b> '+t.sach+'</p>'+
+ '<p style="margin:.5em 0"><b>Die Leitfrage:</b> '+t.frage+'</p>'+
+ '<p style="margin:.5em 0"><b>Die Brücke zur Gegenwart:</b> '+t.bruecke+'</p></div></div>').join('');
+wireAcc($('#tbhost'));
+
+/* Training */
+$('#exhost').innerHTML=EXS.map((e,i)=>'<div class="ex" data-i="'+i+'"><div class="nr">Aufgabe '+(i+1)+'</div><div>'+e.q+'</div><div class="opts">'+
+  shuffle(e.o.map((o,k)=>[o,k])).map(([o,k])=>'<button class="opt" data-k="'+k+'">'+o+'</button>').join('')+'</div><div class="fb"></div></div>').join('');
+$$('#exhost .ex').forEach(box=>{
+  const e=EXS[+box.dataset.i],fb=box.querySelector('.fb');let tries=0;
+  const show=(c,h,b)=>{fb.className='fb show '+c;fb.innerHTML='<b class="h">'+h+'</b>'+b};
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    if(box.dataset.fin)return;
+    if(+b.dataset.k===0){b.classList.add('right');box.dataset.fin=1;box.classList.remove('no');box.classList.add('ok');
+      show('good',tries?'Jetzt stimmt es.':'Richtig!',e.s)}
+    else{b.classList.add('wrong');b.disabled=true;tries++;box.classList.add('no');
+      if(tries===1)show('hint','Noch nicht.','Tipp: '+e.h);
+      else{box.dataset.fin=1;box.querySelector('.opt[data-k="0"]').classList.add('right');show('bad','Die richtige Antwort ist markiert.',e.s)}}
+  });
+});
+
+/* Simulation */
+const KRIT=[
+ 'Ich habe zu jedem Arbeitsauftrag etwas gesagt.',
+ 'Ich habe den Inhalt in eigenen Worten wiedergegeben, ohne den Text zu übersetzen.',
+ 'Ich habe mindestens zwei Aussagen mit einem lateinischen Zitat belegt.',
+ 'Ich habe Fachbegriffe verwendet oder die Erscheinung fachlich richtig beschrieben.',
+ 'Beim Vergleich habe ich einen Vergleichspunkt genannt und beide Seiten aufeinander bezogen.',
+ 'Bei der Reflexion habe ich einen eigenen Standpunkt vertreten und begründet.',
+ 'Ich habe ein Gegenargument erwähnt und darauf geantwortet.',
+ 'Ich habe frei gesprochen und meine Notizen nur als Stütze verwendet.',
+ 'Ich bin in 10 bis 20 Minuten geblieben.'
+];
+let simT=null, simLeft=0;
+function fmt(s){const m=Math.floor(s/60),r=s%60;return m+':'+String(r).padStart(2,'0')}
+function stopT(){if(simT){clearInterval(simT);simT=null}}
+
+function simStart(){
+  stopT();
+  const pool=TB.map(t=>t.t);
+  const idx=shuffle(AUFGABEN.map((a,i)=>i)).slice(0,2);
+  $('#simhost').innerHTML='<div class="card"><h3 style="margin-top:0">Ziehung</h3><p>Aus dem Pool von '+pool.length+' Themenbereichen hast du diese beiden gezogen. Entscheide dich für einen.</p>'+
+   '<div class="row">'+idx.map(i=>'<button class="pick" data-i="'+i+'">'+AUFGABEN[i].tb+'</button>').join('')+'</div>'+
+   '<div class="row"><button class="ghost again">Neu ziehen</button></div></div>';
+  $$('#simhost .pick').forEach(b=>b.onclick=()=>simTask(+b.dataset.i));
+  $('#simhost .again').onclick=simStart;
+}
+function simTask(i){
+  const a=AUFGABEN[i];
+  const key='lat_mdl_notes_'+i;
+  let saved='';try{saved=localStorage.getItem(key)||''}catch(e){}
+  $('#simhost').innerHTML='<div class="card"><div class="nr" style="font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Themenbereich</div>'+
+   '<h3 style="margin:.2em 0 .6em">'+a.tb+'</h3>'+
+   '<div class="timer"><div class="clock" id="clk">20:00</div><div class="bar"><i id="bar"></i></div><button id="tstart">Vorbereitungszeit starten</button><button class="ghost" id="tstop">Pause</button></div>'+
+   '<h4>Ausgangstext</h4><div class="ltext"><span class="la">'+a.text+'</span><span class="src">'+a.autor+' · '+a.text.split(/\s+/).length+' Wörter. In der Prüfung steht hier ein Originaltext aus eurer Lektüre.</span></div>'+
+   '<h4>'+a.vmTitel+'</h4><div class="vm">'+a.vm+'</div>'+
+   '<h4>Arbeitsaufträge</h4><ol class="tasks">'+a.tasks.map((t,k)=>'<li data-k="'+k+'">'+t.q+' <span class="ab ab'+t.ab+'">'+ABN[t.ab]+'</span><div class="sol"><b>Musterlösung:</b> '+t.s+'</div></li>').join('')+'</ol>'+
+   '<h4>Deine Notizen</h4><textarea id="notes" placeholder="Stichworte je Auftrag, lateinische Zitate wörtlich, erster Satz der Reflexion …">'+saved.replace(/</g,'&lt;')+'</textarea>'+
+   '<div class="row"><button class="petrol" id="reveal">Musterlösungen anzeigen</button><button class="ghost" id="back">Neu ziehen</button></div>'+
+   '<div id="selfhost"></div></div>';
+  const ta=$('#notes');ta.oninput=()=>{try{localStorage.setItem(key,ta.value)}catch(e){}};
+  simLeft=20*60;upd();
+  function upd(){const c=$('#clk');if(!c)return;c.textContent=fmt(simLeft);c.classList.toggle('warn',simLeft<=120);$('#bar').style.width=(simLeft/1200*100)+'%'}
+  $('#tstart').onclick=()=>{stopT();simT=setInterval(()=>{simLeft--;if(simLeft<=0){simLeft=0;stopT();$('#clk').textContent='0:00';$('#clk').classList.add('warn')}upd()},1000)};
+  $('#tstop').onclick=()=>stopT();
+  $('#back').onclick=()=>{stopT();simStart()};
+  $('#reveal').onclick=()=>{stopT();$$('#simhost ol.tasks li').forEach(li=>li.classList.add('show'));$('#reveal').disabled=true;self();};
+  function self(){
+    $('#selfhost').innerHTML='<h4>Selbstbewertung</h4><p style="font-size:.95rem">Sprich die Aufgabe laut durch, bevor du hier ankreuzt. Was du nicht laut gesagt hast, zählt nicht.</p>'+
+      KRIT.map((k,n)=>'<label class="check"><input type="checkbox" data-n="'+n+'"><span>'+k+'</span></label>').join('')+
+      '<div class="row"><button class="lilac" id="eval">Auswerten</button><span class="score" id="sc"></span></div><div class="fb" id="final"></div>';
+    const upds=()=>{const n=$$('#selfhost input:checked').length;$('#sc').textContent=n+' von '+KRIT.length};
+    $$('#selfhost input').forEach(c=>c.onchange=upds);upds();
+    $('#eval').onclick=()=>{
+      const n=$$('#selfhost input:checked').length,f=$('#final');
+      let t;
+      if(n>=8)t='Das ist das Niveau, auf dem eine mündliche Prüfung sehr gut gelingt. Nimm dir die ein, zwei offenen Punkte für den nächsten Durchgang vor und wechsle dann den Themenbereich.';
+      else if(n>=6)t='Eine solide Leistung. Sieh dir an, welche Punkte offen geblieben sind: Fehlen meist die Belege, nimm dir für den nächsten Durchgang vor, jede Aussage sofort mit einer Textstelle zu stützen. Fehlt der eigene Standpunkt, formuliere ihn schon in der Vorbereitung als ganzen Satz.';
+      else if(n>=4)t='Der Grundstock steht, aber es fehlt noch an den Stellen, an denen die Punkte vergeben werden. Arbeite zuerst am Vergleich und an der Reflexion: ein Vergleichspunkt, eine Gemeinsamkeit, ein Unterschied, dann ein eigenes Urteil mit zwei Gründen. Mache dieselbe Aufgabe morgen noch einmal.';
+      else t='Nimm dir die Aufgabe noch einmal in Ruhe vor. Lies zuerst die Musterlösungen durch, schreibe dir dann zu jedem Auftrag drei Stichworte und sprich erst danach. Es geht nicht darum, alles zu wissen, sondern darum, zu jedem Auftrag etwas Begründetes zu sagen.';
+      f.className='fb show '+(n>=6?'good':'hint');f.innerHTML='<b class="h">'+n+' von '+KRIT.length+' Punkten</b>'+t;
+    };
+  }
+}
+simStart();
+
+/* Navigation markieren */
+const secs=$$('main section');
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-90)cur=s.id});
+  $$('.topbar nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
