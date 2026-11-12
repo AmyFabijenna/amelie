@@ -118,6 +118,23 @@ textarea:focus{outline:none;border-color:var(--terra)}
 .check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #efe9df;border-radius:13px;padding:11px 15px;margin-bottom:7px;cursor:pointer;font-size:.95rem;line-height:1.5}
 .check input{margin-top:5px;width:18px;height:18px;accent-color:var(--petrol);flex-shrink:0}
 .score{font-weight:600;color:var(--petrol)}
+
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{background:#fff;color:var(--muted);border:2px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.88rem}
+.tabs button i{font-style:normal;font-size:.76rem;opacity:.7;margin-left:3px}
+.tabs button.on{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.tabs button:hover{border-color:var(--petrol);filter:none}
+b.e{color:var(--petrol)}
+p.bd{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+.ex .qt{font-size:1.05rem;margin:6px 0 2px}
+.ex .dp{font-size:1.15rem;font-weight:500;margin:8px 0 2px}
+.inrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.inrow input{flex:1;min-width:190px;font-family:inherit;font-size:1rem;padding:9px 15px;border-radius:13px;border:2px solid var(--line);background:#fff}
+.inrow input:focus{outline:none;border-color:var(--petrol)}
+.inrow input.right{border-color:var(--petrol);background:var(--soft-p)}
+.inrow input.wrong{border-color:var(--terra);background:var(--soft-t)}
+.inrow button{padding:9px 18px;font-size:.95rem}
+#dcheck h4{margin-top:1.2em}
 footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:48px}
 
 @media(max-width:700px){
@@ -299,8 +316,9 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:48px}
 </section>
 
 <section id="training">
-  <h2>Training</h2>
-  <p>Kurze Aufgaben zu Format, Operatoren und Antwortqualität. Bei einer falschen Antwort bekommst du zuerst einen Hinweis.</p>
+  <h2>Trainingszentrum</h2>
+  <p>Sechs Übungsteile und ein Sprechtraining. Bei einer falschen Antwort bekommst du zuerst einen Hinweis und beim zweiten Versuch die Lösung mit Erklärung. <b class="e" id="total"></b></p>
+  <div id="tabhost"></div>
   <div id="exhost"></div>
 </section>
 
@@ -456,20 +474,395 @@ $('#tbhost').innerHTML=TB.map(t=>'<div class="acc"><button class="h">'+t.t+'<spa
 wireAcc($('#tbhost'));
 
 /* Training */
-$('#exhost').innerHTML=EXS.map((e,i)=>'<div class="ex" data-i="'+i+'"><div class="nr">Aufgabe '+(i+1)+'</div><div>'+e.q+'</div><div class="opts">'+
-  shuffle(e.o.map((o,k)=>[o,k])).map(([o,k])=>'<button class="opt" data-k="'+k+'">'+o+'</button>').join('')+'</div><div class="fb"></div></div>').join('');
-$$('#exhost .ex').forEach(box=>{
-  const e=EXS[+box.dataset.i],fb=box.querySelector('.fb');let tries=0;
-  const show=(c,h,b)=>{fb.className='fb show '+c;fb.innerHTML='<b class="h">'+h+'</b>'+b};
-  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
-    if(box.dataset.fin)return;
-    if(+b.dataset.k===0){b.classList.add('right');box.dataset.fin=1;box.classList.remove('no');box.classList.add('ok');
-      show('good',tries?'Jetzt stimmt es.':'Richtig!',e.s)}
-    else{b.classList.add('wrong');b.disabled=true;tries++;box.classList.add('no');
-      if(tries===1)show('hint','Noch nicht.','Tipp: '+e.h);
-      else{box.dataset.fin=1;box.querySelector('.opt[data-k="0"]').classList.add('right');show('bad','Die richtige Antwort ist markiert.',e.s)}}
+/* ===== Trainingszentrum ===== */
+const L=t=>'<span class="la">'+t+'</span>';
+const TRAIN=[
+{id:'format',t:'Format und Beurteilung',d:'Wie die Prüfung abläuft und wonach beurteilt wird. Wer das sicher weiß, verliert keine Punkte an Formalien.',type:'mc',items:EXS},
+
+{id:'op',t:'Operatoren und Anforderungsbereiche',d:'Jeder Arbeitsauftrag beginnt mit einem Operator, und jeder Operator gehört zu einem Anforderungsbereich. Daran hängt, was deine Antwort leisten muss.',type:'mc',items:[
+ {q:'Zu welchem Anforderungsbereich gehört „Fasse den Inhalt des Textes in eigenen Worten zusammen“?',
+  o:['Reproduktion','Transfer','Reflexion','Zu keinem, das ist eine Vorübung'],
+  h:'Du gibst wieder, was im Text steht, ohne etwas hinzuzufügen.',
+  s:'Zusammenfassen ist Reproduktion: Der Inhalt wird wiedergegeben, nichts verglichen und nichts beurteilt. In der Prüfung ist das meist der erste Auftrag, und er soll zügig erledigt werden, damit Zeit für die anspruchsvolleren bleibt.'},
+ {q:'Zu welchem Anforderungsbereich gehört „Vergleiche den Ausgangstext mit dem Vergleichsmedium“?',
+  o:['Transfer','Reproduktion','Reflexion','Transfer und Reflexion zu gleichen Teilen'],
+  h:'Du überträgst etwas aus dem Text auf etwas anderes.',
+  s:'Vergleichen gehört zum Transfer. Du überträgst Gedanken des lateinischen Textes auf ein anderes Medium und musst beide Seiten aufeinander beziehen. Eine Beurteilung wäre erst Reflexion.'},
+ {q:'Zu welchem Anforderungsbereich gehört „Nimm begründet Stellung dazu, ob dieser Rat heute noch trägt“?',
+  o:['Reflexion','Transfer','Reproduktion','Reflexion, aber nur bei philosophischen Texten'],
+  h:'Du musst einen eigenen Standpunkt vertreten und ihn begründen.',
+  s:'Stellung nehmen, beurteilen und bewerten gehören zur Reflexion. Entscheidend ist die Begründung: Eine Meinung ohne Argument erfüllt den Auftrag nicht, auch wenn sie klug klingt.'},
+ {q:'Was verlangt der Operator „belege“?',
+  o:['Eine Aussage mit einer Textstelle stützen, die du wörtlich zitierst oder genau benennst.',
+     'Eine Aussage mit einem Beispiel aus deinem Alltag stützen.',
+     'Mehrere Beispiele aufzählen, ohne sie zu erklären.',
+     'Die Aussage mit der Fachliteratur abgleichen.'],
+  h:'Das Wort hat mit Beweismitteln zu tun.',
+  s:'„Belege“ verlangt den Rückgriff auf den Text. Die Stelle wird zitiert oder durch Zeilenangabe benannt. Antworten ohne Textbeleg sind in der mündlichen Prüfung der häufigste Grund für Punkteverlust, weil alles am Text hängen muss.'},
+ {q:'Was verlangt „ordne den Text in seinen historischen Zusammenhang ein“?',
+  o:['Autor, Zeit und Anlass benennen und daraus erklären, warum der Text so argumentiert.',
+     'Die Jahreszahl der Entstehung nennen.',
+     'Den Text einer Gattung zuordnen.',
+     'Den Text mit einem anderen antiken Text vergleichen.'],
+  h:'Einordnen heißt mehr als datieren.',
+  s:'Es genügt nicht, Autor und Jahr zu nennen. Gefragt ist der Zusammenhang: In welcher Lage schreibt dieser Autor, für wen, und was erklärt das an seiner Argumentation? Genau dort zeigt sich Sachwissen.'},
+ {q:'Was verlangt „interpretiere“ im Unterschied zu „fasse zusammen“?',
+  o:['Du deutest, was der Text sagen will, und begründest die Deutung am Wortlaut.',
+     'Du erzählst den Inhalt ausführlicher nach.',
+     'Du übersetzt die schwierigen Stellen.',
+     'Du gibst deine persönliche Meinung zum Thema.'],
+  h:'Der Unterschied liegt zwischen „was steht da“ und „was heißt das“.',
+  s:'Interpretieren heißt eine Aussage über den Sinn machen und sie am Wortlaut festmachen, etwa an Wortwahl, Stilmitteln oder Satzbau. Nacherzählen bleibt Reproduktion, die persönliche Meinung gehört zur Reflexion.'},
+ {q:'Ein Auftrag lautet: „Arbeite drei Stilmittel heraus und zeige ihre Wirkung.“ Was gehört in die Antwort?',
+  o:['Name des Stilmittels, Beleg im Text und die Wirkung, und das dreimal.',
+     'Drei Stilmittel mit Namen, die Wirkung wird nur bei einem gezeigt.',
+     'Die Namen der drei Stilmittel genügen, der Text liegt ja vor.',
+     'Drei Stellen, an denen Stilmittel vorkommen, ohne die Begriffe.'],
+  h:'Der Auftrag besteht aus zwei Teilen, beide gelten für alle drei.',
+  s:'Jedes Stilmittel braucht drei Schritte: benennen, belegen, Wirkung zeigen. Wer nur Namen nennt, hat den zweiten Teil des Auftrags nicht erfüllt. Die Wirkung ist dabei das Anspruchsvolle und das, was zählt.'},
+ {q:'Wie viele Arbeitsaufträge hat eine Aufgabenstellung üblicherweise, und wie verteilen sie sich?',
+  o:['Sechs, über alle drei Anforderungsbereiche verteilt, mit Schwerpunkt auf Transfer und Reflexion.',
+     'Drei, je einer pro Anforderungsbereich.',
+     'Zehn kurze Fragen zum Text.',
+     'So viele, wie in der Zeit bearbeitet werden können.'],
+  h:'Die Zahl ist größer als die der Anforderungsbereiche.',
+  s:'Üblich sind sechs Arbeitsaufträge, die alle drei Anforderungsbereiche abdecken. Reine Reproduktion macht dabei den kleineren Teil aus, weil die mündliche Prüfung gerade Transfer und Reflexion prüfen soll.'},
+ {q:'Du hast bei einem Auftrag keine Idee. Was ist die beste Rettung?',
+  o:['Du sagst, was dir sicher auffällt, und arbeitest dich vom Text aus vor.',
+     'Du gehst stillschweigend zum nächsten Auftrag.',
+     'Du sagst, dass dir dazu nichts einfällt, und wartest.',
+     'Du erzählst, was du allgemein über den Autor weißt.'],
+  h:'Jede Antwort muss am Text hängen, und der liegt vor dir.',
+  s:'Der Text ist dein Rettungsanker: ein auffälliges Wort, eine Wiederholung, ein Gegensatz. Davon aus lässt sich fast immer eine Deutung entwickeln. Schweigen wird negativ bewertet, allgemeines Autorwissen geht am Auftrag vorbei.'},
+ {q:'Wozu dient das Vergleichsmedium in der Aufgabenstellung?',
+  o:['Es schafft den Anlass, den antiken Gedanken auf etwas Heutiges zu beziehen.',
+     'Es erleichtert das Verständnis des lateinischen Textes.',
+     'Es ersetzt die Übersetzung des Ausgangstextes.',
+     'Es prüft, ob du den modernen Text schneller liest als den antiken.'],
+  h:'Denk daran, welcher Anforderungsbereich damit abgedeckt wird.',
+  s:'Das Vergleichsmedium ist das Werkzeug für den Transfer. Deshalb ist es dir unbekannt, deutschsprachig und deutlich kürzer gehalten als der lateinische Text, und deshalb genügt es nicht, beide Texte nacheinander nachzuerzählen.'}
+]},
+
+{id:'qual',t:'Antwortqualität',d:'Vier Antworten auf denselben Auftrag. Eine erfüllt ihn, die anderen klingen nur so. Diesen Unterschied zu hören, ist die wichtigste Übung überhaupt.',type:'mc',items:[
+ {q:'Auftrag: <b>Arbeite heraus, mit welchen Mitteln der Redner seine Zuhörer gewinnen will.</b>',
+  o:['„Er spricht die Zuhörer dreimal direkt an und stellt zwei rhetorische Fragen hintereinander. Beides zieht sie in die Rede hinein, statt sie nur zuhören zu lassen.“',
+     '„Er benützt viele Stilmittel, zum Beispiel Anapher, Antithese und rhetorische Fragen.“',
+     '„Er will die Zuhörer überzeugen, weil er vor Gericht gewinnen möchte.“',
+     '„Die Rede ist sehr kunstvoll aufgebaut und wirkt bis heute.“'],
+  h:'„Arbeite heraus“ verlangt Beleg und Wirkung, nicht eine Aufzählung.',
+  s:'Die erste Antwort benennt die Mittel, zeigt, wo sie stehen, und sagt, was sie bewirken. Die zweite bleibt bei einer Liste stehen, die dritte nennt das Ziel statt der Mittel, die vierte sagt inhaltlich nichts.'},
+ {q:'Auftrag: <b>Fasse den Inhalt des Textes zusammen.</b>',
+  o:['„Der Schreiber warnt seinen Freund davor, die Zeit unbemerkt zu verlieren, und fordert ihn auf, sie wie Eigentum zu behandeln.“',
+     '„Es geht um die Zeit und darum, dass sie wichtig ist.“',
+     '„Zuerst sagt er, dass die Zeit vergeht. Dann sagt er, dass man sie nutzen soll. Dann sagt er noch etwas über den Tod. Am Ende grüßt er.“',
+     '„Der Text ist ein Brief von einem Philosophen an einen Freund, geschrieben in der Kaiserzeit.“'],
+  h:'Eine Zusammenfassung nennt die Aussage, nicht nur das Thema und nicht jeden Satz.',
+  s:'Die erste Antwort gibt den Gedankengang in einem Satz wieder, mit Richtung und Ziel. Die zweite nennt nur das Thema, die dritte reiht Sätze aneinander, die vierte ordnet ein, statt zusammenzufassen.'},
+ {q:'Auftrag: <b>Nimm Stellung: Ist dieser Rat heute noch brauchbar?</b>',
+  o:['„Im Kern ja, aber unter anderen Vorzeichen: Wer heute Zeit verliert, verliert sie meist nicht an Müßiggang, sondern an Geräte, die genau darauf gebaut sind. Der Rat bleibt richtig, die Gegenwehr muss anders aussehen.“',
+     '„Ja, der Rat ist auch heute noch sehr gut und wichtig für alle Menschen.“',
+     '„Nein, damals war alles anders, deshalb kann man das nicht vergleichen.“',
+     '„Der Autor hat recht, weil er ein berühmter Philosoph war.“'],
+  h:'Eine Stellungnahme braucht eine Position und ein Argument, das über den Text hinausgeht.',
+  s:'Die erste Antwort bezieht Position, schränkt begründet ein und nennt den Unterschied zwischen damals und heute. Die zweite ist bloße Zustimmung, die dritte verweigert die Auseinandersetzung, die vierte beruft sich auf Autorität statt auf ein Argument.'},
+ {q:'Auftrag: <b>Erkläre den Begriff</b> '+L('mos maiorum')+' <b>und zeige, wie er im Text wirkt.</b>',
+  o:['„Die Sitte der Vorfahren, also das ungeschriebene Regelwerk, an dem sich Römer orientierten. Im Text beruft sich der Redner zweimal darauf und stellt seinen Gegner damit außerhalb der Gemeinschaft.“',
+     '„Die Sitte der Vorfahren, das war den Römern sehr wichtig.“',
+     '„Ein zentraler Begriff der römischen Kultur, der oft in Reden vorkommt.“',
+     '„Wörtlich die Sitte der Älteren, von ' + L('mos, moris') + ' und ' + L('maior') + '.“'],
+  h:'Der Auftrag hat zwei Teile, und der zweite ist der anspruchsvollere.',
+  s:'Die erste Antwort erklärt den Begriff und zeigt dann seine Funktion an der konkreten Stelle. Die anderen bleiben bei der Erklärung stehen, wobei die vierte zwar sprachlich richtig ist, den zweiten Teil des Auftrags aber unberührt lässt.'},
+ {q:'Auftrag: <b>Vergleiche die Haltung des Ausgangstextes mit der des Vergleichsmediums.</b>',
+  o:['„Beide sehen dasselbe Problem, ziehen aber verschiedene Schlüsse: Der antike Text verlangt Selbstdisziplin, der moderne verlangt Regeln für die Anbieter.“',
+     '„Der antike Text ist philosophisch, der moderne ist journalistisch geschrieben.“',
+     '„Im antiken Text geht es um Zeit, im modernen um Apps.“',
+     '„Beide Texte sind wichtig und ergänzen einander gut.“'],
+  h:'Ein Vergleich braucht einen gemeinsamen Punkt und eine klare Differenz in der Sache.',
+  s:'Die erste Antwort nennt die Gemeinsamkeit und daran anschließend den entscheidenden Unterschied, nämlich wo jeweils die Verantwortung liegt. Die zweite vergleicht die Textsorte statt der Haltung, die dritte nennt nur Themen, die vierte sagt nichts.'},
+ {q:'Auftrag: <b>Zeige die Wirkung des Trikolons in Zeile 3.</b>',
+  o:['„Die drei gleichgebauten Glieder steigern sich, und das letzte ist das längste. Dadurch läuft der Satz auf die Forderung zu, die der Redner durchsetzen will.“',
+     '„Ein Trikolon besteht aus drei Gliedern und wirkt sehr eindringlich.“',
+     '„Das Trikolon steht in Zeile 3 und ist ein typisches Stilmittel der Rhetorik.“',
+     '„Es klingt schön und macht den Text abwechslungsreich.“'],
+  h:'Wirkung heißt: Was tut das Mittel an genau dieser Stelle mit dem Gedanken?',
+  s:'Die erste Antwort verbindet die Form mit dem Inhalt: Der Bau des Satzes führt auf die Aussage hin. Die zweite nennt eine allgemeine Definition, die dritte beschreibt nur die Lage, die vierte bleibt im Ungefähren.'},
+ {q:'Auftrag: <b>Ordne den Text in seinen historischen Zusammenhang ein.</b>',
+  o:['„Die Rede fällt in eine Zeit, in der die alten Institutionen ihre Autorität verloren hatten. Deshalb beruft sich der Redner so auffällig auf die Vorfahren: Er braucht eine Instanz, die noch anerkannt ist.“',
+     '„Der Text stammt aus der späten Republik, also aus dem ersten Jahrhundert vor Christus.“',
+     '„Damals gab es in Rom viele politische Konflikte und Bürgerkriege.“',
+     '„Der Autor war ein bekannter Politiker und Redner seiner Zeit.“'],
+  h:'Einordnen heißt, aus der Zeit etwas am Text zu erklären.',
+  s:'Die erste Antwort verbindet die historische Lage mit einer Beobachtung am Text. Die zweite datiert nur, die dritte gibt Hintergrundwissen ohne Bezug, die vierte beschreibt den Autor. Alle drei sind richtig und erfüllen den Auftrag trotzdem nicht.'},
+ {q:'Auftrag: <b>Erkläre, warum der Autor den Konjunktiv verwendet.</b>',
+  o:['„Es ist ein Konjunktiv der Aufforderung. Der Autor befiehlt nicht, er lädt ein, und das passt zum Ton eines Briefs unter Freunden.“',
+     '„Weil im Lateinischen nach bestimmten Konjunktionen der Konjunktiv steht.“',
+     '„Der Konjunktiv drückt etwas Mögliches aus, das noch nicht wirklich ist.“',
+     '„Weil es sich um einen Nebensatz handelt.“'],
+  h:'Gefragt ist die Wirkung dieser Form an dieser Stelle, nicht die Regel.',
+  s:'Die erste Antwort bestimmt die Form und sagt, was sie für den Ton des Textes bedeutet. Die anderen wiederholen Grammatikregeln, ohne den Text zu berühren, und genau das unterscheidet eine gute von einer durchschnittlichen Antwort.'},
+ {q:'Auftrag: <b>Nenne zwei Beispiele für das Fortleben dieses Begriffs in der Gegenwart.</b>',
+  o:['„Das Wort steckt im Fremdwort, das wir heute für eine gerichtliche Vertretung verwenden, und außerdem in einem geläufigen Ausdruck der Verwaltungssprache.“',
+     '„Das Wort lebt in vielen modernen Sprachen weiter.“',
+     '„Es gibt sehr viele lateinische Fremdwörter im Deutschen.“',
+     '„Man sieht es heute noch auf Inschriften an alten Gebäuden.“'],
+  h:'Der Auftrag nennt eine Zahl.',
+  s:'„Zwei Beispiele“ heißt zwei konkrete Beispiele, nicht die Feststellung, dass es viele gibt. Für diesen Auftragstyp lohnt es sich, pro Themenbereich drei Fremdwörter griffbereit zu haben.'},
+ {q:'Du hast einen Auftrag beantwortet und siehst, dass noch Zeit ist. Was ist am sinnvollsten?',
+  o:['Eine zweite Textstelle zu derselben Beobachtung nennen und kurz zeigen, dass sie dasselbe stützt.',
+     'Die bisherige Antwort mit anderen Worten wiederholen.',
+     'Auf die nächste Frage warten.',
+     'Zusätzliches Wissen über den Autor anbringen.'],
+  h:'Was zählt in dieser Prüfung immer?',
+  s:'Ein zweiter Beleg macht die Antwort stärker und bleibt beim Auftrag. Wiederholen bringt nichts, Warten verschenkt Zeit, und zusätzliches Autorwissen führt vom Auftrag weg, so gut es auch gemeint ist.'}
+]},
+
+{id:'stil',t:'Stilmittel erkennen',d:'Jede Aufgabenstellung enthält einen Auftrag zur sprachlichen Gestaltung. Die Beispiele sind eigens gebaut, damit nur ein Mittel in Frage kommt.',type:'mc',items:[
+ {q:'Welches Stilmittel liegt vor? '+L('magna cum cura, magna cum diligentia'),
+  o:['Anapher','Chiasmus','Litotes','Hyperbaton'],
+  h:'Achte auf den Anfang der beiden Glieder.',
+  s:'Die Anapher ist die Wiederholung am Anfang aufeinanderfolgender Glieder. Sie verstärkt und gibt dem Satz einen Rhythmus, der sich einprägt. In Reden steht sie dort, wo etwas haften bleiben soll.'},
+ {q:'Welches Stilmittel liegt vor? '+L('non verbis, sed factis'),
+  o:['Antithese','Anapher','Klimax','Metonymie'],
+  h:'Zwei Begriffe werden einander entgegengesetzt.',
+  s:'Die Antithese stellt Gegensätzliches nebeneinander, hier Worte gegen Taten. Sie macht eine Position scharf, weil sie zugleich sagt, wogegen sie sich richtet.'},
+ {q:'Welches Stilmittel liegt vor? '+L('magna vis, virtus magna'),
+  o:['Chiasmus','Parallelismus','Alliteration','Polysyndeton'],
+  h:'Zeichne die Wortarten als Buchstaben auf: a b b a.',
+  s:'Der Chiasmus ist die überkreuzte Stellung: Adjektiv, Substantiv, Substantiv, Adjektiv. Er schließt den Gedanken wie eine Klammer und wirkt dadurch abgerundet. Beim Parallelismus wäre die Reihenfolge in beiden Gliedern gleich.'},
+ {q:'Welches Stilmittel liegt vor? '+L('pater filium laudat, mater filiam curat'),
+  o:['Parallelismus','Chiasmus','Asyndeton','Anapher'],
+  h:'Beide Glieder sind gleich gebaut.',
+  s:'Der Parallelismus wiederholt denselben Satzbau, hier Subjekt, Objekt, Prädikat in beiden Gliedern. Er stellt die beiden Aussagen als gleichrangig nebeneinander.'},
+ {q:'Welches Stilmittel liegt vor? '+L('clamavit, cucurrit, cecidit'),
+  o:['Asyndeton','Polysyndeton','Litotes','Hyperbaton'],
+  h:'Was fehlt zwischen den drei Verben?',
+  s:'Das Asyndeton verzichtet auf Bindewörter und beschleunigt dadurch. Hier verstärkt es sich noch, weil drei Glieder stehen, also zugleich ein Trikolon vorliegt. Mit ' + L('et … et … et') + ' wäre es ein Polysyndeton und würde das Gegenteil bewirken, nämlich verlangsamen.'},
+ {q:'Welches Stilmittel liegt vor? '+L('non ignoro'),
+  o:['Litotes','Hyperbel','Ironie','Metapher'],
+  h:'Eine doppelte Verneinung, die eine Behauptung abschwächt.',
+  s:'Die Litotes sagt etwas durch die Verneinung des Gegenteils: „ich weiß sehr wohl“. Sie klingt bescheiden und wirkt dadurch oft stärker als die direkte Behauptung, weshalb Redner sie gerne benützen.'},
+ {q:'Welches Stilmittel liegt vor? '+L('ferro ignique')+' für den Krieg?',
+  o:['Metonymie','Metapher','Hyperbel','Personifikation'],
+  h:'Das Genannte steht in einem sachlichen Zusammenhang mit dem Gemeinten.',
+  s:'Die Metonymie ersetzt eine Sache durch etwas, das mit ihr tatsächlich zusammenhängt, hier das Werkzeug für die Handlung. Bei der Metapher wäre der Zusammenhang dagegen ein Bild, keine reale Verbindung.'},
+ {q:'Welches Stilmittel liegt vor? '+L('fortuna ridet'),
+  o:['Personifikation','Metonymie','Litotes','Antithese'],
+  h:'Etwas Unbelebtes handelt wie ein Mensch.',
+  s:'Die Personifikation gibt einem Abstraktum menschliche Züge. In der Dichtung macht sie das Schicksal zu einer Gestalt, die eingreift, und genau das ist oft die Aussage der Stelle.'},
+ {q:'Welches Stilmittel liegt vor? '+L('magnam pater habuit curam'),
+  o:['Hyperbaton','Chiasmus','Anapher','Asyndeton'],
+  h:'Zwei zusammengehörige Wörter sind auseinandergerückt.',
+  s:'Das Hyperbaton, auch Sperrung genannt, trennt zusammengehörige Wörter, hier '+L('magnam')+' und '+L('curam')+'. Oft spannt es den Satz und hebt hervor, was dazwischensteht.'},
+ {q:'Welches Stilmittel liegt vor? '+L('et pater et mater et filius'),
+  o:['Polysyndeton','Asyndeton','Klimax','Parallelismus'],
+  h:'Was steht hier mehr als nötig?',
+  s:'Das Polysyndeton häuft Bindewörter und verlangsamt dadurch. Jedes Glied bekommt sein eigenes Gewicht, die Aufzählung wirkt feierlicher und vollständiger.'},
+ {q:'Welches Stilmittel liegt vor? '+L('murmurabat, dicebat, clamabat'),
+  o:['Klimax','Antithese','Litotes','Metonymie'],
+  h:'Die drei Glieder stehen nicht zufällig in dieser Reihenfolge.',
+  s:'Die Klimax steigert von Glied zu Glied, hier vom Murmeln über das Sprechen zum Schreien. Die Steigerung selbst ist die Aussage: Der Vorgang gerät außer Kontrolle.'},
+ {q:'Welches Stilmittel liegt vor? '+L('mille modis mala multa'),
+  o:['Alliteration','Anapher','Hyperbaton','Parallelismus'],
+  h:'Hör auf den Anlaut.',
+  s:'Die Alliteration wiederholt den Anlaut aufeinanderfolgender Wörter. Sie bindet die Wörter klanglich zusammen und ist im Lateinischen besonders alt, weshalb sie in Sprichwörtern und Formeln oft vorkommt.'}
+]},
+
+{id:'form',t:'Formen und Stammformen',d:'Die Formen musst du im Gespräch sicher haben, denn ein Wörterbuch hilft bei einer falsch bestimmten Verbform nicht weiter. Schreib die verlangte Form auf.',loose:true,type:'txt',items:[
+ {q:'3. Stammform (Perfekt) von '+L('fero, ferre'),a:['tuli'],h:'Das Perfekt kommt von einem ganz anderen Stamm.',s:L('fero, ferre, tuli, latum')+' – tragen, bringen. Die vier Formen stammen aus drei verschiedenen Wurzeln und müssen als Ganzes gelernt werden; dasselbe gilt für '+L('sum')+' und '+L('eo')+'.'},
+ {q:'4. Stammform (PPP) von '+L('fero, ferre'),a:['latum'],h:'Dasselbe Verb, dieselbe fremde Wurzel.',s:L('fero, ferre, tuli, latum')+'. In Zusammensetzungen begegnet dir diese Form ständig: '+L('collatum')+', '+L('relatum')+', und im Deutschen in Fremdwörtern wie Relation und Translation.'},
+ {q:'3. Stammform von '+L('tollo, tollere'),a:['sustuli'],h:'Das Perfekt hat eine Vorsilbe, die im Präsens fehlt.',s:L('tollo, tollere, sustuli, sublatum')+' – aufheben, beseitigen. Perfekt und PPP sehen aus wie von einem anderen Verb und werden deshalb besonders gern verwechselt.'},
+ {q:'3. Stammform von '+L('fallo, fallere'),a:['fefelli'],h:'Reduplikation: Die erste Silbe wird verdoppelt.',s:L('fallo, fallere, fefelli, falsum')+' – täuschen. Zur selben Gruppe mit Reduplikation gehören '+L('cado, cecidi')+' und '+L('curro, cucurri')+'.'},
+ {q:'3. Stammform von '+L('vinco, vincere'),a:['vici'],h:'Ohne Reduplikation, aber mit langem Vokal.',s:L('vinco, vincere, vici, victum')+' – siegen, besiegen. Der Dehnungsperfekt ist die häufigste Bildung bei den Verben auf -o der dritten Konjugation.'},
+ {q:'3. Stammform von '+L('gero, gerere'),a:['gessi'],h:'Der Stammauslaut verschmilzt mit dem Perfektzeichen zu einem Doppel-s.',s:L('gero, gerere, gessi, gestum')+' – tragen, führen, ausführen. '+L('bellum gerere')+' heißt Krieg führen und gehört zum Grundwortschatz jeder Geschichtsschreibung.'},
+ {q:'3. Stammform von '+L('iubeo, iubere'),a:['iussi'],h:'Auch hier ein s-Perfekt mit Doppel-s.',s:L('iubeo, iubere, iussi, iussum')+' – befehlen. Dieses Verb steht mit AcI, während '+L('impero')+' mit Dativ und '+L('ut')+' konstruiert wird. Dieser Unterschied kommt in Prüfungen regelmäßig vor.'},
+ {q:'3. Stammform von '+L('pono, ponere'),a:['posui'],h:'Ein u-Perfekt mit verkürztem Stamm.',s:L('pono, ponere, posui, positum')+' – setzen, stellen, legen. In Zusammensetzungen bleibt das Muster erhalten: '+L('composui')+', '+L('exposui')+', '+L('proposui')+'.'},
+ {q:'Perfekt (3. Stammform) von '+L('sequor, sequi'),a:['secutus sum','secutus','sequutus sum'],h:'Das Verb ist ein Deponens.',s:L('sequor, sequi, secutus sum')+' – folgen. Deponentien haben passive Formen bei aktiver Bedeutung, weshalb die Perfektform aus Partizip und '+L('esse')+' besteht.'},
+ {q:'Perfekt (3. Stammform) von '+L('loquor, loqui'),a:['locutus sum','locutus'],h:'Ebenfalls ein Deponens.',s:L('loquor, loqui, locutus sum')+' – sprechen. Daher kommt das Fremdwort Eloquenz, und im Partizip Präsens '+L('loquens')+' siehst du, dass Deponentien auch aktive Formen haben.'},
+ {q:'Perfekt (3. Stammform) von '+L('patior, pati'),a:['passus sum','passus'],h:'Deponens, dessen Partizip im Deutschen als Fremdwort lebt.',s:L('patior, pati, passus sum')+' – erdulden, zulassen. Von diesem Stamm kommen Passion und Patient, und beide erklären die Bedeutung besser als jede Übersetzung.'},
+ {q:'Perfekt (3. Stammform) von '+L('nascor, nasci'),a:['natus sum','natus'],h:'Deponens, Grundlage eines sehr geläufigen Fremdworts.',s:L('nascor, nasci, natus sum')+' – geboren werden. '+L('natus')+' steckt in Nation und nativ und begegnet in Inschriften ständig bei Altersangaben.'},
+ {q:'Perfekt (3. Stammform) von '+L('fio, fieri'),a:['factus sum','factus'],h:'Dieses Verb dient als Passiv zu '+L('facio')+'.',s:L('fio, fieri, factus sum')+' – werden, gemacht werden, geschehen. Es ersetzt das Passiv von '+L('facio')+' und ist unregelmäßig: '+L('fit')+', '+L('fiunt')+', '+L('fiebat')+'.'},
+ {q:'3. Stammform von '+L('volo, velle'),a:['volui'],h:'Regelmäßiges u-Perfekt, obwohl das Präsens unregelmäßig ist.',s:L('volo, velle, volui')+' – wollen. Genauso '+L('nolo, nolle, nolui')+' und '+L('malo, malle, malui')+'. Ein PPP gibt es bei diesen Verben nicht.'}
+]},
+
+{id:'vok',t:'Schlüsselwörter übersetzen',d:'Diese Begriffe tragen die Themenbereiche. Wer sie im Gespräch nicht parat hat, verliert Zeit mit dem Wörterbuch. Gib eine zutreffende deutsche Bedeutung an.',loose:true,type:'txt',items:[
+ {q:L('virtus, virtutis')+' f.',a:['tapferkeit','tüchtigkeit','tugend','mannhaftigkeit','leistungsfähigkeit'],h:'Das Wort hängt mit '+L('vir')+' zusammen.',s:'Tüchtigkeit, Tapferkeit, Tugend. Der Begriff meint die Eigenschaft, die einen Mann im römischen Sinn ausmacht, und wandert erst später in die Richtung der moralischen Tugend. In Interpretationen lohnt es sich, diese Spannung anzusprechen.'},
+ {q:L('otium, otii')+' n.',a:['muße','freizeit','ruhe','untätigkeit','mussezeit'],h:'Der Gegenbegriff steht im nächsten Eintrag.',s:'Muße, freie Zeit. Gemeint ist nicht Faulheit, sondern die Zeit für Bildung, Philosophie und Freundschaft. Für einen Römer der Oberschicht war sie der Lohn des öffentlichen Dienstes, nicht dessen Gegenteil.'},
+ {q:L('negotium, negotii')+' n.',a:['geschäft','tätigkeit','beschäftigung','aufgabe','arbeit','mühe'],h:'Wörtlich die Verneinung des vorigen Begriffs.',s:'Geschäft, Tätigkeit, Beschäftigung. Das Wort ist aus '+L('nec')+' und '+L('otium')+' gebildet, also wörtlich die Nicht-Muße, und zeigt damit, von welcher Seite her die Römer die Arbeit betrachteten.'},
+ {q:L('fides, fidei')+' f.',a:['treue','vertrauen','glaube','zuverlässigkeit','wort','versprechen','glaubwürdigkeit'],h:'Ein Begriff, der zwei Richtungen hat: das Vertrauen, das man gibt, und das, das man verdient.',s:'Treue, Vertrauen, Zuverlässigkeit, auch das gegebene Wort. In der Politik bezeichnet '+L('fides')+' die Bindung zwischen Patron und Klient, und in Reden ist sie der Wert, dessen Verletzung dem Gegner vorgeworfen wird.'},
+ {q:L('pietas, pietatis')+' f.',a:['pflichtgefühl','frömmigkeit','ehrfurcht','pflichtbewusstsein','gottesfurcht','pietät'],h:'Es geht um das richtige Verhalten gegenüber Göttern, Eltern und Vaterland.',s:'Pflichtgefühl, Ehrfurcht, Frömmigkeit. Der Begriff umfasst Götter, Familie und Staat zugleich und ist das Kennzeichen des Aeneas, weshalb er in jedem Themenbereich zum Mythos vorkommt.'},
+ {q:L('auctoritas, auctoritatis')+' f.',a:['ansehen','einfluss','autorität','geltung','gewicht','würde'],h:'Nicht die Amtsgewalt, sondern das, was ohne Amt wirkt.',s:'Ansehen, Einfluss, Geltung. '+L('auctoritas')+' beruht auf Leistung und Herkunft, '+L('potestas')+' dagegen auf dem Amt. Der Unterschied erklärt, warum ein Privatmann in Rom mächtiger sein konnte als ein Amtsträger.'},
+ {q:L('mos, moris')+' m.',a:['sitte','brauch','gewohnheit','sitten','charakter','art'],h:'Im Plural bedeutet das Wort noch etwas anderes.',s:'Sitte, Brauch, Gewohnheit; im Plural '+L('mores')+' auch der Charakter eines Menschen. Von hier kommen Moral und das Adjektiv moralisch, und hier liegt der Kern des '+L('mos maiorum')+'.'},
+ {q:L('ingenium, ingenii')+' n.',a:['begabung','talent','veranlagung','geist','charakter','naturanlage','anlage'],h:'Das Fremdwort Ingenieur hängt daran.',s:'Begabung, natürliche Anlage, Geist. Das Wort bezeichnet, was einer von Natur aus mitbringt, im Gegensatz zu dem, was er durch '+L('disciplina')+' erwirbt. Diese Gegenüberstellung ist ein beliebter Interpretationsansatz.'},
+ {q:L('humanitas, humanitatis')+' f.',a:['menschlichkeit','bildung','menschenfreundlichkeit','kultur','feinheit','menschliche bildung'],h:'Das Wort meint zwei Dinge auf einmal: das Menschliche und das Gebildete.',s:'Menschlichkeit und Bildung zugleich. Für Cicero gehört beides zusammen: Wer gebildet ist, verhält sich menschlich. Aus dieser Verbindung stammt der Begriff des Humanismus.'},
+ {q:L('libertas, libertatis')+' f.',a:['freiheit'],h:'Ein Wort, das in der späten Republik beide Seiten für sich beanspruchen.',s:'Freiheit. Politisch meint der Begriff die Freiheit des Bürgers und die des Gemeinwesens von Alleinherrschaft. In Reden führen ihn Optimaten wie Popularen im Mund, und genau das macht ihn zum lohnenden Gegenstand einer Interpretation.'},
+ {q:L('consilium, consilii')+' n.',a:['plan','rat','beschluss','absicht','ratschlag','überlegung','entschluss','beratung'],h:'Mehrere Bedeutungen, alle aus dem Bereich des Überlegens.',s:'Plan, Beschluss, Rat, auch die beratende Versammlung. '+L('consilium capere')+' heißt einen Entschluss fassen und gehört zu den Wendungen, die in Geschichtstexten ständig auftauchen.'},
+ {q:L('imperium, imperii')+' n.',a:['herrschaft','befehlsgewalt','befehl','reich','macht','oberbefehl'],h:'Vom Befehl bis zum Weltreich.',s:'Befehlsgewalt, Herrschaft, auch das Reich selbst. Ursprünglich bezeichnet das Wort die Amtsgewalt eines Magistrats, erst später das Gebiet, über das sie reicht.'},
+ {q:L('labor, laboris')+' m.',a:['arbeit','mühe','anstrengung','mühsal','strapaze','last'],h:'Nicht die Tätigkeit an sich, sondern was sie kostet.',s:'Mühe, Anstrengung, Arbeit. Das Wort betont die Last, nicht das Werk; dafür steht '+L('opus')+'. In philosophischen Texten ist '+L('labor')+' oft das, was Leistung erst wertvoll macht.'},
+ {q:L('cura, curae')+' f.',a:['sorge','pflege','fürsorge','sorgfalt','bemühung','kummer'],h:'Zwei Richtungen: sich kümmern und sich sorgen.',s:'Sorge, Fürsorge, Sorgfalt, aber auch Kummer. Die Doppelbedeutung ist in Gedichten oft der Angelpunkt: Dieselbe Zuwendung, die trägt, ist auch die, die quält.'}
+]},
+
+{id:'sach',t:'Sachwissen Rom',d:'Das Hintergrundwissen, das in fast jeder Aufgabenstellung gebraucht wird, sobald ein Auftrag „ordne ein“ oder „erkläre“ lautet.',type:'mc',items:[
+ {q:'In welcher Reihenfolge durchlief man die Ämter des '+L('cursus honorum')+'?',
+  o:['Quästur, Ädilität, Prätur, Konsulat','Ädilität, Quästur, Konsulat, Prätur','Prätur, Quästur, Ädilität, Konsulat','Konsulat, Prätur, Ädilität, Quästur'],
+  h:'Das Amt mit der Zuständigkeit für die Staatskasse steht am Anfang.',
+  s:'Die Ämterlaufbahn führte von der Quästur über die Ädilität und die Prätur zum Konsulat, mit Mindestaltern und Abständen zwischen den Stufen. Die Zensur stand außerhalb dieser Reihe und galt als besondere Auszeichnung.'},
+ {q:'Was bezeichnet '+L('mos maiorum')+'?',
+  o:['Das ungeschriebene Regelwerk überlieferter Sitten, an dem sich das Handeln ausrichten sollte.',
+     'Die Gesetzessammlung der römischen Republik.',
+     'Das Erbrecht innerhalb der führenden Familien.',
+     'Die Pflicht, den Göttern regelmäßig zu opfern.'],
+  h:'Es steht nirgends geschrieben und wirkt trotzdem.',
+  s:'Der '+L('mos maiorum')+' ist die Sitte der Vorfahren, also eine ungeschriebene Ordnung, die stärker band als manches Gesetz. In Reden ist der Vorwurf, davon abzuweichen, eine der schärfsten Waffen.'},
+ {q:'Wodurch unterschieden sich Optimaten und Popularen?',
+  o:['Durch den Weg, auf dem sie Politik machten: über die Autorität des Senats oder über die Volksversammlung.',
+     'Durch ihre soziale Herkunft: Adel gegen einfaches Volk.',
+     'Durch ihre Haltung zur Religion.',
+     'Es waren zwei fest organisierte Parteien mit Programm und Mitgliedern.'],
+  h:'Beide Gruppen führten Angehörige derselben Oberschicht an.',
+  s:'Es handelt sich nicht um Parteien im heutigen Sinn und auch nicht um Schichten. Beide Richtungen wurden von Angehörigen der Nobilität angeführt und unterschieden sich in der Methode: Berufung auf die Autorität des Senats oder auf den Willen des Volkes.'},
+ {q:'Welche Göttin entspricht der griechischen Athene?',
+  o:['Minerva','Diana','Venus','Juno'],
+  h:'Sie gehört mit Jupiter und Juno zur kapitolinischen Trias.',
+  s:'Minerva entspricht Athene und steht für Handwerk, Weisheit und Strategie. Diana entspricht Artemis, Venus der Aphrodite und Juno der Hera. Diese Zuordnungen sollten in jedem Themenbereich zum Mythos sitzen.'},
+ {q:'Welche römischen Provinzen lagen auf dem Gebiet des heutigen Österreich?',
+  o:['Noricum, Pannonia und Raetia','Dacia und Moesia','Germania superior und Belgica','Illyricum und Dalmatia'],
+  h:'Drei Provinzen teilten sich das Gebiet.',
+  s:'Noricum umfasste den größten Teil, Pannonia den Osten und Raetia den Westen. Für den Themenbereich zur Antike im eigenen Land ist das die Grundlage, zusammen mit den Fundorten entlang der Donau.'},
+ {q:'Welcher römische Ort lag dort, wo heute Wien liegt?',
+  o:['Vindobona','Carnuntum','Juvavum','Virunum'],
+  h:'Der Name steckt noch in manchen Vereinsnamen.',
+  s:'Vindobona war ein Legionslager an der Donaugrenze. Carnuntum lag östlich davon und war Hauptstadt der Provinz Pannonia superior, Juvavum entspricht Salzburg, Virunum lag in Kärnten.'},
+ {q:'Wie heißen die Teile der antiken Rede in der richtigen Reihenfolge?',
+  o:[L('exordium')+', '+L('narratio')+', '+L('argumentatio')+', '+L('peroratio'),
+     L('narratio')+', '+L('exordium')+', '+L('peroratio')+', '+L('argumentatio'),
+     L('argumentatio')+', '+L('narratio')+', '+L('exordium')+', '+L('peroratio'),
+     L('exordium')+', '+L('argumentatio')+', '+L('narratio')+', '+L('peroratio')],
+  h:'Erst gewinnen, dann erzählen, dann beweisen, dann bewegen.',
+  s:'Die Rede beginnt mit der Einleitung, schildert dann den Sachverhalt, führt die Beweise und schließt mit dem Schlussteil, der auf die Gefühle zielt. Wer diese Gliederung kennt, kann jede Rede im Text verorten.'},
+ {q:'Welche drei Aufgaben hat der Redner nach antiker Lehre?',
+  o:[L('docere')+', '+L('delectare')+', '+L('movere'),
+     L('docere')+', '+L('scribere')+', '+L('legere'),
+     L('narrare')+', '+L('probare')+', '+L('finire'),
+     L('audire')+', '+L('respondere')+', '+L('vincere')],
+  h:'Belehren, erfreuen und noch etwas Drittes, das auf das Gefühl zielt.',
+  s:'Belehren, erfreuen, bewegen. Die drei Aufgaben entsprechen drei Stilhöhen, und in jeder Rede lässt sich zeigen, welche Stelle welcher Aufgabe dient. Für den Auftrag zur Wirkung ist das ein verlässliches Werkzeug.'},
+ {q:'Worin unterscheiden sich Stoa und Epikureismus im Kern?',
+  o:['Die Stoa sieht das Ziel in der Übereinstimmung mit der Vernunft und der Natur, der Epikureismus in der Freiheit von Schmerz und Unruhe.',
+     'Die Stoa lehnt die Götter ab, der Epikureismus verehrt sie.',
+     'Die Stoa empfiehlt den Rückzug, der Epikureismus das politische Amt.',
+     'Der Unterschied liegt nur in der Sprache, nicht in der Sache.'],
+  h:'Beide fragen nach dem guten Leben und antworten verschieden.',
+  s:'Für die Stoa liegt das Glück im vernunftgemäßen Leben und in der Gelassenheit gegenüber dem, was nicht in unserer Macht steht. Für Epikur liegt es in der '+L('ataraxia')+', der Freiheit von Schmerz und Furcht. Der Rückzug aus der Politik wird eher Epikur zugeschrieben, nicht der Stoa.'},
+ {q:'Wer gilt nach der Sage als Stammvater der Römer, und wer als Gründer der Stadt?',
+  o:['Aeneas als Stammvater, Romulus als Gründer.',
+     'Romulus als Stammvater, Aeneas als Gründer.',
+     'Beide gelten als Gründer, Aeneas gründete Rom, Romulus Alba Longa.',
+     'Numa Pompilius als Stammvater, Romulus als Gründer.'],
+  h:'Der eine kommt aus Troja, der andere zieht die Stadtgrenze.',
+  s:'Aeneas flieht aus Troja nach Italien und gilt als Stammvater, Romulus gründet die Stadt und gibt ihr den Namen. Numa Pompilius ist der zweite König und gilt als Ordner der Religion.'}
+]}
+];
+
+const DRILLS=[
+ {p:'Erkläre in einer Minute, was '+L('mos maiorum')+' bedeutet und warum sich römische Redner so gern darauf berufen.',sec:60,c:['Du beginnst mit einer knappen Definition, bevor du ausholst.','Du nennst mindestens ein Beispiel, wie der Begriff eingesetzt wird.','Du sprichst in ganzen Sätzen, ohne lange Pausen.','Du schließt mit einem Satz ab, statt im Ungefähren zu enden.']},
+ {p:'Erkläre den Unterschied zwischen '+L('auctoritas')+' und '+L('potestas')+' an einem Beispiel.',sec:60,c:['Du definierst beide Begriffe, bevor du sie gegeneinanderstellst.','Dein Beispiel macht den Unterschied wirklich sichtbar.','Du benützt mindestens einen lateinischen Begriff korrekt im Satz.','Du sagst am Ende in einem Satz, worin der Unterschied besteht.']},
+ {p:'Beschreibe den Aufbau einer antiken Rede und sage zu jedem Teil, wozu er dient.',sec:90,c:['Alle vier Teile kommen vor, in der richtigen Reihenfolge.','Zu jedem Teil sagst du, was er leisten soll.','Du benützt die lateinischen Bezeichnungen.','Du bleibst innerhalb der Zeit, ohne zu hetzen.']},
+ {p:'Erkläre jemandem ohne Lateinkenntnisse, was ein Ablativus absolutus ist und wie man ihn übersetzt.',sec:60,c:['Du erklärst zuerst, woraus die Konstruktion besteht.','Du nennst mindestens zwei Möglichkeiten der Wiedergabe.','Du bringst ein eigenes kurzes Beispiel.','Du bleibst verständlich, ohne fachlich falsch zu werden.']},
+ {p:'Nimm Stellung: Hat es Sinn, heute noch Latein zu lernen? Bring zwei Argumente und ein Gegenargument.',sec:90,c:['Du beziehst klar Position.','Du bringst zwei verschiedene Argumente, nicht zweimal dasselbe.','Du nimmst ein Gegenargument ernst, statt es abzutun.','Du endest mit einer abwägenden Schlussaussage.']},
+ {p:'Vergleiche die Haltung der Stoa und die Epikurs zur Frage, was ein glückliches Leben ausmacht.',sec:90,c:['Du nennst zu beiden Richtungen das Ziel des Lebens.','Du nennst mindestens eine Gemeinsamkeit.','Du nennst den entscheidenden Unterschied.','Du vermeidest es, eine der beiden Richtungen lächerlich zu machen.']},
+ {p:'Erkläre, was eine Metonymie ist, und erfinde selbst zwei Beispiele.',sec:60,c:['Deine Definition grenzt die Metonymie von der Metapher ab.','Beide Beispiele passen wirklich zur Definition.','Du erklärst bei einem Beispiel, worin der Zusammenhang besteht.','Du sprichst durchgehend, ohne lange Pausen.']},
+ {p:'Erzähle in einer Minute die Sage von der Gründung Roms, so wie du sie einem Kind erzählen würdest.',sec:60,c:['Die Erzählung hat Anfang, Mitte und Ende.','Die wichtigsten Namen kommen vor und sind richtig zugeordnet.','Du erzählst zusammenhängend, nicht in Stichworten.','Du sagst zum Schluss, was die Sage den Römern bedeutet hat.']},
+ {p:'Erkläre, welche Spuren die Römer im heutigen Österreich hinterlassen haben.',sec:60,c:['Du nennst mindestens zwei Orte oder Provinzen.','Du nennst mindestens eine Art von Spur, die man heute noch sehen kann.','Du ordnest die Orte geografisch richtig ein.','Du schließt mit einem zusammenfassenden Satz.']},
+ {p:'Erkläre den Unterschied zwischen '+L('otium')+' und Freizeit im heutigen Sinn.',sec:60,c:['Du erklärst den antiken Begriff zuerst aus seiner Zeit heraus.','Du benennst mindestens einen klaren Unterschied zur Gegenwart.','Du bringst ein heutiges Beispiel.','Du verfällst nicht in bloßes Kulturpessimismus-Reden, sondern argumentierst.']},
+ {p:'Ein Mitschüler sagt: „Übersetzen kann man heute dem Computer überlassen.“ Antworte.',sec:60,c:['Du gehst auf den wahren Kern der Behauptung ein.','Du bringst mindestens ein konkretes Gegenargument.','Du bleibst sachlich und freundlich im Ton.','Du endest mit einer klaren eigenen Position.']},
+ {p:'Erkläre, woran man in einem lateinischen Text erkennt, dass der Autor seine Leser beeinflussen will.',sec:90,c:['Du nennst mindestens drei sprachliche Merkmale.','Du sagst bei jedem, was es bewirkt.','Du benützt die Fachbegriffe richtig.','Du schließt mit einer zusammenfassenden Aussage ab.']}
+];
+
+/* ===== Engine Trainingszentrum ===== */
+const norm=s=>s.toLowerCase().replace(/<[^>]+>/g,' ').replace(/[’ʼ]/g,"'")
+  .replace(/ß/g,'ss').replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue')
+  .replace(/[.,;:!?"„“”()\[\]]/g,' ').replace(/\s+/g,' ').trim();
+const DONE={};TRAIN.forEach(b=>DONE[b.id]=new Set());
+
+function tabsHTML(){
+  return '<div class="tabs">'+TRAIN.map((b,i)=>'<button data-b="'+i+'"'+(i===0?' class="on"':'')+'>'+b.t+
+    ' <i id="c'+b.id+'">0/'+b.items.length+'</i></button>').join('')+
+    '<button data-b="drill">Sprechimpulse <i>'+DRILLS.length+'</i></button></div>';
+}
+function cnt(b){const e=document.getElementById('c'+b.id);if(e)e.textContent=DONE[b.id].size+'/'+b.items.length;
+  const t=document.getElementById('total');if(t){
+    const d=TRAIN.reduce((s,x)=>s+DONE[x.id].size,0),n=TRAIN.reduce((s,x)=>s+x.items.length,0);
+    t.textContent=d+' von '+n+' Aufgaben gelöst';}}
+function hit(it,v,loose){const a=it.a.map(norm);return loose?a.some(x=>v.indexOf(x)>-1):a.some(x=>x===v)}
+
+function block(i){
+  const b=TRAIN[i];
+  $$('#tabhost .tabs button').forEach(x=>x.classList.toggle('on',x.dataset.b===String(i)));
+  $('#exhost').innerHTML='<p class="bd">'+b.d+'</p>'+b.items.map((it,k)=>{
+    const head='<div class="nr">'+b.t+' · '+(k+1)+' von '+b.items.length+'</div>';
+    if(b.type==='mc')
+      return '<div class="ex" data-k="'+k+'">'+head+'<div>'+it.q+'</div><div class="opts">'+
+        shuffle(it.o.map((o,n)=>[o,n])).map(([o,n])=>'<button class="opt" data-n="'+n+'">'+o+'</button>').join('')+
+        '</div><div class="fb"></div></div>';
+    return '<div class="ex" data-k="'+k+'">'+head+'<div class="qt">'+it.q+'</div>'+
+      '<div class="inrow"><input type="text" autocomplete="off" spellcheck="false" placeholder="deine Antwort"><button class="go">Prüfen</button><button class="ghost sol">Lösung</button></div><div class="fb"></div></div>';
+  }).join('');
+  $$('#exhost .ex').forEach(box=>{
+    const k=+box.dataset.k, it=b.items[k], fb=box.querySelector('.fb'); let tries=0;
+    const show=(c,h,t)=>{fb.className='fb show '+c;fb.innerHTML='<b class="h">'+h+'</b>'+t};
+    const fin=good=>{box.dataset.fin=1;box.classList.remove('no');box.classList.add(good?'ok':'no');
+      if(good)DONE[b.id].add(k);cnt(b)};
+    if(b.type==='mc'){
+      box.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{
+        if(box.dataset.fin)return;
+        if(+o.dataset.n===0){o.classList.add('right');fin(!tries);show('good',tries?'Jetzt stimmt es.':'Richtig!',it.s)}
+        else{o.classList.add('wrong');o.disabled=true;tries++;box.classList.add('no');
+          if(tries===1)show('hint','Noch nicht.','Tipp: '+it.h);
+          else{box.querySelector('.opt[data-n="0"]').classList.add('right');fin(false);show('bad','Die richtige Antwort ist markiert.',it.s)}}
+      });
+    }else{
+      const inp=box.querySelector('input');
+      const check=()=>{
+        if(box.dataset.fin)return;
+        const v=norm(inp.value);
+        if(!v){show('hint','Noch nichts eingegeben.','Schreib die verlangte Form beziehungsweise eine deutsche Bedeutung auf.');return}
+        if(hit(it,v,b.loose)){inp.classList.add('right');fin(!tries);show('good',tries?'Jetzt stimmt es.':'Richtig!',it.s)}
+        else{tries++;inp.classList.add('wrong');setTimeout(()=>inp.classList.remove('wrong'),900);
+          if(tries===1)show('hint','Noch nicht.','Tipp: '+it.h);
+          else{fin(false);inp.value=it.a[0];show('bad','Richtig wäre:',it.s)}}
+      };
+      box.querySelector('.go').onclick=check;
+      inp.onkeydown=e=>{if(e.key==='Enter')check()};
+      box.querySelector('.sol').onclick=()=>{if(box.dataset.fin)return;inp.value=it.a[0];fin(false);show('bad','Lösung:',it.s)};
+    }
   });
-});
+  cnt(b);
+}
+
+let lastDrill=-1;
+function drill(){
+  $$('#tabhost .tabs button').forEach(x=>x.classList.toggle('on',x.dataset.b==='drill'));
+  let n=lastDrill;while(n===lastDrill)n=Math.floor(Math.random()*DRILLS.length);
+  lastDrill=n;const d=DRILLS[n];
+  $('#exhost').innerHTML='<p class="bd">Ein Impuls, eine knappe Zeit, laut sprechen. Das ist die einzige Übung, die der Prüfung wirklich entspricht, weil nur hier gesprochen wird. Nimm dich auf und hör danach einmal hinein.</p>'+
+   '<div class="ex"><div class="nr">Sprechimpuls</div><p class="dp">'+d.p+'</p>'+
+   '<div class="timer"><div class="clock" id="dclk">'+fmt(d.sec)+'</div><div class="bar"><i id="dbar"></i></div>'+
+   '<button id="dstart">Start</button><button class="ghost" id="dnew">Nächster Impuls</button></div>'+
+   '<div id="dcheck"></div></div>';
+  let left=d.sec,t=null;
+  const u=()=>{$('#dclk').textContent=fmt(left);$('#dclk').classList.toggle('warn',left<=10);$('#dbar').style.width=(left/d.sec*100)+'%'};
+  $('#dstart').onclick=()=>{if(t)return;t=setInterval(()=>{left--;if(left<=0){left=0;clearInterval(t);t=null;done()}u()},1000)};
+  $('#dnew').onclick=()=>{if(t)clearInterval(t);drill()};
+  function done(){
+    $('#dcheck').innerHTML='<h4>Hast du das geschafft?</h4>'+
+      d.c.map(c=>'<label class="check"><input type="checkbox"><span>'+c+'</span></label>').join('')+
+      '<div class="note" style="margin-bottom:0"><b class="lab">Und jetzt noch einmal</b>Derselbe Impuls ein zweites Mal, mit dem, was dir beim ersten Mal gefehlt hat. Der zweite Durchgang ist der, aus dem du etwas mitnimmst.</div>';
+  }
+}
+
+$('#tabhost').innerHTML=tabsHTML();
+$$('#tabhost .tabs button').forEach(b=>b.onclick=()=>b.dataset.b==='drill'?drill():block(+b.dataset.b));
+block(0);
 
 /* Simulation */
 const KRIT=[

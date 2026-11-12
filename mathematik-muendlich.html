@@ -121,6 +121,23 @@ textarea:focus{outline:none;border-color:var(--blue)}
 .check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #efe9df;border-radius:13px;padding:11px 15px;margin-bottom:7px;cursor:pointer;font-size:.95rem;line-height:1.5}
 .check input{margin-top:5px;width:18px;height:18px;accent-color:var(--petrol);flex-shrink:0}
 .score{font-weight:600;color:var(--petrol)}
+
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{background:#fff;color:var(--muted);border:2px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.88rem}
+.tabs button i{font-style:normal;font-size:.76rem;opacity:.7;margin-left:3px}
+.tabs button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tabs button:hover{border-color:var(--blue);filter:none}
+b.e{color:var(--blue)}
+p.bd{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+.ex .qt{font-size:1.05rem;margin:6px 0 2px}
+.ex .dp{font-size:1.15rem;font-weight:500;margin:8px 0 2px}
+.inrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.inrow input{flex:1;min-width:190px;font-family:inherit;font-size:1rem;padding:9px 15px;border-radius:13px;border:2px solid var(--line);background:#fff}
+.inrow input:focus{outline:none;border-color:var(--blue)}
+.inrow input.right{border-color:var(--petrol);background:var(--soft-p)}
+.inrow input.wrong{border-color:var(--terra);background:var(--soft-t)}
+.inrow button{padding:9px 18px;font-size:.95rem}
+#dcheck h4{margin-top:1.2em}
 footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:48px}
 
 @media(max-width:700px){
@@ -306,8 +323,9 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:48px}
 </section>
 
 <section id="training">
-  <h2>Training</h2>
-  <p>Kurze Aufgaben zu Format, Operatoren und Antwortqualität. Bei einer falschen Antwort bekommst du zuerst einen Hinweis.</p>
+  <h2>Trainingszentrum</h2>
+  <p>Sechs Übungsteile und ein Sprechtraining. Bei einer falschen Antwort bekommst du zuerst einen Hinweis und beim zweiten Versuch die Lösung mit Erklärung. <b class="e" id="total"></b></p>
+  <div id="tabhost"></div>
   <div id="exhost"></div>
 </section>
 
@@ -493,6 +511,354 @@ const AUFGABEN=[
 }
 ];
 
+/* ===== Trainingszentrum ===== */
+const TRAIN=[
+{id:'format',t:'Format und Beurteilung',d:'Wie die Prüfung abläuft und wonach beurteilt wird. Wer das sicher weiß, verliert keine Punkte an Formalien.',type:'mc',items:EXS},
+
+{id:'begriff',t:'Begriffe in Worte fassen',d:'Die häufigste Frage der mündlichen Prüfung lautet sinngemäß: „Was bedeutet das eigentlich?“ Gesucht ist nie die Formel allein, sondern die Bedeutung.',type:'mc',items:[
+ {q:'Was ist die Ableitung $f\'(x_0)$ anschaulich?',
+  o:['Die momentane Änderungsrate von $f$ an der Stelle $x_0$, geometrisch die Steigung der Tangente.',
+     'Die Fläche unter dem Graphen bis zur Stelle $x_0$.',
+     'Der Funktionswert an der Stelle $x_0$, nur anders berechnet.',
+     'Die mittlere Änderung zwischen zwei Punkten des Graphen.'],
+  h:'Denk an die Tangente, nicht an die Sekante.',
+  s:'Die Ableitung ist der Grenzwert der Differenzenquotienten und damit die momentane Änderungsrate. Die mittlere Änderung zwischen zwei Punkten ist der Differenzenquotient, also die Steigung der Sekante. Genau diese Unterscheidung wird in der Prüfung regelmäßig abgefragt.'},
+ {q:'Was sagt das bestimmte Integral $\\int_a^b f(x)\\,dx$ im Sachzusammenhang aus?',
+  o:['Es summiert die Wirkung der Änderungsrate $f$ über das Intervall auf, ergibt also die gesamte Änderung des Bestands.',
+     'Es gibt den Bestand an der Stelle $b$ an.',
+     'Es gibt die Steigung zwischen $a$ und $b$ an.',
+     'Es gibt den Mittelwert der Funktion auf dem Intervall an.'],
+  h:'Wenn $f$ eine Änderungsrate ist, was ist dann das Integral darüber?',
+  s:'Ist $f$ eine Änderungsrate, etwa eine Geschwindigkeit, so liefert das Integral die gesamte Änderung, also den zurückgelegten Weg. Der Bestand an der Stelle $b$ ergibt sich erst aus Anfangsbestand plus Integral; der Mittelwert wäre das Integral geteilt durch die Intervalllänge.'},
+ {q:'Was besagt die Standardabweichung einer Datenreihe?',
+  o:['Wie weit die Werte im Mittel vom arithmetischen Mittel abweichen.',
+     'Wie groß der Abstand zwischen dem größten und dem kleinsten Wert ist.',
+     'Welcher Wert am häufigsten vorkommt.',
+     'Wie stark zwei Merkmale miteinander zusammenhängen.'],
+  h:'Es geht um Streuung um einen Mittelwert.',
+  s:'Die Standardabweichung misst die mittlere Streuung um den Mittelwert. Die Spannweite ist die Differenz zwischen Maximum und Minimum, der häufigste Wert ist der Modus, und der Zusammenhang zweier Merkmale ist die Korrelation.'},
+ {q:'Was bedeutet eine Wahrscheinlichkeit von $0{,}3$ für ein Ereignis?',
+  o:['Bei sehr vielen Wiederholungen tritt das Ereignis in etwa 30 Prozent der Fälle ein.',
+     'Von zehn Versuchen treten genau drei mit diesem Ereignis ein.',
+     'Das Ereignis tritt eher nicht ein.',
+     'Das Ereignis ist dreimal so wahrscheinlich wie sein Gegenereignis.'],
+  h:'Wahrscheinlichkeit ist eine Aussage über viele Wiederholungen, nicht über zehn.',
+  s:'Die relative Häufigkeit nähert sich bei wachsender Versuchszahl der Wahrscheinlichkeit an; das ist das Gesetz der großen Zahlen. Bei genau zehn Versuchen sind null bis zehn Treffer möglich, und das Gegenereignis hätte hier die Wahrscheinlichkeit $0{,}7$.'},
+ {q:'Was ist ein Vektor im Sinne der Oberstufe?',
+  o:['Eine Größe, die durch Richtung und Länge festgelegt ist und durch beliebig viele parallele, gleich lange Pfeile dargestellt werden kann.',
+     'Ein Punkt im Koordinatensystem.',
+     'Ein Pfeil, der im Ursprung beginnt.',
+     'Eine Zahl mit einem Vorzeichen.'],
+  h:'Was haben alle Pfeile gemeinsam, die denselben Vektor darstellen?',
+  s:'Ein Vektor ist die Klasse aller parallelen, gleich langen und gleich gerichteten Pfeile. Der Pfeil vom Ursprung aus ist nur der Ortsvektor eines Punktes, also ein Sonderfall. Diesen Unterschied zwischen Punkt und Vektor fragt fast jede Prüferin nach.'},
+ {q:'Was besagt $\\log_2 8 = 3$?',
+  o:['Man muss $2$ dreimal mit sich selbst multiplizieren, um $8$ zu erhalten.',
+     'Man muss $8$ durch $2$ dividieren, bis man bei $3$ ankommt.',
+     '$2$ passt dreimal in $8$.',
+     '$8$ ist dreimal so groß wie $2$.'],
+  h:'Der Logarithmus ist die Umkehrung des Potenzierens.',
+  s:'Der Logarithmus beantwortet die Frage nach dem Exponenten: $2^3 = 8$. In Anwendungen ist er deshalb das Werkzeug, mit dem man nach der Zeit auflöst, etwa bei Halbwertszeit oder Verdopplungszeit.'},
+ {q:'Was bedeutet $\\sin(\\alpha)$ im rechtwinkligen Dreieck?',
+  o:['Das Verhältnis der Gegenkathete zur Hypotenuse.',
+     'Das Verhältnis der Ankathete zur Hypotenuse.',
+     'Die Länge der Gegenkathete.',
+     'Den Winkel gegenüber der längsten Seite.'],
+  h:'Es ist ein Verhältnis, keine Länge.',
+  s:'Der Sinus ist ein Seitenverhältnis und deshalb eine Zahl ohne Einheit, die nur vom Winkel abhängt. Genau deshalb funktioniert er in jedem ähnlichen Dreieck gleich, und genau das sollte man in der Prüfung auch sagen können.'},
+ {q:'Was ist eine Extremstelle, und worin unterscheidet sie sich vom Extremwert?',
+  o:['Die Extremstelle ist die $x$-Koordinate, der Extremwert der zugehörige Funktionswert.',
+     'Die Extremstelle ist der Punkt, der Extremwert die Steigung dort.',
+     'Beide Begriffe bezeichnen dasselbe.',
+     'Die Extremstelle ist der höchste Punkt, der Extremwert der tiefste.'],
+  h:'Stelle und Wert sind auf verschiedenen Achsen zu finden.',
+  s:'Die Stelle liegt auf der $x$-Achse, der Wert auf der $y$-Achse, und der Punkt besteht aus beiden. Diese Begriffe sauber zu trennen, ist eine der einfachsten Möglichkeiten, in der Prüfung fachlich sicher zu wirken.'},
+ {q:'Was sagt ein Korrelationskoeffizient von $-0{,}9$ aus?',
+  o:['Es besteht ein starker gegenläufiger linearer Zusammenhang zwischen den beiden Merkmalen.',
+     'Das eine Merkmal verursacht eine Abnahme des anderen.',
+     'Es besteht kaum ein Zusammenhang, weil der Wert negativ ist.',
+     'Neunzig Prozent der Werte liegen auf einer Geraden.'],
+  h:'Vorzeichen und Betrag sagen Verschiedenes, und beides sagt nichts über Ursachen.',
+  s:'Der Betrag beschreibt die Stärke des linearen Zusammenhangs, das Vorzeichen die Richtung. Über Ursache und Wirkung sagt die Korrelation nichts, und dieser Hinweis ist in Prüfungsgesprächen oft genau das, worauf hinausgewollt wird.'},
+ {q:'Was bedeutet es, dass eine Funktion an der Stelle $x_0$ stetig ist?',
+  o:['Kleine Änderungen von $x$ in der Nähe von $x_0$ führen nur zu kleinen Änderungen des Funktionswerts; der Graph macht dort keinen Sprung.',
+     'Die Funktion ist dort differenzierbar.',
+     'Die Funktion ist dort monoton.',
+     'Die Funktion hat dort keine Nullstelle.'],
+  h:'Denk an das Bild: durchzeichnen, ohne abzusetzen.',
+  s:'Anschaulich heißt Stetigkeit, dass der Graph keinen Sprung macht. Differenzierbarkeit ist stärker: Jede differenzierbare Funktion ist stetig, aber die Betragsfunktion zeigt, dass die Umkehrung nicht gilt.'}
+]},
+
+{id:'begruenden',t:'Begründen statt behaupten',d:'In der mündlichen Prüfung zählt nicht das Ergebnis, sondern der Weg dorthin. Welche Begründung trägt wirklich?',type:'mc',items:[
+ {q:'Warum hat $f(x)=x^2$ an der Stelle $0$ ein Minimum?',
+  o:['Weil $f\'(0)=0$ ist und $f\'$ dort von negativ auf positiv wechselt, die Funktion also von fallend auf steigend übergeht.',
+     'Weil $f(0)=0$ der kleinste Funktionswert ist.',
+     'Weil die Parabel nach oben offen ist.',
+     'Weil man es am Graphen sieht.'],
+  h:'Eine Begründung muss das Kriterium nennen, nicht nur das Ergebnis.',
+  s:'Gefragt ist das Argument: notwendige Bedingung $f\'(x_0)=0$ und Vorzeichenwechsel der ersten Ableitung oder $f\'\'(x_0)>0$. Die übrigen Antworten sind zwar richtig, aber keine Begründungen, sondern Beobachtungen.'},
+ {q:'Warum darf man beim Lösen einer Gleichung nicht durch $x$ dividieren?',
+  o:['Weil $x$ null sein könnte und man damit eine Lösung verlieren würde.',
+     'Weil das Ergebnis dann falsch wird.',
+     'Weil man immer herausheben soll.',
+     'Weil man nur durch Zahlen dividieren darf.'],
+  h:'Was passiert, wenn der Term, durch den du dividierst, null ist?',
+  s:'Division durch einen Term, der null werden kann, ist keine Äquivalenzumformung: Die Lösung $x=0$ geht verloren. Deshalb hebt man heraus und setzt jeden Faktor null, womit alle Lösungen erhalten bleiben.'},
+ {q:'Warum ist $0{,}999\\ldots = 1$?',
+  o:['Weil die Folge der Partialsummen gegen $1$ konvergiert und der Dezimalbruch genau diesen Grenzwert bezeichnet.',
+     'Weil der Unterschied so klein ist, dass man ihn vernachlässigen kann.',
+     'Weil man beim Runden auf $1$ kommt.',
+     'Das stimmt nicht, die Zahlen sind verschieden.'],
+  h:'Was bedeutet eine unendliche Dezimaldarstellung überhaupt?',
+  s:'Eine unendliche Dezimaldarstellung ist definiert als der Grenzwert der Partialsummen, und dieser Grenzwert ist exakt $1$. Es handelt sich nicht um eine Näherung, sondern um zwei Schreibweisen derselben Zahl.'},
+ {q:'Warum ist die Steigung einer linearen Funktion überall gleich?',
+  o:['Weil der Differenzenquotient zwischen je zwei Punkten denselben Wert liefert; das ist gerade die Eigenschaft, die eine Funktion linear macht.',
+     'Weil der Graph eine Gerade ist.',
+     'Weil $k$ im Funktionsterm eine Konstante ist.',
+     'Weil die Ableitung konstant ist.'],
+  h:'Welche Begründung ist keine Umformulierung der Behauptung?',
+  s:'Die erste Antwort führt die Aussage auf die Definition zurück. Die anderen drei sagen dasselbe mit anderen Worten: Gerade, konstantes $k$ und konstante Ableitung sind alle gleichbedeutend mit konstanter Steigung und begründen sie deshalb nicht.'},
+ {q:'Warum ergibt die Ableitung von $e^x$ wieder $e^x$?',
+  o:['Weil $e$ gerade so festgelegt ist, dass der Grenzwert des Differenzenquotienten den Faktor $1$ liefert.',
+     'Weil $e$ eine besondere Zahl ist.',
+     'Weil die Exponentialfunktion schnell wächst.',
+     'Weil die Ableitung einer Potenz immer die Potenz selbst ist.'],
+  h:'Die Eigenschaft ist kein Zufall, sondern die Definition der Zahl.',
+  s:'Für $a^x$ ist die Ableitung $\\ln(a)\\cdot a^x$, und $e$ ist genau die Basis, für die dieser Faktor $1$ wird. Deshalb ist die Exponentialfunktion zur Basis $e$ die natürliche Wahl in jedem Wachstumsmodell.'},
+ {q:'Warum ist der Mittelwert empfindlicher gegenüber Ausreißern als der Median?',
+  o:['Weil in den Mittelwert jeder einzelne Wert mit seiner Größe eingeht, während für den Median nur die Position in der geordneten Reihe zählt.',
+     'Weil der Mittelwert immer größer ist als der Median.',
+     'Weil der Median schwerer zu berechnen ist.',
+     'Weil der Mittelwert gerundet wird.'],
+  h:'Welche Rolle spielt die Größe eines einzelnen Werts bei den beiden Kennzahlen?',
+  s:'Ein einziger sehr großer Wert verschiebt den Mittelwert beliebig weit, den Median dagegen höchstens um eine Position. Deshalb gibt man bei Einkommen oder Mieten meist den Median an.'},
+ {q:'Warum folgt aus $f\'(x_0)=0$ noch nicht, dass dort ein Extremum vorliegt?',
+  o:['Weil die Bedingung nur notwendig ist: Bei $f(x)=x^3$ und $x_0=0$ liegt ein Sattelpunkt vor.',
+     'Weil man immer auch die zweite Ableitung ausrechnen muss.',
+     'Weil die Funktion dort nicht definiert sein könnte.',
+     'Weil es auch Randextrema gibt.'],
+  h:'Ein Gegenbeispiel ist die stärkste Begründung, die es gibt.',
+  s:'Ein einziges Gegenbeispiel entscheidet die Frage: $f(x)=x^3$ hat bei $0$ waagrechte Tangente, aber kein Extremum. Dass Randextrema existieren, ist richtig, erklärt aber eine andere Sache.'},
+ {q:'Warum ist die Wahrscheinlichkeit für mindestens einen Treffer meist über das Gegenereignis zu berechnen?',
+  o:['Weil „mindestens einer“ viele Fälle umfasst, das Gegenereignis „kein Treffer“ dagegen nur einen einzigen.',
+     'Weil die Formel für das Gegenereignis einfacher ist.',
+     'Weil die Summe aller Wahrscheinlichkeiten eins ergibt.',
+     'Weil man sonst die Binomialverteilung braucht.'],
+  h:'Zähle, aus wie vielen Fällen die beiden Ereignisse jeweils bestehen.',
+  s:'„Mindestens ein Treffer“ zerfällt in genau einen, genau zwei und so weiter; das Gegenereignis besteht aus einem einzigen Fall. Deshalb ist $P = 1 - P(\\text{kein Treffer})$ der kürzeste Weg, und genau diesen Gedanken soll man aussprechen können.'},
+ {q:'Warum hat ein lineares Gleichungssystem manchmal unendlich viele Lösungen?',
+  o:['Weil die beiden Gleichungen dieselbe Gerade beschreiben, also jede ihrer Punktepaare beide Gleichungen erfüllt.',
+     'Weil man sich verrechnet hat.',
+     'Weil die Determinante nicht null ist.',
+     'Weil es mehr Variablen als Gleichungen gibt.'],
+  h:'Denk an die geometrische Deutung: zwei Geraden in der Ebene.',
+  s:'Zwei Geraden können sich schneiden, parallel liegen oder zusammenfallen; der dritte Fall liefert unendlich viele Lösungen. Diese Deutung anzubieten, ist in der Prüfung immer besser als nur die Rechenregel zu nennen.'},
+ {q:'Warum ist eine Verdopplungszeit bei exponentiellem Wachstum vom Anfangsbestand unabhängig?',
+  o:['Weil sich bei jeder Verdopplung derselbe Faktor ergibt und sich der Anfangsbestand in der Gleichung herauskürzt.',
+     'Weil der Anfangsbestand meist klein ist.',
+     'Weil exponentielles Wachstum immer gleich schnell ist.',
+     'Weil die Zeit proportional zum Bestand wächst.'],
+  h:'Setze $2N_0 = N_0\\cdot a^t$ an und schau, was passiert.',
+  s:'Aus $2N_0 = N_0\\cdot a^t$ folgt $2 = a^t$, der Anfangsbestand kürzt sich heraus. Genau das unterscheidet exponentielles von linearem Wachstum und ist eine der beliebtesten Begründungsfragen überhaupt.'}
+]},
+
+{id:'rechnen',t:'Rechnen mit Deutung',d:'Kurze Rechnungen, wie sie als Einstieg in ein Prüfungsgespräch vorkommen. Gib nur die Zahl ein; als Dezimaltrennzeichen geht Punkt oder Komma.',type:'num',items:[
+ {q:'$f(x)=x^2-6x+5$. An welcher Stelle liegt der Scheitel?',a:3,
+  h:'Scheitel liegt bei $x=-\\frac{b}{2a}$, oder: $f\'(x)=0$ setzen.',
+  s:'$f\'(x)=2x-6=0$ liefert $x=3$. Der Scheitelwert ist $f(3)=-4$, der Scheitel also $S(3|-4)$. In der Prüfung lohnt es sich, Stelle und Wert getrennt zu benennen.'},
+ {q:'$f(x)=x^3-3x$. An welcher Stelle liegt das lokale Maximum?',a:-1,
+  h:'$f\'(x)=3x^2-3$. Beide Nullstellen bestimmen und dann entscheiden, welche das Maximum ist.',
+  s:'$f\'(x)=3x^2-3=0$ liefert $x=\\pm 1$. Wegen $f\'\'(x)=6x$ ist $f\'\'(-1)=-6&lt;0$, also liegt bei $x=-1$ das Maximum mit dem Wert $f(-1)=2$.'},
+ {q:'$f(x)=2x^3-9x^2+12x$. An welcher Stelle liegt der Wendepunkt?',a:1.5,
+  h:'Zweite Ableitung null setzen.',
+  s:'$f\'\'(x)=12x-18=0$ liefert $x=1{,}5$. Dort wechselt die Krümmung von rechts auf links, und $f\'\'$ wechselt dabei das Vorzeichen, was die Bedingung vollständig macht.'},
+ {q:'Berechne $\\int_0^2 3x^2\\,dx$.',a:8,
+  h:'Stammfunktion bilden und die Grenzen einsetzen.',
+  s:'Eine Stammfunktion ist $F(x)=x^3$, also $F(2)-F(0)=8-0=8$. Im Sachzusammenhang wäre das die gesamte Änderung, wenn $3x^2$ eine Änderungsrate beschreibt.'},
+ {q:'$f(x)=e^{2x}$. Wie groß ist $f\'(0)$?',a:2,
+  h:'Kettenregel: innere Ableitung nicht vergessen.',
+  s:'$f\'(x)=2e^{2x}$, also $f\'(0)=2$. Der Faktor $2$ stammt aus der inneren Ableitung; ihn zu vergessen, ist der häufigste Fehler bei dieser Aufgabe.'},
+ {q:'$f(x)=x^2$. Wie groß ist die momentane Änderungsrate an der Stelle $4$?',a:8,
+  h:'Die momentane Änderungsrate ist die Ableitung.',
+  s:'$f\'(x)=2x$, also $f\'(4)=8$. Anschaulich: Die Tangente an der Stelle $4$ hat die Steigung $8$, die Funktion wächst dort achtmal so schnell wie das Argument.'},
+ {q:'Eine Gerade geht durch $A(1|2)$ und $B(4|11)$. Wie groß ist ihre Steigung?',a:3,
+  h:'Differenzenquotient: Höhenunterschied durch waagrechten Abstand.',
+  s:'$k=\\frac{11-2}{4-1}=\\frac{9}{3}=3$. Die Gleichung lautet damit $y=3x-1$, weil aus $2=3\\cdot 1+d$ sofort $d=-1$ folgt.'},
+ {q:'Wie lang ist der Vektor $\\vec{a}=(3|4)$?',a:5,
+  h:'Satz des Pythagoras.',
+  s:'$|\\vec{a}|=\\sqrt{3^2+4^2}=\\sqrt{25}=5$. Das Zahlenpaar $3$, $4$, $5$ ist das bekannteste pythagoreische Tripel und taucht in Prüfungen häufig auf.'},
+ {q:'Berechne das Skalarprodukt $(2|3)\\cdot(4|-1)$.',a:5,
+  h:'Komponentenweise multiplizieren und addieren.',
+  s:'$2\\cdot 4+3\\cdot(-1)=8-3=5$. Da das Ergebnis nicht null ist, stehen die beiden Vektoren nicht normal aufeinander; genau das ist die übliche Anschlussfrage.'},
+ {q:'$X$ ist binomialverteilt mit $n=10$ und $p=0{,}5$. Wie groß ist der Erwartungswert?',a:5,
+  h:'$E(X)=n\\cdot p$.',
+  s:'$E(X)=10\\cdot 0{,}5=5$. Der Erwartungswert ist der Mittelwert bei sehr vielen Wiederholungen des gesamten Versuchs, nicht das, was bei einem einzelnen Durchgang herauskommen muss.'},
+ {q:'Ein Bestand von $200$ wächst jährlich um $5\\%$. Wie groß ist er nach $10$ Jahren? Runde auf eine ganze Zahl.',a:326,tol:1,
+  h:'Wachstumsfaktor pro Jahr ist $1{,}05$, und er wirkt zehnmal.',
+  s:'$200\\cdot 1{,}05^{10}\\approx 325{,}78$, also rund $326$. Wichtig ist der Unterschied zum linearen Wachstum: Dort wären es $200+10\\cdot 10=300$.'},
+ {q:'Ein Stoff hat eine Halbwertszeit von $5$ Jahren. Wie viel Prozent sind nach $15$ Jahren noch vorhanden?',a:12.5,
+  h:'Wie oft passt die Halbwertszeit in die Zeitspanne?',
+  s:'Drei Halbwertszeiten bedeuten den Faktor $0{,}5^3=0{,}125$, also $12{,}5\\%$. Die Modellgleichung lautet $N(t)=N_0\\cdot 0{,}5^{t/5}$, und genau diese Form sollte man ansagen können.'},
+ {q:'$f(x)=3\\sin(2x)+1$. Wie groß ist die Amplitude?',a:3,
+  h:'Die Amplitude steht als Faktor vor dem Sinus.',
+  s:'Die Amplitude ist $3$, die Periode beträgt $\\frac{2\\pi}{2}=\\pi$, und die Mittellage liegt bei $y=1$. Die Werte schwanken also zwischen $-2$ und $4$.'},
+ {q:'Bestimme den Median von $3$, $5$, $9$, $11$, $20$, $21$.',a:10,
+  h:'Bei gerader Anzahl liegt der Median zwischen den beiden mittleren Werten.',
+  s:'Die beiden mittleren Werte sind $9$ und $11$, der Median also $10$. Der Mittelwert wäre dagegen $11{,}5$; dass beide Kennzahlen auseinanderfallen, ist der Normalfall und ein guter Gesprächsanlass.'},
+ {q:'Löse das System $2x+y=7$ und $x-y=2$. Wie groß ist $x$?',a:3,
+  h:'Addiere die beiden Gleichungen.',
+  s:'Die Addition liefert $3x=9$, also $x=3$ und daraus $y=1$. Geometrisch ist $(3|1)$ der Schnittpunkt der beiden Geraden, und genau diese Deutung ist in der Prüfung mehr wert als die Rechnung.'}
+]},
+
+{id:'darstell',t:'Darstellungen wechseln',d:'Zwischen Term, Graph, Tabelle und Sachzusammenhang hin und her zu wechseln, ist die Kernkompetenz der Reifeprüfung. Hier wird genau das geübt.',type:'mc',items:[
+ {q:'Der Graph von $f$ ist eine fallende Gerade. Was gilt für $f\'$?',
+  o:['$f\'$ ist konstant und negativ.','$f\'$ ist fallend.','$f\'$ ist negativ und wird immer kleiner.','$f\'$ hat eine Nullstelle.'],
+  h:'Die Ableitung einer linearen Funktion ist die Steigung.',
+  s:'Eine Gerade hat überall dieselbe Steigung, und weil sie fällt, ist diese negativ. Die Ableitung ist also eine konstante negative Funktion, ihr Graph eine waagrechte Gerade unterhalb der $x$-Achse.'},
+ {q:'$f\'$ hat an der Stelle $x_0$ eine Nullstelle mit Vorzeichenwechsel von plus nach minus. Was gilt für $f$?',
+  o:['$f$ hat dort ein lokales Maximum.','$f$ hat dort ein lokales Minimum.','$f$ hat dort eine Nullstelle.','$f$ hat dort einen Wendepunkt.'],
+  h:'Erst steigt die Funktion, dann fällt sie.',
+  s:'Vorzeichenwechsel von plus nach minus heißt: erst steigend, dann fallend, also ein lokales Hochpunkt. Ein Wendepunkt von $f$ entspräche einer Extremstelle von $f\'$, und über Nullstellen von $f$ sagt die Ableitung gar nichts.'},
+ {q:'Ein Wassertank wird gefüllt. $f(t)$ gibt die Zuflussrate in Litern pro Minute an. Was bedeutet $\\int_0^{10} f(t)\\,dt = 45$?',
+  o:['In den ersten zehn Minuten sind insgesamt $45$ Liter zugeflossen.',
+     'Nach zehn Minuten fließen $45$ Liter pro Minute zu.',
+     'Im Tank befinden sich nach zehn Minuten $45$ Liter.',
+     'Die Zuflussrate ist im Mittel $45$ Liter pro Minute.'],
+  h:'Was ergibt Rate mal Zeit?',
+  s:'Das Integral über eine Rate liefert die Gesamtmenge, hier $45$ Liter Zufluss. Wie viel im Tank ist, hängt zusätzlich vom Anfangsbestand ab, und die mittlere Rate wäre $45/10 = 4{,}5$ Liter pro Minute.'},
+ {q:'Eine Tabelle zeigt: Bei $x=0$ ist $y=100$, bei $x=1$ ist $y=120$, bei $x=2$ ist $y=144$. Welches Modell passt?',
+  o:['Exponentiell mit dem Faktor $1{,}2$ pro Schritt.',
+     'Linear mit der Steigung $20$.',
+     'Quadratisch.',
+     'Keines der üblichen Modelle.'],
+  h:'Vergleiche Differenzen und Quotienten aufeinanderfolgender Werte.',
+  s:'Die Quotienten sind konstant: $120/100 = 1{,}2$ und $144/120 = 1{,}2$. Die Differenzen wachsen dagegen von $20$ auf $24$, also ist das Wachstum nicht linear. Dieser Test, Differenz oder Quotient, ist die Standardfrage bei Tabellen.'},
+ {q:'$f(x)=a\\cdot x^2$ mit $a&lt;0$. Welche Aussage stimmt?',
+  o:['Der Graph ist nach unten offen, der Scheitel ist der höchste Punkt.',
+     'Der Graph ist nach oben offen.',
+     'Der Graph ist eine fallende Gerade.',
+     'Der Graph hat zwei Nullstellen.'],
+  h:'Das Vorzeichen von $a$ entscheidet über die Öffnungsrichtung.',
+  s:'Bei negativem $a$ ist die Parabel nach unten offen, der Scheitel im Ursprung ist das Maximum. Nullstellen gibt es hier nur eine, nämlich die doppelte Nullstelle bei $x=0$.'},
+ {q:'Welche Funktion beschreibt: „Der Bestand nimmt pro Jahr um $8\\%$ ab, Anfangswert $500$“?',
+  o:['$N(t)=500\\cdot 0{,}92^t$','$N(t)=500\\cdot 1{,}08^t$','$N(t)=500-0{,}08t$','$N(t)=500\\cdot 0{,}08^t$'],
+  h:'Abnahme um $8\\%$ heißt: Es bleiben $92\\%$ übrig.',
+  s:'Der Faktor pro Jahr ist $1-0{,}08=0{,}92$. Der dritte Ansatz beschreibt lineare Abnahme um acht Hundertstel pro Jahr, der vierte eine Abnahme auf acht Prozent in jedem Schritt, was viel zu schnell wäre.'},
+ {q:'Der Graph von $f$ ist rechtsgekrümmt. Was gilt für $f\'\'$?',
+  o:['$f\'\'$ ist negativ.','$f\'\'$ ist positiv.','$f\'\'$ ist null.','Daraus lässt sich nichts über $f\'\'$ sagen.'],
+  h:'Rechtskrümmung heißt: Die Steigung nimmt ab.',
+  s:'Rechtsgekrümmt bedeutet, dass $f\'$ fällt, also ist $f\'\'$ negativ. Umgekehrt entspricht Linkskrümmung einem positiven $f\'\'$, und der Wechsel dazwischen ist der Wendepunkt.'},
+ {q:'Die Kostenfunktion $K(x)$ gibt die Gesamtkosten für $x$ Stück an. Was bedeutet $K\'(50)=12$?',
+  o:['Das $51$. Stück kostet näherungsweise $12$ Geldeinheiten zusätzlich.',
+     'Fünfzig Stück kosten zusammen $12$ Geldeinheiten.',
+     'Ein Stück kostet im Mittel $12$ Geldeinheiten.',
+     'Die Kosten steigen insgesamt um $12$ Prozent.'],
+  h:'Die Ableitung einer Kostenfunktion heißt Grenzkosten.',
+  s:'Die Grenzkosten geben näherungsweise an, was die nächste Einheit zusätzlich kostet. Die mittleren Kosten wären $K(50)/50$, also eine ganz andere Größe; diese Verwechslung ist in Prüfungen beliebt.'},
+ {q:'Zwei Geraden haben die Steigungen $k_1=2$ und $k_2=-0{,}5$. Was folgt daraus?',
+  o:['Sie stehen normal aufeinander, weil $k_1\\cdot k_2=-1$ ist.',
+     'Sie sind parallel.',
+     'Sie schneiden einander im Ursprung.',
+     'Daraus folgt nichts über ihre Lage.'],
+  h:'Multipliziere die beiden Steigungen.',
+  s:'$2\\cdot(-0{,}5)=-1$ ist das Kriterium für Normalität. Wo sie einander schneiden, hängt dagegen von den Konstanten ab und lässt sich aus den Steigungen allein nicht ablesen.'},
+ {q:'Eine Stichprobe ergibt den Mittelwert $50$ und die Standardabweichung $0$. Was heißt das?',
+  o:['Alle Werte der Stichprobe sind gleich $50$.',
+     'Die Stichprobe enthält nur einen einzigen Wert.',
+     'Es liegt ein Rechenfehler vor.',
+     'Die Werte sind gleichmäßig um $50$ verteilt.'],
+  h:'Die Standardabweichung misst die Streuung um den Mittelwert.',
+  s:'Streuung null bedeutet, dass kein Wert vom Mittelwert abweicht, also sind alle gleich. Eine einzige Beobachtung hätte ebenfalls die Abweichung null, ist aber nicht der einzige Fall, und ein Rechenfehler lässt sich daraus nicht schließen.'}
+]},
+
+{id:'nachfrage',t:'Typische Nachfragen',d:'Nach deiner Antwort kommt fast immer eine Anschlussfrage. Sie prüft, ob du verstanden hast, was du gerade gesagt hast.',type:'mc',items:[
+ {q:'Du hast eine Nullstelle berechnet. Die Prüferin fragt: „Und was bedeutet das im Sachzusammenhang?“',
+  o:['Du sagst, zu welchem Zeitpunkt beziehungsweise bei welchem Wert die beschriebene Größe null wird, und nennst die Einheit.',
+     'Du wiederholst die Rechnung, diesmal langsamer.',
+     'Du nennst die zweite Nullstelle.',
+     'Du zeichnest den Graphen.'],
+  h:'Die Frage zielt auf die Bedeutung, nicht auf die Rechnung.',
+  s:'Jede Zahl braucht in einem Anwendungszusammenhang eine Deutung und eine Einheit. „Nach $4{,}5$ Stunden ist der Tank leer“ ist eine Antwort, „$x=4{,}5$“ allein ist keine.'},
+ {q:'Du hast $f\'(x)=0$ gesetzt. Die Prüferin fragt: „Reicht das?“',
+  o:['Nein, das ist nur die notwendige Bedingung; es fehlt der Vorzeichenwechsel oder die zweite Ableitung.',
+     'Ja, damit ist die Extremstelle gefunden.',
+     'Nein, man muss zusätzlich die Nullstellen von $f$ bestimmen.',
+     'Das hängt davon ab, ob die Funktion stetig ist.'],
+  h:'Was unterscheidet eine notwendige von einer hinreichenden Bedingung?',
+  s:'Die Gleichung $f\'(x)=0$ liefert nur Kandidaten; $f(x)=x^3$ zeigt, dass ein Sattelpunkt dabei sein kann. Erst der Vorzeichenwechsel von $f\'$ oder $f\'\'(x_0)\\neq 0$ entscheidet.'},
+ {q:'Du hast ein Ergebnis von $-3$ Metern für eine Höhe erhalten. Die Prüferin schweigt und sieht dich an.',
+  o:['Du prüfst, ob das Ergebnis im Sachzusammenhang sinnvoll ist, und sagst, dass eine negative Höhe hier keine Lösung sein kann.',
+     'Du nennst das Ergebnis noch einmal, jetzt deutlicher.',
+     'Du rechnest alles von vorne durch.',
+     'Du sagst, dass der Taschenrechner das so ausgegeben hat.'],
+  h:'Das Schweigen ist die Frage.',
+  s:'Ergebnisse auf Plausibilität zu prüfen, gehört zur Modellierungskompetenz und wird ausdrücklich bewertet. Die mathematisch richtige Lösung der Gleichung ist nicht automatisch eine Lösung des Problems; das auszusprechen, ist genau das Erwartete.'},
+ {q:'„Sie haben mit dem Taschenrechner gerechnet. Wie hätte man das ohne Technologie gemacht?“',
+  o:['Du beschreibst den Rechenweg in Schritten, auch wenn du ihn nicht vollständig ausführst.',
+     'Du sagst, dass das ohne Technologie nicht vorgesehen ist.',
+     'Du führst die Rechnung vollständig händisch durch.',
+     'Du nennst das Ergebnis noch einmal.'],
+  h:'Gefragt ist das Verfahren, nicht das Resultat.',
+  s:'Die Prüferin will hören, dass du weißt, was das Gerät tut. Den Weg zu beschreiben, etwa „gleichsetzen, umformen, Lösungsformel anwenden“, genügt völlig; die vollständige Rechnung kostet nur Zeit.'},
+ {q:'„Gilt das immer?“, nachdem du eine Regel genannt hast.',
+  o:['Du nennst die Voraussetzung, unter der die Regel gilt, und wenn möglich ein Gegenbeispiel für den Fall, dass sie verletzt ist.',
+     'Du bestätigst, dass die Regel immer gilt.',
+     'Du sagst, dass es Ausnahmen gibt, ohne sie zu nennen.',
+     'Du nennst eine zweite Regel.'],
+  h:'Diese Frage zielt fast immer auf eine Voraussetzung.',
+  s:'„Gilt das immer?“ ist eine Einladung, die Voraussetzungen zu nennen. Wer sie kennt und ein Gegenbeispiel parat hat, zeigt damit mehr Verständnis als mit jeder fehlerfreien Rechnung.'},
+ {q:'„Können Sie mir das an einem Beispiel zeigen?“',
+  o:['Du wählst ein möglichst einfaches eigenes Beispiel mit kleinen Zahlen und rechnest es vor.',
+     'Du nennst ein Beispiel aus dem Schulbuch, so gut du es erinnerst.',
+     'Du erklärst stattdessen die allgemeine Regel noch einmal.',
+     'Du fragst, welches Beispiel gewünscht ist.'],
+  h:'Einfach ist hier besser als beeindruckend.',
+  s:'Kleine Zahlen machen den Gedanken sichtbar und halten das Risiko von Rechenfehlern klein. Ein selbst gewähltes Beispiel zeigt außerdem, dass du über das Auswendiggelernte hinaus verstanden hast.'},
+ {q:'„Was wäre, wenn der Parameter negativ wäre?“',
+  o:['Du überlegst laut, welche Eigenschaft sich dadurch ändert, und nennst die Folge für den Graphen.',
+     'Du sagst, dass der Fall in der Angabe nicht vorkommt.',
+     'Du rechnest das Beispiel mit einem negativen Wert komplett neu.',
+     'Du sagst, dass sich nichts Wesentliches ändert.'],
+  h:'Es ist eine Frage nach dem Zusammenhang, keine Rechenaufgabe.',
+  s:'Solche Fragen prüfen, ob du die Rolle der Parameter verstanden hast. Lautes Überlegen ist hier erwünscht: Die Prüferin will deinen Gedankengang hören, nicht ein fertiges Ergebnis.'},
+ {q:'Dir fällt bei einer Rechnung ein Fehler auf, den du selbst gemacht hast.',
+  o:['Du sagst es und korrigierst ihn: „Hier habe ich mich vertan, richtig muss es heißen …“',
+     'Du rechnest stillschweigend weiter und hoffst, dass es niemand merkt.',
+     'Du beginnst die ganze Aufgabe von vorne.',
+     'Du entschuldigst dich ausführlich.'],
+  h:'Was zeigt mehr Kompetenz: kein Fehler oder ein erkannter Fehler?',
+  s:'Einen eigenen Fehler zu bemerken und zu beheben, ist eine mathematische Leistung und wird positiv gewertet. Weiterrechnen auf falscher Grundlage führt dagegen dazu, dass auch alles Folgende falsch ist.'},
+ {q:'„Sie haben gerade einen Fachbegriff verwendet. Was heißt der genau?“',
+  o:['Du erklärst ihn in eigenen Worten und gibst ein Beispiel dazu.',
+     'Du nennst die Formel, in der er vorkommt.',
+     'Du sagst, dass der Begriff im Buch steht.',
+     'Du vermeidest den Begriff künftig.'],
+  h:'Die Frage prüft, ob der Begriff gedeckt ist.',
+  s:'Begriffe, die man verwendet, muss man erklären können; sonst wirkt die Antwort auswendig gelernt. Umgekehrt gilt: Lieber einen Begriff weniger verwenden und den erklären können, als mit Fachsprache zu glänzen, die nicht gedeckt ist.'},
+ {q:'„Hätte man das auch anders lösen können?“',
+  o:['Du nennst einen zweiten Weg in Stichworten und sagst, warum du den ersten gewählt hast.',
+     'Du sagst, dass dein Weg der übliche ist.',
+     'Du rechnest die Aufgabe auf dem zweiten Weg vollständig nach.',
+     'Du sagst, dass du nur diesen Weg kennst.'],
+  h:'Es ist eine Einladung, Überblick zu zeigen.',
+  s:'Alternative Lösungswege zu kennen, gehört zum Verständnis. Der zweite Weg muss nicht durchgerechnet werden; es genügt, ihn zu benennen und die eigene Wahl zu begründen, etwa mit weniger Rechenaufwand.'}
+]}
+];
+
+const DRILLS=[
+ {p:'Erkläre in einer Minute, was die Ableitung anschaulich bedeutet, ohne die Formel zu verwenden.',sec:60,c:['Du nennst die Änderungsrate und die Tangentensteigung.','Du bringst ein Beispiel aus dem Alltag, etwa Geschwindigkeit.','Du sprichst in ganzen Sätzen, ohne lange Pausen.','Du unterscheidest dabei mittlere und momentane Änderung.']},
+ {p:'Erkläre den Zusammenhang zwischen Ableitung und Stammfunktion.',sec:60,c:['Du benennst beide Richtungen des Zusammenhangs.','Du erwähnst, warum es unendlich viele Stammfunktionen gibt.','Du bringst ein Beispielpaar.','Du schließt mit einem zusammenfassenden Satz.']},
+ {p:'Erkläre jemandem ohne Vorkenntnisse den Unterschied zwischen linearem und exponentiellem Wachstum.',sec:60,c:['Du nennst für beide, was pro Schritt konstant bleibt.','Du bringst zu jedem ein Beispiel.','Du sagst, woran man die beiden in einer Tabelle unterscheidet.','Du bleibst verständlich, ohne fachlich falsch zu werden.']},
+ {p:'Erkläre, was eine Wahrscheinlichkeit von $0{,}25$ bedeutet und was sie nicht bedeutet.',sec:60,c:['Du erklärst die Deutung über viele Wiederholungen.','Du sagst ausdrücklich, was daraus für einen einzelnen Versuch nicht folgt.','Du bringst ein Beispiel.','Du sprichst durchgehend ohne lange Pausen.']},
+ {p:'Beschreibe, wie du eine Extremstelle bestimmst, und begründe jeden Schritt.',sec:90,c:['Die Reihenfolge der Schritte stimmt.','Du unterscheidest notwendige und hinreichende Bedingung.','Du nennst ein Gegenbeispiel für den Fall, dass die hinreichende Bedingung fehlt.','Du bleibst innerhalb der Zeit.']},
+ {p:'Erkläre, warum man in der Statistik manchmal den Median statt des Mittelwerts angibt.',sec:60,c:['Du erklärst beide Kennzahlen kurz.','Du nennst die Empfindlichkeit gegenüber Ausreißern.','Du bringst ein konkretes Beispiel, etwa Einkommen.','Du endest mit einer klaren Aussage.']},
+ {p:'Erkläre an einem Beispiel, was ein Gleichungssystem geometrisch bedeutet.',sec:60,c:['Du nennst die Deutung als Schnitt zweier Geraden.','Du nennst alle drei möglichen Fälle.','Du sagst, woran man den jeweiligen Fall beim Rechnen erkennt.','Du bringst ein eigenes kurzes Beispiel.']},
+ {p:'Erkläre den Unterschied zwischen Korrelation und ursächlichem Zusammenhang.',sec:60,c:['Du erklärst zuerst, was die Korrelation misst.','Du nennst ein Beispiel für eine Korrelation ohne Ursache.','Du sagst, was zusätzlich nötig wäre, um auf eine Ursache zu schließen.','Du bleibst sachlich korrekt, ohne zu vereinfachen.']},
+ {p:'Erkläre, wofür man den Logarithmus in Anwendungen braucht.',sec:60,c:['Du erklärst ihn als Umkehrung des Potenzierens.','Du nennst eine Anwendung, etwa Halbwertszeit oder Verdopplungszeit.','Du zeigst an einem Ansatz, wie er die Zeit freistellt.','Du schließt mit einem zusammenfassenden Satz.']},
+ {p:'Eine Mitschülerin sagt: „Integrale braucht man im Leben nie.“ Antworte.',sec:60,c:['Du gehst auf den wahren Kern der Behauptung ein.','Du bringst mindestens ein konkretes Beispiel.','Du bleibst freundlich im Ton.','Du endest mit einer klaren eigenen Position.']},
+ {p:'Erkläre, was der Erwartungswert ist und warum er oft kein möglicher Ausgang des Versuchs ist.',sec:60,c:['Du erklärst den Erwartungswert als Mittelwert auf lange Sicht.','Du bringst ein Beispiel, in dem er kein möglicher Wert ist.','Du nennst die Rechenvorschrift.','Du sprichst zusammenhängend.']},
+ {p:'Beschreibe, wie du bei einer Textaufgabe vorgehst, von der Angabe bis zur Antwort.',sec:90,c:['Deine Schritte sind in sinnvoller Reihenfolge.','Du erwähnst die Wahl der Variablen und des Modells.','Du erwähnst die Prüfung des Ergebnisses auf Plausibilität.','Du nennst die Deutung des Ergebnisses im Sachzusammenhang als letzten Schritt.']}
+];
+
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 const ABN=['','Reproduktion','Transfer','Reflexion'];
@@ -530,21 +896,98 @@ $('#tbhost').innerHTML=TB.map(t=>'<div class="acc"><button class="h">'+t.t+'<spa
  '<p style="margin:.5em 0"><b>Stolperstellen:</b> '+t.s+'</p></div></div>').join('');
 wireAcc();
 
-/* Training */
-$('#exhost').innerHTML=EXS.map((e,i)=>'<div class="ex" data-i="'+i+'"><div class="nr">Aufgabe '+(i+1)+'</div><div>'+e.q+'</div><div class="opts">'+
-  shuffle(e.o.map((o,k)=>[o,k])).map(([o,k])=>'<button class="opt" data-k="'+k+'">'+o+'</button>').join('')+'</div><div class="fb"></div></div>').join('');
-$$('#exhost .ex').forEach(box=>{
-  const e=EXS[+box.dataset.i],fb=box.querySelector('.fb');let tries=0;
-  const show=(c,h,b)=>{fb.className='fb show '+c;fb.innerHTML='<b class="h">'+h+'</b>'+b;typeset(fb)};
-  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
-    if(box.dataset.fin)return;
-    if(+b.dataset.k===0){b.classList.add('right');box.dataset.fin=1;box.classList.remove('no');box.classList.add('ok');
-      show('good',tries?'Jetzt stimmt es.':'Richtig!',e.s)}
-    else{b.classList.add('wrong');b.disabled=true;tries++;box.classList.add('no');
-      if(tries===1)show('hint','Noch nicht.','Tipp: '+e.h);
-      else{box.dataset.fin=1;box.querySelector('.opt[data-k="0"]').classList.add('right');show('bad','Die richtige Antwort ist markiert.',e.s)}}
+/* Trainingszentrum */
+/* ===== Engine Trainingszentrum ===== */
+const DONE={};TRAIN.forEach(b=>DONE[b.id]=new Set());
+function parseNum(s){
+  s=String(s).replace(/\s/g,'').replace(/,/g,'.').replace(/[^0-9.\-\/]/g,'');
+  if(/^-?\d+(\.\d+)?\/-?\d+(\.\d+)?$/.test(s)){const p=s.split('/');return (+p[0])/(+p[1])}
+  if(!/^-?\d+(\.\d+)?$/.test(s))return NaN;
+  return +s;
+}
+function tabsHTML(){
+  return '<div class="tabs">'+TRAIN.map((b,i)=>'<button data-b="'+i+'"'+(i===0?' class="on"':'')+'>'+b.t+
+    ' <i id="c'+b.id+'">0/'+b.items.length+'</i></button>').join('')+
+    '<button data-b="drill">Sprechimpulse <i>'+DRILLS.length+'</i></button></div>';
+}
+function cnt(b){const e=document.getElementById('c'+b.id);if(e)e.textContent=DONE[b.id].size+'/'+b.items.length;
+  const t=document.getElementById('total');if(t){
+    const d=TRAIN.reduce((s,x)=>s+DONE[x.id].size,0),n=TRAIN.reduce((s,x)=>s+x.items.length,0);
+    t.textContent=d+' von '+n+' Aufgaben gelöst';}}
+
+function block(i){
+  const b=TRAIN[i];
+  $$('#tabhost .tabs button').forEach(x=>x.classList.toggle('on',x.dataset.b===String(i)));
+  $('#exhost').innerHTML='<p class="bd">'+b.d+'</p>'+b.items.map((it,k)=>{
+    const head='<div class="nr">'+b.t+' · '+(k+1)+' von '+b.items.length+'</div>';
+    if(b.type==='mc')
+      return '<div class="ex" data-k="'+k+'">'+head+'<div>'+it.q+'</div><div class="opts">'+
+        shuffle(it.o.map((o,n)=>[o,n])).map(([o,n])=>'<button class="opt" data-n="'+n+'">'+o+'</button>').join('')+
+        '</div><div class="fb"></div></div>';
+    return '<div class="ex" data-k="'+k+'">'+head+'<div class="qt">'+it.q+'</div>'+
+      '<div class="inrow"><input type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="nur die Zahl"><button class="go">Prüfen</button><button class="ghost sol">Lösung</button></div><div class="fb"></div></div>';
+  }).join('');
+  $$('#exhost .ex').forEach(box=>{
+    const k=+box.dataset.k, it=b.items[k], fb=box.querySelector('.fb'); let tries=0;
+    const show=(c,h,t)=>{fb.className='fb show '+c;fb.innerHTML='<b class="h">'+h+'</b>'+t;typeset(fb)};
+    const fin=good=>{box.dataset.fin=1;box.classList.remove('no');box.classList.add(good?'ok':'no');
+      if(good)DONE[b.id].add(k);cnt(b)};
+    if(b.type==='mc'){
+      box.querySelectorAll('.opt').forEach(o=>o.onclick=()=>{
+        if(box.dataset.fin)return;
+        if(+o.dataset.n===0){o.classList.add('right');fin(!tries);show('good',tries?'Jetzt stimmt es.':'Richtig!',it.s)}
+        else{o.classList.add('wrong');o.disabled=true;tries++;box.classList.add('no');
+          if(tries===1)show('hint','Noch nicht.','Tipp: '+it.h);
+          else{box.querySelector('.opt[data-n="0"]').classList.add('right');fin(false);show('bad','Die richtige Antwort ist markiert.',it.s)}}
+      });
+    }else{
+      const inp=box.querySelector('input');
+      const tol=it.tol||Math.max(1e-6,Math.abs(it.a)*1e-6);
+      const check=()=>{
+        if(box.dataset.fin)return;
+        const v=parseNum(inp.value);
+        if(isNaN(v)){show('hint','Keine Zahl erkannt.','Gib nur die Zahl ein, etwa $-1$ oder $1{,}5$. Brüche wie $3/2$ gehen auch.');return}
+        if(Math.abs(v-it.a)<=tol){inp.classList.add('right');fin(!tries);show('good',tries?'Jetzt stimmt es.':'Richtig!',it.s)}
+        else{tries++;inp.classList.add('wrong');setTimeout(()=>inp.classList.remove('wrong'),900);
+          if(tries===1)show('hint','Noch nicht.','Tipp: '+it.h);
+          else{fin(false);inp.value=String(it.a).replace('.',',');show('bad','Richtig wäre '+String(it.a).replace('.',',')+'.',it.s)}}
+      };
+      box.querySelector('.go').onclick=check;
+      inp.onkeydown=e=>{if(e.key==='Enter')check()};
+      box.querySelector('.sol').onclick=()=>{if(box.dataset.fin)return;inp.value=String(it.a).replace('.',',');fin(false);show('bad','Lösung:',it.s)};
+    }
   });
-});
+  typeset($('#exhost'));
+  cnt(b);
+}
+
+let lastDrill=-1;
+function drill(){
+  $$('#tabhost .tabs button').forEach(x=>x.classList.toggle('on',x.dataset.b==='drill'));
+  let n=lastDrill;while(n===lastDrill)n=Math.floor(Math.random()*DRILLS.length);
+  lastDrill=n;const d=DRILLS[n];
+  $('#exhost').innerHTML='<p class="bd">Ein Impuls, eine knappe Zeit, laut sprechen. Das ist die einzige Übung, die der Prüfung wirklich entspricht, weil nur hier gesprochen wird. Nimm dich auf und hör danach einmal hinein.</p>'+
+   '<div class="ex"><div class="nr">Sprechimpuls</div><p class="dp">'+d.p+'</p>'+
+   '<div class="timer"><div class="clock" id="dclk">'+fmt(d.sec)+'</div><div class="bar"><i id="dbar"></i></div>'+
+   '<button id="dstart">Start</button><button class="ghost" id="dnew">Nächster Impuls</button></div>'+
+   '<div id="dcheck"></div></div>';
+  typeset($('#exhost'));
+  let left=d.sec,t=null;
+  const u=()=>{$('#dclk').textContent=fmt(left);$('#dclk').classList.toggle('warn',left<=10);$('#dbar').style.width=(left/d.sec*100)+'%'};
+  $('#dstart').onclick=()=>{if(t)return;t=setInterval(()=>{left--;if(left<=0){left=0;clearInterval(t);t=null;done()}u()},1000)};
+  $('#dnew').onclick=()=>{if(t)clearInterval(t);drill()};
+  function done(){
+    $('#dcheck').innerHTML='<h4>Hast du das geschafft?</h4>'+
+      d.c.map(c=>'<label class="check"><input type="checkbox"><span>'+c+'</span></label>').join('')+
+      '<div class="note" style="margin-bottom:0"><b class="lab">Und jetzt noch einmal</b>Derselbe Impuls ein zweites Mal, mit dem, was dir beim ersten Mal gefehlt hat. Der zweite Durchgang ist der, aus dem du etwas mitnimmst.</div>';
+    typeset($('#dcheck'));
+  }
+}
+
+$('#tabhost').innerHTML=tabsHTML();
+$$('#tabhost .tabs button').forEach(b=>b.onclick=()=>b.dataset.b==='drill'?drill():block(+b.dataset.b));
+block(0);
+
 
 /* Simulation */
 const KRIT=[
