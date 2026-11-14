@@ -9,7 +9,7 @@
 <style>
 :root{
   --bg:#f5f2ec; --card:#ffffff; --ink:#1b1b1f; --muted:#56535d; --line:#e3ddd3;
-  --blue:#3a5a8c; --petrol:#1d6b74; --lilac:#5d4a7e; --terra:#9c4f3d; --gold:#a7843b;
+  --blue:#3a5a8c; --petrol:#1d6b74; --lilac:#5d4a7e; --terra:#9c4f3d; --gold:#a7843b; --berry:#8a3f5c; --slate:#4b5d73;
   --shadow:0 6px 24px rgba(40,30,20,.07);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -20,7 +20,7 @@ body{
   display:flex;align-items:center;justify-content:center;
   padding:clamp(16px,3vh,38px) clamp(16px,4vw,48px);
 }
-.wrap{width:100%;max-width:1020px}
+.wrap{width:100%;max-width:1180px}
 
 header{text-align:center;margin-bottom:clamp(18px,3.4vh,38px)}
 h1{
@@ -45,6 +45,7 @@ section+section{margin-top:clamp(15px,2.8vh,30px)}
 .grid{display:grid;gap:clamp(9px,1.5vh,16px)}
 .g2{grid-template-columns:1fr 1fr}
 .g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
 
 .card{
   background:var(--card);border:1px solid #efe9df;border-left:5px solid var(--c);
@@ -73,17 +74,19 @@ a.card:hover .arrow{transform:translateX(3px)}
   background:#f3efe8;white-space:nowrap;
 }
 .m{--c:var(--blue);--cs:#e7edf6} .l{--c:var(--terra);--cs:#f6e9e4} .e{--c:var(--petrol);--cs:#e3eff1}
-.mk{--c:var(--lilac);--cs:#eee9f5} .lk{--c:var(--gold);--cs:#f6efdf}
+.mk{--c:var(--lilac);--cs:#eee9f5} .lk{--c:var(--gold);--cs:#f6efdf} .ek{--c:var(--petrol);--cs:#e3eff1}
+.d{--c:var(--berry);--cs:#f5e8ee} .dk{--c:var(--slate);--cs:#e9edf2}
 
 footer{
   margin-top:clamp(14px,2.6vh,28px);text-align:center;
   color:var(--muted);font-size:clamp(.71rem,1.25vh,.8rem);font-weight:300;
 }
 
-@media(min-height:640px) and (min-width:760px){ body{overflow:hidden} }
+@media(min-height:700px) and (min-width:1000px){ body{overflow:hidden} }
+@media(max-width:1000px) and (min-width:761px){ .g4{grid-template-columns:1fr 1fr} body{align-items:flex-start} }
 @media(max-width:760px){
   body{align-items:flex-start;padding:24px 16px 32px}
-  .g2,.g3{grid-template-columns:1fr}
+  .g2,.g3,.g4{grid-template-columns:1fr}
   .card p{display:none}
   .card small{margin-top:.1em}
   section+section{margin-top:22px}
@@ -101,7 +104,12 @@ footer{
 
   <section>
     <h2>Der ganze Stoff, Kapitel für Kapitel</h2>
-    <div class="grid g3">
+    <div class="grid g4">
+      <a class="card dk" href="deutsch-oberstufe-kurs.html">
+        <div class="top"><b>Deutsch</b><span class="arrow">→</span></div>
+        <p>Von der Grammatik bis zur Literaturgeschichte: Sprache, Textsorten und Lektüre.</p>
+        <small>Kapitel · Aufgaben · Training</small>
+      </a>
       <a class="card mk" href="mathematik-oberstufe-kurs.html">
         <div class="top"><b>Mathematik</b><span class="arrow">→</span></div>
         <p>Von den Zahlenmengen bis zur Stochastik: erklärt, vorgerechnet und zum Selberrechnen.</p>
@@ -121,8 +129,15 @@ footer{
   </section>
 
   <section>
-    <h2>Matura <em>· je eine Seite für die schriftliche Klausur und für die mündliche Prüfung</em></h2>
-    <div class="grid g3">
+    <h2>Matura <em>· Seiten für die schriftliche Klausur und für die mündliche Prüfung</em></h2>
+    <div class="grid g4">
+      <div class="card d">
+        <div class="top"><b>Deutsch</b></div>
+        <p>Sieben Textsorten, Schreibstrategie und Simulation mit drei Themenpaketen.</p>
+        <div class="pills">
+          <a href="deutsch-zentralmatura.html">Klausur →</a>
+        </div>
+      </div>
       <div class="card m">
         <div class="top"><b>Mathematik</b></div>
         <p>Grundkompetenzen, Strategie und vollständige Prüfungssimulation.</p>
